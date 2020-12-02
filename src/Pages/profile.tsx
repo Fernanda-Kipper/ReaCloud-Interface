@@ -39,7 +39,7 @@ function ProfilePage() {
             console.log("Erro ao validar perfil")
             history.push("/")
         }
-    }, [])
+    })
 
     function displayAlertEMail(){
         alert("Não é possível alterar seu email!")

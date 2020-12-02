@@ -22,8 +22,6 @@ function ResourcePage() {
     const [reviews, setReviews] = useState(false)
     const [forks, setForks] = useState(false)
 
-    const licence = resource?.licence
-
     useEffect(()=>{
         try{
             Axios.get(`/resource/${id.id}`).then(response =>{
@@ -32,7 +30,7 @@ function ResourcePage() {
         }catch(err){
             console.log("Erro ao carregar dados do recurso")
         }
-    }, [])
+    })
     
   return (
     <div className="resource-content">
@@ -47,24 +45,24 @@ function ResourcePage() {
                 <button>Visualizar material</button>
             </section>
             <nav>
-                <a className={`${about}`} onClick={()=>{
+                <h5 className={`${about}`} onClick={()=>{
                 setAbout(true)
                 setForks(false)
                 setReviews(false)}}>
                     Sobre
-                </a>
-                <a className={`${reviews}`} onClick={()=>{
+                </h5>
+                <h5 className={`${reviews}`} onClick={()=>{
                 setAbout(false)
                 setForks(false)
                 setReviews(true)}}>
                     Avaliações
-                </a>
-                <a className={`${forks}`} onClick={()=>{
+                </h5>
+                <h5 className={`${forks}`} onClick={()=>{
                 setAbout(false)
                 setForks(true)
                 setReviews(false)}}>
                     Alterações
-                </a>
+                </h5>
             </nav>
             {about ?             
             <div className="main-content">
@@ -80,7 +78,7 @@ function ResourcePage() {
                     <h4 className="subtitle">Palavras-chave:</h4>
                     <p className="text">{resource?.keywords}</p>
                     <h4 className="subtitle">Metadados</h4>
-                    <a className="text" href="">Ver tabela</a>
+                    <a className="text" href="/tabela">Ver tabela</a>
                 </section>
                 <section className="box">
                     <div className="licence">
