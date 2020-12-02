@@ -1,0 +1,274 @@
+.publish-content{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff;
+    overflow: hidden;
+}
+
+.publish-content Header{
+    margin-bottom: 20px;
+    background-color: #6523D0;
+}
+
+.publish-content Header .logo{
+    background: url('../../Images/logo_white.png');
+    background-size: 100%;
+}
+
+.publish-content Header .entrar{
+    color: #FBF9FF;
+}
+
+.publish-content Header .logout{
+    color: #FBF9FF;
+}
+
+.publish-content main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 100px;
+    margin-bottom: 50px;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.1);
+}
+
+.publish-content main .form{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.publish-content main .title{
+    margin-bottom: 20px;
+    color: #6523D0;
+    text-align: center;
+    font-size: 18px;
+    max-width: 400px;
+}
+
+.publish-content main .section{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 25px;
+    border: 2px solid #c4c4c4;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.publish-content main .section .section_title{
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    grid-template-rows: 1fr;
+    justify-content: space-between;
+    width: 300px;
+}
+
+.publish-content main .section .section_title h3{
+    margin-bottom: 10px;
+    color: #c4c4c4;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 500;
+    justify-self: start;
+}
+
+.publish-content main .section .section_title .arrow{
+    background: url('../../Images/arrow.svg') no-repeat;
+    background-size: 100%;
+    width: 30px;
+    height: 30px;
+    align-self: end;
+    justify-self: end;
+    cursor: pointer;
+}
+
+.publish-content main .section .section_title .check{
+    background: url('../../Images/check.svg') no-repeat;
+    background-size: 100%;
+    width: 30px;
+    height: 30px;
+    align-self: end;
+    justify-self: end;
+    cursor: pointer;
+}
+
+.publish-content main .section label{
+    color: #7d7d7d;
+    font-weight: 500;
+    margin: 5px;
+    background-color: #ffffff;
+    transform: translateY(100%);
+    height: 30px;
+    display: flex;
+    flex-direction: row;
+}
+
+.publish-content main .section label .informationSource{
+    display: none;
+}
+
+
+.publish-content main .section input,textarea,select{
+    width: 300px;
+    border-radius: 20px;
+    border: 0.5px solid #7d7d7d;
+    margin: 10px 0;
+    color: #7d7d7d;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    outline: none;
+    padding: 10px;
+}
+
+
+.publish-content main .section input{
+    height: 40px;
+    padding: 15px;
+}
+
+.publish-content main .section textarea{
+    height: 60px;
+    font-size: 13px;
+}
+
+
+.publish-content main .section select{
+    height: 40px;
+    width: 300px;
+}
+
+.publish-content main .section span{
+    font-size: 13px;
+    color: #3D0991;
+}
+
+.publish-content main .section form{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.publish-content main .form button{
+    border-radius: 10px;
+    border: 0;
+    width: 200px;
+    align-self: center; 
+    background-color: #3D0991;
+    height: 40px;
+    color: #FBF9FF;
+    margin: auto;
+    transition: 200ms;
+    cursor: pointer;
+}
+
+.publish-content main .form button:hover{
+    background-color:  #fbf9ff;
+    color:  #3D0991;
+    font-weight: 600;
+    box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.1);
+    outline: none;
+
+}
+
+.publish-content main .form .section button{
+    width: 120px;
+    background-color:  #c4c4c4;
+    color:  #fbf9ff;
+    outline: none;
+}
+
+@media(min-width: 900px){
+    .publish-content main{
+        margin-top: 100px;
+        padding: 50px;
+    }
+
+    .publish-content main .title{
+        font-size: 20px;
+    }
+    
+    .publish-content main .warning{
+        font-size: 20px;
+        width: 500px;
+    }
+
+    .publish-content main .section h3{
+        font-size: 28px;
+    }
+
+    .publish-content main .section input{
+        height: 40px;
+        width: 500px;
+        font-size: 18px;
+    }
+    
+    .publish-content main .section textarea{
+        height: 100px;
+        font-size: 18px;
+        width: 500px;
+    }
+
+    .publish-content main .section select{
+        width: 500px;
+        font-size: 16px;
+    }
+
+    .publish-content main .section .section_title{
+        width: 500px;
+    }
+
+    .publish-content main .section label .informationSource{
+        background: url('../../Images/informationSource.svg') no-repeat;
+        background-size: 100%;
+        width: 15px;
+        height: 15px;
+        justify-self: center;
+        cursor: pointer;
+        display: flex;
+        margin-left: 5px;
+    }
+    
+    .publish-content main .section label .informationSource h3{
+        display: none;
+    }
+    
+    .publish-content main .section .informationSource:hover{
+        background: #E3E2E4;
+        border-radius: 30px 30px 30px 0;
+        display: flex;
+        min-width: 140px;
+        min-height: 80px;
+        font-size: 12px;
+        z-index: 1;
+        align-self: center;
+        justify-self: center;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 80px;
+    }
+    .publish-content main .section .informationSource:hover h3{
+        display: block;
+        font-size: 12px;
+        color: black;
+        font-weight: 500;
+        text-align: center;
+    
+    }
+    
+    .publish-content main .section .informationSource:hover h3 a{
+        text-decoration: none;
+        color: #3D0991;
+    
+    }
+    
+}

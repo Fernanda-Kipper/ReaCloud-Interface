@@ -1,0 +1,15 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    color: #FFF;
+    transform: rotate(0.03deg);
+
+}
+
+body, input, button, textarea{
+    font: 400 18px Raleway, sans-serif;
+}

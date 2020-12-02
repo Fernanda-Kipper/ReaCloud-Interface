@@ -1,0 +1,199 @@
+.profile-content{
+    width: 100%;
+    height: 100vh;
+
+    display: flex;
+    justify-content: center;
+}
+
+.profile-content Header{
+    margin-bottom: 20px;
+    background-color: #6523D0;
+}
+
+.profile-content Header .logo{
+    background: url('../../Images/logo_white.png');
+    background-size: 100%;
+}
+
+.profile-content Header .entrar{
+    color: #FBF9FF;
+}
+
+.profile-content Header .logout{
+    color: #FBF9FF;
+}
+
+
+.profile-content main{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.profile-content main aside{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px;
+    width: 100%;
+}
+
+.profile-content main aside nav{
+    color: #7d7d7d;
+    margin: 5px;
+    border-bottom: 1.5px solid #c4c4c4;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.profile-content main .Recursos{
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+}
+
+.profile-content main form{
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+}
+
+
+.profile-content main form h6{
+    color: #3D0991;
+    font-size: 18px;
+}
+
+.profile-content main form input,select{
+    width: 300px;
+    border-radius: 20px;
+    border: 0.5px solid #7d7d7d;
+    margin: 10px 0;
+    color: #7d7d7d;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    outline: none;
+    padding: 10px;
+    align-self: center;
+}
+
+.profile-content main form input{
+    height: 40px;
+    padding: 15px;
+}
+
+.profile-content main form select{
+    height: 40px;
+    width: 300px;
+}
+
+.profile-content main form label{
+    color: #7d7d7d;
+    font-weight: 500;
+    margin: 5px;
+    background-color: #ffffff;
+    transform: translateY(100%);
+    height: 30px;
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+}
+
+.profile-content main form .email{
+    width: 300px;
+    border-radius: 20px;
+    border: 0.5px solid #7d7d7d;
+    margin: 10px 0;
+    color: #7d7d7d;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    outline: none;
+    padding: 10px;
+}
+
+.profile-content main form img{
+    grid-area: image;
+    border-radius: 20px;
+    width: 200px;
+    height: 200px;
+    align-self: center;
+    background-color: #c4c4c4;
+}
+
+.profile-content main form button{
+    border-radius: 10px;
+    border: 0;
+    width: 200px;
+    align-self: center; 
+    background-color: #ffffff;
+    height: 40px;
+    color: #3d0991;
+    border: 1px solid #3D0991;
+    margin: auto;
+    transition: 200ms;
+    cursor: pointer;
+}
+
+.profile-content main form button:hover{
+    background-color:  #6232c4;
+    color:  #FBF9FF;
+    outline: none;
+}
+
+@media(min-width: 900px){
+    .profile-content main{
+        align-items: left;
+        justify-content: left;
+        flex-direction: row;
+    
+        text-align: center;
+        margin-top: 20px;
+    }
+    
+    .profile-content main aside{
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr;
+        border-radius: 10px;
+        padding: 20px;
+        margin: 20px;
+        width: 250px;
+    }
+    
+    .profile-content main aside nav{
+        color: #7d7d7d;
+        margin-bottom: 20px;
+        font-size: 25px;
+
+    }
+    .profile-content main form{
+        flex-wrap: wrap;
+        padding: 40px;
+        border-left: 2px solid #c4c4c4;
+        height: 450px;
+        align-items: center;
+        width: 900px;
+    }
+
+    .profile-content main .Recursos{
+        flex-wrap: wrap;
+        padding: 40px;
+        border-left: 2px solid #c4c4c4;
+        height: 450px;
+        align-items: center;
+        width: 900px;
+    }
+
+    .profile-content main form img{
+        width: 230px;
+        height: 230px;
+        
+    }
+}

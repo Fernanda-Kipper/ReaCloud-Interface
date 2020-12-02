@@ -1,0 +1,76 @@
+.login-content{
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(180deg, #6523D0 0%, rgba(111, 38, 231, 0.43) 100%);
+}
+
+.login-field{
+    background-color: #FBF9FF;
+    height: 450px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    padding: 80px;
+    box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.1);
+}
+
+.login-field h1{
+    color: #6523D0;
+    text-align: center;
+    font-size: 32px;
+}
+
+.login-field form{
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+}
+
+.login-field form label{
+    color: #6523D0;
+}
+
+.login-field form input{
+    width: 300px;
+    border-radius: 8px;
+    margin: 10px 0;
+    border-style: ridge;
+    border-width: 1px;
+    height: 30px;
+    outline: none;
+}
+
+.login-field form button{
+    border-radius: 20px;
+    border: 0;
+    width: 200px;
+    align-self: center;
+    background-color: #3D0991;
+    height: 40px;
+    color: #FBF9FF;
+    margin-top: 20px;
+    transition: 200ms;
+    cursor: pointer;
+    outline: none;
+}
+.login-field form button:hover{
+    background-color: #7640CE;
+}
+.login-content .signin{
+    text-align: center;
+    color: #6523D0;
+    margin: 20px;
+}
+
+@media(min-width: 1000px){
+    .login-field{
+        height: 500px;
+        padding: 100px;
+    }
+    .login-field h1{
+        font-size: 2em;
+    }
+}
