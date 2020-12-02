@@ -1,6 +1,6 @@
 import React, { FormEvent, useState, useContext } from 'react';
 import {Link, useHistory} from 'react-router-dom';
-import axios from 'axios';
+import api from '../Services/apiService';
 
 import '../Styles/pages/signin.css'
 
@@ -23,7 +23,7 @@ function SignInPage() {
         event.preventDefault()
         const Formdata = {email: email, password: password, name: name, picture_url: url, profile: profile}
         try{
-          await axios.post('/signin', Formdata).then(res =>{
+          await api.post('/signin', Formdata).then(res =>{
             setValue(true)
             alert('Cadastrado com sucesso')
             history.push('/')

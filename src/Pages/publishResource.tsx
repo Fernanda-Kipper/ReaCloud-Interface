@@ -1,6 +1,6 @@
 import React, {FormEvent, useState, useContext} from 'react';
 import {useHistory} from 'react-router-dom'
-import Axios from 'axios';
+import api from '../Services/apiService';
 
 import '../Styles/pages/publish.css'
 
@@ -72,7 +72,7 @@ function PublishResource() {
 
       if(form1Done===true && form2Done===true && form3Done===true){
         try{
-          Axios.post('/resource', data).then(res =>{
+          api.post('/resource', data).then(res =>{
             alert('Publicado com sucesso!')
             history.push('/')
           }
