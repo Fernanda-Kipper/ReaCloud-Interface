@@ -25,7 +25,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "proxy": "http://localhost:3200",
+  "proxy": "https://reacloud.herokuapp.com",
   "eslintConfig": {
     "extends": "react-app"
   },
