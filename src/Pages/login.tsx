@@ -1,6 +1,6 @@
 import React, { FormEvent, useState, useContext } from 'react';
 import {Link, useHistory} from 'react-router-dom';
-import api from '../Services/apiService';
+import axios from 'axios'
 
 import '../Styles/pages/login.css';
 
@@ -21,7 +21,7 @@ function LoginPage() {
         const Formdata = {email: email, password: password}
 
         try{
-          await api.post('/login', Formdata).then(res => {
+          await axios.post('/login', Formdata).then(res => {
             setValue(true)
             setUserName(res.data.name)
             alert('Logado com sucesso')

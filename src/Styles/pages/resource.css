@@ -8,7 +8,7 @@
 
 .resource-content Header{
     margin-bottom: 20px;
-    background-color: #6523D0;
+    background-color: #000000;
 }
 
 .resource-content Header .logo{
@@ -50,6 +50,7 @@
 .resource-content main nav .true{
     border: 1px solid #7d7d7d;
     border-radius: 10px;
+    box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.1);
 }
 
 .resource-content main .resource-header{
@@ -85,8 +86,8 @@
 }
 
 .resource-content main .resource-header button{
-    color: #6523D0;
-    border: 1px solid #6523D0;
+    color: #000000;
+    border: 1px solid #000000;
     background-color: #FBF9FF;
     
     border-radius: 10px;

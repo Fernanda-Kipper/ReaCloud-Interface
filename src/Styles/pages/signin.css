@@ -4,7 +4,7 @@
     height: 100vh;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(180deg, #6523D0 0%, rgba(111, 38, 231, 0.43) 100%);
+    background: #e4e4e4;
 }
 
 .signin-field{
@@ -18,7 +18,7 @@
 }
 
 .signin-field h1{
-    color: #6523D0;
+    color: #7d7d7d;
     text-align: center;
     font-size: 32px;
 }
@@ -30,7 +30,7 @@
 }
 
 .signin-field form label{
-    color: #6523D0;
+    color: #7d7d7d;
 }
 
 .signin-field form input{
@@ -62,7 +62,7 @@
     border: 0;
     width: 200px;
     align-self: center;
-    background-color: #3D0991;
+    background-color: #c4c4c4;
     height: 40px;
     color: #FBF9FF;
     margin-top: 20px;
@@ -71,20 +71,24 @@
     outline: none;
 }
 .signin-field form button:hover{
-    background-color: #7640CE;
+    background-color: #7d7d7d;
 }
 .signin-content .login{
     text-align: center;
-    color: #6523D0;
+    color: #7d7d7d;
     margin: 20px;
 }
 
 @media(min-width: 1000px){
+    .signin-content{
+        background: linear-gradient(180deg, #4C96B7 0%, rgba(76, 150, 183, 0) 100%);
+    }
+
     .signin-field{
-        height: 800px;
-        padding: 100px;
+        padding: 80px;
+        margin-top: 100px;
     }
     .signin-field h1{
-        font-size: 2em;
+        font-size: 1.5em;
     }
 }

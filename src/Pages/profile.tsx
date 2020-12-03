@@ -1,6 +1,6 @@
 import React, { FormEvent, useState, useEffect, useContext } from 'react';
 import {useHistory} from 'react-router-dom';
-import api from '../Services/apiService';
+import axios from 'axios'
 
 import '../Styles/pages/profile.css';
 
@@ -26,13 +26,13 @@ function ProfilePage() {
 
     useEffect(()=>{
         try{
-            api.get('/profile').then(response =>{
+            axios.get('/profile').then(response =>{
                 setName(response.data[0].name)
                 setEmail(response.data[0].email)
                 setProfile(response.data[0].profile)
                 setPicture(response.data[0].picture_url)
             })
-            api.get('/myResources').then(response =>{
+            axios.get('/myResources').then(response =>{
                 setUserResources(response.data)
             })
         }catch(err){
@@ -50,7 +50,7 @@ function ProfilePage() {
         const data = {"name": name, "profile": profile, "picture_url": picture_url}
 
         try{
-            api.put('/updateProfile', data).then(res=>{
+            axios.put('/updateProfile', data).then(res=>{
                 setUserName(name)
                 alert('Alterado com sucesso!')
                 history.push('/')

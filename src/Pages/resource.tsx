@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, withRouter } from 'react-router-dom';
-import api from '../Services/apiService';
+import axios from 'axios'
 
 import '../Styles/pages/resource.css'
 import Header from '../Components/header'
@@ -24,7 +24,7 @@ function ResourcePage() {
 
     useEffect(()=>{
         try{
-            api.get(`/resource/${id.id}`).then(response =>{
+            axios.get(`/resource/${id.id}`).then(response =>{
                 setResource(response.data[0][0])
             })
         }catch(err){

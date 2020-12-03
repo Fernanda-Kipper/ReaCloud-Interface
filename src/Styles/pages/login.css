@@ -4,23 +4,24 @@
     height: 100vh;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(180deg, #6523D0 0%, rgba(111, 38, 231, 0.43) 100%);
+    background: #e4e4e4;
 }
 
 .login-field{
-    background-color: #FBF9FF;
+    background: #fff;
     height: 450px;
     border-radius: 20px;
     display: flex;
     flex-direction: column;
-    padding: 80px;
+    padding: 20px;
     box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.1);
 }
 
 .login-field h1{
-    color: #6523D0;
+    color: #7d7d7d;
     text-align: center;
     font-size: 32px;
+    margin: 20px;
 }
 
 .login-field form{
@@ -30,7 +31,7 @@
 }
 
 .login-field form label{
-    color: #6523D0;
+    color: #7d7d7d;
 }
 
 .login-field form input{
@@ -48,7 +49,7 @@
     border: 0;
     width: 200px;
     align-self: center;
-    background-color: #3D0991;
+    background-color: #c4c4c4;
     height: 40px;
     color: #FBF9FF;
     margin-top: 20px;
@@ -57,20 +58,25 @@
     outline: none;
 }
 .login-field form button:hover{
-    background-color: #7640CE;
+    background-color: #7d7d7d;
 }
 .login-content .signin{
     text-align: center;
-    color: #6523D0;
+    color: #7d7d7d;
     margin: 20px;
 }
 
 @media(min-width: 1000px){
+    .login-content{
+        background: linear-gradient(180deg, #4C96B7 0%, rgba(76, 150, 183, 0) 100%);
+    }
     .login-field{
         height: 500px;
         padding: 100px;
     }
+
     .login-field h1{
         font-size: 2em;
+        margin: 0;
     }
 }
