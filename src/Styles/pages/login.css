@@ -40,7 +40,7 @@
     margin: 10px 0;
     border-style: ridge;
     border-width: 1px;
-    height: 30px;
+    height: 40px;
     outline: none;
 }
 
@@ -67,9 +67,6 @@
 }
 
 @media(min-width: 1000px){
-    .login-content{
-        background: linear-gradient(180deg, #4C96B7 0%, rgba(76, 150, 183, 0) 100%);
-    }
     .login-field{
         height: 500px;
         padding: 100px;

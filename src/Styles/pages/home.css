@@ -32,8 +32,8 @@
 }
 
 .home-content main img{
-    width: 150px;
-    height: 150px;
+    width: 200px;
+    height: 200px;
 }
 
 .home-content main .buttons{
@@ -49,7 +49,7 @@
     color: #7d7d7d;
 
     margin: 10px;
-    padding: 20px;
+    padding: 15px;
     border-radius: 15px;
 
     border: 1px solid #7d7d7d;
@@ -67,5 +67,9 @@
     .home-content main img{
         width: 300px;
         height: 300px;
+    }
+
+    .home-content main .buttons .button{
+        padding: 20px;
     }
 }
