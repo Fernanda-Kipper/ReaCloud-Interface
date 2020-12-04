@@ -21,7 +21,12 @@ function LoginPage() {
         const Formdata = {email: email, password: password}
 
         try{
-          await axios.post('/login', Formdata).then(res => {
+          await axios.post('https://reacloud.herokuapp.com/login', Formdata, {
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            withCredentials: true
+          }).then(res => {
             setValue(true)
             setUserName(res.data.name)
             alert('Logado com sucesso')

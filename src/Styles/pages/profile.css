@@ -6,24 +6,6 @@
     justify-content: center;
 }
 
-.profile-content Header{
-    margin-bottom: 20px;
-    background-color: #6523D0;
-}
-
-.profile-content Header .logo{
-    background: url('../../Images/logo_white.png');
-    background-size: 100%;
-}
-
-.profile-content Header .entrar{
-    color: #FBF9FF;
-}
-
-.profile-content Header .logout{
-    color: #FBF9FF;
-}
-
 
 .profile-content main{
     display: flex;
@@ -91,6 +73,7 @@
 .profile-content main form select{
     height: 40px;
     width: 300px;
+    background-color: #FFF;
 }
 
 .profile-content main form label{
@@ -134,15 +117,15 @@
     align-self: center; 
     background-color: #ffffff;
     height: 40px;
-    color: #3d0991;
-    border: 1px solid #3D0991;
+    color:#277496;
+    border: 1px solid  #277496;
     margin: auto;
     transition: 200ms;
     cursor: pointer;
 }
 
 .profile-content main form button:hover{
-    background-color:  #6232c4;
+    background-color: #277496;
     color:  #FBF9FF;
     outline: none;
 }

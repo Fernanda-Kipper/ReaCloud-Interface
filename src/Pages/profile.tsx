@@ -26,20 +26,30 @@ function ProfilePage() {
 
     useEffect(()=>{
         try{
-            axios.get('/profile').then(response =>{
+            axios.get('https://reacloud.herokuapp.com/profile',{
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+                withCredentials: true
+              }).then(response =>{
                 setName(response.data[0].name)
                 setEmail(response.data[0].email)
                 setProfile(response.data[0].profile)
                 setPicture(response.data[0].picture_url)
             })
-            axios.get('/myResources').then(response =>{
+            axios.get('https://reacloud.herokuapp.com/myResources', {
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+                withCredentials: true
+              }).then(response =>{
                 setUserResources(response.data)
             })
         }catch(err){
             console.log("Erro ao validar perfil")
             history.push("/")
         }
-    })
+    }, [])
 
     function displayAlertEMail(){
         alert("Não é possível alterar seu email!")
@@ -50,7 +60,12 @@ function ProfilePage() {
         const data = {"name": name, "profile": profile, "picture_url": picture_url}
 
         try{
-            axios.put('/updateProfile', data).then(res=>{
+            axios.put('https://reacloud.herokuapp.com/updateProfile', data, {
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+                withCredentials: true
+              }).then(res=>{
                 setUserName(name)
                 alert('Alterado com sucesso!')
                 history.push('/')

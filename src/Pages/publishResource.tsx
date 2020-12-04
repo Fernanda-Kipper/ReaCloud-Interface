@@ -1,4 +1,4 @@
-import React, {FormEvent, useState, useContext} from 'react';
+import React, {FormEvent, useState, useContext, ChangeEvent} from 'react';
 import {useHistory} from 'react-router-dom'
 import axios from 'axios'
 
@@ -6,8 +6,7 @@ import '../Styles/pages/publish.css'
 
 import Header from '../Components/header'
 import UserContext from '../AuthContext/UserContext'
-
-
+import {CCBY, CCBYSA, CCBYNC, CCBYNCND, CCBYNCSA, CCBYND} from '../Interfaces/licences'
 
 function PublishResource() {
   const {setValue} = useContext(UserContext)
@@ -31,48 +30,65 @@ function PublishResource() {
   const [format, setFormat] = useState('')
   const [technical_requirements, setTechnical_requirements] = useState('')
   const [description_of_technical_requirements, setDescriptionRequirements] = useState('')
+  const [image, setImage] = useState<File[]>([])
 
   const [form1Done, setForm1Done] = useState(false)
   const [form2Done, setForm2Done] = useState(false)
   const [form3Done, setForm3Done] = useState(false)
+  const [form4Done, setForm4Done] = useState(false)
 
   const [content, setContent] = useState(false)
   const [intellectualProperty, setIntellectualProperty] = useState(false)
   const [instantiations, setInstantiations] = useState(false)
+  const [upload, setUpload] = useState(false)
 
   var date = new Date()
   var last_modification = date.getDate() +'/'+(date.getMonth()+1)+'/'+ date.getFullYear();
 
+  function handleSelectedImages(event: ChangeEvent<HTMLInputElement>){
+    if(!event.target.files){
+      return;
+    }
+    const images1 = Array.from(event.target.files)
+    setImage(images1)
+  }
+
   async function handleSubmit(event: FormEvent){
       event.preventDefault()
-  
 
-      const data = {
-        title,
-        author,
-        type,
-        language,
-        licence,
-        description,
-        date_of_publishment,
-        subject,
-        keywords,
-        audience,
-        external_url,
-        context,
-        relation,
-        contributor,
-        publisher,
-        format,
-        technical_requirements,
-        description_of_technical_requirements,
-        last_modification
-      }
+      const dataForm = new FormData();
+      dataForm.append('title', title)
+      dataForm.append('author', author)
+      dataForm.append('type', type)
+      dataForm.append('language', language)
+      dataForm.append('licence', licence)
+      dataForm.append('description', description)
+      dataForm.append('date_of_publishment', date_of_publishment)
+      dataForm.append('subject', subject)
+      dataForm.append('keywords', keywords)
+      dataForm.append('audience', audience)
+      dataForm.append('external_url', external_url)
+      dataForm.append('context', context)
+      dataForm.append('relation', relation)
+      dataForm.append('contributor', contributor)
+      dataForm.append('publisher', publisher)
+      dataForm.append('format', format)
+      dataForm.append('technical_requirements', technical_requirements)
+      dataForm.append('description_of_technical_requirements', description_of_technical_requirements)
+      dataForm.append('last_modification', last_modification)
 
+      image.map(imageFile => {
+        dataForm.append('image', imageFile)
+      })
 
       if(form1Done===true && form2Done===true && form3Done===true){
         try{
-          axios.post('/resource', data).then(res =>{
+          axios.post('https://reacloud.herokuapp.com/resource', dataForm, {
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            withCredentials: true
+          }).then(res =>{
             alert('Publicado com sucesso!')
             history.push('/')
           }
@@ -92,20 +108,26 @@ function PublishResource() {
     }
   
   function handleClickContent(){
-    if(content === false && !intellectualProperty && !instantiations){
+    if(content === false && !intellectualProperty && !instantiations && !upload){
       setContent(true)
     }
   }
 
   function handleClickIntellectual(){
-    if(intellectualProperty === false && !content && !instantiations){
+    if(intellectualProperty === false && !content && !instantiations && !upload){
       setIntellectualProperty(true)
     }
   }
 
   function handleClickInstantiations(){
-    if(instantiations === false && !intellectualProperty && !content){
+    if(instantiations === false && !intellectualProperty && !content  && !upload){
       setInstantiations(true)
+    }
+  }
+
+  function handleClickUpload(){
+    if(upload === false && !intellectualProperty && !content && !instantiations){
+      setUpload(true)
     }
   }
 
@@ -252,12 +274,12 @@ function PublishResource() {
                         </label>
                       <select value={licence} onChange={e => setLicence(e.target.value)} required>
                         <option value="" disabled selected hidden>Selecione</option>
-                        <option value="CCBY">CC-BY</option>
-                        <option value="CCBYSA">CC-BY-SA</option>
-                        <option value="CCBYNC">CC-BY-NC</option>
-                        <option value="CCBYND">CC-BY-ND</option>
-                        <option value="CCBYNCSA">CC-BY-NC-SA</option>
-                        <option value="CCBYNCND">CC-BY-NC-ND</option>
+                        <option value={CCBY}>CC-BY</option>
+                        <option value={CCBYSA}>CC-BY-SA</option>
+                        <option value={CCBYNC}>CC-BY-NC</option>
+                        <option value={CCBYND}>CC-BY-ND</option>
+                        <option value={CCBYNCSA}>CC-BY-NC-SA</option>
+                        <option value={CCBYNCND}>CC-BY-NC-ND</option>
 
                       </select>
 
@@ -393,6 +415,23 @@ function PublishResource() {
                   </React.Fragment>
                   :null
                   }
+                </div>
+                <div className="section" id="images">
+                  <div className="section_title">
+                      <h3>Imagem</h3>
+                      <span className={form4Done ? "check" : "arrow"} onClick={handleClickUpload}></span>
+                    </div>
+                { upload ?
+                    <form onSubmit={()=>{
+                        setUpload(false)
+                        setForm4Done(true)}}>
+                          <label htmlFor="images">Escolha a imagem para a representação visual do REA</label>
+                          <input type="file" onChange={handleSelectedImages}/>
+                          <button className="confirm-button" type="submit">
+                            Confirmar
+                          </button>
+                    </form>
+                : null}
                 </div>
                 <button className="confirm-button" onClick={handleSubmit}>
                     Publicar

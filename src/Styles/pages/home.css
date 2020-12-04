@@ -32,8 +32,10 @@
 }
 
 .home-content main img{
-    width: 200px;
-    height: 200px;
+    width: 220px;
+    height: 220px;
+    z-index: -1;
+    opacity: 80%;
 }
 
 .home-content main .buttons{
@@ -65,8 +67,8 @@
     }
 
     .home-content main img{
-        width: 300px;
-        height: 300px;
+        width: 350px;
+        height: 350px;
     }
 
     .home-content main .buttons .button{

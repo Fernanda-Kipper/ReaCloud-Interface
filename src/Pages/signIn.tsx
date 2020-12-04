@@ -23,7 +23,12 @@ function SignInPage() {
         event.preventDefault()
         const Formdata = {email: email, password: password, name: name, picture_url: url, profile: profile}
         try{
-          await axios.post('/signin', Formdata).then(res =>{
+          await axios.post('https://reacloud.herokuapp.com/signin', Formdata,{
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            withCredentials: true
+          }).then(res =>{
             setValue(true)
             alert('Cadastrado com sucesso')
             history.push('/')
@@ -45,7 +50,7 @@ function SignInPage() {
                 <label htmlFor="password">Sua senha</label>
                 <input type="password" id="password" required value={password} onChange={e => setPassword(e.target.value)}/>
                 <label htmlFor="url">URL para sua foto</label>
-                <input type="text" id="url" value={url} onChange={e => setUrl(e.target.value)}/>
+                <input type="url" id="url" value={url} required onChange={e => setUrl(e.target.value)}/>
                 <label htmlFor="profile">Perfil acadêmico</label>
                 <select id="profile" required value={profile} onChange={e => setProfile(e.target.value)}>
                   <option value="Aluno Ensino médio">Aluno Ensino médio</option>

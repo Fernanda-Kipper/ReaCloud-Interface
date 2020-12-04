@@ -8,24 +8,6 @@
     overflow: hidden;
 }
 
-.publish-content Header{
-    margin-bottom: 20px;
-    background-color: #6523D0;
-}
-
-.publish-content Header .logo{
-    background: url('../../Images/logo_white.png');
-    background-size: 100%;
-}
-
-.publish-content Header .entrar{
-    color: #FBF9FF;
-}
-
-.publish-content Header .logout{
-    color: #FBF9FF;
-}
-
 .publish-content main{
     display: flex;
     flex-direction: column;
@@ -47,7 +29,7 @@
 
 .publish-content main .title{
     margin-bottom: 20px;
-    color: #6523D0;
+    color:#277496;
     text-align: center;
     font-size: 18px;
     max-width: 400px;
@@ -105,7 +87,7 @@
     font-weight: 500;
     margin: 5px;
     background-color: #ffffff;
-    transform: translateY(100%);
+    transform: translateY(90%);
     height: 30px;
     display: flex;
     flex-direction: row;
@@ -114,7 +96,6 @@
 .publish-content main .section label .informationSource{
     display: none;
 }
-
 
 .publish-content main .section input,textarea,select{
     width: 300px;
@@ -135,6 +116,17 @@
     padding: 15px;
 }
 
+.publish-content main #images label{
+    text-align: center;
+    transform: translateY(0%);
+}
+
+.publish-content main .section input[type="file" i]{
+    background-color: #fff;;
+    cursor: pointer;
+    height: 50px;
+}
+
 .publish-content main .section textarea{
     height: 60px;
     font-size: 13px;
@@ -148,7 +140,7 @@
 
 .publish-content main .section span{
     font-size: 13px;
-    color: #3D0991;
+    color:#277496;
 }
 
 .publish-content main .section form{
@@ -163,21 +155,12 @@
     border: 0;
     width: 200px;
     align-self: center; 
-    background-color: #3D0991;
+    background-color:  #277496;
     height: 40px;
     color: #FBF9FF;
     margin: auto;
     transition: 200ms;
     cursor: pointer;
-}
-
-.publish-content main .form button:hover{
-    background-color:  #fbf9ff;
-    color:  #3D0991;
-    font-weight: 600;
-    box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.1);
-    outline: none;
-
 }
 
 .publish-content main .form .section button{
@@ -221,6 +204,10 @@
     .publish-content main .section select{
         width: 500px;
         font-size: 16px;
+    }
+
+    .publish-content main #images label{
+        transform: translateY(90%);
     }
 
     .publish-content main .section .section_title{
@@ -267,7 +254,7 @@
     
     .publish-content main .section .informationSource:hover h3 a{
         text-decoration: none;
-        color: #3D0991;
+        color: #277496;
     
     }
     

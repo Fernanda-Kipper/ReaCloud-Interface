@@ -19,5 +19,8 @@ export default interface Recurso{
     technical_requirements: number,
     title: string,
     type: string,
-    user_id: number
+    userName: string,
+    image: {
+        url: string
+    }
 }
