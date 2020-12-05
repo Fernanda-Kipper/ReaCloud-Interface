@@ -1,6 +1,7 @@
 import React, { FormEvent, useState, useEffect, useContext } from 'react';
 import {useHistory} from 'react-router-dom';
 import axios from '../Services/axiosConfig'
+import Axios from 'axios'
 
 import '../Styles/pages/profile.css';
 
@@ -26,7 +27,7 @@ function ProfilePage() {
 
     useEffect(()=>{
         try{
-            axios.get('/profile',{
+            Axios.get('https://reacloud.herokuapp.com/profile',{
                 headers: {
                   'Content-Type': 'application/json'
                 },
@@ -37,7 +38,7 @@ function ProfilePage() {
                 setProfile(response.data[0].profile)
                 setPicture(response.data[0].picture_url)
             })
-            axios.get('/myResources', {
+            Axios.get('https://reacloud.herokuapp.com/myResources', {
                 headers: {
                   'Content-Type': 'application/json'
                 },
