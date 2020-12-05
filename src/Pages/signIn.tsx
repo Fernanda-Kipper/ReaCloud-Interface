@@ -23,12 +23,7 @@ function SignInPage() {
         event.preventDefault()
         const Formdata = {email: email, password: password, name: name, picture_url: url, profile: profile}
         try{
-          await axios.post('/signin', Formdata,{
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            withCredentials: true
-          }).then(res =>{
+          await axios.post('/signin', Formdata).then(res =>{
             setValue(true)
             alert('Cadastrado com sucesso')
             history.push('/')

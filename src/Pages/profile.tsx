@@ -1,7 +1,6 @@
 import React, { FormEvent, useState, useEffect, useContext } from 'react';
 import {useHistory} from 'react-router-dom';
 import axios from '../Services/axiosConfig'
-import Axios from 'axios'
 
 import '../Styles/pages/profile.css';
 
@@ -27,23 +26,13 @@ function ProfilePage() {
 
     useEffect(()=>{
         try{
-            Axios.get('https://reacloud.herokuapp.com/profile',{
-                headers: {
-                  'Content-Type': 'application/json'
-                },
-                withCredentials: true
-              }).then(response =>{
+            axios.get('/profile').then(response =>{
                 setName(response.data[0].name)
                 setEmail(response.data[0].email)
                 setProfile(response.data[0].profile)
                 setPicture(response.data[0].picture_url)
             })
-            Axios.get('https://reacloud.herokuapp.com/myResources', {
-                headers: {
-                  'Content-Type': 'application/json'
-                },
-                withCredentials: true
-              }).then(response =>{
+            axios.get('/myResources').then(response =>{
                 setUserResources(response.data)
             })
         }catch(err){
@@ -61,12 +50,7 @@ function ProfilePage() {
         const data = {"name": name, "profile": profile, "picture_url": picture_url}
 
         try{
-            axios.put('/updateProfile', data, {
-                headers: {
-                  'Content-Type': 'application/json'
-                },
-                withCredentials: true
-              }).then(res=>{
+            axios.put('/updateProfile', data).then(res=>{
                 setUserName(name)
                 alert('Alterado com sucesso!')
                 history.push('/')

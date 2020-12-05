@@ -26,12 +26,7 @@ function ResourcePage() {
 
     useEffect(()=>{
         try{
-            axios.get(`/resource/${id.id}`,{
-                headers: {
-                  'Content-Type': 'application/json'
-                },
-                withCredentials: true
-              }).then(response =>{
+            axios.get(`/resource/${id.id}`).then(response =>{
                 setResource(response.data)
                 setLicence(JSON.parse(response.data.licence))
             })

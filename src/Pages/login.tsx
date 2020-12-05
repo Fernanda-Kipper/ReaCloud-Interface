@@ -1,7 +1,6 @@
 import React, { FormEvent, useState, useContext } from 'react';
 import {Link, useHistory} from 'react-router-dom';
 import axios from '../Services/axiosConfig'
-import Axios from 'axios'
 
 import '../Styles/pages/login.css';
 
@@ -22,12 +21,7 @@ function LoginPage() {
         const Formdata = {email: email, password: password}
 
         try{
-          await Axios.post('https://reacloud.herokuapp.com/login', Formdata, {
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            withCredentials: true
-          }).then(res => {
+          await axios.post('/login', Formdata).then(res => {
             setValue(true)
             setUserName(res.data.name)
             alert('Logado com sucesso')

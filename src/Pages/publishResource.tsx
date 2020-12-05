@@ -83,12 +83,7 @@ function PublishResource() {
 
       if(form1Done===true && form2Done===true && form3Done===true){
         try{
-          axios.post('/resource', dataForm, {
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            withCredentials: true
-          }).then(res =>{
+          axios.post('/resource', dataForm).then(res =>{
             alert('Publicado com sucesso!')
             history.push('/')
           }
