@@ -1,6 +1,6 @@
 import React, { FormEvent, useState, useContext } from 'react';
 import {Link, useHistory} from 'react-router-dom';
-import axios from 'axios'
+import axios from '../Services/axiosConfig'
 
 import '../Styles/pages/signin.css'
 
@@ -23,7 +23,7 @@ function SignInPage() {
         event.preventDefault()
         const Formdata = {email: email, password: password, name: name, picture_url: url, profile: profile}
         try{
-          await axios.post('https://reacloud.herokuapp.com/signin', Formdata,{
+          await axios.post('/signin', Formdata,{
             headers: {
               'Content-Type': 'application/json'
             },

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams, withRouter } from 'react-router-dom';
-import axios from 'axios'
+import axios from '../Services/axiosConfig'
 
 import '../Styles/pages/resource.css'
 import Header from '../Components/header'
@@ -26,7 +26,7 @@ function ResourcePage() {
 
     useEffect(()=>{
         try{
-            axios.get(`https://reacloud.herokuapp.com/resource/${id.id}`,{
+            axios.get(`/resource/${id.id}`,{
                 headers: {
                   'Content-Type': 'application/json'
                 },

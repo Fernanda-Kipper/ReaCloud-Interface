@@ -1,6 +1,6 @@
 import React, { FormEvent, useState, useEffect, useContext } from 'react';
 import {useHistory} from 'react-router-dom';
-import axios from 'axios'
+import axios from '../Services/axiosConfig'
 
 import '../Styles/pages/profile.css';
 
@@ -26,7 +26,7 @@ function ProfilePage() {
 
     useEffect(()=>{
         try{
-            axios.get('https://reacloud.herokuapp.com/profile',{
+            axios.get('/profile',{
                 headers: {
                   'Content-Type': 'application/json'
                 },
@@ -37,7 +37,7 @@ function ProfilePage() {
                 setProfile(response.data[0].profile)
                 setPicture(response.data[0].picture_url)
             })
-            axios.get('https://reacloud.herokuapp.com/myResources', {
+            axios.get('/myResources', {
                 headers: {
                   'Content-Type': 'application/json'
                 },
@@ -49,7 +49,7 @@ function ProfilePage() {
             console.log("Erro ao validar perfil")
             history.push("/")
         }
-    }, [])
+    }, [history])
 
     function displayAlertEMail(){
         alert("Não é possível alterar seu email!")
@@ -60,7 +60,7 @@ function ProfilePage() {
         const data = {"name": name, "profile": profile, "picture_url": picture_url}
 
         try{
-            axios.put('https://reacloud.herokuapp.com/updateProfile', data, {
+            axios.put('/updateProfile', data, {
                 headers: {
                   'Content-Type': 'application/json'
                 },

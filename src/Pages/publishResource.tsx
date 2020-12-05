@@ -1,6 +1,6 @@
 import React, {FormEvent, useState, useContext, ChangeEvent} from 'react';
 import {useHistory} from 'react-router-dom'
-import axios from 'axios'
+import axios from '../Services/axiosConfig'
 
 import '../Styles/pages/publish.css'
 
@@ -78,12 +78,12 @@ function PublishResource() {
       dataForm.append('last_modification', last_modification)
 
       image.map(imageFile => {
-        dataForm.append('image', imageFile)
+        return dataForm.append('image', imageFile)
       })
 
       if(form1Done===true && form2Done===true && form3Done===true){
         try{
-          axios.post('https://reacloud.herokuapp.com/resource', dataForm, {
+          axios.post('/resource', dataForm, {
             headers: {
               'Content-Type': 'application/json'
             },
