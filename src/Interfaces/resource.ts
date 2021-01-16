@@ -22,5 +22,6 @@ export default interface Recurso{
     userName: string,
     image: {
         url: string
-    }
+    },
+    video_link: string
 }

@@ -74,4 +74,8 @@
     .home-content main .buttons .button{
         padding: 20px;
     }
+
+    .home-content main .buttons .button:hover{
+        box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.1);
+    }
 }

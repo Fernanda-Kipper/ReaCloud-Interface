@@ -125,9 +125,7 @@
 }
 
 .profile-content main form button:hover{
-    background-color: #277496;
-    color:  #FBF9FF;
-    outline: none;
+    box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.1);
 }
 
 @media(min-width: 900px){

@@ -1,0 +1,188 @@
+.modify-content{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff;
+    overflow: hidden;
+}
+
+.modify-content main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 100px;
+    margin-bottom: 50px;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.1);
+}
+
+.modify-content main form{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.modify-content main form h3{
+    font-size: 20px;
+    max-width: 250px;
+    text-align: center;
+    color: #277496;
+}
+
+.modify-content main form label{
+    color: #7d7d7d;
+    font-weight: 500;
+    margin: 5px;
+    background-color: #ffffff;
+    transform: translateY(90%);
+    height: 30px;
+    display: flex;
+    flex-direction: row;
+}
+
+.modify-content main form label .informationSource{
+    display: none;
+}
+
+.modify-content main form input,textarea,select{
+    width: 300px;
+    border-radius: 20px;
+    border: 0.5px solid #7d7d7d;
+    margin: 10px 0;
+    color: #7d7d7d;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    outline: none;
+    padding: 10px;
+}
+
+
+.modify-content main form input{
+    height: 40px;
+    padding: 15px;
+}
+
+.modify-content main form input[type="file" i]{
+    background-color: #fff;;
+    cursor: pointer;
+    height: 50px;
+}
+
+.modify-content main form textarea{
+    height: 60px;
+    font-size: 13px;
+}
+
+
+.modify-content main form select{
+    height: 40px;
+    width: 300px;
+}
+
+.modify-content main form span{
+    font-size: 13px;
+    color:#277496;
+}
+
+.modify-content main form button{
+    border-radius: 10px;
+    border: 0;
+    width: 200px;
+    align-self: center; 
+    background-color: #ffffff;
+    height: 40px;
+    color:#277496;
+    border: 1px solid  #277496;
+    margin: auto;
+    transition: 200ms;
+    cursor: pointer;
+}
+
+@media(min-width: 900px){
+    .modify-content main{
+        margin-top: 100px;
+        padding: 50px;
+    }
+
+    .modify-content main form h3{
+        max-width: 350px;
+    }
+
+    .modify-content main form .warning{
+        font-size: 20px;
+        width: 500px;
+    }
+
+    .modify-content main form input{
+        height: 40px;
+        width: 500px;
+        font-size: 18px;
+    }
+    
+    .modify-content main form textarea{
+        height: 100px;
+        font-size: 18px;
+        width: 500px;
+    }
+
+    .modify-content main form select{
+        width: 500px;
+        font-size: 16px;
+    }
+
+    .modify-content main form label .informationSource{
+        background: url('../../Images/informationSource.svg') no-repeat;
+        background-size: 100%;
+        width: 15px;
+        height: 15px;
+        justify-self: center;
+        cursor: pointer;
+        display: flex;
+        margin-left: 5px;
+    }
+    
+    .modify-content main form label .informationSource h3{
+        display: none;
+    }
+    
+    .modify-content main form .informationSource:hover{
+        background: #E3E2E4;
+        border-radius: 30px 30px 30px 0;
+        display: flex;
+        min-width: 140px;
+        min-height: 80px;
+        font-size: 12px;
+        z-index: 1;
+        align-self: center;
+        justify-self: center;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 80px;
+    }
+    .modify-content main form .informationSource:hover h3{
+        display: block;
+        font-size: 12px;
+        color: black;
+        font-weight: 500;
+        text-align: center;
+    
+    }
+    
+    .modify-content main .informationSource:hover h3 a{
+        text-decoration: none;
+        color: #277496;
+    
+    }
+
+    .modify-content main form button:hover{
+        box-shadow:  0 0 10px 1px rgba(0, 0, 0, 0.1);
+        background-color: #f1f1f1;
+    }
+    
+}

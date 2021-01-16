@@ -12,20 +12,20 @@ import ResourceItem from '../Components/resourceItem';
 
 function ProfilePage() {
     const history = useHistory()
-    const [name, setName] = useState("Nome completo")
+    const [nameComplete, setName] = useState("Nome completo")
     const [picture_url, setPicture] = useState("")
     const [profile, setProfile] = useState("")
     const [email, setEmail] = useState("")
     const [userResources, setUserResources] = useState([])
 
-    const {setUserName} = useContext(UserContext)
+    const {name,setUserName} = useContext(UserContext)
 
     const [data, setData] = useState(true)
     const [resources, setResources] = useState(false)
 
 
     useEffect(()=>{
-        try{
+        try{ 
             axios.get('/profile').then(response =>{
                 setName(response.data[0].name)
                 setEmail(response.data[0].email)
@@ -39,7 +39,7 @@ function ProfilePage() {
             console.log("Erro ao validar perfil")
             history.push("/")
         }
-    }, [history])
+    }, [history, name])
 
     function displayAlertEMail(){
         alert("Não é possível alterar seu email!")
@@ -47,10 +47,10 @@ function ProfilePage() {
 
     function handleSubmit(event: FormEvent){
         event.preventDefault()
-        const data = {"name": name, "profile": profile, "picture_url": picture_url}
+        const data = {"name": nameComplete, "profile": profile, "picture_url": picture_url}
 
         try{
-            axios.put('/updateProfile', data).then(res=>{
+            axios.put('/profile', data).then(res=>{
                 setUserName(name)
                 alert('Alterado com sucesso!')
                 history.push('/')
@@ -87,7 +87,7 @@ function ProfilePage() {
                         <input className="url" type="text" placeholder={picture_url} value={picture_url} onChange={e => setPicture(e.target.value)} required/>
                         <div className="email" onClick={displayAlertEMail}>{email}</div>
                         <label htmlFor="name">Seu nome completo</label>
-                        <input type="text" placeholder={name} value={name} onChange={e => setName(e.target.value)} required/>
+                        <input type="text" placeholder={nameComplete} value={nameComplete} onChange={e => setName(e.target.value)} required/>
                         <label htmlFor="profile">Perfil acadêmico</label>
                         <select id="profile" required value={profile} onChange={e => setProfile(e.target.value)}>
                             <option value="Aluno Ensino médio">Aluno Ensino médio</option>
@@ -112,7 +112,8 @@ function ProfilePage() {
                             <ResourceItem 
                             title={item.title} 
                             last_modification={item.last_modification} 
-                            id={item.id}>
+                            id={item.id}
+                            key={item.id}>
                             </ResourceItem>
                         )
                     })}

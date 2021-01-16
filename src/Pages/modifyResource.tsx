@@ -1,14 +1,16 @@
-import React, {FormEvent, useState, useContext, ChangeEvent} from 'react';
-import {useHistory, Link} from 'react-router-dom'
+import React, {FormEvent, useState, useContext, useEffect} from 'react';
+import {useHistory, useParams, Link} from 'react-router-dom'
 import axios from '../Services/axiosConfig'
 
-import '../Styles/pages/publish.css'
+import '../Styles/pages/modify.css'
 
 import Header from '../Components/header'
+import ParameterPassedToUrl from '../Interfaces/idParameter'
 import UserContext from '../AuthContext/UserContext'
 import {CCBY, CCBYSA, CCBYNC, CCBYNCND, CCBYNCSA, CCBYND} from '../Interfaces/licences'
 
-function PublishResource() {
+function ModifyResource() {
+const params: ParameterPassedToUrl = useParams();
   const {setValue} = useContext(UserContext)
   const history = useHistory()
 
@@ -19,7 +21,7 @@ function PublishResource() {
   const [language, setLanguage] = useState('')
   const [description, setDescription] = useState('')
   const [date_of_publishment, setDate] = useState('')
-  const [subject, setSubject] = useState('')
+  const [subject, setSubject] = useState("")
   const [keywords, setKeywords] = useState('')
   const [audience, setAudience] = useState('')
   const [external_url, setUrl] = useState('')
@@ -30,29 +32,39 @@ function PublishResource() {
   const [format, setFormat] = useState('')
   const [technical_requirements, setTechnical_requirements] = useState('')
   const [description_of_technical_requirements, setDescriptionRequirements] = useState('')
-  const [image, setImage] = useState<File[]>([])
   const [video_link, setVideoLink] = useState('')
-
-  const [form1Done, setForm1Done] = useState(false)
-  const [form2Done, setForm2Done] = useState(false)
-  const [form3Done, setForm3Done] = useState(false)
-  const [form4Done, setForm4Done] = useState(false)
-
-  const [content, setContent] = useState(false)
-  const [intellectualProperty, setIntellectualProperty] = useState(false)
-  const [instantiations, setInstantiations] = useState(false)
-  const [upload, setUpload] = useState(false)
-
   var date = new Date()
   var last_modification = date.getDate() +'/'+(date.getMonth()+1)+'/'+ date.getFullYear();
 
-  function handleSelectedImages(event: ChangeEvent<HTMLInputElement>){
-    if(!event.target.files){
-      return;
-    }
-    const images1 = Array.from(event.target.files)
-    setImage(images1)
-  }
+  useEffect(()=>{
+    axios.get(`/resource/${params.id}`)
+        .then(response =>{
+            setTitle(response.data.title)
+            setAuthor(response.data.author)
+            setType(response.data.type)
+            setFormat(response.data.format)
+            setPublisher(response.data.publisher)
+            setContributor(response.data.contributor)
+            setRelation(response.data.relation)
+            setUrl(response.data.external_url)
+            setAudience(response.data.audience)
+            setSubject(response.data.subject)
+            setContext(response.data.context)
+            setDescription(response.data.description)
+            setDescriptionRequirements(response.data.description_of_technical_requirements)
+            setKeywords(response.data.keywords)
+            setLicence(response.data.licence)
+            setLanguage(response.data.language)
+            setDate(response.data.date_of_publishment)
+            setLicence(response.data.licence)
+            setLicence(response.data.licence)
+            setTechnical_requirements(response.data.technical_requirements)
+            setVideoLink(response.data.video_link)
+        })
+        .catch((e)=>{
+            alert('Não foi possivel carregar dados do recurso')
+        })
+  }, [params.id])
 
   async function handleSubmit(event: FormEvent){
       event.preventDefault()
@@ -79,74 +91,31 @@ function PublishResource() {
       dataForm.append('last_modification', last_modification)
       dataForm.append('video', video_link)
 
-      image.map(imageFile => {
-        return dataForm.append('image', imageFile)
-      })
-
-      if(form1Done===true && form2Done===true && form3Done===true){
-        try{
-          axios.post('/resource', dataForm).then(res =>{
-            alert('Publicado com sucesso!')
-            history.push('/')
-          }
-          ).catch(()=>{
-            setValue(false)
-            alert('Erro ao publicar recurso')
-            history.push('/')
-          })
-        }catch(err){
-          setValue(false)
-          alert('Erro ao publicar recurso')
-          history.push('/')
+    
+    try{
+        axios.put(`/resource/${params.id}`, dataForm).then(res =>{
+        alert('Publicado com sucesso!')
+        history.push('/')
         }
-      }else{
-        alert('Preencha todos os campos obrigatórios!')
-      }
+    ).catch(()=>{
+        setValue(false)
+        alert('Erro ao publicar recurso')
+        history.push('/')
+    })
+    }catch(err){
+        setValue(false)
+        alert('Erro ao publicar recurso')
+        history.push('/')
     }
+}
   
-  function handleClickContent(){
-    if(content === false && !intellectualProperty && !instantiations && !upload){
-      setContent(true)
-    }
-  }
-
-  function handleClickIntellectual(){
-    if(intellectualProperty === false && !content && !instantiations && !upload){
-      setIntellectualProperty(true)
-    }
-  }
-
-  function handleClickInstantiations(){
-    if(instantiations === false && !intellectualProperty && !content  && !upload){
-      setInstantiations(true)
-    }
-  }
-
-  function handleClickUpload(){
-    if(upload === false && !intellectualProperty && !content && !instantiations){
-      setUpload(true)
-    }
-  }
-
   return (
-    <div className="publish-content">
+    <div className="modify-content">
       <Header></Header>
-        <main>
-            <h1 className="title">Preencha as informações corretamente e contribua com a democratização do conhecimento.</h1>
-            <div className="form">
-
-                <div className="section" id="content">
-                  <div className="section_title">
-                    <h3>Contéudo</h3>
-                    <span className={form1Done ? "check" : "arrow"} onClick={handleClickContent}></span>
-                  </div>
-                  {content ? 
-                  <React.Fragment>
-                    <form onSubmit={()=>{
-                      setContent(false)
-                      setForm1Done(true)
-                      }}>
-                      <label htmlFor="title">
+      <main>
+          <form onSubmit={handleSubmit}>
+                    <h3>Preenche as informações com as alterações que deseja realizar</h3>
+                    <label htmlFor="title">
                         *Título do Recurso 
                         <div className="informationSource">
                           <h3>Nome dado ao recurso</h3>
@@ -160,8 +129,7 @@ function PublishResource() {
                           <h3>O tópico do conhecimento seguindo <a href="https://www.ufrb.edu.br/pibic/images/repositorio/pdfs/areas_de_conhecimento_capes.pdf">padrão Capes</a></h3>
                         </div>
                         </label>
-                      <select value={subject} onChange={e => setSubject(e.target.value)} required>
-                        <option value="" disabled selected hidden>Selecione</option>
+                      <select id="subject" required value={subject} onChange={e => setSubject(e.target.value)}>
                         <option value="Ciências Agrárias">Ciências Agrárias</option>
                         <option value="Ciências Biológicas">Ciências Biológicas</option>
                         <option value="Ciências Exatas e da Terra">Ciências Exatas e da Terra</option>
@@ -179,7 +147,7 @@ function PublishResource() {
                         </div>
                         </label>
                       <select value={type} onChange={e => setType(e.target.value)} required>
-                        <option value="" disabled selected hidden>Selecione</option>
+                        <option value="" disabled hidden>Selecione</option>
                         <option value="Video">Video</option>
                         <option value="Livro">Livro</option>
                         <option value="Podcast">Podcast</option>
@@ -221,39 +189,19 @@ function PublishResource() {
                       <input type="text" value={relation} onChange={e => setRelation(e.target.value)}/>
 
                       <label htmlFor="external_url">
-                        *URL para o Recurso
+                        URL para o Recurso
                         <div className="informationSource">
                           <h3>O link exato em que o recurso está hospedado. <Link to="/help">Veja como hospedar</Link></h3>
                         </div>
                         </label>
-                      <input type="url" value={external_url} onChange={e => setUrl(e.target.value)} required/>
-
-                      <button className="confirm-button" type="submit">
-                      Confirmar
-                      </button>
-                    </form>
-                  </React.Fragment> : null}
-                </div>
-
-                <div className="section">
-                <div className="section_title">
-                    <h3>Propriedade Intelectual</h3>
-                    <span className={form2Done ? "check" : "arrow"} onClick={handleClickIntellectual}></span>
-                  </div>
-                  {intellectualProperty ? 
-                  <React.Fragment>
-
-                    <form  onSubmit={()=>{
-                      setIntellectualProperty(false)
-                      setForm2Done(true)}}>
-
+                      <input type="url" value={external_url} onChange={e => setUrl(e.target.value)}/>
                       <label htmlFor="author">
                         *Autor do recurso
                         <div className="informationSource">
                           <h3>Entidade ou pessoa responsável pela sua criação</h3>
                         </div>
                         </label>
-                      <input type="text" value={author} onChange={e => setAuthor(e.target.value)} required/>
+                      <input type="text" value={author}onChange={e => setAuthor(e.target.value)} required/>
 
                       <label htmlFor="contributor">
                         Contribuidores
@@ -270,7 +218,7 @@ function PublishResource() {
                         </div>
                         </label>
                       <select value={licence} onChange={e => setLicence(e.target.value)} required>
-                        <option value="" disabled selected hidden>Selecione</option>
+                        <option value="" disabled hidden>Selecione</option>
                         <option value={CCBY}>CC-BY</option>
                         <option value={CCBYSA}>CC-BY-SA</option>
                         <option value={CCBYNC}>CC-BY-NC</option>
@@ -288,27 +236,6 @@ function PublishResource() {
                         </label>
                       <input type="text" value={publisher} onChange={e => setPublisher(e.target.value)}/>
 
-                      <button className="confirm-button" type="submit">
-                      Confirmar
-                      </button>
-                    </form>
-                  </React.Fragment> 
-                  : null
-                  }
-                </div>
-
-                <div className="section">
-                  <div className="section_title">
-                    <h3>Especificações</h3>
-                    <span className={form3Done ? "check" : "arrow"} onClick={handleClickInstantiations}></span>
-                  </div>
-                  {instantiations ? 
-                  <React.Fragment>
-        
-                    <form  onSubmit={()=>{
-                      setInstantiations(false)
-                      setForm3Done(true)}}>
-
                       <label htmlFor="date_of_publishment">
                         *Data de Publicação
                         <div className="informationSource">
@@ -324,7 +251,7 @@ function PublishResource() {
                         </div>
                         </label>
                       <select value={audience} onChange={e => setAudience(e.target.value)} required>
-                        <option value="" disabled selected hidden>Selecione</option>
+                        <option value="" disabled hidden>Selecione</option>
                         <option value="Ensino Infantil">Ensino Infantil</option>
                         <option value="Ensino Fundamental">Ensino Fundamental</option>
                         <option value="Ensino Médio">Ensino Médio</option>
@@ -340,7 +267,7 @@ function PublishResource() {
                         </div>
                         </label>
                       <select required value={language} onChange={e => setLanguage(e.target.value)}>
-                        <option value="" disabled selected hidden>Selecione</option>
+                        <option value="" disabled hidden>Selecione</option>
                         <option value="Português">Português</option>
                         <option value="Inglês">Inglês</option>
                         <option value="Francês">Francês</option>
@@ -366,7 +293,7 @@ function PublishResource() {
                         </div>
                         </label>
                       <select required value={format} onChange={e => setFormat(e.target.value)}>
-                        <option value="" disabled selected hidden>Selecione</option>
+                        <option value="" disabled hidden>Selecione</option>
                         <option value="CSV">.CSV - Dados tabulares</option>
                         <option value="DOC">.DOC - Microsoft word</option>
                         <option value="DOCX">.DOCX - Microsoft word aberto xml</option>
@@ -405,40 +332,14 @@ function PublishResource() {
                         </label>
                       <textarea value={description_of_technical_requirements} onChange={e => setDescriptionRequirements(e.target.value)}/>
 
-                      <button className="confirm-button" type="submit">
-                      Confirmar
-                      </button>
-                      </form>
-                  </React.Fragment>
-                  :null
-                  }
-                </div>
-                <div className="section" id="images">
-                  <div className="section_title">
-                      <h3>Mídias</h3>
-                      <span className={form4Done ? "check" : "arrow"} onClick={handleClickUpload}></span>
-                    </div>
-                { upload ?
-                    <form onSubmit={()=>{
-                        setUpload(false)
-                        setForm4Done(true)}}>
-                          <label htmlFor="images">Escolha a imagem para a representação visual do REA</label>
-                          <input  accept="image/*" type="file" onChange={handleSelectedImages}/>
-                          <label htmlFor="video_link">Caso o recurso possua um vídeo, informe o link seu Youtube</label>
-                          <input type="url" value={video_link} onChange={e => setVideoLink(e.target.value)}/>
-                          <button className="confirm-button" type="submit">
-                            Confirmar
-                          </button>
-                    </form>
-                : null}
-                </div>
-                <button className="confirm-button" onClick={handleSubmit}>
-                    Publicar
-                </button>
-            </div>
-        </main>
+                      <label htmlFor="video_link">Caso o recurso possua um vídeo, informe o link seu Youtube</label>
+                        <input type="url" value={video_link} onChange={e => setVideoLink(e.target.value)}/>
+
+                      <button type="submit">Alterar informações</button>
+          </form>
+      </main>
     </div>
   );
 }
 
-export default PublishResource;
+export default ModifyResource;

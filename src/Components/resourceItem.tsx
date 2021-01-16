@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import { Link , useHistory} from 'react-router-dom';
+
+import axios from '../Services/axiosConfig'
 
 import '../Styles/components/resourceItem.css'
 
@@ -11,6 +14,7 @@ interface ResourceItemProps{
 const ResourceItem: React.FunctionComponent< ResourceItemProps > = ({title,last_modification,id, ...rest}) => {
     const [submenuActivated, setSubmenuActivated] = useState(false)
     const [submenuClassName, setSubmenuClassname] = useState('Noactivated')
+    const history = useHistory()
 
     function handleActivation(){
         if (!submenuActivated){
@@ -22,17 +26,35 @@ const ResourceItem: React.FunctionComponent< ResourceItemProps > = ({title,last_
             setSubmenuClassname('Noactivated')
         }
     }
-        return(
+
+    async function handleDelete(){
+        setSubmenuActivated(false)
+        setSubmenuClassname('Noactivated')
+        var value=window.confirm("Se quer deletar esse recurso aperte em confirmar");
+        if (value)
+        {
+            await axios.delete(`/resource/${id}`)
+            .then(res =>{
+                alert("Deletado com sucesso")
+            })
+            .catch((err)=>{
+                alert("Erro ao deletar recurso")
+            })
+            history.push('/')
+        }
+    }
+
+    return(
         <li className="Recurso">
             <ul>
                 <li><h6 onClick={handleActivation}>...</h6>
                     <ul className={submenuClassName}>
-                        <li><a href={`/editResource/${id}`}>Editar</a></li>
-                        <li><a href={`/deleteResource/${id}`}>Excluir</a></li>
+                        <li><Link className="editDel" to={`/recurso/editar/${id}`}>Editar</Link></li>
+                        <li><h5 className="editDel" onClick={handleDelete}>Excluir</h5></li>
                    </ul>
                 </li>
             </ul>
-            <a href={`/resource/${id}`}>{ title }</a>
+            <Link to={`/recurso/${id}`}>{ title }</Link>
             <p className='data'>Última modificação: { last_modification }</p>
         </li>
     )

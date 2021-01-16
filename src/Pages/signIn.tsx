@@ -1,10 +1,8 @@
-import React, { FormEvent, useState, useContext } from 'react';
+import React, { FormEvent, useState } from 'react';
 import {Link, useHistory} from 'react-router-dom';
 import axios from '../Services/axiosConfig'
 
 import '../Styles/pages/signin.css'
-
-import UserContext from '../AuthContext/UserContext';
 
 function SignInPage() {
 
@@ -16,22 +14,18 @@ function SignInPage() {
   const [url, setUrl] = useState('')
   const [profile, setProfile] = useState('')
 
-  const {setValue} = useContext(UserContext)
-
   async function handleLogin(event: FormEvent){
   
         event.preventDefault()
         const Formdata = {email: email, password: password, name: name, picture_url: url, profile: profile}
-        try{
-          await axios.post('/signin', Formdata).then(res =>{
-            setValue(true)
-            alert('Cadastrado com sucesso')
-            history.push('/')
-          })
-        }catch(err){
-          alert('Email já cadastrado, realize login.')
-        }
-        }
+        await axios.post('/signin', Formdata)
+        .then(res =>{
+          alert('Cadastrado com sucesso, realize seu login')
+          history.push('/')
+        })
+        .catch((err)=>{
+          alert('Email já cadastrado, realize login.')})
+  }
 
   return (
     <div className="signin-content">

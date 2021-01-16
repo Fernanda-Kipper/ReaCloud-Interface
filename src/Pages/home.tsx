@@ -15,7 +15,7 @@ function HomePage() {
           <p>Somos uma ferramenta para armazenamento de recursos educacionais abertos</p>
           <div className="buttons">
             <Link to="" className="button">Buscar por recurso</Link>
-            <Link to="/publicarRecurso" className="button">Publicar recurso</Link>
+            <Link to="/publicar" className="button">Publicar recurso</Link>
           </div>
         </article>
         <img src={booblesImg} alt=""/>

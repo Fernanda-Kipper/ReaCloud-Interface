@@ -84,7 +84,7 @@
     border: 0;
 }
 
-.Recurso ul li ul li a{
+.Recurso ul li ul li .editDel{
     color: #c4c4c4;
     font-size: 10px;
     font-weight: 600;

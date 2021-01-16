@@ -32,7 +32,7 @@ function Header() {
             <header>
             <Link to="" className="logo"></Link>
             <div>
-                <Link to="/profile" className="entrar">Olá {name}</Link>
+                <Link to="/perfil" className="entrar">Olá {name}</Link>
                 <Link to="/" className="logout" onClick={handleLogout}>Logout</Link>
             </div>
           </header>
