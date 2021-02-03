@@ -68,8 +68,8 @@ const ResourceItem: React.FunctionComponent< ResourceItemProps > = ({title,last_
     }
 
     return(
-        <Card className={classes.root} onClick={handleClickResource}>
-            <CardContent>
+        <Card className={classes.root}>
+            <CardContent onClick={handleClickResource}>
                 <Typography className={classes.title}>{ title }</Typography>
                 <Typography className={classes.subtitle}>Última modificação: { last_modification }</Typography>
             </CardContent>

@@ -36,7 +36,7 @@ function ModifyResource() {
   const [description_of_technical_requirements, setDescriptionRequirements] = useState('')
   const [video_link, setVideoLink] = useState('')
   var date = new Date()
-  var last_modification = date.getDate() +'-'+(date.getMonth()+1)+'-'+ date.getFullYear();
+  var last_modification = date.getFullYear() +'-'+(date.getMonth()+1)+'-'+ date.getDate();
 
   useEffect(()=>{
     axios.get(`/resource/${params.id}`)
