@@ -18,6 +18,8 @@ function Header() {
             setUserName('')
             alert('Logout realizado com sucesso!')
             history.push('/')
+        }).catch(err => {
+            alert('Erro ao realizar Logout')
         })
     }
 
