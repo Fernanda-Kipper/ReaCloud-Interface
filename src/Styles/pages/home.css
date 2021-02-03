@@ -35,7 +35,7 @@
     width: 220px;
     height: 220px;
     z-index: -1;
-    opacity: 80%;
+    opacity: 0.8;
 }
 
 .home-content main .buttons{
