@@ -44,7 +44,7 @@ function PublishResource() {
   const [upload, setUpload] = useState(false)
 
   var date = new Date()
-  var last_modification = date.getDate() +'/'+(date.getMonth()+1)+'/'+ date.getFullYear();
+  var last_modification = date.getDate() +'-'+(date.getMonth()+1)+'-'+ date.getFullYear();
 
   function handleSelectedImages(event: ChangeEvent<HTMLInputElement>){
     if(!event.target.files){
