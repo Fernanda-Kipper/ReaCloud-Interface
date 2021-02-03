@@ -43,17 +43,15 @@
     border: 0;
     width: 200px;
     align-self: center;
-    background-color: #c4c4c4;
+    color:#1976d2;
+    border: 1px solid #1976d2;
+    background-color: #fff;
     height: 40px;
-    color: #FBF9FF;
     margin-top: 20px;
     transition: 200ms;
     cursor: pointer;
     outline: none;
-}
-
-.login-field form button:hover{
-    background-color: #7d7d7d;
+    opacity: 0.7;
 }
 
 .login-content .signin{
@@ -76,9 +74,12 @@
         padding: 100px;
     }
     
-
     .login-field h1{
         font-size: 2em;
         margin: 0;
+    }
+    
+    .login-field form button:hover{
+        opacity: 1;
     }
 }

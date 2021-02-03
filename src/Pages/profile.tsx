@@ -32,7 +32,7 @@ function ProfilePage() {
                 setProfile(response.data[0].profile)
                 setPicture(response.data[0].picture_url)
             })
-            axios.get('/myResources').then(response =>{
+            axios.get('/profile/myResources').then(response =>{
                 setUserResources(response.data)
             })
         }catch(err){

@@ -24,7 +24,7 @@ function Header() {
     if(value === false){return(
         <header>
         <Link to="" className="logo"></Link>
-        <Link to="/login"className="entrar">Entrar/Cadastrar</Link>
+        <Link to="/login"className="login">Entrar/Cadastrar</Link>
       </header>
     )}
     else{
@@ -32,7 +32,7 @@ function Header() {
             <header>
             <Link to="" className="logo"></Link>
             <div>
-                <Link to="/perfil" className="entrar">Olá {name}</Link>
+                <Link to="/perfil" className="login">Olá {name}</Link>
                 <Link to="/" className="logout" onClick={handleLogout}>Logout</Link>
             </div>
           </header>

@@ -1,9 +1,14 @@
-import React, { useState } from 'react';
-import { Link , useHistory} from 'react-router-dom';
+import React from 'react';
+import { useHistory} from 'react-router-dom';
+
+import { makeStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
 
 import axios from '../Services/axiosConfig'
-
-import '../Styles/components/resourceItem.css'
 
 interface ResourceItemProps{
     title: string,
@@ -11,26 +16,44 @@ interface ResourceItemProps{
     id: number
 }
 
-const ResourceItem: React.FunctionComponent< ResourceItemProps > = ({title,last_modification,id, ...rest}) => {
-    const [submenuActivated, setSubmenuActivated] = useState(false)
-    const [submenuClassName, setSubmenuClassname] = useState('Noactivated')
-    const history = useHistory()
+const useStyles = makeStyles({
+    root: {
+        borderRadius: 10,
+        backgroundColor: '#FFF',
+        margin: 10,
+        minHeight: 100,
+        cursor: 'pointer'
+    },
+    title: {
+        fontSize: 20,
+        fontWeight: 500,
+        textAlign: 'center',
+        fontFamily: 'sans-serif',
+        marginBottom: 10,
+        color: "#7d7d7d"
+    },
+    subtitle: {
+      fontSize: 14,
+      fontFamily: 'Roboto, sans-serif',
+      color: "#7d7d7d",
+      opacity: 0.8
+    }
+  });   
 
-    function handleActivation(){
-        if (!submenuActivated){
-            setSubmenuActivated(true)
-            setSubmenuClassname('activated')
-        }
-        else{
-            setSubmenuActivated(false)
-            setSubmenuClassname('Noactivated')
-        }
+const ResourceItem: React.FunctionComponent< ResourceItemProps > = ({title,last_modification,id, ...rest}) => {
+    const history = useHistory()
+    const classes = useStyles()
+
+    function handleClickResource(){
+        history.push(`/recurso/${id}`)
+    }
+
+    function handleEdit(){
+        history.push(`/recurso/editar/${id}`)
     }
 
     async function handleDelete(){
-        setSubmenuActivated(false)
-        setSubmenuClassname('Noactivated')
-        var value=window.confirm("Se quer deletar esse recurso aperte em confirmar");
+        var value = window.confirm("Se quer deletar esse recurso aperte em confirmar");
         if (value)
         {
             await axios.delete(`/resource/${id}`)
@@ -45,18 +68,16 @@ const ResourceItem: React.FunctionComponent< ResourceItemProps > = ({title,last_
     }
 
     return(
-        <li className="Recurso">
-            <ul>
-                <li><h6 onClick={handleActivation}>...</h6>
-                    <ul className={submenuClassName}>
-                        <li><Link className="editDel" to={`/recurso/editar/${id}`}>Editar</Link></li>
-                        <li><h5 className="editDel" onClick={handleDelete}>Excluir</h5></li>
-                   </ul>
-                </li>
-            </ul>
-            <Link to={`/recurso/${id}`}>{ title }</Link>
-            <p className='data'>Última modificação: { last_modification }</p>
-        </li>
+        <Card className={classes.root} onClick={handleClickResource}>
+            <CardContent>
+                <Typography className={classes.title}>{ title }</Typography>
+                <Typography className={classes.subtitle}>Última modificação: { last_modification }</Typography>
+            </CardContent>
+            <CardActions>
+                <Button size="small" color="secondary" onClick={handleDelete}>Excluir</Button>
+                <Button size="small" onClick={handleEdit}>Editar</Button>
+            </CardActions>
+        </Card>
     )
 }
 

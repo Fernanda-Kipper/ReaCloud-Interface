@@ -20,6 +20,28 @@
     box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.1);
 }
 
+.modify-content main .rollbackButton{
+    border: none;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.modify-content main .rollbackButton .rollbackText{
+    color: #A62639;
+    font-weight: 500;
+    width: 110px;
+    font-size: 15px;
+}
+
+.modify-content main .rollbackButton .rollbackImage{
+    width: 30px;
+    height: 30px;
+}
+
 .modify-content main form{
     align-items: center;
     justify-content: center;
@@ -97,11 +119,11 @@
     align-self: center; 
     background-color: #ffffff;
     height: 40px;
-    color:#277496;
-    border: 1px solid  #277496;
-    margin: auto;
-    transition: 200ms;
+    color:#1976d2;
+    border: 1px solid #1976d2;
+    margin: 10px auto auto auto;
     cursor: pointer;
+    opacity: 0.8;
 }
 
 @media(min-width: 900px){
@@ -181,8 +203,7 @@
     }
 
     .modify-content main form button:hover{
-        box-shadow:  0 0 10px 1px rgba(0, 0, 0, 0.1);
-        background-color: #f1f1f1;
+        opacity: 1;
     }
     
 }

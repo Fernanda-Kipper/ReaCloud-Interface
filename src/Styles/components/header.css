@@ -13,12 +13,13 @@ header{
 }
 
 
-header .entrar{
+header .login{
     margin: 10px;
     font-weight: 400;
     color:#277496;
     text-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.1);
     text-decoration: none;
+    transition: 200ms;
 }
 
 header .logo{
@@ -37,7 +38,11 @@ header .logout{
 }
 
 @media(min-width: 1000px){
-    header .entrar{
+    header .login{
         font-size: 20px;
+    }
+
+    header .login:hover{
+        color: #4497bb;
     }
 }

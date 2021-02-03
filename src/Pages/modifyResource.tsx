@@ -1,16 +1,18 @@
 import React, {FormEvent, useState, useContext, useEffect} from 'react';
 import {useHistory, useParams, Link} from 'react-router-dom'
+
+import UserContext from '../AuthContext/UserContext'
 import axios from '../Services/axiosConfig'
 
 import '../Styles/pages/modify.css'
-
 import Header from '../Components/header'
+import UndoButton from '../Components/undoButton';
+
 import ParameterPassedToUrl from '../Interfaces/idParameter'
-import UserContext from '../AuthContext/UserContext'
 import {CCBY, CCBYSA, CCBYNC, CCBYNCND, CCBYNCSA, CCBYND} from '../Interfaces/licences'
 
 function ModifyResource() {
-const params: ParameterPassedToUrl = useParams();
+  const params: ParameterPassedToUrl = useParams();
   const {setValue} = useContext(UserContext)
   const history = useHistory()
 
@@ -333,10 +335,10 @@ const params: ParameterPassedToUrl = useParams();
                       <textarea value={description_of_technical_requirements} onChange={e => setDescriptionRequirements(e.target.value)}/>
 
                       <label htmlFor="video_link">Caso o recurso possua um vídeo, informe o link seu Youtube</label>
-                        <input type="url" value={video_link} onChange={e => setVideoLink(e.target.value)}/>
-
+                      <input type="url" value={video_link} onChange={e => setVideoLink(e.target.value)}/>
                       <button type="submit">Alterar informações</button>
           </form>
+          <UndoButton/>
       </main>
     </div>
   );

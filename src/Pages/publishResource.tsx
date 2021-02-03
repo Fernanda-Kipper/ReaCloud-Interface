@@ -223,7 +223,7 @@ function PublishResource() {
                       <label htmlFor="external_url">
                         *URL para o Recurso
                         <div className="informationSource">
-                          <h3>O link exato em que o recurso está hospedado. <Link to="/help">Veja como hospedar</Link></h3>
+                          <h3>O link exato em que o recurso está hospedado. <Link to="/ajuda">Veja como hospedar</Link></h3>
                         </div>
                         </label>
                       <input type="url" value={external_url} onChange={e => setUrl(e.target.value)} required/>

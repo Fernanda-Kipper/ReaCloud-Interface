@@ -10,6 +10,7 @@ import ResourcePage from '../Pages/resource'
 import CommentPage from '../Pages/comment'
 import ModifyResource from '../Pages/modifyResource'
 import HelpPage from '../Pages/helpHostYourRea'
+import SearchPage from '../Pages/search'
 
 import {PrivateRoute} from './privateRoutes'
 
@@ -23,8 +24,9 @@ function Routes(){
                     <Route path='/' exact component={HomePage}/>
                     <Route path='/login' exact component={LoginPage}/>
                     <Route path='/signIn' exact component={SignInPage}/>
+                    <Route path='/buscar' exact component={SearchPage}/>
                     <Route path='/recurso/:id' exact component={ResourcePage}/>
-                    <Route path='/help' exact component={HelpPage}/>
+                    <Route path='/ajuda' exact component={HelpPage}/>
                     <PrivateRoute path='/publicar' exact component={PublishResource}/>
                     <PrivateRoute path='/perfil' exact component={ProfilePage}/>
                     <PrivateRoute path='/recurso/:id/avaliar' exact component={CommentPage}/>

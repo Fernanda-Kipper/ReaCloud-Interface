@@ -1,7 +1,7 @@
 import Axios from 'axios'
 
 const axios = Axios.create({
-    baseURL: 'http://localhost:3200',
+    baseURL: "https://reacloud.herokuapp.com",
     withCredentials: true,
     headers: {
         'Content-Type': 'application/json'

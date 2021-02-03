@@ -216,15 +216,17 @@
 
 .resource-content main .rating-section a{
     border-radius: 10px;
-    border: 1px solid #277496;
     font-weight: 500;
-    color: #277496;
+    color:#1976d2;
+    border: 1px solid #1976d2;
+    background-color: #fff;
     text-decoration: none;
     width: 120px;
     text-align: center;
     align-self: center;
     margin: 10px;
     padding: 10px;
+    opacity: 0.7;
 }
 
 
@@ -283,6 +285,6 @@
 
 
     .resource-content main .rating-section a:hover{
-        box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.1);
+        opacity: 1;
     }
 }

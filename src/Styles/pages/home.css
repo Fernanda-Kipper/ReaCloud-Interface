@@ -76,6 +76,8 @@
     }
 
     .home-content main .buttons .button:hover{
+        color: #277496;;
+        border-color: #277496;
         box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.1);
     }
 }

@@ -52,17 +52,20 @@
     border: 0;
     width: 200px;
     align-self: center;
-    background-color: #c4c4c4;
     height: 40px;
-    color: #FBF9FF;
+    color:#1976d2;
+    border: 1px solid #1976d2;
+    background-color: #fff;
     margin-top: 20px;
     transition: 200ms;
     cursor: pointer;
     outline: none;
+    opacity: 1;
 }
 .signin-field form button:hover{
-    background-color: #7d7d7d;
+    opacity: 1;
 }
+
 .signin-content .login{
     text-align: center;
     color: #7d7d7d;

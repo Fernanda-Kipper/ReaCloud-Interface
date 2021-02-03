@@ -81,15 +81,12 @@ input[type="checkbox"] {
 
 .comment-content main form button{
     border-radius: 10px;
-    border: 1.5px solid #277496;
     padding: 10px;
-    color: #277496;
     cursor: pointer;
     background-color: #ffffff;
-}
-
-.comment-content main form button:hover{
-    box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.1);
+    color:#1976d2;
+    border: 1px solid #1976d2;
+    opacity: 0.8;
 }
 
 @media(min-width: 900px){
@@ -101,4 +98,9 @@ input[type="checkbox"] {
         font-size: 16px;
         width: 520px;
     }
+
+    .comment-content main form button:hover{
+        opacity: 1;
+    }
+    
 }

@@ -117,15 +117,12 @@
     align-self: center; 
     background-color: #ffffff;
     height: 40px;
-    color:#277496;
-    border: 1px solid  #277496;
+    color:#1976d2;
+    border: 1px solid #1976d2;
     margin: auto;
     transition: 200ms;
     cursor: pointer;
-}
-
-.profile-content main form button:hover{
-    box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.1);
+    opacity: 0.7;
 }
 
 @media(min-width: 900px){
@@ -177,4 +174,9 @@
         height: 230px;
         
     }
+
+    .profile-content main form button:hover{
+        opacity: 1;
+    }
+    
 }

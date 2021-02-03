@@ -78,7 +78,7 @@ function ResourcePage() {
             </section> 
             <div className="media">
                 <img src={resource?.image.url} alt=""/>
-                <iframe title="video" src={resource?.video_link} frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+                { resource?.video_link.length ? <iframe title="video" src={resource?.video_link} frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe> : null}
             </div>
             <section className="data">
                 <h3>Detalhes do recurso:</h3>
