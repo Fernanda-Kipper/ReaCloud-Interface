@@ -32,6 +32,8 @@ function PublishResource() {
   const [description_of_technical_requirements, setDescriptionRequirements] = useState('')
   const [image, setImage] = useState<File[]>([])
   const [video_link, setVideoLink] = useState('')
+  var date = new Date()
+  var last_modification = date.getFullYear() +'-'+(date.getMonth()+1)+'-'+ date.getDate();
 
   const [form1Done, setForm1Done] = useState(false)
   const [form2Done, setForm2Done] = useState(false)
@@ -42,9 +44,6 @@ function PublishResource() {
   const [intellectualProperty, setIntellectualProperty] = useState(false)
   const [instantiations, setInstantiations] = useState(false)
   const [upload, setUpload] = useState(false)
-
-  var date = new Date()
-  var last_modification = date.getDate() +'-'+(date.getMonth()+1)+'-'+ date.getFullYear();
 
   function handleSelectedImages(event: ChangeEvent<HTMLInputElement>){
     if(!event.target.files){
