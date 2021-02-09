@@ -1,5 +1,7 @@
-import React, { FormEvent, useState } from 'react';
+import React, { FormEvent, useState, useContext } from 'react';
 import {Link, useHistory} from 'react-router-dom';
+
+import UserContext from '../AuthContext/UserContext';
 import axios from '../Services/axiosConfig'
 
 import LoadingBar from 'react-top-loading-bar'
@@ -10,6 +12,7 @@ function SignInPage() {
 
   const history = useHistory()
   const [progress, setProgress] = useState(0)
+  const {setValue, setUserName} = useContext(UserContext)
 
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
@@ -23,9 +26,11 @@ function SignInPage() {
     setProgress(50)
 
     const Formdata = {email: email, password: password, name: name, picture_url: url, profile: profile}
-    
+
     await axios.post('/signin', Formdata)
     .then(res =>{
+      setValue(true)
+      setUserName(res.data.name)
       setProgress(100)
     })
     .catch((err)=>{

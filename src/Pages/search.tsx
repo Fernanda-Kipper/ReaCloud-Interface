@@ -1,5 +1,6 @@
 import React, { useState, FormEvent } from 'react'
 import { FixedSizeList as List } from 'react-window'
+import ContentLoader from 'styled-content-loader'
 import { Link } from 'react-router-dom'
 
 import axios from '../Services/axiosConfig'
@@ -9,7 +10,6 @@ import Resource from '../Interfaces/resource'
 
 import goBackImg from '../Images/goBack.svg'
 import openImg from '../Images/open.svg'
-import loadingGif from '../Images/loading.gif'
 import filterImg from '../Images/filter.svg'
 import '../Styles/pages/search.css'
 
@@ -137,25 +137,28 @@ function SearchPage() {
                     </form>
                 </aside>
                 <section className="results">
-                    {results.length > 0 ? (
-                        <List
-                        height={700}
-                        width={320}
-                        itemCount={results.length}
-                        itemSize={350}
-                        layout="vertical">
-                            {({index, style})=>{
-                                const element = results[index]
-                                return <ResourceCard 
-                                    title={element.title}
-                                    id={element.id}
-                                    description={element.description}
-                                    image={element.image.url}>
-                                </ResourceCard>
-                            }}
-                        </List>
-                    ): (<h2>Nenhum recurso bate com a sua busca</h2>)}
-                    {loading ? (<iframe title="loading" src={loadingGif} width="480" height="480" frameBorder="0" allowFullScreen></iframe>) : null}
+                    <ContentLoader
+                      isLoading={loading}
+                    >
+                        {results.length > 0 ? (
+                            <List
+                            height={700}
+                            width={320}
+                            itemCount={results.length}
+                            itemSize={350}
+                            layout="vertical">
+                                {({index, style})=>{
+                                    const element = results[index]
+                                    return <ResourceCard 
+                                        title={element.title}
+                                        id={element.id}
+                                        description={element.description}
+                                        image={element.image.url}>
+                                    </ResourceCard>
+                                }}
+                            </List>
+                        ): (<h2>Nenhum recurso bate com a sua busca</h2>)}
+                    </ContentLoader>
                 </section>
             </main>
         </div>

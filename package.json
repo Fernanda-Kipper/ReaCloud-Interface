@@ -21,6 +21,8 @@
     "react-scripts": "3.4.3",
     "react-top-loading-bar": "^2.0.1",
     "react-window": "^1.8.6",
+    "styled-components": "^5.2.1",
+    "styled-content-loader": "^1.2.2",
     "typescript": "^3.7.5",
     "universal-cookie": "^4.0.4"
   },

@@ -6,14 +6,15 @@ import UserContext from '../AuthContext/UserContext'
 import '../Styles/pages/publish.css'
 
 import Header from '../Components/header'
-import LoadingBar from 'react-top-loading-bar'
+import ContentLoader from 'styled-content-loader'
 
 import {CCBY, CCBYSA, CCBYNC, CCBYNCND, CCBYNCSA, CCBYND} from '../Interfaces/licences'
 
 function PublishResource() {
   const {setValue} = useContext(UserContext)
   const history = useHistory()
-  const [progress, setProgress] = useState(0)
+  const [isLoading, setIsLoading] = useState(false)
+  const [modalOn, setModal] = useState(false)
 
   const [title, setTitle] = useState('')
   const [author, setAuthor] = useState('')
@@ -58,7 +59,8 @@ function PublishResource() {
 
   async function handleSubmit(event: FormEvent){
       event.preventDefault()
-      setProgress(prevState => prevState + 10)
+      setModal(true)
+      setIsLoading(true)
 
       const dataForm = new FormData();
       dataForm.append('title', title)
@@ -82,18 +84,15 @@ function PublishResource() {
       dataForm.append('last_modification', last_modification)
       dataForm.append('video', video_link)
 
-      setProgress(prevState => prevState + 10)
 
       image.map(imageFile => {
         return dataForm.append('image', imageFile)
       })
 
-      setProgress(prevState => prevState + 30)
-
       if(form1Done===true && form2Done===true && form3Done===true){
         try{
           axios.post('/resource', dataForm).then(res =>{
-            setProgress(100)
+            setIsLoading(false)
           }
           ).catch(()=>{
             setValue(false)
@@ -108,7 +107,7 @@ function PublishResource() {
       }
       setTimeout(()=>{
         history.push('/')
-      }, 400)
+      }, 1000)
     }
   
   function handleClickContent(){
@@ -137,12 +136,10 @@ function PublishResource() {
 
   return (
     <div className="publish-content">
-      <LoadingBar
-        color='#f11946'
-        progress={progress}
-        onLoaderFinished={() => setProgress(0)}></LoadingBar>
       <Header></Header>
         <main>
+          {!modalOn ? (
+            <>
             <h1 className="title">Preencha as informações corretamente e contribua com a democratização do conhecimento.</h1>
             <div className="form">
 
@@ -447,6 +444,12 @@ function PublishResource() {
                     Publicar
                 </button>
             </div>
+            </>
+          ): (
+            <ContentLoader isLoading={isLoading}>
+              <h2 style={{color: "#7d7d7d", fontSize: 18, fontWeight: 'normal'}}>Publicado com sucesso</h2>
+            </ContentLoader>
+          )}
         </main>
     </div>
   );
