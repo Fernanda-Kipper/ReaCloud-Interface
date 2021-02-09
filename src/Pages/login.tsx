@@ -28,15 +28,17 @@ function LoginPage() {
 
         await axios.post('/login', Formdata)
         .then(res => {
-          setProgress(prevState => prevState + 50)
           setValue(true)
           setUserName(res.data.name)
-          history.push('/')
+          setProgress(100)
         })
         .catch((err)=>{
           setValue(false)
           alert('Usuário ou senha inválidos')
       })
+      setTimeout(()=>{
+        history.push('/')
+      }, 400)
   }
   
   return (

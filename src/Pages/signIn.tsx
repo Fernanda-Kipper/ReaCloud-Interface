@@ -2,11 +2,14 @@ import React, { FormEvent, useState } from 'react';
 import {Link, useHistory} from 'react-router-dom';
 import axios from '../Services/axiosConfig'
 
+import LoadingBar from 'react-top-loading-bar'
+
 import '../Styles/pages/signin.css'
 
 function SignInPage() {
 
   const history = useHistory()
+  const [progress, setProgress] = useState(0)
 
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
@@ -16,19 +19,29 @@ function SignInPage() {
 
   async function handleLogin(event: FormEvent){
   
-        event.preventDefault()
-        const Formdata = {email: email, password: password, name: name, picture_url: url, profile: profile}
-        await axios.post('/signin', Formdata)
-        .then(res =>{
-          alert('Cadastrado com sucesso, realize seu login')
-          history.push('/')
-        })
-        .catch((err)=>{
-          alert('Email já cadastrado, realize login.')})
+    event.preventDefault()
+    setProgress(50)
+
+    const Formdata = {email: email, password: password, name: name, picture_url: url, profile: profile}
+    
+    await axios.post('/signin', Formdata)
+    .then(res =>{
+      setProgress(100)
+    })
+    .catch((err)=>{
+      alert('Email já cadastrado, realize login.')})
+
+    setTimeout(()=>{
+      history.push('/')
+    }, 400)
   }
 
   return (
     <div className="signin-content">
+      <LoadingBar 
+        color='#f11946'
+        progress={progress}
+        onLoaderFinished={() => setProgress(0)}></LoadingBar>
       <main className="signin-field">
             <h1>Realize seu cadastro</h1>
             <form onSubmit={handleLogin} className="signin-form">

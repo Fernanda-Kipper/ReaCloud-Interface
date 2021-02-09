@@ -94,22 +94,21 @@ function PublishResource() {
         try{
           axios.post('/resource', dataForm).then(res =>{
             setProgress(100)
-            alert('Publicado com sucesso!')
-            history.push('/')
           }
           ).catch(()=>{
             setValue(false)
             alert('Erro ao publicar recurso')
-            history.push('/')
           })
         }catch(err){
           setValue(false)
           alert('Erro ao publicar recurso')
-          history.push('/')
         }
       }else{
         alert('Preencha todos os campos obrigatórios!')
       }
+      setTimeout(()=>{
+        history.push('/')
+      }, 400)
     }
   
   function handleClickContent(){

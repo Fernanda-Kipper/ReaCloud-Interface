@@ -5,6 +5,8 @@ import UserContext from '../AuthContext/UserContext'
 import axios from '../Services/axiosConfig'
 
 import '../Styles/pages/modify.css'
+
+import LoadingBar from 'react-top-loading-bar'
 import Header from '../Components/header'
 import UndoButton from '../Components/undoButton';
 
@@ -15,6 +17,7 @@ function ModifyResource() {
   const params: ParameterPassedToUrl = useParams();
   const {setValue} = useContext(UserContext)
   const history = useHistory()
+  const [progress, setProgress] = useState(0)
 
   const [title, setTitle] = useState('')
   const [author, setAuthor] = useState('')
@@ -71,6 +74,8 @@ function ModifyResource() {
   async function handleSubmit(event: FormEvent){
       event.preventDefault()
 
+      setProgress(20)
+
       const dataForm = new FormData();
       dataForm.append('title', title)
       dataForm.append('author', author)
@@ -93,26 +98,33 @@ function ModifyResource() {
       dataForm.append('last_modification', last_modification)
       dataForm.append('video', video_link)
 
+      setProgress(50)
     
     try{
         axios.put(`/resource/${params.id}`, dataForm).then(res =>{
+        setProgress(100)
         alert('Publicado com sucesso!')
-        history.push('/')
         }
     ).catch(()=>{
         setValue(false)
         alert('Erro ao publicar recurso')
-        history.push('/')
     })
     }catch(err){
         setValue(false)
         alert('Erro ao publicar recurso')
-        history.push('/')
     }
+
+    setTimeout(()=>{
+      history.push('/')
+    }, 400)
 }
   
   return (
     <div className="modify-content">
+      <LoadingBar
+        color='#f11946'
+        progress={progress}
+        onLoaderFinished={() => setProgress(0)}></LoadingBar>
       <Header></Header>
       <main>
           <form onSubmit={handleSubmit}>
