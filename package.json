@@ -19,6 +19,7 @@
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
+    "react-top-loading-bar": "^2.0.1",
     "react-window": "^1.8.6",
     "typescript": "^3.7.5",
     "universal-cookie": "^4.0.4"

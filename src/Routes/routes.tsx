@@ -7,7 +7,6 @@ import PublishResource from '../Pages/publishResource'
 import SignInPage from '../Pages/signIn'
 import ProfilePage from '../Pages/profile'
 import ResourcePage from '../Pages/resource'
-import CommentPage from '../Pages/comment'
 import ModifyResource from '../Pages/modifyResource'
 import HelpPage from '../Pages/helpHostYourRea'
 import SearchPage from '../Pages/search'
@@ -29,7 +28,6 @@ function Routes(){
                     <Route path='/ajuda' exact component={HelpPage}/>
                     <PrivateRoute path='/publicar' exact component={PublishResource}/>
                     <PrivateRoute path='/perfil' exact component={ProfilePage}/>
-                    <PrivateRoute path='/recurso/:id/avaliar' exact component={CommentPage}/>
                     <PrivateRoute path='/recurso/editar/:id' exact component={ModifyResource}/>
                 </Switch>
             </UserContextProvider>

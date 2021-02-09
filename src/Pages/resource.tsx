@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useParams, withRouter } from 'react-router-dom';
+import {  useParams, withRouter } from 'react-router-dom';
 import LinkIcon from '@material-ui/icons/Link';
 
 import axios from '../Services/axiosConfig'
 
 import '../Styles/pages/resource.css'
 import warningImg from '../Images/warning.svg'
-import linkExternoImg from '../Images/linkExterno.svg'
 
 import Header from '../Components/header'
+import EvaluationForm from '../Components/evaluationForm'
 import Resource from '../Interfaces/resource'
 import ParameterPassedToUrl from '../Interfaces/idParameter'
 import CommentsList from '../Components/comments'
@@ -126,17 +126,13 @@ function ResourcePage() {
                         ) : null }
                 </div>
             </section>
-            <section className="related">
-                <h3>Remixagens:</h3>
-                <Link to="#">
-                    <img src={linkExternoImg} alt=""/>
-                     Mathlab para crianças com défict de atenção
-                </Link>
+            <section className="rate-form">
+                <h3>Avaliar este recurso</h3>
+            <EvaluationForm></EvaluationForm>
             </section>
             <section className="rating-section">
                 <h3>Avaliações</h3>
                 <CommentsList></CommentsList>
-                <Link to={`/recurso/${params.id}/avaliar`}> Avaliar </Link>
             </section>
         </main>
     </div>

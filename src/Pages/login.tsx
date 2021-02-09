@@ -1,14 +1,17 @@
 import React, { FormEvent, useState, useContext } from 'react';
 import {Link, useHistory} from 'react-router-dom';
 
+import LoadingBar from 'react-top-loading-bar'
+
+
+import UserContext from '../AuthContext/UserContext';
 import axios from '../Services/axiosConfig'
 
 import '../Styles/pages/login.css';
 
-import UserContext from '../AuthContext/UserContext';
-
 function LoginPage() {
   const history = useHistory()
+  const [progress, setProgress] = useState(0)
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -19,13 +22,15 @@ function LoginPage() {
 
         event.preventDefault()
 
+        setProgress(progress + 50)
+
         const Formdata = {email: email, password: password}
 
         await axios.post('/login', Formdata)
         .then(res => {
+          setProgress(prevState => prevState + 50)
           setValue(true)
           setUserName(res.data.name)
-          alert("Logado com sucesso")
           history.push('/')
         })
         .catch((err)=>{
@@ -36,6 +41,10 @@ function LoginPage() {
   
   return (
     <div className="login-content">
+      <LoadingBar 
+        color='#f11946'
+        progress={progress}
+        onLoaderFinished={() => setProgress(0)}></LoadingBar>
       <main className="login-field">
             <h1>Realize o Login</h1>
             <form onSubmit={handleLogin} className="login-form">

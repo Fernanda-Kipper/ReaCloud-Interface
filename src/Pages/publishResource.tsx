@@ -1,16 +1,19 @@
 import React, {FormEvent, useState, useContext, ChangeEvent} from 'react';
 import {useHistory, Link} from 'react-router-dom'
 import axios from '../Services/axiosConfig'
+import UserContext from '../AuthContext/UserContext'
 
 import '../Styles/pages/publish.css'
 
 import Header from '../Components/header'
-import UserContext from '../AuthContext/UserContext'
+import LoadingBar from 'react-top-loading-bar'
+
 import {CCBY, CCBYSA, CCBYNC, CCBYNCND, CCBYNCSA, CCBYND} from '../Interfaces/licences'
 
 function PublishResource() {
   const {setValue} = useContext(UserContext)
   const history = useHistory()
+  const [progress, setProgress] = useState(0)
 
   const [title, setTitle] = useState('')
   const [author, setAuthor] = useState('')
@@ -55,6 +58,7 @@ function PublishResource() {
 
   async function handleSubmit(event: FormEvent){
       event.preventDefault()
+      setProgress(prevState => prevState + 10)
 
       const dataForm = new FormData();
       dataForm.append('title', title)
@@ -78,13 +82,18 @@ function PublishResource() {
       dataForm.append('last_modification', last_modification)
       dataForm.append('video', video_link)
 
+      setProgress(prevState => prevState + 10)
+
       image.map(imageFile => {
         return dataForm.append('image', imageFile)
       })
 
+      setProgress(prevState => prevState + 30)
+
       if(form1Done===true && form2Done===true && form3Done===true){
         try{
           axios.post('/resource', dataForm).then(res =>{
+            setProgress(100)
             alert('Publicado com sucesso!')
             history.push('/')
           }
@@ -129,6 +138,10 @@ function PublishResource() {
 
   return (
     <div className="publish-content">
+      <LoadingBar
+        color='#f11946'
+        progress={progress}
+        onLoaderFinished={() => setProgress(0)}></LoadingBar>
       <Header></Header>
         <main>
             <h1 className="title">Preencha as informações corretamente e contribua com a democratização do conhecimento.</h1>
