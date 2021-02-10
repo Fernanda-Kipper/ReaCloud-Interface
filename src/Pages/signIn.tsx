@@ -44,7 +44,7 @@ function SignInPage() {
   return (
     <div className="signin-content">
       <LoadingBar 
-        color='#f11946'
+        color='#277496'
         progress={progress}
         onLoaderFinished={() => setProgress(0)}></LoadingBar>
       <main className="signin-field">
