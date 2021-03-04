@@ -1,33 +1,39 @@
 import React, { FormEvent, useState, useEffect, useContext } from 'react';
-import {useHistory} from 'react-router-dom';
+import {useHistory} from 'react-router-dom'
 import axios from '../Services/axiosConfig'
 
-import '../Styles/pages/profile.css';
+import '../Styles/pages/profile.css'
 
-import Header from '../Components/header';
-import UserContext from '../AuthContext/UserContext';
+import Header from '../Components/header'
+import SucessModal from '../Components/sucessModal'
+import {UserContext} from '../AuthContext/UserContext'
 
 import Resource from '../Interfaces/resource'
-import ResourceItem from '../Components/resourceItem';
+import ResourceItem from '../Components/resourceItem'
 
 function ProfilePage() {
     const history = useHistory()
-    const [nameComplete, setName] = useState("Nome completo")
+    const [nameComplete, setUserName] = useState("Nome completo")
     const [picture_url, setPicture] = useState("")
     const [profile, setProfile] = useState("")
     const [email, setEmail] = useState("")
     const [userResources, setUserResources] = useState([])
 
-    const {name,setUserName} = useContext(UserContext)
+    const {name,setName} = useContext(UserContext)
 
     const [data, setData] = useState(true)
     const [resources, setResources] = useState(false)
 
+    const [isModalOpen, setIsModalOpen] = useState(false)
+
+    function handleModal(){
+        setIsModalOpen(!isModalOpen)
+    }
 
     useEffect(()=>{
-        try{ 
+        try{
             axios.get('/profile').then(response =>{
-                setName(response.data[0].name)
+                setUserName(response.data[0].name)
                 setEmail(response.data[0].email)
                 setProfile(response.data[0].profile)
                 setPicture(response.data[0].picture_url)
@@ -36,10 +42,9 @@ function ProfilePage() {
                 setUserResources(response.data)
             })
         }catch(err){
-            console.log("Erro ao validar perfil")
-            history.push("/")
+            alert("Erro ao validar o perfil")
         }
-    }, [history, name])
+    }, [name])
 
     function displayAlertEMail(){
         alert("Não é possível alterar seu email!")
@@ -51,9 +56,8 @@ function ProfilePage() {
 
         try{
             axios.put('/profile', data).then(res=>{
-                setUserName(name)
-                alert('Alterado com sucesso!')
-                history.push('/')
+                setName(nameComplete)
+                handleModal()
             }).catch(()=>{
                 alert('Erro ao atualizar dados')
                 history.push('/')
@@ -67,6 +71,7 @@ function ProfilePage() {
     return (
         <div className="profile-content">
             <Header></Header>
+            {isModalOpen ? <SucessModal action="atualizar dados" closeModal={handleModal}></SucessModal> : null}
             <main>
                 <aside>
                     <nav onClick={
@@ -87,7 +92,7 @@ function ProfilePage() {
                         <input className="url" type="text" placeholder={picture_url} value={picture_url} onChange={e => setPicture(e.target.value)} required/>
                         <div className="email" onClick={displayAlertEMail}>{email}</div>
                         <label htmlFor="name">Seu nome completo</label>
-                        <input type="text" placeholder={nameComplete} value={nameComplete} onChange={e => setName(e.target.value)} required/>
+                        <input type="text" placeholder={nameComplete} value={nameComplete} onChange={e => setUserName(e.target.value)} required/>
                         <label htmlFor="profile">Perfil acadêmico</label>
                         <select id="profile" required value={profile} onChange={e => setProfile(e.target.value)}>
                             <option value="Aluno Ensino médio">Aluno Ensino médio</option>

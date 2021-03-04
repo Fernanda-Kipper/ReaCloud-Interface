@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useHistory} from 'react-router-dom';
+
+import SucessModal from './sucessModal';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -44,6 +46,13 @@ const ResourceItem: React.FunctionComponent< ResourceItemProps > = ({title,last_
     const history = useHistory()
     const classes = useStyles()
 
+    const [isModalOpen, setIsModalOpen] = useState(false)
+
+    function handleModal(){
+        setIsModalOpen(!isModalOpen)
+    }
+
+
     function handleClickResource(){
         history.push(`/recurso/${id}`)
     }
@@ -58,7 +67,7 @@ const ResourceItem: React.FunctionComponent< ResourceItemProps > = ({title,last_
         {
             await axios.delete(`/resource/${id}`)
             .then(res =>{
-                alert("Deletado com sucesso")
+                handleModal()
             })
             .catch((err)=>{
                 alert("Erro ao deletar recurso")
@@ -68,16 +77,19 @@ const ResourceItem: React.FunctionComponent< ResourceItemProps > = ({title,last_
     }
 
     return(
-        <Card className={classes.root}>
-            <CardContent onClick={handleClickResource}>
-                <Typography className={classes.title}>{ title }</Typography>
-                <Typography className={classes.subtitle}>Última modificação: { last_modification }</Typography>
-            </CardContent>
-            <CardActions>
-                <Button size="small" color="secondary" onClick={handleDelete}>Excluir</Button>
-                <Button size="small" onClick={handleEdit}>Editar</Button>
-            </CardActions>
-        </Card>
+        <>
+            {isModalOpen ? <SucessModal action="deletar recurso" closeModal={handleModal}></SucessModal> : null}
+            <Card className={classes.root}>
+                <CardContent onClick={handleClickResource}>
+                    <Typography className={classes.title}>{ title }</Typography>
+                    <Typography className={classes.subtitle}>Última modificação: { last_modification }</Typography>
+                </CardContent>
+                <CardActions>
+                    <Button size="small" color="secondary" onClick={handleDelete}>Excluir</Button>
+                    <Button size="small" onClick={handleEdit}>Editar</Button>
+                </CardActions>
+            </Card>
+        </>
     )
 }
 

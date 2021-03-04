@@ -1,5 +1,23 @@
-.home-content{
-    background: #e4e4e4;
+@keyframes titleSlideIn{
+    from{
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    to{
+        left: -100px;
+    }
+}
+
+@keyframes mainFadeIn{
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
+
+.homeContent{
     transform: rotate(0.03deg);
     width: 100%;
     height: 100vh;
@@ -9,7 +27,7 @@
     justify-content: center;
 }
 
-.home-content main{
+.homeContent main{
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -18,27 +36,34 @@
     text-align: center;
 }
 
-.home-content main article h1{
-    margin-bottom: 30px;
-    font-size: 30px;
-    font-weight: 600;
-    color: #7d7d7d;
+.homeContent #mainContent{
+    animation-name: mainFadeIn;
+    animation-duration: 2s;
 }
 
-.home-content main p{
+.homeContent main article #title{
+    margin-bottom: 30px;
+    font-size: 2rem;
+    font-weight: 600;
+    color: #7d7d7d;
+
+    animation-name: titleSlideIn;
+    animation-duration: 2s;
+}
+
+.homeContent main p{
     max-width: 500px;
     text-align: center;
     color: #7d7d7d;
 }
 
-.home-content main img{
-    width: 220px;
+.homeContent main img{
     height: 220px;
     z-index: -1;
     opacity: 0.8;
 }
 
-.home-content main .buttons{
+.homeContent main .buttons{
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -46,7 +71,7 @@
     margin-top: 50px;
 }
 
-.home-content main .buttons .button{
+.homeContent main .buttons .button{
     text-decoration: none;
     color: #7d7d7d;
 
@@ -55,27 +80,28 @@
     border-radius: 15px;
 
     border: 1px solid #7d7d7d;
+
+    transition: 200ms;
 }
 
 @media(min-width: 1000px){
-    .home-content main article h1{
-        font-size: 3em;
+    .homeContent main article #title{
+        font-size: 3rem;
     }
 
-    .home-content main{
+    .homeContent main{
         flex-direction: row;
     }
 
-    .home-content main img{
-        width: 350px;
+    .homeContent main img{
         height: 350px;
     }
 
-    .home-content main .buttons .button{
+    .homeContent main .buttons .button{
         padding: 20px;
     }
 
-    .home-content main .buttons .button:hover{
+    .homeContent main .buttons .button:hover{
         color: #277496;;
         border-color: #277496;
         box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.1);

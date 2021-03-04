@@ -1,7 +1,7 @@
 import React, { FormEvent, useState, useContext } from 'react';
 import {Link, useHistory} from 'react-router-dom';
 
-import UserContext from '../AuthContext/UserContext';
+import {UserContext} from '../AuthContext/UserContext';
 import axios from '../Services/axiosConfig'
 
 import LoadingBar from 'react-top-loading-bar'
@@ -12,9 +12,9 @@ function SignInPage() {
 
   const history = useHistory()
   const [progress, setProgress] = useState(0)
-  const {setValue, setUserName} = useContext(UserContext)
+  const {setValue, setName} = useContext(UserContext)
 
-  const [name, setName] = useState('')
+  const [Username, setUserName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [url, setUrl] = useState('')
@@ -25,12 +25,12 @@ function SignInPage() {
     event.preventDefault()
     setProgress(50)
 
-    const Formdata = {email: email, password: password, name: name, picture_url: url, profile: profile}
+    const Formdata = {email: email, password: password, name: Username, picture_url: url, profile: profile}
 
     await axios.post('/signin', Formdata)
     .then(res =>{
       setValue(true)
-      setUserName(res.data.name)
+      setName(res.data.name)
       setProgress(100)
     })
     .catch((err)=>{
@@ -51,7 +51,7 @@ function SignInPage() {
             <h1>Realize seu cadastro</h1>
             <form onSubmit={handleLogin} className="signin-form">
                 <label htmlFor="name">Seu nome completo</label>
-                <input type="text" id="name" required value={name} onChange={e => setName(e.target.value)}/>
+                <input type="text" id="name" required value={Username} onChange={e => setUserName(e.target.value)}/>
                 <label htmlFor="email">Seu email</label>
                 <input type="text" id="email" required value={email} onChange={e => setEmail(e.target.value)}/>
                 <label htmlFor="password">Sua senha</label>
@@ -75,7 +75,7 @@ function SignInPage() {
                 <button type="submit">Cadastrar</button>
             </form>
             <div className="login">
-                  <h5>Ou faça login clicando <Link to="/login">aqui</Link></h5>
+                  <h5>Ou faça login clicando <Link to="/entrar">aqui</Link></h5>
             </div>
       </main>
     </div>

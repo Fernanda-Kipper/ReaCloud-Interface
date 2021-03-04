@@ -1,7 +1,6 @@
-import React, {FormEvent, useState, useContext, useEffect} from 'react';
+import React, {FormEvent, useState, useEffect} from 'react';
 import {useHistory, useParams, Link} from 'react-router-dom'
 
-import UserContext from '../AuthContext/UserContext'
 import axios from '../Services/axiosConfig'
 
 import '../Styles/pages/modify.css'
@@ -15,7 +14,6 @@ import {CCBY, CCBYSA, CCBYNC, CCBYNCND, CCBYNCSA, CCBYND} from '../Interfaces/li
 
 function ModifyResource() {
   const params: ParameterPassedToUrl = useParams();
-  const {setValue} = useContext(UserContext)
   const history = useHistory()
   const [isLoading, setIsLoading] = useState(false)
   const [modalOn, setModal] = useState(false)
@@ -107,11 +105,9 @@ function ModifyResource() {
         setIsLoading(false)
       }
     ).catch(()=>{
-        setValue(false)
         alert('Erro ao publicar recurso')
     })
     }catch(err){
-        setValue(false)
         alert('Erro ao publicar recurso')
     }
 

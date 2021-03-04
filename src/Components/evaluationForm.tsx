@@ -1,6 +1,5 @@
 import React, { FormEvent, useState } from 'react'
 import { Rating } from '@material-ui/lab';
-import Button from '@material-ui/core/Button';
 import SchoolIcon from '@material-ui/icons/School';
 import {useHistory} from 'react-router-dom';
 import { useParams } from 'react-router-dom'
@@ -39,12 +38,6 @@ function CommentPage(){
           color: '#277496'
         }
     })(Rating);
-    
-    const ButtonStyled = withStyles({
-        root: {
-          color: '#277496'
-        }
-    })(Button);
 
     return(
         <form id="rating-form" onSubmit={handleSubmit}>
@@ -55,7 +48,7 @@ function CommentPage(){
                 <label htmlFor="message">Comentário (opcional)</label>
                 <textarea id="message" value={message} onChange={e=> setMessage(e.target.value)}/>
                 <p>Seu nome e sua foto de perfil serão mostrados</p>
-                <ButtonStyled type="submit" variant="contained">Publicar</ButtonStyled>
+                <button type="submit">Publicar</button>
                 </>
             ) : null}
         </form>

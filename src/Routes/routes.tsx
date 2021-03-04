@@ -13,7 +13,7 @@ import SearchPage from '../Pages/search'
 
 import {PrivateRoute} from './privateRoutes'
 
-import UserContextProvider from '../AuthContext/ContextProvider'
+import {UserContextProvider} from '../AuthContext/UserContext'
 
 function Routes(){
     return(
@@ -21,8 +21,8 @@ function Routes(){
             <UserContextProvider>
                 <Switch>
                     <Route path='/' exact component={HomePage}/>
-                    <Route path='/login' exact component={LoginPage}/>
-                    <Route path='/signIn' exact component={SignInPage}/>
+                    <Route path='/entrar' exact component={LoginPage}/>
+                    <Route path='/cadastrar' exact component={SignInPage}/>
                     <Route path='/buscar' exact component={SearchPage}/>
                     <Route path='/recurso/:id' exact component={ResourcePage}/>
                     <Route path='/ajuda' exact component={HelpPage}/>

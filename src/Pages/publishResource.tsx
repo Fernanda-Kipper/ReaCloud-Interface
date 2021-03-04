@@ -1,7 +1,6 @@
-import React, {FormEvent, useState, useContext, ChangeEvent} from 'react';
+import React, {FormEvent, useState, ChangeEvent} from 'react';
 import {useHistory, Link} from 'react-router-dom'
 import axios from '../Services/axiosConfig'
-import UserContext from '../AuthContext/UserContext'
 
 import '../Styles/pages/publish.css'
 
@@ -11,7 +10,6 @@ import ContentLoader from 'styled-content-loader'
 import {CCBY, CCBYSA, CCBYNC, CCBYNCND, CCBYNCSA, CCBYND} from '../Interfaces/licences'
 
 function PublishResource() {
-  const {setValue} = useContext(UserContext)
   const history = useHistory()
   const [isLoading, setIsLoading] = useState(false)
   const [modalOn, setModal] = useState(false)
@@ -95,11 +93,9 @@ function PublishResource() {
             setIsLoading(false)
           }
           ).catch(()=>{
-            setValue(false)
             alert('Erro ao publicar recurso')
           })
         }catch(err){
-          setValue(false)
           alert('Erro ao publicar recurso')
         }
       }else{
@@ -236,7 +232,7 @@ function PublishResource() {
                         </label>
                       <input type="url" value={external_url} onChange={e => setUrl(e.target.value)} required/>
 
-                      <button className="confirm-button" type="submit">
+                      <button className="button" type="submit">
                       Confirmar
                       </button>
                     </form>
@@ -296,7 +292,7 @@ function PublishResource() {
                         </label>
                       <input type="text" value={publisher} onChange={e => setPublisher(e.target.value)}/>
 
-                      <button className="confirm-button" type="submit">
+                      <button className="button" type="submit">
                       Confirmar
                       </button>
                     </form>
@@ -413,7 +409,7 @@ function PublishResource() {
                         </label>
                       <textarea value={description_of_technical_requirements} onChange={e => setDescriptionRequirements(e.target.value)}/>
 
-                      <button className="confirm-button" type="submit">
+                      <button className="button" type="submit">
                       Confirmar
                       </button>
                       </form>
@@ -434,13 +430,13 @@ function PublishResource() {
                           <input  accept="image/*" type="file" onChange={handleSelectedImages}/>
                           <label htmlFor="video_link">Caso o recurso possua um vídeo, informe o link seu Youtube</label>
                           <input type="url" value={video_link} onChange={e => setVideoLink(e.target.value)}/>
-                          <button className="confirm-button" type="submit">
+                          <button className="button" type="submit">
                             Confirmar
                           </button>
                     </form>
                 : null}
                 </div>
-                <button className="confirm-button" onClick={handleSubmit}>
+                <button className="button hoverEffect" onClick={handleSubmit}>
                     Publicar
                 </button>
             </div>

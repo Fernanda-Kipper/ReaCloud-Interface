@@ -4,7 +4,7 @@ import {Link, useHistory} from 'react-router-dom';
 import LoadingBar from 'react-top-loading-bar'
 
 
-import UserContext from '../AuthContext/UserContext';
+import {UserContext} from '../AuthContext/UserContext';
 import axios from '../Services/axiosConfig'
 
 import '../Styles/pages/login.css';
@@ -16,10 +16,9 @@ function LoginPage() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  const {setValue, setUserName} = useContext(UserContext)
+  const {setValue, setName} = useContext(UserContext)
 
   async function handleLogin(event: FormEvent){
-
         event.preventDefault()
 
         setProgress(progress + 50)
@@ -29,7 +28,7 @@ function LoginPage() {
         await axios.post('/login', Formdata)
         .then(res => {
           setValue(true)
-          setUserName(res.data.name)
+          setName(res.data.name)
           setProgress(100)
         })
         .catch((err)=>{
@@ -57,7 +56,7 @@ function LoginPage() {
                 <button type="submit">Entrar</button>
             </form>
             <div className="signin">
-                  <h5>Ou cadastre-se clicando <Link to="/signIn">aqui</Link></h5>
+                  <h5>Ou cadastre-se clicando <Link to="/cadastrar">aqui</Link></h5>
             </div>
       </main>
     </div>
