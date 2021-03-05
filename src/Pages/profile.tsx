@@ -4,15 +4,19 @@ import axios from '../Services/axiosConfig'
 
 import '../Styles/pages/profile.css'
 
+import ResourceItem from '../Components/resourceItem'
+import LoadingBar from 'react-top-loading-bar'
 import Header from '../Components/header'
 import SucessModal from '../Components/sucessModal'
-import {UserContext} from '../AuthContext/UserContext'
 
+import {UserContext} from '../AuthContext/UserContext'
 import Resource from '../Interfaces/resource'
-import ResourceItem from '../Components/resourceItem'
+
 
 function ProfilePage() {
     const history = useHistory()
+    const [progress, setProgress] = useState(0)
+
     const [nameComplete, setUserName] = useState("Nome completo")
     const [picture_url, setPicture] = useState("")
     const [profile, setProfile] = useState("")
@@ -26,13 +30,17 @@ function ProfilePage() {
 
     const [isModalOpen, setIsModalOpen] = useState(false)
 
+    const [resourcesChanged, setResourcesChanged] = useState(false)
+
     function handleModal(){
         setIsModalOpen(!isModalOpen)
     }
 
     useEffect(()=>{
+        setProgress(progress + 50)
         try{
             axios.get('/profile').then(response =>{
+                setProgress(100)
                 setUserName(response.data[0].name)
                 setEmail(response.data[0].email)
                 setProfile(response.data[0].profile)
@@ -44,7 +52,7 @@ function ProfilePage() {
         }catch(err){
             alert("Erro ao validar o perfil")
         }
-    }, [name])
+    }, [name,resourcesChanged])
 
     function displayAlertEMail(){
         alert("Não é possível alterar seu email!")
@@ -70,6 +78,10 @@ function ProfilePage() {
 
     return (
         <div className="profile-content">
+            <LoadingBar
+                color='#277496'
+                progress={progress}
+                onLoaderFinished={() => setProgress(0)}></LoadingBar>
             <Header></Header>
             {isModalOpen ? <SucessModal action="atualizar dados" closeModal={handleModal}></SucessModal> : null}
             <main>
@@ -118,6 +130,7 @@ function ProfilePage() {
                             title={item.title} 
                             last_modification={item.last_modification} 
                             id={item.id}
+                            changed={setResourcesChanged}
                             key={item.id}>
                             </ResourceItem>
                         )

@@ -40,7 +40,7 @@ function Header() {
                     <Link to="" className="logo"></Link>
                     <div>
                         <Link to="/perfil" className="login">Olá {name}</Link>
-                        <Link to="/" className="logout" onClick={handleLogout}>Logout</Link>
+                        <p className="logout" onClick={handleLogout}>Logout</p>
                     </div>
             </header>
           </>

@@ -35,6 +35,11 @@ header .logout{
     font-weight: 600;
     font-size: 15px;
     color: #7d7d7d;
+    text-decoration: underline;
+
+    display: inline;
+
+    cursor: pointer;
 }
 
 @media(min-width: 1000px){

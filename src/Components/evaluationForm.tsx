@@ -1,35 +1,39 @@
 import React, { FormEvent, useState } from 'react'
+import axios from '../Services/axiosConfig'
+import { useParams } from 'react-router-dom'
+
 import { Rating } from '@material-ui/lab';
 import SchoolIcon from '@material-ui/icons/School';
-import {useHistory} from 'react-router-dom';
-import { useParams } from 'react-router-dom'
+import { withStyles } from '@material-ui/core';
+import SucessModal from './sucessModal'
 
 import ParameterPassedToUrl from '../Interfaces/idParameter'
 
-import axios from '../Services/axiosConfig'
 import '../Styles/components/evaluationForm.css'
-import { withStyles } from '@material-ui/core';
 
 
 function CommentPage(){
-    const history = useHistory()
     const [message, setMessage] = useState('')
     const [stars, setStars] = useState<null | number>(0)
+    const [isModalOpen, setIsModalOpen] = useState(false)
+
+    function handleModal(){
+        setIsModalOpen(!isModalOpen)
+    }
     
     const id: ParameterPassedToUrl = useParams();
     
     function handleSubmit(event: FormEvent){
         event.preventDefault()
         const formData = {stars: stars, message: message}
-            
+
         axios.post(`/resource/evaluations/${id.id}`, formData)
         .then(res =>{
-            alert('Publicado com sucesso')
-            history.push('/')
+            handleModal()
+            setStars(0)
         })
         .catch((err)=>{
             alert('Erro ao publicar comentário')
-            history.push('/')
         })
     }
 
@@ -40,6 +44,8 @@ function CommentPage(){
     })(Rating);
 
     return(
+        <>
+        {isModalOpen ? <SucessModal closeModal={handleModal} action="publicar comentário"></SucessModal> : null}
         <form id="rating-form" onSubmit={handleSubmit}>
             <label htmlFor="rate">Sua classifição</label>
             <RateStyled name="rate" value={stars} onChange={(event, value)=>{setStars(value)}} icon={<SchoolIcon fontSize="large"/>}/>
@@ -52,6 +58,7 @@ function CommentPage(){
                 </>
             ) : null}
         </form>
+        </>
     )
 }
 

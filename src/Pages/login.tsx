@@ -1,13 +1,13 @@
 import React, { FormEvent, useState, useContext } from 'react';
 import {Link, useHistory} from 'react-router-dom';
-
-import LoadingBar from 'react-top-loading-bar'
-
-
-import {UserContext} from '../AuthContext/UserContext';
 import axios from '../Services/axiosConfig'
 
 import '../Styles/pages/login.css';
+
+import LoadingBar from 'react-top-loading-bar'
+
+import {UserContext} from '../AuthContext/UserContext';
+
 
 function LoginPage() {
   const history = useHistory()

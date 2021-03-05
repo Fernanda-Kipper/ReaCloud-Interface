@@ -15,7 +15,8 @@ import axios from '../Services/axiosConfig'
 interface ResourceItemProps{
     title: string,
     last_modification: string,
-    id: number
+    id: number,
+    changed: (value: boolean)=>void
 }
 
 const useStyles = makeStyles({
@@ -42,14 +43,14 @@ const useStyles = makeStyles({
     }
   });   
 
-const ResourceItem: React.FunctionComponent< ResourceItemProps > = ({title,last_modification,id, ...rest}) => {
+const ResourceItem: React.FunctionComponent< ResourceItemProps > = ({title,last_modification,id,changed}) => {
     const history = useHistory()
     const classes = useStyles()
 
     const [isModalOpen, setIsModalOpen] = useState(false)
 
-    function handleModal(){
-        setIsModalOpen(!isModalOpen)
+    function closeModal(){
+        changed(true)
     }
 
 
@@ -67,18 +68,17 @@ const ResourceItem: React.FunctionComponent< ResourceItemProps > = ({title,last_
         {
             await axios.delete(`/resource/${id}`)
             .then(res =>{
-                handleModal()
+                setIsModalOpen(true)
             })
             .catch((err)=>{
                 alert("Erro ao deletar recurso")
             })
-            history.push('/')
         }
     }
 
     return(
         <>
-            {isModalOpen ? <SucessModal action="deletar recurso" closeModal={handleModal}></SucessModal> : null}
+            {isModalOpen ? <SucessModal action="deletar recurso" closeModal={closeModal}></SucessModal> : null}
             <Card className={classes.root}>
                 <CardContent onClick={handleClickResource}>
                     <Typography className={classes.title}>{ title }</Typography>

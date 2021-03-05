@@ -1,16 +1,16 @@
 .overlay{
     background: rgba(0, 0, 0, 0.8);
     position: fixed;
-    top: 0;
-    bottom: 0;
+    top: 0vh;
     left: 0;
     right: 0;
+    height: 100%;
 
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 1;
-    font-size: 16px;
+    font-size: 14px;
 }
 
 .overlay .container{
@@ -25,12 +25,12 @@
     color: #7d7d7d;
 
     font-weight: 500;
-    font-size: 1.5em;
+    font-size: 1.3em;
 }
 
 .overlay .container img{
     height: 5rem;
-    border-radius: 0.6em;
+    border-radius: 50%;
     margin: 1em auto;
 }
 
@@ -45,4 +45,28 @@
     margin: 0 1em 0 auto;
     border-radius: 1em;
     display: block;
+}
+
+@media(min-width: 900px){
+    .overlay{
+        font-size: 16px;
+    }
+}
+
+@media(min-width: 1200px){
+    .overlay{
+        font-size: 18px;
+    }
+}
+
+@media(min-width: 1500px){
+    .overlay{
+        font-size: 20px;
+    }
+}
+
+@media(min-width: 1800px){
+    .overlay{
+        font-size: 22px;
+    }
 }
