@@ -30,9 +30,8 @@ function CommentsList(){
         .catch((err)=>{
             console.log("Erro ao carregar dados do recurso")
         })
-    }, [params.id])
+    }, [])
 
-    console.log(reviews)
     return(
         <div className="rates">
             { reviews.length > 0 ? reviews.map((item: Review)=>{

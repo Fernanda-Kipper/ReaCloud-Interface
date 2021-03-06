@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom'
 import { Rating } from '@material-ui/lab';
 import SchoolIcon from '@material-ui/icons/School';
 import { withStyles } from '@material-ui/core';
-import SucessModal from './sucessModal'
+import LoadingBar from 'react-top-loading-bar';
 
 import ParameterPassedToUrl from '../Interfaces/idParameter'
 
@@ -15,21 +15,18 @@ import '../Styles/components/evaluationForm.css'
 function CommentPage(){
     const [message, setMessage] = useState('')
     const [stars, setStars] = useState<null | number>(0)
-    const [isModalOpen, setIsModalOpen] = useState(false)
-
-    function handleModal(){
-        setIsModalOpen(!isModalOpen)
-    }
+    const [progress, setProgress] = useState(0)
     
     const id: ParameterPassedToUrl = useParams();
     
     function handleSubmit(event: FormEvent){
         event.preventDefault()
+        setProgress(progress + 50)
         const formData = {stars: stars, message: message}
 
         axios.post(`/resource/evaluations/${id.id}`, formData)
         .then(res =>{
-            handleModal()
+            setProgress(100)
             setStars(0)
         })
         .catch((err)=>{
@@ -45,7 +42,10 @@ function CommentPage(){
 
     return(
         <>
-        {isModalOpen ? <SucessModal closeModal={handleModal} action="publicar comentário"></SucessModal> : null}
+        <LoadingBar
+            color='#277496'
+            progress={progress}
+            onLoaderFinished={() => setProgress(0)}></LoadingBar>
         <form id="rating-form" onSubmit={handleSubmit}>
             <label htmlFor="rate">Sua classifição</label>
             <RateStyled name="rate" value={stars} onChange={(event, value)=>{setStars(value)}} icon={<SchoolIcon fontSize="large"/>}/>

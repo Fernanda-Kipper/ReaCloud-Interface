@@ -1,4 +1,5 @@
 export default interface Recurso{
+    id: string,
     audience: string,
     author: string,
     contributor: string,
@@ -8,7 +9,6 @@ export default interface Recurso{
     description_of_technical_requirements: string,
     external_url: string,
     format: string,
-    id: number,
     keywords: string,
     language: string
     last_modification: string,
