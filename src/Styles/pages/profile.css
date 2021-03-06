@@ -3,11 +3,17 @@
     height: 100vh;
 
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
 }
 
 
 .profile-content main{
+    width: 100%;
+    position: absolute;
+    top: 100px;
+
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -16,21 +22,22 @@
 }
 
 .profile-content main aside{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr;
-    border-radius: 10px;
-    padding: 20px;
-    margin: 20px;
     width: 100%;
 }
 
 .profile-content main aside nav{
     color: #7d7d7d;
-    margin: 5px;
     border-bottom: 1.5px solid #c4c4c4;
+
+    display: inline-block;
+    margin: 5px;
     box-sizing: border-box;
+
     cursor: pointer;
+}
+
+.profile-content main aside nav:first-of-type{
+    margin-right: 0.8rem;
 }
 
 .profile-content main .Recursos{
@@ -66,13 +73,9 @@
     background: #fff;
 }
 
-.profile-content main form input{
+.profile-content main form input,select{
     height: 40px;
     padding: 15px;
-}
-
-.profile-content main form select{
-    height: 40px;
     width: 300px;
 }
 
@@ -128,44 +131,20 @@
 }
 
 @media(min-width: 900px){
-    .profile-content main{
-        align-items: left;
-        justify-content: left;
-        flex-direction: row;
-    
-        text-align: center;
-        margin-top: 20px;
-    }
-    
-    .profile-content main aside{
-        display: grid;
-        grid-template-columns: 1fr;
-        grid-template-rows: 1fr 1fr;
-        border-radius: 10px;
-        padding: 20px;
-        margin: 20px;
-        width: 250px;
-    }
     
     .profile-content main aside nav{
         color: #7d7d7d;
         margin-bottom: 20px;
-        font-size: 25px;
-
-    }
-    .profile-content main form{
-        flex-wrap: wrap;
-        padding: 40px;
-        border-left: 2px solid #c4c4c4;
-        height: 450px;
-        align-items: center;
-        width: 900px;
+        font-size: 1.5rem;
     }
 
-    .profile-content main .Recursos{
+    .profile-content main aside nav:first-of-type{
+        margin-right: 1.5rem;
+    }
+    
+    .profile-content main form, .Recursos{
         flex-wrap: wrap;
         padding: 40px;
-        border-left: 2px solid #c4c4c4;
         height: 450px;
         align-items: center;
         width: 900px;
@@ -183,4 +162,34 @@
         box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.1);
     }
     
+}
+
+@media(min-width: 1600px){
+    
+    .profile-content main aside nav{
+        color: #7d7d7d;
+        margin: 10px;
+    }
+
+    .profile-content main aside nav:first-of-type{
+        margin-right: 2rem;
+    }
+    
+    .profile-content main form, .Recursos{
+        flex-wrap: wrap;
+        padding: 45px;
+        height: 500px;
+        align-items: center;
+        width: 1000px;
+    }
+
+    .profile-content main form img{
+        width: 300px;
+        height: 300px;
+    }
+
+    .profile-content main form input,select{
+        padding: 15px;
+        width: 320px;
+    }
 }

@@ -11,7 +11,7 @@ interface ResourceCardProps{
     title: string,
     image: string,
     description: string,
-    id: number
+    id: string
 }
 
 const cardStyles = makeStyles({

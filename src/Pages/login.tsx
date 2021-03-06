@@ -25,7 +25,10 @@ function LoginPage() {
 
         const Formdata = {email: email, password: password}
 
-        await axios.post('/login', Formdata)
+        await axios.post('/login', Formdata, {
+          onUploadProgress: (event) => {
+            setProgress(event.loaded)
+        }})
         .then(res => {
           setValue(true)
           setName(res.data.name)

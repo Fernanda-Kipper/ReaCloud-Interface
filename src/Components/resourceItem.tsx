@@ -15,7 +15,7 @@ import axios from '../Services/axiosConfig'
 interface ResourceItemProps{
     title: string,
     last_modification: string,
-    id: number,
+    id: string,
     changed: (value: boolean)=>void
 }
 

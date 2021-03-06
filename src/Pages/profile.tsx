@@ -37,9 +37,10 @@ function ProfilePage() {
     }
 
     useEffect(()=>{
-        setProgress(progress + 50)
+        setProgress(previus => previus + 50)
         try{
-            axios.get('/profile').then(response =>{
+            axios.get('/profile')
+              .then(response =>{
                 setProgress(100)
                 setUserName(response.data[0].name)
                 setEmail(response.data[0].email)
@@ -61,9 +62,14 @@ function ProfilePage() {
     function handleSubmit(event: FormEvent){
         event.preventDefault()
         const data = {"name": nameComplete, "profile": profile, "picture_url": picture_url}
-
+        setProgress(50)
         try{
-            axios.put('/profile', data).then(res=>{
+            axios.put('/profile', data, {
+                onUploadProgress: (event) => {
+                  setProgress(event.loaded)
+              }})
+              .then(res=>{
+                  setProgress(100)
                 setName(nameComplete)
                 handleModal()
             }).catch(()=>{
