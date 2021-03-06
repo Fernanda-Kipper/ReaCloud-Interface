@@ -30,7 +30,7 @@ function CommentsList(){
         .catch((err)=>{
             console.log("Erro ao carregar dados do recurso")
         })
-    }, [])
+    }, [params.id])
 
     return(
         <div className="rates">

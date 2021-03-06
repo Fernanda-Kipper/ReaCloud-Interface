@@ -29,7 +29,8 @@ function SearchPage() {
         setLoding(true)
         event.preventDefault()
         if(advancedSearch === 'enable'){
-            axios.get('/resources/search/advanced', {params: {keywords: keyword, author: author, subject: subject}}).then(res =>{
+            axios.get('/resources/search/advanced', {params: {keywords: keyword, author: author, subject: subject}})
+            .then(res =>{
                 setResults(res.data)
                 setLoding(false)
             })
@@ -88,7 +89,7 @@ function SearchPage() {
                     <input value={keyword} onChange={e => setKeyword(e.target.value)} type="text" placeholder="Busca por recursos baseado em palavras chaves. Ex: Matemática"/>
                     <input className={advancedSearch} type="text" value={author} onChange={e => setAuthor(e.target.value)} placeholder="Autor do recurso"/>
                     <select className={advancedSearch} value={subject} onChange={e => setSubject(e.target.value)}>
-                        <option value="" disabled selected hidden>Selecione</option>
+                        <option value="" disabled defaultChecked hidden>Selecione</option>
                         <option value="Ciências Agrárias">Ciências Agrárias</option>
                         <option value="Ciências Biológicas">Ciências Biológicas</option>
                         <option value="Ciências Exatas e da Terra">Ciências Exatas e da Terra</option>
@@ -109,7 +110,7 @@ function SearchPage() {
                     <img src={filterImg} alt="Imagem de filtro" onClick={handleFilterClick}/>
                     <form onSubmit={handleFiltering} className={filter}>
                         <select value={audience} onChange={e => setAudience(e.target.value)} required>
-                            <option value="" disabled selected hidden>Público Alvo</option>
+                            <option value="" disabled defaultChecked hidden>Público Alvo</option>
                             <option value="Ensino Infantil">Ensino Infantil</option>
                             <option value="Ensino Fundamental">Ensino Fundamental</option>
                             <option value="Ensino Médio">Ensino Médio</option>
@@ -118,7 +119,7 @@ function SearchPage() {
                             <option value="Outro">Outro</option>
                         </select>
                         <select value={type} onChange={e => setType(e.target.value)} required>
-                            <option value="" disabled selected hidden>Tipo de Recurso</option>
+                            <option value="" disabled defaultChecked hidden>Tipo de Recurso</option>
                             <option value="Video">Video</option>
                             <option value="Livro">Livro</option>
                             <option value="Podcast">Podcast</option>
