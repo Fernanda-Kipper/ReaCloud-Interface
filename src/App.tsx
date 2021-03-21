@@ -8,16 +8,7 @@ function App() {
   return (
     <>
       <Routes/>
-      <ToastContainer
-        position="bottom-left"
-        autoClose={4000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        pauseOnFocusLoss={true}
-        draggable
-        pauseOnHover
-      />
+      <ToastContainer/>
     </>
   );
 }

@@ -5,8 +5,10 @@ import {UserContext} from '../AuthContext/UserContext';
 import axios from '../Services/axiosConfig'
 
 import LoadingBar from 'react-top-loading-bar'
+import { toast } from 'react-toastify';
 
 import '../Styles/pages/signin.css'
+import 'react-toastify/dist/ReactToastify.css';
 
 function SignInPage() {
 
@@ -34,7 +36,8 @@ function SignInPage() {
       setProgress(100)
     })
     .catch((err)=>{
-      alert('Email já cadastrado, realize login.')})
+      toast.warn('Email já cadastrado, realize login.')
+    })
 
     setTimeout(()=>{
       history.push('/')

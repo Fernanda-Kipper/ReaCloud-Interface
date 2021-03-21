@@ -1,8 +1,10 @@
 import React, {FormEvent, useState, ChangeEvent} from 'react';
 import {useHistory, Link} from 'react-router-dom'
+import { toast } from 'react-toastify';
 import axios from '../Services/axiosConfig'
 
 import '../Styles/pages/publish.css'
+import 'react-toastify/dist/ReactToastify.css';
 
 import Header from '../Components/header'
 import ContentLoader from 'styled-content-loader'
@@ -93,13 +95,13 @@ function PublishResource() {
             setIsLoading(false)
           }
           ).catch(()=>{
-            alert('Erro ao publicar recurso')
+            toast.error('Erro ao publicar recurso, tente mais tarde')
           })
         }catch(err){
-          alert('Erro ao publicar recurso')
+          toast.error('Erro ao publicar recurso, tente mais tarde')
         }
       }else{
-        alert('Preencha todos os campos obrigatórios!')
+        toast.warn('Preencha todos os campos obrigatórios!')
       }
       setTimeout(()=>{
         history.push('/')

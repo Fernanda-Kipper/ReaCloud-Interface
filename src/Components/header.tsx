@@ -3,9 +3,11 @@ import {Link} from 'react-router-dom';
 import axios from '../Services/axiosConfig'
 
 import '../Styles/components/header.css'
+import 'react-toastify/dist/ReactToastify.css';
 
 import {UserContext} from '../AuthContext/UserContext'
 import SucessModal from './sucessModal';
+import { toast } from 'react-toastify';
 
 function Header() {
     const {value, setValue, name, setName} = useContext(UserContext)
@@ -22,7 +24,7 @@ function Header() {
         await axios.get('/logout').then(res=>{
             setIsModalOpen(true)
         }).catch(err => {
-            alert('Erro ao realizar Logout')
+            toast.error('Erro ao realizar Logout')
         })
     }
 

@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom';
 
-import { Toast } from 'react-toastify'
+import { toast } from 'react-toastify'
 import StyledRate from './styledRating';
 
 import axios from '../Services/axiosConfig'
 
 import '../Styles/components/comment.css'
+import 'react-toastify/dist/ReactToastify.css';
 
 interface ParameterPassedToUrl{
     id: string;
@@ -30,7 +31,7 @@ function CommentsList(){
             setReviews(response.data[1])
         })
         .catch((err)=>{
-            console.log("Erro ao carregar dados do recurso")
+            toast.error("Erro ao carregar comentário do recurso, tente mais tarde")
         })
     }, [params.id])
 

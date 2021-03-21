@@ -5,6 +5,8 @@ import LinkIcon from '@material-ui/icons/Link';
 import axios from '../Services/axiosConfig'
 
 import '../Styles/pages/resource.css'
+import 'react-toastify/dist/ReactToastify.css';
+
 import warningImg from '../Images/warning.svg'
 
 import Header from '../Components/header'
@@ -13,6 +15,7 @@ import Resource from '../Interfaces/resource'
 import ParameterPassedToUrl from '../Interfaces/idParameter'
 import CommentsList from '../Components/comments'
 import StyledRate from '../Components/styledRating';
+import { toast } from 'react-toastify';
 
 
 interface Licence{
@@ -34,8 +37,7 @@ function ResourcePage() {
             setResource(response.data)
             setLicence(JSON.parse(response.data.licence))})
         .catch((e)=>{
-            console.log(e)
-            alert('Não foi possivel carregar dados do recurso')
+            toast.warn('Não foi possivel carregar dados do recurso')
         })
 
         axios.get(`/resource/evaluations/avarage/${params.id}`)
@@ -43,7 +45,7 @@ function ResourcePage() {
             setAvg(response.data.Avarage)
         })
         .catch((e)=>{
-            alert('Não foi possivel carregar dados do recurso')
+            toast.warn('Não foi possivel carregar dados do recurso')
         })
 
     }, [params.id])

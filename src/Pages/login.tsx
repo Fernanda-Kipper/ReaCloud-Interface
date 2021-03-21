@@ -3,10 +3,12 @@ import {Link, useHistory} from 'react-router-dom';
 import axios from '../Services/axiosConfig'
 
 import '../Styles/pages/login.css';
+import 'react-toastify/dist/ReactToastify.css';
 
 import LoadingBar from 'react-top-loading-bar'
 
 import {UserContext} from '../AuthContext/UserContext';
+import { toast } from 'react-toastify';
 
 
 function LoginPage() {
@@ -35,8 +37,11 @@ function LoginPage() {
           setProgress(100)
         })
         .catch((err)=>{
+          setProgress(100)
           setValue(false)
-          alert('Usuário ou senha inválidos')
+          toast.warn('Usuário ou senha inválidos', {
+            position: toast.POSITION.BOTTOM_LEFT
+          })
       })
       setTimeout(()=>{
         history.push('/')

@@ -1,8 +1,10 @@
 import React, { FormEvent, useState, useEffect, useContext } from 'react';
 import {useHistory} from 'react-router-dom'
+import { toast } from 'react-toastify';
 import axios from '../Services/axiosConfig'
 
 import '../Styles/pages/profile.css'
+import 'react-toastify/dist/ReactToastify.css';
 
 import ResourceItem from '../Components/resourceItem'
 import LoadingBar from 'react-top-loading-bar'
@@ -51,12 +53,12 @@ function ProfilePage() {
                 setUserResources(response.data)
             })
         }catch(err){
-            alert("Erro ao validar o perfil")
+            toast.error("Erro ao validar o perfil, faça o login novamente")
         }
     }, [name,resourcesChanged])
 
     function displayAlertEMail(){
-        alert("Não é possível alterar seu email!")
+        toast.warn("Não é possível alterar seu email!")
     }
 
     function handleSubmit(event: FormEvent){
@@ -69,15 +71,15 @@ function ProfilePage() {
                   setProgress(event.loaded)
               }})
               .then(res=>{
-                  setProgress(100)
-                setName(nameComplete)
-                handleModal()
+                    setProgress(100)
+                    setName(nameComplete)
+                    handleModal()
             }).catch(()=>{
-                alert('Erro ao atualizar dados')
+                toast.error('Erro ao atualizar dados, tente mais tarde')
                 history.push('/')
               })
         }catch(err){
-            alert('Erro ao atualizar dados')
+            toast.error('Erro ao atualizar dados, tente mais tarde')
             history.push('/')
         }
     }

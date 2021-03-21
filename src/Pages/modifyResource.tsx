@@ -4,8 +4,10 @@ import {useHistory, useParams, Link} from 'react-router-dom'
 import axios from '../Services/axiosConfig'
 
 import '../Styles/pages/modify.css'
+import 'react-toastify/dist/ReactToastify.css';
 
 import ContentLoader from 'styled-content-loader'
+import { toast } from 'react-toastify';
 import Header from '../Components/header'
 import UndoButton from '../Components/undoButton';
 
@@ -66,7 +68,7 @@ function ModifyResource() {
             setVideoLink(response.data.video_link)
         })
         .catch((e)=>{
-            alert('Não foi possivel carregar dados do recurso')
+            toast.warn('Não foi possivel carregar dados do recurso, tente mais tarde')
         })
   }, [params.id])
 

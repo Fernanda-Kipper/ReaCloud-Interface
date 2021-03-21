@@ -1,5 +1,6 @@
 import React, { useState, FormEvent } from 'react'
 import { FixedSizeList as List } from 'react-window'
+import { toast } from 'react-toastify'
 import ContentLoader from 'styled-content-loader'
 import { Link } from 'react-router-dom'
 
@@ -11,7 +12,9 @@ import Resource from '../Interfaces/resource'
 import goBackImg from '../Images/goBack.svg'
 import openImg from '../Images/open.svg'
 import filterImg from '../Images/filter.svg'
+
 import '../Styles/pages/search.css'
+import 'react-toastify/dist/ReactToastify.css';
 
 
 function SearchPage() {
@@ -36,7 +39,7 @@ function SearchPage() {
             })
             .catch(err=>{
                 setLoding(false)
-                alert('Erro ao buscar por recurso')
+                toast.error('Erro ao buscar por recurso, tente mais tarde')
             })
         }
         else{
@@ -45,9 +48,8 @@ function SearchPage() {
                 setLoding(false)
             })
             .catch(err=>{
-                console.log(err)
                 setLoding(false)
-                alert('Erro ao buscar por recurso')
+                toast.error('Erro ao buscar por recurso, tente mais tarde')
             })
         }
     }

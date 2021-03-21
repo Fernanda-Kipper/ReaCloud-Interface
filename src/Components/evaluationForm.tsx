@@ -6,10 +6,12 @@ import { Rating } from '@material-ui/lab';
 import SchoolIcon from '@material-ui/icons/School';
 import { withStyles } from '@material-ui/core';
 import LoadingBar from 'react-top-loading-bar';
+import { toast } from 'react-toastify';
 
 import ParameterPassedToUrl from '../Interfaces/idParameter'
 
 import '../Styles/components/evaluationForm.css'
+import 'react-toastify/dist/ReactToastify.css';
 
 
 function CommentPage(){
@@ -30,7 +32,7 @@ function CommentPage(){
             setStars(0)
         })
         .catch((err)=>{
-            alert('Erro ao publicar comentário')
+            toast.error('Erro ao publicar comentário, faça login novamente')
         })
     }
 
