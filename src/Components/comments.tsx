@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom';
+
+import { Toast } from 'react-toastify'
 import StyledRate from './styledRating';
 
 import axios from '../Services/axiosConfig'
@@ -19,7 +21,7 @@ interface Review{
 }
 
 function CommentsList(){
-    const [reviews, setReviews] = useState([])
+    const [reviews, setReviews] = useState<Review[]>([])
     const params: ParameterPassedToUrl = useParams();
 
     useEffect(()=>{
