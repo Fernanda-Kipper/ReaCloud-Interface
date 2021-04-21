@@ -1,6 +1,6 @@
 import React, {FormEvent, useState, ChangeEvent} from 'react';
 import {useHistory, Link} from 'react-router-dom'
-import { toast } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 import axios from '../Services/axiosConfig'
 
 import '../Styles/pages/publish.css'
@@ -93,19 +93,20 @@ function PublishResource() {
         try{
           axios.post('/resource', dataForm).then(res =>{
             setIsLoading(false)
+            toast.success('Sucesso ao publicar recurso!')
+            setTimeout(()=>{
+              history.push('/')
+            }, 1000)
           }
           ).catch(()=>{
-            toast.error('Erro ao publicar recurso, tente mais tarde')
+            toast.error('Erro ao publicar recurso. Tente novamente tarde')
           })
         }catch(err){
-          toast.error('Erro ao publicar recurso, tente mais tarde')
+          toast.error('Erro ao publicar recurso. Tente novamente mais tarde')
         }
       }else{
         toast.warn('Preencha todos os campos obrigatórios!')
       }
-      setTimeout(()=>{
-        history.push('/')
-      }, 1000)
     }
   
   function handleClickContent(){
@@ -449,6 +450,7 @@ function PublishResource() {
             </ContentLoader>
           )}
         </main>
+        <ToastContainer/>
     </div>
   );
 }

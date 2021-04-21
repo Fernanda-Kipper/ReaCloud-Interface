@@ -7,7 +7,7 @@ import '../Styles/pages/modify.css'
 import 'react-toastify/dist/ReactToastify.css';
 
 import ContentLoader from 'styled-content-loader'
-import { toast } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 import Header from '../Components/header'
 import UndoButton from '../Components/undoButton';
 
@@ -107,10 +107,10 @@ function ModifyResource() {
         setIsLoading(false)
       }
     ).catch(()=>{
-        alert('Erro ao publicar recurso')
+        toast.error('Erro ao publicar recurso. Tente novamente mais tarde')
     })
     }catch(err){
-        alert('Erro ao publicar recurso')
+      toast.error('Erro ao publicar recurso. Tente novamente mais tarde')
     }
 
     setTimeout(()=>{
@@ -355,6 +355,7 @@ function ModifyResource() {
         )
         }
       </main>
+      <ToastContainer/>
     </div>
   );
 }

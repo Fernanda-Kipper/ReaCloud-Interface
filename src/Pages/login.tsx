@@ -8,7 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import LoadingBar from 'react-top-loading-bar'
 
 import {UserContext} from '../AuthContext/UserContext';
-import { toast } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 
 
 function LoginPage() {
@@ -35,6 +35,10 @@ function LoginPage() {
           setValue(true)
           setName(res.data.name)
           setProgress(100)
+
+          setTimeout(()=>{
+            history.push('/')
+          }, 800)
         })
         .catch((err)=>{
           setProgress(100)
@@ -43,9 +47,6 @@ function LoginPage() {
             position: toast.POSITION.BOTTOM_LEFT
           })
       })
-      setTimeout(()=>{
-        history.push('/')
-      }, 400)
   }
   
   return (
@@ -67,6 +68,7 @@ function LoginPage() {
                   <h5>Ou cadastre-se clicando <Link to="/cadastrar">aqui</Link></h5>
             </div>
       </main>
+      <ToastContainer/>
     </div>
   );
 }

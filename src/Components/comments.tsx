@@ -21,7 +21,11 @@ interface Review{
     Rate: number
 }
 
-function CommentsList(){
+interface Props{
+    shouldUpdate: boolean;
+}
+
+function CommentsList({ shouldUpdate }: Props){
     const [reviews, setReviews] = useState<Review[]>([])
     const params: ParameterPassedToUrl = useParams();
 
@@ -33,7 +37,7 @@ function CommentsList(){
         .catch((err)=>{
             toast.error("Erro ao carregar comentário do recurso, tente mais tarde")
         })
-    }, [params.id])
+    }, [params.id, shouldUpdate])
 
     return(
         <div className="rates">

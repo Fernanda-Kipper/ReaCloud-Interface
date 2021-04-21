@@ -13,8 +13,11 @@ import ParameterPassedToUrl from '../Interfaces/idParameter'
 import '../Styles/components/evaluationForm.css'
 import 'react-toastify/dist/ReactToastify.css';
 
+interface Props{
+    setShouldUpdate: (value: boolean) => void;
+}
 
-function CommentPage(){
+function CommentForm({ setShouldUpdate }: Props){
     const [message, setMessage] = useState('')
     const [stars, setStars] = useState<null | number>(0)
     const [progress, setProgress] = useState(0)
@@ -30,6 +33,7 @@ function CommentPage(){
         .then(res =>{
             setProgress(100)
             setStars(0)
+            setShouldUpdate(true)
         })
         .catch((err)=>{
             toast.error('Erro ao publicar comentário, faça login novamente')
@@ -64,4 +68,4 @@ function CommentPage(){
     )
 }
 
-export default CommentPage;
+export default CommentForm;

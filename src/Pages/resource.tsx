@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import {  useParams, withRouter } from 'react-router-dom';
 import LinkIcon from '@material-ui/icons/Link';
+import { toast, ToastContainer } from 'react-toastify';
 
 import axios from '../Services/axiosConfig'
 
@@ -15,7 +16,6 @@ import Resource from '../Interfaces/resource'
 import ParameterPassedToUrl from '../Interfaces/idParameter'
 import CommentsList from '../Components/comments'
 import StyledRate from '../Components/styledRating';
-import { toast } from 'react-toastify';
 
 
 interface Licence{
@@ -30,6 +30,7 @@ function ResourcePage() {
     const [licence, setLicence] = useState<Licence>()
     const [avgStars, setAvg] = useState(0)
     const [showDetails, setShowDetails] = useState(false)
+    const [shouldCommentsUpdate, setShouldCommentsUpdate] = useState(false)
 
     useEffect(()=>{
         axios.get(`/resource/${params.id}`)
@@ -130,13 +131,14 @@ function ResourcePage() {
             </section>
             <section className="rate-form">
                 <h3>Avaliar este recurso</h3>
-            <EvaluationForm></EvaluationForm>
+            <EvaluationForm setShouldUpdate={setShouldCommentsUpdate}/>
             </section>
             <section className="rating-section">
                 <h3>Avaliações</h3>
-                <CommentsList></CommentsList>
+                <CommentsList shouldUpdate={shouldCommentsUpdate}/>
             </section>
         </main>
+        <ToastContainer/>
     </div>
   )}
 

@@ -1,7 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useHistory} from 'react-router-dom';
-
-import SucessModal from './sucessModal';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -9,11 +7,9 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import { toast } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 
 import axios from '../Services/axiosConfig'
-
-import 'react-toastify/dist/ReactToastify.css';
 
 interface ResourceItemProps{
     title: string,
@@ -50,12 +46,6 @@ const ResourceItem: React.FunctionComponent< ResourceItemProps > = ({title,last_
     const history = useHistory()
     const classes = useStyles()
 
-    const [isModalOpen, setIsModalOpen] = useState(false)
-
-    function closeModal(){
-        changed(true)
-    }
-
 
     function handleClickResource(){
         history.push(`/recurso/${id}`)
@@ -71,17 +61,17 @@ const ResourceItem: React.FunctionComponent< ResourceItemProps > = ({title,last_
         {
             await axios.delete(`/resource/${id}`)
             .then(res =>{
-                setIsModalOpen(true)
+                toast.success('Recurso deletado com sucesso!')
+                history.push('/perfil')
             })
             .catch((err)=>{
-                toast.error("Erro ao deletar recurso, faça login novamente")
+                toast.error("Erro ao deletar recurso. Tente realizar login novamente")
             })
         }
     }
 
     return(
         <>
-            {isModalOpen ? <SucessModal action="deletar recurso" closeModal={closeModal}></SucessModal> : null}
             <Card className={classes.root}>
                 <CardContent onClick={handleClickResource}>
                     <Typography className={classes.title}>{ title }</Typography>
@@ -92,6 +82,7 @@ const ResourceItem: React.FunctionComponent< ResourceItemProps > = ({title,last_
                     <Button size="small" onClick={handleEdit}>Editar</Button>
                 </CardActions>
             </Card>
+            <ToastContainer/>
         </>
     )
 }

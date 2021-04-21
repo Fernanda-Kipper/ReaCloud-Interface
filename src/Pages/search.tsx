@@ -1,6 +1,6 @@
 import React, { useState, FormEvent } from 'react'
 import { FixedSizeList as List } from 'react-window'
-import { toast } from 'react-toastify'
+import { toast, ToastContainer } from 'react-toastify'
 import ContentLoader from 'styled-content-loader'
 import { Link } from 'react-router-dom'
 
@@ -39,7 +39,7 @@ function SearchPage() {
             })
             .catch(err=>{
                 setLoding(false)
-                toast.error('Erro ao buscar por recurso, tente mais tarde')
+                toast.error('Erro ao buscar por recurso. Confira os dados e tente novamente mais tarde')
             })
         }
         else{
@@ -49,7 +49,7 @@ function SearchPage() {
             })
             .catch(err=>{
                 setLoding(false)
-                toast.error('Erro ao buscar por recurso, tente mais tarde')
+                toast.error('Erro ao buscar por recurso. Confira os dados e tente novamente mais tarde')
             })
         }
     }
@@ -164,6 +164,7 @@ function SearchPage() {
                     </ContentLoader>
                 </section>
             </main>
+            <ToastContainer/>
         </div>
     );
 }

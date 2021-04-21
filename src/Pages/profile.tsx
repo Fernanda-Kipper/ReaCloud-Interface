@@ -1,6 +1,5 @@
 import React, { FormEvent, useState, useEffect, useContext } from 'react';
-import {useHistory} from 'react-router-dom'
-import { toast } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 import axios from '../Services/axiosConfig'
 
 import '../Styles/pages/profile.css'
@@ -9,14 +8,12 @@ import 'react-toastify/dist/ReactToastify.css';
 import ResourceItem from '../Components/resourceItem'
 import LoadingBar from 'react-top-loading-bar'
 import Header from '../Components/header'
-import SucessModal from '../Components/sucessModal'
 
 import {UserContext} from '../AuthContext/UserContext'
 import Resource from '../Interfaces/resource'
 
 
 function ProfilePage() {
-    const history = useHistory()
     const [progress, setProgress] = useState(0)
 
     const [nameComplete, setUserName] = useState("Nome completo")
@@ -30,13 +27,7 @@ function ProfilePage() {
     const [data, setData] = useState(true)
     const [resources, setResources] = useState(false)
 
-    const [isModalOpen, setIsModalOpen] = useState(false)
-
     const [resourcesChanged, setResourcesChanged] = useState(false)
-
-    function handleModal(){
-        setIsModalOpen(!isModalOpen)
-    }
 
     useEffect(()=>{
         setProgress(previus => previus + 50)
@@ -73,14 +64,12 @@ function ProfilePage() {
               .then(res=>{
                     setProgress(100)
                     setName(nameComplete)
-                    handleModal()
+                    toast.success("Perfil editado com sucesso!")
             }).catch(()=>{
-                toast.error('Erro ao atualizar dados, tente mais tarde')
-                history.push('/')
+                toast.error('Erro ao atualizar dados. Tente novamente mais tarde')
               })
         }catch(err){
-            toast.error('Erro ao atualizar dados, tente mais tarde')
-            history.push('/')
+            toast.error('Erro ao atualizar dados. Tente novamente mais tarde')
         }
     }
 
@@ -91,7 +80,6 @@ function ProfilePage() {
                 progress={progress}
                 onLoaderFinished={() => setProgress(0)}></LoadingBar>
             <Header></Header>
-            {isModalOpen ? <SucessModal action="atualizar dados" closeModal={handleModal}></SucessModal> : null}
             <main>
                 <aside>
                     <nav onClick={
@@ -146,8 +134,9 @@ function ProfilePage() {
                 </ul>
                 : null}
             </main>
+            <ToastContainer/>
         </div>
     );
-    }
+}
 
 export default ProfilePage;

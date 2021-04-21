@@ -5,7 +5,7 @@ import {UserContext} from '../AuthContext/UserContext';
 import axios from '../Services/axiosConfig'
 
 import LoadingBar from 'react-top-loading-bar'
-import { toast } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 
 import '../Styles/pages/signin.css'
 import 'react-toastify/dist/ReactToastify.css';
@@ -34,14 +34,16 @@ function SignInPage() {
       setValue(true)
       setName(res.data.name)
       setProgress(100)
+      setTimeout(()=>{
+        history.push('/')
+      }, 1000)
     })
     .catch((err)=>{
       toast.warn('Email já cadastrado, realize login.')
+      setTimeout(()=>{
+        history.push('/entrar')
+      }, 1000)
     })
-
-    setTimeout(()=>{
-      history.push('/')
-    }, 400)
   }
 
   return (
@@ -81,6 +83,7 @@ function SignInPage() {
                   <h5>Ou faça login clicando <Link to="/entrar">aqui</Link></h5>
             </div>
       </main>
+      <ToastContainer/>
     </div>
   );
 }
