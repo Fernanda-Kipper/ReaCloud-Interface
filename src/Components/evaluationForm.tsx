@@ -34,6 +34,7 @@ function CommentForm({ setShouldUpdate }: Props){
             setProgress(100)
             setStars(0)
             setShouldUpdate(true)
+            toast.success('Comentário publicado com sucesso!')
         })
         .catch((err)=>{
             toast.error('Erro ao publicar comentário, faça login novamente')

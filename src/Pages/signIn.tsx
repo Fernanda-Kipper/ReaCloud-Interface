@@ -5,7 +5,7 @@ import {UserContext} from '../AuthContext/UserContext';
 import axios from '../Services/axiosConfig'
 
 import LoadingBar from 'react-top-loading-bar'
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 import '../Styles/pages/signin.css'
 import 'react-toastify/dist/ReactToastify.css';
@@ -83,7 +83,6 @@ function SignInPage() {
                   <h5>Ou faça login clicando <Link to="/entrar">aqui</Link></h5>
             </div>
       </main>
-      <ToastContainer/>
     </div>
   );
 }

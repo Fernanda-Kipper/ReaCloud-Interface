@@ -7,7 +7,7 @@ import ParameterPassedToUrl from '../Interfaces/idParameter';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Replay from '@material-ui/icons/Replay'
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 const useStyles = makeStyles((theme) => ({
     button: {
@@ -45,7 +45,6 @@ function UndoButton(){
                 >
                 Desfazer
             </Button>
-            <ToastContainer/>
         </>
     )
 }

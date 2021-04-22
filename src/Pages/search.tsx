@@ -1,6 +1,6 @@
 import React, { useState, FormEvent } from 'react'
 import { FixedSizeList as List } from 'react-window'
-import { toast, ToastContainer } from 'react-toastify'
+import { toast } from 'react-toastify'
 import ContentLoader from 'styled-content-loader'
 import { Link } from 'react-router-dom'
 
@@ -164,7 +164,6 @@ function SearchPage() {
                     </ContentLoader>
                 </section>
             </main>
-            <ToastContainer/>
         </div>
     );
 }

@@ -7,7 +7,7 @@ import '../Styles/pages/modify.css'
 import 'react-toastify/dist/ReactToastify.css';
 
 import ContentLoader from 'styled-content-loader'
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 import Header from '../Components/header'
 import UndoButton from '../Components/undoButton';
 
@@ -355,7 +355,6 @@ function ModifyResource() {
         )
         }
       </main>
-      <ToastContainer/>
     </div>
   );
 }

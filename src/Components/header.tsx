@@ -6,13 +6,14 @@ import '../Styles/components/header.css'
 import 'react-toastify/dist/ReactToastify.css';
 
 import {UserContext} from '../AuthContext/UserContext'
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 function Header() {
     const {value, setValue, name, setName} = useContext(UserContext)
 
     async function handleLogout(){
         await axios.get('/logout').then(res=>{
+            console.log(res)
             setValue(false)
             setName("")
             toast.success('Logout realizado com sucesso!')
@@ -37,7 +38,6 @@ function Header() {
                         <p className="logout" onClick={handleLogout}>Logout</p>
                     </div>
                 </header>
-                <ToastContainer/>
           </>
         )
     }

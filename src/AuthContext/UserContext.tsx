@@ -1,4 +1,5 @@
-import React, {useState, createContext, ReactNode} from 'react'
+import React, {useState, createContext, ReactNode, useEffect} from 'react'
+import { fetchUserData } from '../Services/fetchUserData'
 
 interface UserContextData{
     name: string,
@@ -16,6 +17,16 @@ export const UserContext = createContext({} as UserContextData)
 export function UserContextProvider({ children } : UserContextProps){
     const [value, setValue] = useState(false)
     const [name, setName] = useState("")
+
+    useEffect(() =>{
+        fetchUserData().then(data => {
+            if(data){
+                setName(data.name)
+                setValue(true)
+            }
+        })
+        .catch()
+    }, [])
 
     return(
         <UserContext.Provider value={{

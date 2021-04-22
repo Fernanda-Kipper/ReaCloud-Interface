@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import {  useParams, withRouter } from 'react-router-dom';
 import LinkIcon from '@material-ui/icons/Link';
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 import axios from '../Services/axiosConfig'
 
@@ -138,7 +138,6 @@ function ResourcePage() {
                 <CommentsList shouldUpdate={shouldCommentsUpdate}/>
             </section>
         </main>
-        <ToastContainer/>
     </div>
   )}
 

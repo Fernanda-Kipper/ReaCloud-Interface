@@ -1,6 +1,6 @@
 import React, {FormEvent, useState, ChangeEvent} from 'react';
 import {useHistory, Link} from 'react-router-dom'
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 import axios from '../Services/axiosConfig'
 
 import '../Styles/pages/publish.css'
@@ -450,7 +450,6 @@ function PublishResource() {
             </ContentLoader>
           )}
         </main>
-        <ToastContainer/>
     </div>
   );
 }

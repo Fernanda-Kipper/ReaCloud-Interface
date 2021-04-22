@@ -1,5 +1,5 @@
 import React, { FormEvent, useState, useEffect, useContext } from 'react';
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 import axios from '../Services/axiosConfig'
 
 import '../Styles/pages/profile.css'
@@ -134,7 +134,6 @@ function ProfilePage() {
                 </ul>
                 : null}
             </main>
-            <ToastContainer/>
         </div>
     );
 }

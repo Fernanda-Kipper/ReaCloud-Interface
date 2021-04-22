@@ -7,7 +7,7 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 import axios from '../Services/axiosConfig'
 
@@ -62,7 +62,7 @@ const ResourceItem: React.FunctionComponent< ResourceItemProps > = ({title,last_
             await axios.delete(`/resource/${id}`)
             .then(res =>{
                 toast.success('Recurso deletado com sucesso!')
-                history.push('/perfil')
+                history.push('/')
             })
             .catch((err)=>{
                 toast.error("Erro ao deletar recurso. Tente realizar login novamente")
@@ -82,7 +82,6 @@ const ResourceItem: React.FunctionComponent< ResourceItemProps > = ({title,last_
                     <Button size="small" onClick={handleEdit}>Editar</Button>
                 </CardActions>
             </Card>
-            <ToastContainer/>
         </>
     )
 }
