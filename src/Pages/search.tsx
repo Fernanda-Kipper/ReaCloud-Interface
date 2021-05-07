@@ -1,5 +1,4 @@
 import React, { useState, FormEvent } from 'react'
-import { FixedSizeList as List } from 'react-window'
 import { toast } from 'react-toastify'
 import ContentLoader from 'styled-content-loader'
 import { Link } from 'react-router-dom'
@@ -144,22 +143,16 @@ function SearchPage() {
                       isLoading={loading}
                     >
                         {results.length > 0 ? (
-                            <List
-                            height={700}
-                            width={320}
-                            itemCount={results.length}
-                            itemSize={350}
-                            layout="vertical">
-                                {({index, style})=>{
-                                    const element = results[index]
-                                    return <ResourceCard 
+                            <div className="result-container">
+                                {results.map((element) => (
+                                    <ResourceCard 
                                         title={element.title}
                                         id={element.id}
                                         description={element.description}
                                         image={element.image.url}>
                                     </ResourceCard>
-                                }}
-                            </List>
+                                ))}
+                            </div>
                         ): (<h2>Nenhum recurso bate com a sua busca</h2>)}
                     </ContentLoader>
                 </section>

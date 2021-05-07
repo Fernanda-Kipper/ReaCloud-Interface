@@ -24,7 +24,8 @@ const useStyles = makeStyles({
         backgroundColor: '#FFF',
         margin: 10,
         minHeight: 100,
-        cursor: 'pointer'
+        cursor: 'pointer',
+        width: 300,
     },
     title: {
         fontSize: 20,

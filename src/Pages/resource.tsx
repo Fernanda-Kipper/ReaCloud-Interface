@@ -36,7 +36,8 @@ function ResourcePage() {
         axios.get(`/resource/${params.id}`)
         .then(response =>{
             setResource(response.data)
-            setLicence(JSON.parse(response.data.licence))})
+            console.log(window.JSON.parse(response.data.licence))
+            setLicence(JSON.parse(JSON.parse(response.data.licence)))})
         .catch((e)=>{
             toast.warn('Não foi possivel carregar dados do recurso')
         })
@@ -80,8 +81,8 @@ function ResourcePage() {
                 </div>
             </section> 
             <div className="media">
-                <img src={resource?.image.url} alt=""/>
-                { resource?.video_link.length ? <iframe title="video" src={resource?.video_link} frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe> : null}
+                <img src={resource?.image.url} alt={`Imagem do recurso ${resource?.title}`}/>
+                { resource?.video_link.length ? <iframe title="video" src={resource?.video_link.replace('watch?v=', 'embed/')} frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe> : null}
             </div>
             <section className="data">
                 <h3>Detalhes do recurso:</h3>
@@ -122,7 +123,7 @@ function ResourcePage() {
                                     <tr><td> Linguagem </td><td> {resource?.language}</td></tr>
                                     <tr><td> Contruibuidores - Manutenção </td><td> {resource?.contributor} </td></tr>
                                     <tr><td> Onde foi publicado </td><td> {resource?.publisher} </td></tr>
-                                    <tr><td> Pré requisitos técnicos? </td><td> {resource?.technical_requirements} </td></tr>
+                                    <tr><td> Pré requisitos técnicos? </td><td> {(resource?.technical_requirements) ? 'Tem' : 'Não'} </td></tr>
                                     <tr><td> Descriação pré requisitos técnicos</td><td> {resource?.description_of_technical_requirements} </td></tr>
                                 </tbody>
                             </table>

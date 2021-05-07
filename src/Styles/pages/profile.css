@@ -141,13 +141,17 @@
     .profile-content main aside nav:first-of-type{
         margin-right: 1.5rem;
     }
+
+    .profile-content main .Recursos {
+        flex-direction: row;
+        justify-content: center;
+    }
     
     .profile-content main form, .Recursos{
         flex-wrap: wrap;
         padding: 40px;
-        height: 450px;
-        align-items: center;
-        width: 900px;
+        width: 80%;
+        align-items: flex-start;
     }
 
     .profile-content main form img{
@@ -173,14 +177,6 @@
 
     .profile-content main aside nav:first-of-type{
         margin-right: 2rem;
-    }
-    
-    .profile-content main form, .Recursos{
-        flex-wrap: wrap;
-        padding: 45px;
-        height: 500px;
-        align-items: center;
-        width: 1000px;
     }
 
     .profile-content main form img{

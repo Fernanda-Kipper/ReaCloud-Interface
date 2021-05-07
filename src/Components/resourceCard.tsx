@@ -1,4 +1,5 @@
 import React from 'react';
+import Avatar from 'react-avatar';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -48,17 +49,29 @@ const cardStyles = makeStyles({
 
 const ResourceCard: React.FunctionComponent< ResourceCardProps > = ({title, image, description, id})=>{
     const classes = cardStyles();
+    function resumeTitle(title: string){
+      if(title.length > 28){
+        let newTitle = title
+        .slice(0,27)
+        return newTitle += ' ...'
+      }else{
+        return title
+      }
+    }
+
     return(
       <div className="content-menu">
           <Card className={classes.root}>
-            <CardMedia
+            {image.length > 0 ? (
+              <CardMedia
               className={classes.media}
               image={image}
               title={title}
-          />
+              />
+            ) : <Avatar name={title} size="100%" style={{width: '300px', height: '150px'}}/>}
           <CardContent>
             <Typography gutterBottom variant="h5" component="h2" className={classes.title}>
-              {title}
+              {resumeTitle(title)}
             </Typography>
             <Typography variant="body2" color="textSecondary" component="p" className={classes.text}>
               {description}

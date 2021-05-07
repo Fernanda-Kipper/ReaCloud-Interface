@@ -166,6 +166,11 @@
         margin: 0 0 0 10px;
     }
 
+    .search-content main .results .result-container{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+    }
+
     .search-content main .filter .filteringForm button{
         opacity: 1;
     }

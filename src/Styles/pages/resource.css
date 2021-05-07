@@ -28,6 +28,7 @@
     align-self: center;
     margin: 10px;
     border-radius: 5px;
+    color: #000000;
 }
 
 .resource-content main .media iframe{
@@ -162,9 +163,29 @@
     align-items: center;
 }
 
-.resource-content main .data .data-content table{
-    max-width: 400px;
+.resource-content main .data .data-content  table {
+    border-spacing: 0;
+    border: 1px solid black;
     color: #000000;
+}
+
+table th{
+    color: #7d7d7d;
+}
+
+table tr:last-child td {
+    border-bottom: 0;
+}
+
+table th, td {
+    margin: 0;
+    padding: 0.5rem;
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
+}
+
+table td:last-child{
+    border-right: 0;
 }
 
 .resource-content main .rating-section{
