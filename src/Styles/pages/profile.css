@@ -146,17 +146,18 @@
         flex-direction: row;
         justify-content: center;
         align-items: flex-start;
+        width: 80%;
     }
     
     .profile-content main form{
         height: 500px;
         align-items: center;
+        width: 50%;
     }
     
     .profile-content main form, .Recursos{
         flex-wrap: wrap;
         padding: 40px;
-        width: 80%;
     }
 
     .profile-content main form img{
