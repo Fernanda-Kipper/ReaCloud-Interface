@@ -14,7 +14,6 @@ import SearchPage from '../Pages/search'
 import {PrivateRoute} from './privateRoutes'
 
 import {UserContextProvider} from '../AuthContext/UserContext'
-import Save from '../Pages/save';
 
 function Routes(){
     return(
@@ -27,7 +26,6 @@ function Routes(){
                     <Route path='/buscar' exact component={SearchPage}/>
                     <Route path='/recurso/:id' exact component={ResourcePage}/>
                     <Route path='/ajuda' exact component={HelpPage}/>
-                    <Route path='/save' exact component={Save}/>
                     <PrivateRoute path='/publicar' exact component={PublishResource}/>
                     <PrivateRoute path='/perfil' exact component={ProfilePage}/>
                     <PrivateRoute path='/recurso/editar/:id' exact component={ModifyResource}/>

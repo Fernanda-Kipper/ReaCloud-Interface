@@ -2,6 +2,7 @@ import React, { useState, FormEvent } from 'react'
 import { toast } from 'react-toastify'
 import ContentLoader from 'styled-content-loader'
 import { Link } from 'react-router-dom'
+import { BsSearch, BsFilter } from 'react-icons/bs'
 
 import axios from '../Services/axiosConfig'
 
@@ -9,7 +10,6 @@ import ResourceCard from '../Components/resourceCard'
 import Resource from '../Interfaces/resource'
 
 import goBackImg from '../Images/goBack.svg'
-import openImg from '../Images/open.svg'
 import filterImg from '../Images/filter.svg'
 
 import '../Styles/pages/search.css'
@@ -18,9 +18,6 @@ import 'react-toastify/dist/ReactToastify.css';
 
 function SearchPage() {
     const [keyword,setKeyword] = useState('')
-    const [author, setAuthor] = useState('')
-    const [subject, setSubject] = useState('')
-    const [advancedSearch, setSearch] = useState('disable')
     const [filter, setFilter] = useState('filterDisable')
     const [loading, setLoding] = useState(false)
     const [results, setResults] = useState<Resource[]>([])
@@ -30,27 +27,14 @@ function SearchPage() {
     function handleSubmit(event: FormEvent){
         setLoding(true)
         event.preventDefault()
-        if(advancedSearch === 'enable'){
-            axios.get('/resources/search/advanced', {params: {keywords: keyword, author: author, subject: subject}})
-            .then(res =>{
-                setResults(res.data)
-                setLoding(false)
-            })
-            .catch(err=>{
-                setLoding(false)
-                toast.error('Erro ao buscar por recurso. Confira os dados e tente novamente mais tarde')
-            })
-        }
-        else{
-            axios.get('/resources/search', {params: {keywords: keyword}}).then(res =>{
-                setResults(res.data)
-                setLoding(false)
-            })
-            .catch(err=>{
-                setLoding(false)
-                toast.error('Erro ao buscar por recurso. Confira os dados e tente novamente mais tarde')
-            })
-        }
+        axios.get('/resources/search', {params: {keywords: keyword}}).then(res =>{
+            setResults(res.data)
+            setLoding(false)
+        })
+        .catch(err=>{
+            setLoding(false)
+            toast.error('Erro ao buscar por recurso. Confira os dados e tente novamente mais tarde')
+        })
     }
 
     function handleFiltering(event: FormEvent){
@@ -62,15 +46,6 @@ function SearchPage() {
                 return false}
         })
         setResults(filterResults)
-    }
-
-    function handleSearchClick(){
-        if(advancedSearch === 'enable'){
-            setSearch('disable')
-        }
-        else{
-            setSearch('enable')
-        }
     }
 
     function handleFilterClick(){
@@ -87,28 +62,17 @@ function SearchPage() {
             <header className="search-header">
                 <Link to="/"><img className="goBack" src={goBackImg} alt="Voltar"/></Link>
                 <form onSubmit={handleSubmit}>
-                    <input value={keyword} onChange={e => setKeyword(e.target.value)} type="text" placeholder="Busca por recursos baseado em palavras chaves. Ex: Matemática"/>
-                    <input className={advancedSearch} type="text" value={author} onChange={e => setAuthor(e.target.value)} placeholder="Autor do recurso"/>
-                    <select className={advancedSearch} value={subject} onChange={e => setSubject(e.target.value)}>
-                        <option value="" disabled defaultChecked hidden>Selecione</option>
-                        <option value="Ciências Agrárias">Ciências Agrárias</option>
-                        <option value="Ciências Biológicas">Ciências Biológicas</option>
-                        <option value="Ciências Exatas e da Terra">Ciências Exatas e da Terra</option>
-                        <option value="Ciências Humanas">Ciências Humanas</option>
-                        <option value="Ciências da Saúde">Ciências da Saúde</option>
-                        <option value="Ciências Sociais Aplicadas">Ciências Sociais Aplicadas</option>
-                        <option value="Engenharias Lingüística, Letras e Artes">Engenharias Lingüística, Letras e Artes</option>                        
-                        <option value="Multidisciplinar">Multidisciplinar</option>              
-                      </select>
-                      <div className="formButtons">
-                        <button type="submit">Buscar</button>
-                        <img src={openImg} onClick={handleSearchClick} alt="Abrir busca avançada"/>
-                      </div>
+                    <input value={keyword} onChange={e => setKeyword(e.target.value)} type="text" placeholder="Busque palavras chaves/titulo/autor. Ex: Matemática"/>
+                    <button type="submit">
+                        <BsSearch/>
+                    </button>
                 </form>
             </header>
             <main>
                 <aside className="filter">
-                    <img src={filterImg} alt="Imagem de filtro" onClick={handleFilterClick}/>
+                    <button onClick={handleFilterClick}>
+                        <BsFilter size="lg"/>
+                    </button>
                     <form onSubmit={handleFiltering} className={filter}>
                         <select value={audience} onChange={e => setAudience(e.target.value)} required>
                             <option value="" disabled defaultChecked hidden>Público Alvo</option>

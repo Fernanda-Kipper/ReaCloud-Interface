@@ -8,6 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import ResourceItem from '../Components/resourceItem'
 import LoadingBar from 'react-top-loading-bar'
 import Header from '../Components/header'
+import SavedUrls from '../Components/savedUrls'
 
 import {UserContext} from '../AuthContext/UserContext'
 import Resource from '../Interfaces/resource'
@@ -26,6 +27,7 @@ function ProfilePage() {
 
     const [data, setData] = useState(true)
     const [resources, setResources] = useState(false)
+    const [savedMaterials, setSavedMaterials] = useState(false)
 
     const [resourcesChanged, setResourcesChanged] = useState(false)
 
@@ -92,6 +94,12 @@ function ProfilePage() {
                         setData(false)
                         setResources(true)
                         }}>Meus Recursos</nav>
+                    <nav onClick={
+                        ()=>{
+                        setData(false)
+                        setResources(false)
+                        setSavedMaterials(true)
+                        }}>Links Salvos</nav>
                 </aside>
                 {data ? 
                     <form onSubmit={handleSubmit}>
@@ -117,22 +125,26 @@ function ProfilePage() {
                         </select>
                         <button type="submit">Alterar meus dados</button>
                     </form>
-                : null}
+                : <></>}
                 { resources ?
-                <ul className="Recursos">
-                    {userResources.map((item: Resource)=>{
-                        return(
-                            <ResourceItem 
-                            title={item.title} 
-                            last_modification={item.last_modification} 
-                            id={item.id}
-                            changed={setResourcesChanged}
-                            key={item.id}>
-                            </ResourceItem>
-                        )
-                    })}
-                </ul>
-                : null}
+                <>
+                    <p className="description">Aqui estão os recursos que você publicou no repositório</p>
+                    <ul className="Recursos">
+                        {userResources.map((item: Resource)=>{
+                            return(
+                                <ResourceItem 
+                                title={item.title} 
+                                last_modification={item.last_modification} 
+                                id={item.id}
+                                changed={setResourcesChanged}
+                                key={item.id}>
+                                </ResourceItem>
+                            )
+                        })}
+                    </ul>
+                </>
+                :<></>}
+                { savedMaterials ? <SavedUrls/> : <></>}
             </main>
         </div>
     );
