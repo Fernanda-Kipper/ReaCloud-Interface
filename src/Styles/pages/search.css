@@ -33,6 +33,8 @@
     top: 20px;
     left: 10px;
     display: none;
+    color: #277496;
+    font-size: 30px;
 }
 
 .search-header h1{
@@ -128,17 +130,19 @@
 }
 
 .search-content main .filter .filteringForm button{
-    border-radius: 10px;
+    border-radius: 20px;
     border: 0;
-    width: 100px;
-    align-self: center; 
-    background-color: #ffffff;
-    height: 40px;
+    width: 100%;
+    align-self: center;
     color:#1976d2;
     border: 1px solid #1976d2;
-    margin: 10px auto auto auto;
+    background-color: #fff;
+    height: 40px;
+    margin-top: 20px;
+    transition: 200ms;
     cursor: pointer;
-    opacity: 0.8;
+    outline: none;
+    opacity: 0.5;
 }
 
 .search-content main .results h2{
@@ -185,7 +189,7 @@
         grid-template-columns: repeat(3, 1fr);
     }
 
-    .search-content main .filter .filteringForm button{
+    .search-content main .filter .filteringForm button:hover, button:focus{
         opacity: 1;
     }
 }

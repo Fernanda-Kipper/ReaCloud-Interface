@@ -1,12 +1,13 @@
 import React, {useContext} from 'react';
 import {Link} from 'react-router-dom';
 import axios from '../Services/axiosConfig'
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { BsBoxArrowInRight } from 'react-icons/bs'
 
 import '../Styles/components/header.css'
-import 'react-toastify/dist/ReactToastify.css';
 
 import {UserContext} from '../AuthContext/UserContext'
-import { toast } from 'react-toastify';
 
 function Header() {
     const {value, setValue, name, setName} = useContext(UserContext)
@@ -35,7 +36,9 @@ function Header() {
                     <Link to="" className="logo"></Link>
                     <div>
                         <Link to="/perfil" className="login">Olá {name}</Link>
-                        <p className="logout" onClick={handleLogout}>Logout</p>
+                        <p className="logout" onClick={handleLogout}>
+                            <BsBoxArrowInRight/>
+                        </p>
                     </div>
                 </header>
           </>

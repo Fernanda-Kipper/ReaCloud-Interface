@@ -2,15 +2,12 @@ import React, { useState, FormEvent } from 'react'
 import { toast } from 'react-toastify'
 import ContentLoader from 'styled-content-loader'
 import { Link } from 'react-router-dom'
-import { BsSearch, BsFilter } from 'react-icons/bs'
+import { BsSearch, BsFilter, BsArrowLeft } from 'react-icons/bs'
 
 import axios from '../Services/axiosConfig'
 
 import ResourceCard from '../Components/resourceCard'
 import Resource from '../Interfaces/resource'
-
-import goBackImg from '../Images/goBack.svg'
-import filterImg from '../Images/filter.svg'
 
 import '../Styles/pages/search.css'
 import 'react-toastify/dist/ReactToastify.css';
@@ -60,7 +57,7 @@ function SearchPage() {
     return (
         <div className="search-content">
             <header className="search-header">
-                <Link to="/"><img className="goBack" src={goBackImg} alt="Voltar"/></Link>
+                <Link to="/" className="goBack"><BsArrowLeft/></Link>
                 <form onSubmit={handleSubmit}>
                     <input value={keyword} onChange={e => setKeyword(e.target.value)} type="text" placeholder="Busque palavras chaves/titulo/autor. Ex: Matemática"/>
                     <button type="submit">

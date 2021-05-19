@@ -51,6 +51,10 @@ export default function SavedUrls(){
     const editorExtensionId = 'jccpgambbiaibbfncpkgfhoofmogncjp'
     const classes = useStyles()
 
+    function redirectToDownload(){
+        window.location.href = "https://chrome.google.com/webstore/category/extensions?hl=pt-BR"
+    }
+
     useEffect(()=>{
         try{
             chrome.runtime.sendMessage(editorExtensionId, {getTargetData: true}, function(response){
@@ -60,7 +64,7 @@ export default function SavedUrls(){
                 }
             })
         }catch(err){
-            toast.warn('Você não tem links salvos. Realize o download da extensão do ReaCloud')
+            toast.warn('Você não tem links salvos. Realize o download da extensão do ReaCloud', {onClick: redirectToDownload})
         }
     },[])
 

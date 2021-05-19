@@ -62,7 +62,7 @@ const ResourceCard: React.FunctionComponent< ResourceCardProps > = ({title, imag
     return(
       <div className="content-menu">
           <Card className={classes.root}>
-            {image.length > 0 ? (
+            {!!image ? (
               <CardMedia
               className={classes.media}
               image={image}

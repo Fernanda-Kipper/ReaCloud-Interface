@@ -20,6 +20,7 @@ header .login{
     text-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.1);
     text-decoration: none;
     transition: 200ms;
+    font-size: 15px;
 }
 
 header .logo{
@@ -30,19 +31,25 @@ header .logo{
     height: 60px;
 }
 
+header > div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+}
+
+
 header .logout{
-    margin: 5px;
-    font-weight: 600;
-    font-size: 15px;
+    font-size: 20px;
     color: #7d7d7d;
-    text-decoration: underline;
+    align-self: center;
 
     display: inline;
 
     cursor: pointer;
 }
 
-@media(min-width: 1000px){
+@media(min-width: 800px){
     header .login{
         font-size: 20px;
     }
