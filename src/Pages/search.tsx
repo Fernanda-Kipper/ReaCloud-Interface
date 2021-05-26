@@ -17,15 +17,18 @@ function SearchPage() {
     const [keyword,setKeyword] = useState('')
     const [filter, setFilter] = useState('filterDisable')
     const [loading, setLoding] = useState(false)
+    const [resultsBackup, setBackup] = useState<Resource[]>([])
     const [results, setResults] = useState<Resource[]>([])
     const [audience, setAudience] = useState('')
     const [type, setType] = useState('')
+    const [subject, setSubject] = useState('')
 
     function handleSubmit(event: FormEvent){
         setLoding(true)
         event.preventDefault()
         axios.get('/resources/search', {params: {keywords: keyword}}).then(res =>{
             setResults(res.data)
+            setBackup(res.data)
             setLoding(false)
         })
         .catch(err=>{
@@ -36,13 +39,12 @@ function SearchPage() {
 
     function handleFiltering(event: FormEvent){
         event.preventDefault()
-        const filterResults =  results.filter((result)=>{
-            if(result.audience === audience || result.type === type){
-                return true}
-            else{
-                return false}
-        })
-        setResults(filterResults)
+        if(audience || type || subject){
+            const filterResults =  resultsBackup.filter(result => {
+                return result.audience === audience || result.type === type || result.subject === subject
+            })
+            setResults(filterResults)
+        }
     }
 
     function handleFilterClick(){
@@ -71,7 +73,7 @@ function SearchPage() {
                         <BsFilter size="lg"/>
                     </button>
                     <form onSubmit={handleFiltering} className={filter}>
-                        <select value={audience} onChange={e => setAudience(e.target.value)} required>
+                        <select value={audience} onChange={e => setAudience(e.target.value)}>
                             <option value="" disabled defaultChecked hidden>Público Alvo</option>
                             <option value="Ensino Infantil">Ensino Infantil</option>
                             <option value="Ensino Fundamental">Ensino Fundamental</option>
@@ -80,7 +82,7 @@ function SearchPage() {
                             <option value="Pós-Graduação">Pós Graduação</option>                                              
                             <option value="Outro">Outro</option>
                         </select>
-                        <select value={type} onChange={e => setType(e.target.value)} required>
+                        <select value={type} onChange={e => setType(e.target.value)}>
                             <option value="" disabled defaultChecked hidden>Tipo de Recurso</option>
                             <option value="Video">Video</option>
                             <option value="Livro">Livro</option>
@@ -96,6 +98,17 @@ function SearchPage() {
                             <option value="Website">Website</option>
                             <option value="Outro">Outro</option>
                         </select>
+                        <select value={subject} onChange={e => setSubject(e.target.value)}>
+                            <option value="" disabled selected hidden>Área do conhecimento</option>
+                            <option value="Ciências Agrárias">Ciências Agrárias</option>
+                            <option value="Ciências Biológicas">Ciências Biológicas</option>
+                            <option value="Ciências Exatas e da Terra">Ciências Exatas e da Terra</option>
+                            <option value="Ciências Humanas">Ciências Humanas</option>
+                            <option value="Ciências da Saúde">Ciências da Saúde</option>
+                            <option value="Ciências Sociais Aplicadas">Ciências Sociais Aplicadas</option>
+                            <option value="Engenharias Lingüística, Letras e Artes">Engenharias Lingüística, Letras e Artes</option>                        
+                            <option value="Multidisciplinar">Multidisciplinar</option>              
+                        </select>
                         <button type="submit">Filtrar</button>
                     </form>
                 </aside>
@@ -107,6 +120,7 @@ function SearchPage() {
                             <div className="result-container">
                                 {results.map((element) => (
                                     <ResourceCard 
+                                        key={element.id}
                                         title={element.title}
                                         id={element.id}
                                         description={element.description}
