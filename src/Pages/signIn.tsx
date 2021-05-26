@@ -1,7 +1,7 @@
 import React, { FormEvent, useState, useContext } from 'react';
 import {Link, useHistory} from 'react-router-dom';
 
-import {UserContext} from '../AuthContext/UserContext';
+import {UserContext} from '../Context/UserContext';
 import axios from '../Services/axiosConfig'
 
 import LoadingBar from 'react-top-loading-bar'

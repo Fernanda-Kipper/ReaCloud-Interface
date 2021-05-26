@@ -7,7 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import LoadingBar from 'react-top-loading-bar'
 
-import {UserContext} from '../AuthContext/UserContext';
+import {UserContext} from '../Context/UserContext';
 import { toast } from 'react-toastify';
 
 

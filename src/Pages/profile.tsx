@@ -10,7 +10,7 @@ import LoadingBar from 'react-top-loading-bar'
 import Header from '../Components/header'
 import SavedUrls from '../Components/savedUrls'
 
-import {UserContext} from '../AuthContext/UserContext'
+import { UserContext } from '../Context/UserContext'
 import Resource from '../Interfaces/resource'
 
 

@@ -36,12 +36,10 @@ function ResourcePage() {
         axios.get(`/resource/${params.id}`)
         .then(response =>{
             setResource(response.data)
-            console.log(window.JSON.parse(response.data.licence))
-            setLicence(JSON.parse(JSON.parse(response.data.licence)))})
+            setLicence(JSON.parse(response.data.licence))})
         .catch((e)=>{
             toast.warn('Não foi possivel carregar dados do recurso')
         })
-
         axios.get(`/resource/evaluations/avarage/${params.id}`)
         .then(response =>{
             setAvg(response.data.Avarage)
@@ -82,7 +80,7 @@ function ResourcePage() {
             </section> 
             <div className="media">
                 <img src={resource?.image.url} alt={`Imagem do recurso ${resource?.title}`}/>
-                { resource?.video_link.length ? <iframe title="video" src={resource?.video_link.replace('watch?v=', 'embed/')} frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe> : null}
+                { resource?.video_link ? <iframe title="video" src={resource?.video_link.replace('watch?v=', 'embed/')} frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe> : null}
             </div>
             <section className="data">
                 <h3>Detalhes do recurso:</h3>

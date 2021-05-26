@@ -11,9 +11,9 @@ import ModifyResource from '../Pages/modifyResource'
 import HelpPage from '../Pages/helpHostYourRea'
 import SearchPage from '../Pages/search'
 
-import {PrivateRoute} from './privateRoutes'
+import { PrivateRoute } from './privateRoutes'
 
-import {UserContextProvider} from '../AuthContext/UserContext'
+import { UserContextProvider } from '../Context/UserContext'
 
 function Routes(){
     return(

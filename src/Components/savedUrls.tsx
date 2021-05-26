@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
@@ -8,11 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import { toast } from 'react-toastify';
 
 import '../Styles/components/savedUrls.css'
-
-interface Material {
-    link: string,
-    title: string | null | undefined,
-}
+import { useExtension } from '../Services/hooks/useExtension';
 
 const useStyles = makeStyles({
     root: {
@@ -47,8 +43,7 @@ const useStyles = makeStyles({
   });
 
 export default function SavedUrls(){
-    const [materials, setMaterials] = useState<Material[]>([])
-    const editorExtensionId = 'jccpgambbiaibbfncpkgfhoofmogncjp'
+    const { data, error, handleDelete } = useExtension()
     const classes = useStyles()
 
     function redirectToDownload(){
@@ -56,19 +51,13 @@ export default function SavedUrls(){
     }
 
     useEffect(()=>{
-        try{
-            chrome.runtime.sendMessage(editorExtensionId, {getTargetData: true}, function(response){
-                console.log(response)
-                if(response.setTargetData){
-                    setMaterials(response.setTargetData)
-                }
-            })
-        }catch(err){
-            toast.warn('Você não tem links salvos. Realize o download da extensão do ReaCloud', {onClick: redirectToDownload})
+        if(error.state){
+            error.redirectOnClick ? toast.warn(error.message, {onClick: redirectToDownload})
+            : toast.error(error.message)
         }
-    },[])
+    },[error])
 
-    if(!materials.length){
+    if(!data.length){
         return(
             <div className="container">
                 <p className="description">
@@ -81,7 +70,7 @@ export default function SavedUrls(){
     return(
        <div className="container">
            <p className="description">Aqui estão os materiais que você salvou através da extensão do ReaCloud</p>
-           {materials.map((element) => 
+           {data.map((element) => 
             <Card className={classes.root}>
             <CardContent>
                 <Typography className={classes.title}>
@@ -90,7 +79,7 @@ export default function SavedUrls(){
             </CardContent>
             <CardActions className={classes.actions}>
                 <Button size="small" color="default">Publicar</Button>
-                <Button size="small" color="secondary">Excluir</Button>
+                <Button size="small" color="secondary" onClick={() => {handleDelete(element.link)}}>Excluir</Button>
             </CardActions>
         </Card>
            )}

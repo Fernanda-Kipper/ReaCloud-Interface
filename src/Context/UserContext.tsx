@@ -1,5 +1,5 @@
 import React, {useState, createContext, ReactNode, useEffect} from 'react'
-import { fetchUserData } from '../Services/fetchUserData'
+import { useUserData } from '../Services/hooks/useUserData'
 
 interface UserContextData{
     name: string,
@@ -17,16 +17,14 @@ export const UserContext = createContext({} as UserContextData)
 export function UserContextProvider({ children } : UserContextProps){
     const [value, setValue] = useState(false)
     const [name, setName] = useState("")
+    const { data, error  } = useUserData()
 
     useEffect(() =>{
-        fetchUserData().then(data => {
-            if(data){
-                setName(data.name)
-                setValue(true)
-            }
-        })
-        .catch()
-    }, [])
+        if(data && !error){
+            setName(data.name)
+            setValue(true)
+        }
+    }, [data, error])
 
     return(
         <UserContext.Provider value={{

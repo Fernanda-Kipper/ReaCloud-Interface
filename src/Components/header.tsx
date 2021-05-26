@@ -7,7 +7,7 @@ import { BsBoxArrowInRight } from 'react-icons/bs'
 
 import '../Styles/components/header.css'
 
-import {UserContext} from '../AuthContext/UserContext'
+import {UserContext} from '../Context/UserContext'
 
 function Header() {
     const {value, setValue, name, setName} = useContext(UserContext)
