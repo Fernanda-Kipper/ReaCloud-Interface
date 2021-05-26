@@ -1,10 +1,11 @@
-import React, {FormEvent, useState, ChangeEvent} from 'react';
-import {useHistory, Link} from 'react-router-dom'
-import { toast } from 'react-toastify';
+import React, { useState } from 'react';
+import { useHistory, Link } from 'react-router-dom'
+import { toast } from 'react-toastify'
 import axios from '../Services/axiosConfig'
+import SimpleFileUpload  from 'react-simple-file-upload'
 
 import '../Styles/pages/publish.css'
-import 'react-toastify/dist/ReactToastify.css';
+import 'react-toastify/dist/ReactToastify.css'
 
 import Header from '../Components/header'
 import ContentLoader from 'styled-content-loader'
@@ -34,7 +35,7 @@ function PublishResource() {
   const [format, setFormat] = useState('')
   const [technical_requirements, setTechnical_requirements] = useState('')
   const [description_of_technical_requirements, setDescriptionRequirements] = useState('')
-  const [image, setImage] = useState<File[]>([])
+  const [image, setImage] = useState('')
   const [video_link, setVideoLink] = useState('')
   var date = new Date()
   var last_modification = date.getFullYear() +'-'+(date.getMonth()+1)+'-'+ date.getDate();
@@ -49,45 +50,36 @@ function PublishResource() {
   const [instantiations, setInstantiations] = useState(false)
   const [upload, setUpload] = useState(false)
 
-  function handleSelectedImages(event: ChangeEvent<HTMLInputElement>){
-    if(!event.target.files){
-      return;
-    }
-    const images1 = Array.from(event.target.files)
-    setImage(images1)
+  function handleUploadFile(url){
+    setImage(url)
   }
 
-  async function handleSubmit(event: FormEvent){
+  async function handleSubmit(event){
       event.preventDefault()
       setModal(true)
       setIsLoading(true)
 
-      const dataForm = new FormData();
-      dataForm.append('title', title)
-      dataForm.append('author', author)
-      dataForm.append('type', type)
-      dataForm.append('language', language)
-      dataForm.append('licence', licence)
-      dataForm.append('description', description)
-      dataForm.append('date_of_publishment', date_of_publishment)
-      dataForm.append('subject', subject)
-      dataForm.append('keywords', keywords)
-      dataForm.append('audience', audience)
-      dataForm.append('external_url', external_url)
-      dataForm.append('context', context)
-      dataForm.append('relation', relation)
-      dataForm.append('contributor', contributor)
-      dataForm.append('publisher', publisher)
-      dataForm.append('format', format)
-      dataForm.append('technical_requirements', technical_requirements)
-      dataForm.append('description_of_technical_requirements', description_of_technical_requirements)
-      dataForm.append('last_modification', last_modification)
-      dataForm.append('video', video_link)
-
-
-      image.map(imageFile => {
-        return dataForm.append('image', imageFile)
-      })
+      const dataForm = {
+        title, 
+        author, 
+        type, 
+        language, 
+        licence, 
+        description, 
+        date_of_publishment, 
+        subject, keywords, 
+        context, 
+        relation, 
+        contributor, 
+        publisher,
+        format, 
+        technical_requirements, 
+        description_of_technical_requirements, 
+        last_modification, 
+        video_link, 
+        image,
+        audience,
+        external_url }
 
       if(form1Done===true && form2Done===true && form3Done===true){
         try{
@@ -429,8 +421,11 @@ function PublishResource() {
                     <form onSubmit={()=>{
                         setUpload(false)
                         setForm4Done(true)}}>
-                          <label htmlFor="images">Escolha a imagem para a representação visual do REA</label>
-                          <input  accept="image/*" type="file" onChange={handleSelectedImages}/>
+                          <label htmlFor="images">Escolha a IMAGEM para a representação visual do REA</label>
+                          <SimpleFileUpload
+                            apiKey="cac9ad647292106c583af5329f32fd23"
+                            onSuccess={handleUploadFile}
+                          />
                           <label htmlFor="video_link">Caso o recurso possua um vídeo, informe o link seu Youtube</label>
                           <input type="url" value={video_link} onChange={e => setVideoLink(e.target.value)}/>
                           <button className="button" type="submit">
