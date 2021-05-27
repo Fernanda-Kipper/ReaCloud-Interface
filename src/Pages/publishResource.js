@@ -423,7 +423,7 @@ function PublishResource() {
                         setForm4Done(true)}}>
                           <label htmlFor="images">Escolha a IMAGEM para a representação visual do REA</label>
                           <SimpleFileUpload
-                            apiKey={process.env.UPLOAD_FILE_KEY}
+                            apiKey={process.env.REACT_APP_UPLOAD_FILE_KEY}
                             onSuccess={handleUploadFile}
                           />
                           <label htmlFor="video_link">Caso o recurso possua um vídeo, informe o link seu Youtube</label>
