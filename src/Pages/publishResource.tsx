@@ -41,12 +41,12 @@ function PublishResource() {
   var date = new Date()
   var last_modification = date.getFullYear() +'-'+(date.getMonth()+1)+'-'+ date.getDate();
 
-  const [form1Done, setForm1Done] = useState(params.link ? true : false)
+  const [form1Done, setForm1Done] = useState(false)
   const [form2Done, setForm2Done] = useState(false)
   const [form3Done, setForm3Done] = useState(false)
   const [form4Done, setForm4Done] = useState(false)
 
-  const [content, setContent] = useState(false)
+  const [content, setContent] = useState(params.link ? true : false)
   const [intellectualProperty, setIntellectualProperty] = useState(false)
   const [instantiations, setInstantiations] = useState(false)
   const [upload, setUpload] = useState(false)
