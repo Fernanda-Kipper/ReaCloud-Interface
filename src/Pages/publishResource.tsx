@@ -1,23 +1,24 @@
-import React, { useState } from 'react';
-import { useHistory, Link } from 'react-router-dom'
-import { toast } from 'react-toastify'
+import React, {FormEvent, useState, ChangeEvent, useContext} from 'react';
+import {useHistory, Link} from 'react-router-dom'
+import { toast } from 'react-toastify';
 import axios from '../Services/axiosConfig'
-import SimpleFileUpload  from 'react-simple-file-upload'
 
 import '../Styles/pages/publish.css'
-import 'react-toastify/dist/ReactToastify.css'
+import 'react-toastify/dist/ReactToastify.css';
 
 import Header from '../Components/header'
 import ContentLoader from 'styled-content-loader'
 
 import {CCBY, CCBYSA, CCBYNC, CCBYNCND, CCBYNCSA, CCBYND} from '../Interfaces/licences'
+import { ExtensionParamContext } from '../Context/ExtensionParamContext';
 
 function PublishResource() {
   const history = useHistory()
   const [isLoading, setIsLoading] = useState(false)
   const [modalOn, setModal] = useState(false)
+  const params = useContext(ExtensionParamContext)
 
-  const [title, setTitle] = useState('')
+  const [title, setTitle] = useState(params.title ? params.title : '')
   const [author, setAuthor] = useState('')
   const [type, setType] = useState('')
   const [licence, setLicence] = useState('')
@@ -27,7 +28,7 @@ function PublishResource() {
   const [subject, setSubject] = useState('')
   const [keywords, setKeywords] = useState('')
   const [audience, setAudience] = useState('')
-  const [external_url, setUrl] = useState('')
+  const [external_url, setUrl] = useState(params.link ? params.link : '')
   const [context, setContext] = useState('')
   const [relation, setRelation] = useState('')
   const [contributor, setContributor] = useState('')
@@ -35,12 +36,12 @@ function PublishResource() {
   const [format, setFormat] = useState('')
   const [technical_requirements, setTechnical_requirements] = useState('')
   const [description_of_technical_requirements, setDescriptionRequirements] = useState('')
-  const [image, setImage] = useState('')
+  const [image, setImage] = useState<File[]>([])
   const [video_link, setVideoLink] = useState('')
   var date = new Date()
   var last_modification = date.getFullYear() +'-'+(date.getMonth()+1)+'-'+ date.getDate();
 
-  const [form1Done, setForm1Done] = useState(false)
+  const [form1Done, setForm1Done] = useState(params.link ? true : false)
   const [form2Done, setForm2Done] = useState(false)
   const [form3Done, setForm3Done] = useState(false)
   const [form4Done, setForm4Done] = useState(false)
@@ -50,36 +51,41 @@ function PublishResource() {
   const [instantiations, setInstantiations] = useState(false)
   const [upload, setUpload] = useState(false)
 
-  function handleUploadFile(url){
-    setImage(url)
+  function handleSelectedImages(event: ChangeEvent<HTMLInputElement>){
+    if(!event.target.files){
+      return;
+    }
+    const images1 = Array.from(event.target.files)
+    setImage(images1)
   }
 
-  async function handleSubmit(event){
+  async function handleSubmit(event: FormEvent){
       event.preventDefault()
       setModal(true)
       setIsLoading(true)
 
-      const dataForm = {
-        title, 
-        author, 
-        type, 
-        language, 
-        licence, 
-        description, 
-        date_of_publishment, 
-        subject, keywords, 
-        context, 
-        relation, 
-        contributor, 
-        publisher,
-        format, 
-        technical_requirements, 
-        description_of_technical_requirements, 
-        last_modification, 
-        video_link, 
-        image,
-        audience,
-        external_url }
+      const dataForm = new FormData();
+      dataForm.append('title', title)
+      dataForm.append('author', author)
+      dataForm.append('type', type)
+      dataForm.append('language', language)
+      dataForm.append('licence', licence)
+      dataForm.append('description', description)
+      dataForm.append('date_of_publishment', date_of_publishment)
+      dataForm.append('subject', subject)
+      dataForm.append('keywords', keywords)
+      dataForm.append('audience', audience)
+      dataForm.append('external_url', external_url)
+      dataForm.append('context', context)
+      dataForm.append('relation', relation)
+      dataForm.append('contributor', contributor)
+      dataForm.append('publisher', publisher)
+      dataForm.append('format', format)
+      dataForm.append('technical_requirements', technical_requirements)
+      dataForm.append('description_of_technical_requirements', description_of_technical_requirements)
+      dataForm.append('last_modification', last_modification)
+      dataForm.append('video', video_link)
+      dataForm.append('file', image[0])
 
       if(form1Done===true && form2Done===true && form3Done===true){
         try{
@@ -421,11 +427,8 @@ function PublishResource() {
                     <form onSubmit={()=>{
                         setUpload(false)
                         setForm4Done(true)}}>
-                          <label htmlFor="images">Escolha a IMAGEM para a representação visual do REA</label>
-                          <SimpleFileUpload
-                            apiKey={process.env.REACT_APP_UPLOAD_FILE_KEY}
-                            onSuccess={handleUploadFile}
-                          />
+                          <label htmlFor="images">Escolha a imagem para a representação visual do REA</label>
+                          <input  accept="image/*" type="file" onChange={handleSelectedImages}/>
                           <label htmlFor="video_link">Caso o recurso possua um vídeo, informe o link seu Youtube</label>
                           <input type="url" value={video_link} onChange={e => setVideoLink(e.target.value)}/>
                           <button className="button" type="submit">

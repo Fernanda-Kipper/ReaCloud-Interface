@@ -14,6 +14,7 @@ import SearchPage from '../Pages/search'
 import { PrivateRoute } from './privateRoutes'
 
 import { UserContextProvider } from '../Context/UserContext'
+import { ExtensionParamProvider } from '../Context/ExtensionParamContext';
 
 function Routes(){
     return(
@@ -26,8 +27,10 @@ function Routes(){
                     <Route path='/buscar' exact component={SearchPage}/>
                     <Route path='/recurso/:id' exact component={ResourcePage}/>
                     <Route path='/ajuda' exact component={HelpPage}/>
-                    <PrivateRoute path='/publicar' exact component={PublishResource}/>
-                    <PrivateRoute path='/perfil' exact component={ProfilePage}/>
+                    <ExtensionParamProvider>
+                        <PrivateRoute path='/publicar' exact component={PublishResource}/>
+                        <PrivateRoute path='/perfil' exact component={ProfilePage}/>
+                    </ExtensionParamProvider>
                     <PrivateRoute path='/recurso/editar/:id' exact component={ModifyResource}/>
                 </Switch>
             </UserContextProvider>

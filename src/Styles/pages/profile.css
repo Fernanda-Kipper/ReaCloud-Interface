@@ -43,7 +43,7 @@
 .profile-content main .Recursos{
     display: flex;
     flex-direction: column;
-    justify-items: center;
+    justify-items: center; 
 }
 
 .profile-content main .description{
@@ -60,6 +60,12 @@
     justify-items: center;
 }
 
+
+.profile-content main form section{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
 
 .profile-content main form h6{
     color: #3D0991;
@@ -123,7 +129,7 @@
 }
 
 .profile-content main form button{
-    margin: auto;
+    margin: 20px auto auto auto;
     padding: 13px;
     border-radius: 15px;
     border: 1px solid #7d7d7d;
@@ -156,22 +162,20 @@
         align-items: flex-start;
         width: 80%;
     }
-    
+
     .profile-content main form{
-        height: 500px;
-        align-items: center;
-        width: 50%;
+        width: 60%;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .profile-content main form section img{
+        height: 200px;
     }
     
     .profile-content main form, .Recursos{
         flex-wrap: wrap;
         padding: 40px;
-    }
-
-    .profile-content main form img{
-        width: 230px;
-        height: 230px;
-        
     }
 
     .profile-content main form button:hover{

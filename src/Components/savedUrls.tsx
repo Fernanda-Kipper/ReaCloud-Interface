@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
+import { useHistory } from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
@@ -8,7 +9,8 @@ import Typography from '@material-ui/core/Typography';
 import { toast } from 'react-toastify';
 
 import '../Styles/components/savedUrls.css'
-import { useExtension } from '../Services/hooks/useExtension';
+import { useExtension, Material } from '../Services/hooks/useExtension';
+import { ExtensionParamContext } from '../Context/ExtensionParamContext';
 
 const useStyles = makeStyles({
     root: {
@@ -44,10 +46,18 @@ const useStyles = makeStyles({
 
 export default function SavedUrls(){
     const { data, error, handleDelete } = useExtension()
+    const { setLink, setTitle } = useContext(ExtensionParamContext)
     const classes = useStyles()
+    const history = useHistory()
 
     function redirectToDownload(){
         window.location.href = "https://chrome.google.com/webstore/category/extensions?hl=pt-BR"
+    }
+
+    function handlePublish(element: Material){
+        setLink(element.link)
+        if(element.title) setTitle(element.title)
+        history.push('/publicar')
     }
 
     useEffect(()=>{
@@ -78,7 +88,7 @@ export default function SavedUrls(){
                 </Typography>
             </CardContent>
             <CardActions className={classes.actions}>
-                <Button size="small" color="default">Publicar</Button>
+                <Button size="small" color="default" onClick={() => {handlePublish(element)}}>Publicar</Button>
                 <Button size="small" color="secondary" onClick={() => {handleDelete(element.link)}}>Excluir</Button>
             </CardActions>
         </Card>

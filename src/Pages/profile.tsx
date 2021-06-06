@@ -32,7 +32,7 @@ function ProfilePage() {
     const [resourcesChanged, setResourcesChanged] = useState(false)
 
     useEffect(()=>{
-        setProgress(previus => previus + 50)
+        setProgress(previous => previous + 50)
         try{
             axios.get('/profile')
               .then(response =>{
@@ -88,11 +88,13 @@ function ProfilePage() {
                         ()=>{
                         setData(true)
                         setResources(false)
+                        setSavedMaterials(false)
                         }}>Meus Dados</nav>
                     <nav onClick={
                         ()=>{
                         setData(false)
                         setResources(true)
+                        setSavedMaterials(false)
                         }}>Meus Recursos</nav>
                     <nav onClick={
                         ()=>{
@@ -103,26 +105,31 @@ function ProfilePage() {
                 </aside>
                 {data ? 
                     <form onSubmit={handleSubmit}>
-                        <img src={picture_url} alt="Sua foto de perfil"/>
-                        <label htmlFor="image">Link para sua foto</label>
-                        <input className="url" type="text" placeholder={picture_url} value={picture_url} onChange={e => setPicture(e.target.value)} required/>
-                        <div className="email" onClick={displayAlertEMail}>{email}</div>
-                        <label htmlFor="name">Seu nome completo</label>
-                        <input type="text" placeholder={nameComplete} value={nameComplete} onChange={e => setUserName(e.target.value)} required/>
-                        <label htmlFor="profile">Perfil acadêmico</label>
-                        <select id="profile" required value={profile} onChange={e => setProfile(e.target.value)}>
-                            <option value="Aluno Ensino médio">Aluno Ensino médio</option>
-                            <option value="Aluno Ensino fundamental">Aluno Ensino fundamental</option>
-                            <option value="Aluno Graduação">Aluno Graduação</option>
-                            <option value="Aluno Pós-graduação">Aluno Pós-graduação</option>
-                            <option value="Professor auxiliar">Professor auxiliar</option>
-                            <option value="Professor assistente">Professor assistente</option>
-                            <option value="Professor adjunto">Professor adjunto</option>
-                            <option value="Professor titular">Professor titular</option>
-                            <option value="Reitor/Gestor">Reitor/Gestor</option>
-                            <option value="Aluno e Professor">Aluno e Professor</option>
-                            <option value="Outro">Outro</option>
-                        </select>
+                        <section>
+                            <img src={picture_url} alt="Sua foto de perfil"/>
+                            <label htmlFor="image">Link para sua foto</label>
+                            <input className="url" type="text" placeholder={picture_url} value={picture_url} onChange={e => setPicture(e.target.value)} required/>
+                        </section>
+                        <section>
+                            <label htmlFor="email">Seu email</label>
+                            <input disabled type="email" value={email} onClick={displayAlertEMail}name="email"/>
+                            <label htmlFor="name">Seu nome completo</label>
+                            <input type="text" placeholder={nameComplete} value={nameComplete} onChange={e => setUserName(e.target.value)} required/>
+                            <label htmlFor="profile">Perfil acadêmico</label>
+                            <select id="profile" required value={profile} onChange={e => setProfile(e.target.value)}>
+                                <option value="Aluno Ensino médio">Aluno Ensino médio</option>
+                                <option value="Aluno Ensino fundamental">Aluno Ensino fundamental</option>
+                                <option value="Aluno Graduação">Aluno Graduação</option>
+                                <option value="Aluno Pós-graduação">Aluno Pós-graduação</option>
+                                <option value="Professor auxiliar">Professor auxiliar</option>
+                                <option value="Professor assistente">Professor assistente</option>
+                                <option value="Professor adjunto">Professor adjunto</option>
+                                <option value="Professor titular">Professor titular</option>
+                                <option value="Reitor/Gestor">Reitor/Gestor</option>
+                                <option value="Aluno e Professor">Aluno e Professor</option>
+                                <option value="Outro">Outro</option>
+                            </select>
+                        </section>
                         <button type="submit">Alterar meus dados</button>
                     </form>
                 : <></>}

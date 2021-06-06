@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-interface Material {
+export interface Material {
   link: string,
   title: string | null | undefined,
 }

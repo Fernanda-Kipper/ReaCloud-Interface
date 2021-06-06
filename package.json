@@ -24,7 +24,6 @@
     "react-query": "^3.16.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
-    "react-simple-file-upload": "^0.2.0",
     "react-toastify": "^7.0.3",
     "react-top-loading-bar": "^2.0.1",
     "styled-components": "^5.2.1",
