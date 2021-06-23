@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { extensionID } from '../../config'
 
 export interface Material {
   link: string,
@@ -8,11 +9,10 @@ export interface Material {
 export function useExtension(){
   const [error, setError] = useState({ message: "", type: "warn", redirectOnClick: false, state: false})
   const [data, setData] = useState<Material[]>([])
-  const editorExtensionId = 'jccpgambbiaibbfncpkgfhoofmogncjp'
 
   function handleDelete(link: string){
     try{
-      chrome.runtime.sendMessage(editorExtensionId, {delete: link}, function(response){
+      chrome.runtime.sendMessage(extensionID, {delete: link}, function(response){
         if(response.deleted){
             setData(response.setTargetData)
         }else{
@@ -26,8 +26,7 @@ export function useExtension(){
 
   useEffect(()=>{
     try{
-      chrome.runtime.sendMessage(editorExtensionId, {getTargetData: true}, function(response){
-        console.log(response)
+      chrome.runtime.sendMessage(extensionID, {getTargetData: true}, function(response){
         if(response.setTargetData){
             setData(response.setTargetData)
         }

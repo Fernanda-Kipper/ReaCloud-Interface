@@ -11,6 +11,7 @@ import { toast } from 'react-toastify';
 import '../Styles/components/savedUrls.css'
 import { useExtension, Material } from '../Services/hooks/useExtension';
 import { ExtensionParamContext } from '../Context/ExtensionParamContext';
+import { extensionURL } from '../config';
 
 const useStyles = makeStyles({
     root: {
@@ -51,7 +52,7 @@ export default function SavedUrls(){
     const history = useHistory()
 
     function redirectToDownload(){
-        window.location.href = "https://chrome.google.com/webstore/category/extensions?hl=pt-BR"
+        window.location.href = extensionURL
     }
 
     function handlePublish(element: Material){
