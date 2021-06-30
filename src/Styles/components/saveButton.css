@@ -1,0 +1,28 @@
+.save-button{
+  margin: 24px auto auto auto;
+  padding: 16px;
+  border: 0;
+  border-radius: 2px;
+  width: 100%;
+
+  color: white;
+  background: var(--purple-light);
+
+  transition: 200ms;
+  cursor: pointer;
+
+  text-decoration: none;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 500;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.save-button:hover{
+  color: var(--purple-primary);;
+  border-color: var(--purple-primary);
+  box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.1);
+}

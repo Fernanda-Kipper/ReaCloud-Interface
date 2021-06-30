@@ -1,6 +1,5 @@
 import React from 'react';
-import { isIdentifier } from 'typescript';
-import '../Styles/components/input.css';
+import '../Styles/components/defaultInput.css';
 
 interface DefaultInputProps {
   name: string,

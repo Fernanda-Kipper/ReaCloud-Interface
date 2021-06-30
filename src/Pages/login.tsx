@@ -7,8 +7,10 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import LoadingBar from 'react-top-loading-bar'
 
-import {UserContext} from '../Context/UserContext';
+import { UserContext } from '../Context/UserContext';
 import { toast } from 'react-toastify';
+import { DefaultInput } from '../Components/defaultInput';
+import { DefaultButton } from '../Components/defaultButton';
 
 
 function LoginPage() {
@@ -58,11 +60,9 @@ function LoginPage() {
       <main className="login-field">
             <h1>Realize o Login</h1>
             <form onSubmit={handleLogin} className="login-form">
-                <label htmlFor="email">Email</label>
-                <input type="text" id="email" required value={email} onChange={e => setEmail(e.target.value)}/>
-                <label htmlFor="password">Senha</label>
-                <input type="password" id="password" required value={password} onChange={e => setPassword(e.target.value)}/>
-                <button type="submit">Entrar</button>
+                <DefaultInput value={email} handleChange={setEmail} name="email" label="E-mail"/>
+                <DefaultInput value={password} handleChange={setPassword} name="password" label="Senha" type="password"/>
+                <DefaultButton label="Entrar"/>
             </form>
             <div className="signin">
                   <h5>Ou cadastre-se clicando <Link to="/cadastrar">aqui</Link></h5>

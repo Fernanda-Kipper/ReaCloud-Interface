@@ -1,0 +1,24 @@
+.default-button{
+  text-decoration: none;
+  text-transform: capitalize;
+  font-weight: 500;
+  font-size: 1.2rem;
+
+  margin: 16px;
+  padding: 16px;
+  border-radius: 2px;
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+
+  transition: 200ms;
+  cursor: pointer;
+  position: relative;
+
+  background-color: var(--purple-primary);
+  color: white;
+  border: 1px solid var(--purple-primary);
+
+  justify-content: center;
+}

@@ -8,6 +8,7 @@
 
 .login-field{
     align-self: center;
+    background-color: white;
 }
 
 .login-field h1{
@@ -20,37 +21,8 @@
 .login-field form{
     display: flex;
     flex-direction: column;
+    align-items: center;
     margin: 20px;
-}
-
-.login-field form label{
-    color: var(--gray-strong);
-}
-
-.login-field form input{
-    width: 300px;
-    border-radius: 8px;
-    margin: 10px 0;
-    border-style: ridge;
-    border-width: 1px;
-    height: 40px;
-    outline: none;
-}
-
-.login-field form button{
-    border-radius: 20px;
-    border: 0;
-    width: 200px;
-    align-self: center;
-    color:#1976d2;
-    border: 1px solid #1976d2;
-    background-color: #fff;
-    height: 40px;
-    margin-top: 20px;
-    transition: 200ms;
-    cursor: pointer;
-    outline: none;
-    opacity: 0.7;
 }
 
 .login-content .signin{
@@ -62,23 +34,15 @@
 @media(min-width: 1000px){
 
     .login-field{
-        background: #fff;
-        height: 450px;
         border-radius: 20px;
         display: flex;
         flex-direction: column;
-        padding: 20px;
+        padding: 50px 100px;
         box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.1);
-        height: 500px;
-        padding: 100px;
     }
     
     .login-field h1{
         font-size: 2em;
         margin: 0;
-    }
-    
-    .login-field form button:hover{
-        opacity: 1;
     }
 }

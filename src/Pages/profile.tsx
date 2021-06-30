@@ -2,35 +2,22 @@ import React, { FormEvent, useState, useEffect, useContext } from 'react';
 import { toast } from 'react-toastify';
 import axios from '../Services/axiosConfig';
 import { CgProfile } from "react-icons/cg";
-import { BiExtension, BiArchive, BiSave } from "react-icons/bi";
+import { BiExtension, BiArchive } from "react-icons/bi";
+import LoadingBar from 'react-top-loading-bar';
 
-import '../Styles/pages/profile.css'
+import '../Styles/pages/profile.css';
 import 'react-toastify/dist/ReactToastify.css';
 
-import ResourceItem from '../Components/resourceItem'
-import LoadingBar from 'react-top-loading-bar'
-import Header from '../Components/header'
-import SavedUrls from '../Components/savedUrls'
-
-import { UserContext } from '../Context/UserContext'
-import Resource from '../Interfaces/resource'
-import { defaultMaxListeners } from 'events';
+import ResourceItem from '../Components/resourceItem';
+import Header from '../Components/header';
+import SavedUrls from '../Components/savedUrls';
 import { DefaultInput } from '../Components/defaultInput';
 import { Select } from '../Components/select';
+import { SaveButton } from '../Components/saveButton';
 
-const profileOptions = [
-    {value:"Aluno Ensino médio", label: "Aluno Ensino médio"},
-    {value:"Aluno Ensino fundamental", label: "Aluno Ensino fundamental"},
-    {value:"Aluno Graduação", label: "Aluno Graduação"},
-    {value:"Aluno Pós-graduação", label: "Aluno Pós-graduação"},
-    {value:"Professor auxiliar", label: "Professor auxiliar"},
-    {value:"Professor assistente", label: "Professor assistente"},
-    {value:"Professor adjunto", label: "Professor adjunto"},
-    {value:"Professor titular", label: "Professor titular"},
-    {value:"Reitor/Gestor", label: "Reitor/Gestor"},
-    {value:"Aluno e Professor", label: "Aluno e Professor"},
-    {value:"Outro", label: "Outro"},
-]
+import { UserContext } from '../Context/UserContext'
+import Resource from '../Interfaces/resource';
+import profileOptions from '../Interfaces/profileOptions';
 
 const dashboardOptions = {
     userData : "userData",
@@ -124,10 +111,7 @@ function ProfilePage() {
                         <DefaultInput value={email} isRequired label="Seu e-mail" name="email" isDisabled/>
                         <DefaultInput value={nameComplete} isRequired label="Nome completo" name="name" handleChange={setName}/>
                         <Select value={profile} handleChange={setProfile} isRequired label="Perfil acadêmico" name="academic-profile" options={profileOptions}/>
-                        <button type="submit">
-                            Salvar dados
-                            <BiSave/>
-                        </button>
+                        <SaveButton label="Salvar"/>
                     </form>
                 }
                 { dashboardView === dashboardOptions.publishedResources &&

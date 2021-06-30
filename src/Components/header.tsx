@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { BsBoxArrowInRight } from 'react-icons/bs';
 import { FaGraduationCap } from 'react-icons/fa';
+import 'react-toastify/dist/ReactToastify.css';
 
 import '../Styles/components/header.css';
 

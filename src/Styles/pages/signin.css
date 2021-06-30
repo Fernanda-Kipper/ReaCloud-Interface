@@ -1,9 +1,14 @@
 .signin-content{
     display: flex;
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
     align-items: center;
     justify-content: center;
+}
+
+.signin-field {
+    background-color: white;
+    align-self: center;
 }
 
 .signin-field h1{
@@ -15,54 +20,8 @@
 .signin-field form{
     display: flex;
     flex-direction: column;
+    align-items: center;
     margin: 20px;
-}
-
-.signin-field form label{
-    color: var(--gray-strong);
-}
-
-.signin-field form input{
-    width: 300px;
-    border-radius: 8px;
-    margin: 10px 0;
-    border-style: ridge;
-    border-width: 1px;
-    height: 40px;
-    outline: none;
-}
-
-.signin-field form select{
-    width: 300px;
-    border-radius: 8px;
-    margin: 10px 0;
-    border-style: ridge;
-    border-width: 1px;
-    height: 40px;
-
-    font-family: 'Raleway', sans-serif;
-    font-size: 16px;
-
-    outline: none;
-}
-
-.signin-field form button{
-    border-radius: 20px;
-    border: 0;
-    width: 200px;
-    align-self: center;
-    height: 40px;
-    color:#1976d2;
-    border: 1px solid #1976d2;
-    background-color: #fff;
-    margin-top: 20px;
-    transition: 200ms;
-    cursor: pointer;
-    outline: none;
-    opacity: 1;
-}
-.signin-field form button:hover{
-    opacity: 1;
 }
 
 .signin-content .login{
@@ -72,18 +31,12 @@
 }
 
 @media(min-width: 1000px){
-    .signin-content{
-        height: 100%;
-    }
 
     .signin-field{
-        padding: 35px 100px;
-        margin-top: 50px;
-        margin-bottom: 20px;
-        background-color: #FBF9FF;
         border-radius: 20px;
         display: flex;
         flex-direction: column;
+        padding: 50px 100px;
         box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.1);
     }
     .signin-field h1{
