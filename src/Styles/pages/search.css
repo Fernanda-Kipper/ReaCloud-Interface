@@ -33,7 +33,7 @@
     top: 20px;
     left: 10px;
     display: none;
-    color: #277496;
+    color: var(--purple-primary);
     font-size: 30px;
 }
 
@@ -42,7 +42,7 @@
     font-size: 25px;
     line-height: 25px;
     text-align: center;
-    color: #277496;
+    color: var(--purple-primary);
 }
 
 .search-header form{
@@ -76,7 +76,7 @@
     height: 40px;
     width: 100%;
     margin-top: 5px;
-    background-color: #277496;
+    background-color: var(--purple-primary);
     cursor: pointer;
     color: #FFF;
     opacity: 0.7;
@@ -115,7 +115,7 @@
     cursor: pointer;
     background: transparent;
     border: 0;
-    color: #277496;
+    color: var(--purple-primary);
 }
 
 .search-content main .filter .filteringForm{
@@ -147,7 +147,7 @@
 
 .search-content main .results h2{
     font-weight: 300;
-    color: #7d7d7d;
+    color: var(--gray-strong);
     margin: 20px;
     text-align: center;
 }

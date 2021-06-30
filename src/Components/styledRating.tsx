@@ -6,7 +6,7 @@ import { withStyles } from '@material-ui/core';
 
 const StyledRating = withStyles({
     iconFilled: {
-      color: '#277496',
+      color: 'var(--purple-primary)',
     }
 })(Rating);
 

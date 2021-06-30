@@ -22,7 +22,7 @@
 }
 
 .overlay .container h1{
-    color: #7d7d7d;
+    color: var(--gray-strong);
 
     font-weight: 500;
     font-size: 1.3em;
@@ -38,7 +38,7 @@
     cursor: pointer;
     font-size: 1em;
     font-weight: 600;
-    color: #7d7d7d;
+    color: var(--gray-strong);
     background: none;
 
     border: none;

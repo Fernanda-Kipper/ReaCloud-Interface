@@ -2,6 +2,15 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+
+    --purple-light: #ACBFFA;
+    --purple-primary: #41539F;
+
+    --gray-strong: #7d7d7d;
+    --gray-medium: #afafaf;
+    --gray-light: #e6e6e6;
+
+    --orange-primary: #F59252;
 }
 
 body{

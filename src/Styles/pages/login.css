@@ -11,7 +11,7 @@
 }
 
 .login-field h1{
-    color: #7d7d7d;
+    color: var(--gray-strong);
     text-align: center;
     font-size: 32px;
     margin: 20px;
@@ -24,7 +24,7 @@
 }
 
 .login-field form label{
-    color: #7d7d7d;
+    color: var(--gray-strong);
 }
 
 .login-field form input{
@@ -55,7 +55,7 @@
 
 .login-content .signin{
     text-align: center;
-    color: #7d7d7d;
+    color: var(--gray-strong);
     margin: 20px;
 }
 

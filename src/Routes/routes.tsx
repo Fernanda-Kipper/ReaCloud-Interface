@@ -8,7 +8,7 @@ import SignInPage from '../Pages/signIn'
 import ProfilePage from '../Pages/profile'
 import ResourcePage from '../Pages/resource'
 import ModifyResource from '../Pages/modifyResource'
-import HelpPage from '../Pages/helpHostYourRea'
+import HelpPage from '../Pages/help'
 import SearchPage from '../Pages/search'
 
 import { PrivateRoute } from './privateRoutes'

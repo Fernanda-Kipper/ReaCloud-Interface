@@ -17,7 +17,7 @@
 
 .help-content main h3{
     align-self: center;
-    color: #277496;
+    color: var(--purple-primary);
     font-size: 25px;
     text-align: center;
 }

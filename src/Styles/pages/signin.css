@@ -7,7 +7,7 @@
 }
 
 .signin-field h1{
-    color: #7d7d7d;
+    color: var(--gray-strong);
     text-align: center;
     font-size: 32px;
 }
@@ -19,7 +19,7 @@
 }
 
 .signin-field form label{
-    color: #7d7d7d;
+    color: var(--gray-strong);
 }
 
 .signin-field form input{
@@ -67,7 +67,7 @@
 
 .signin-content .login{
     text-align: center;
-    color: #7d7d7d;
+    color: var(--gray-strong);
     margin: 20px;
 }
 

@@ -350,7 +350,7 @@ function ModifyResource() {
           </>
         ): (
           <ContentLoader isLoading={isLoading}>
-            <h2 style={{color: "#7d7d7d", fontSize: 18, fontWeight: 'normal'}}>Alterado com sucesso</h2>
+            <h2 style={{color: "var(--gray-strong)", fontSize: 18, fontWeight: 'normal'}}>Alterado com sucesso</h2>
           </ContentLoader>
         )
         }

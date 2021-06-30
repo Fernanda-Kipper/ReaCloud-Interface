@@ -43,14 +43,14 @@ function CommentForm({ setShouldUpdate }: Props){
 
     const RateStyled = withStyles({
         iconFilled: {
-          color: '#277496'
+          color: 'var(--purple-primary)'
         }
     })(Rating);
 
     return(
         <>
         <LoadingBar
-            color='#277496'
+            color='var(--purple-primary)'
             progress={progress}
             onLoaderFinished={() => setProgress(0)}></LoadingBar>
         <form id="rating-form" onSubmit={handleSubmit}>

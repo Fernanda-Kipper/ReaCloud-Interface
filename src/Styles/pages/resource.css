@@ -41,7 +41,7 @@
 .resource-content main .resource-header{
     display: flex;
     flex-direction: column;
-    border-bottom: 1.3px solid #7d7d7d;
+    border-bottom: 1.3px solid var(--gray-strong);
 }
 
 .resource-content main .resource-header .identity{
@@ -56,7 +56,7 @@
     line-height: 39px;
     text-align: center;
 
-    color:#277496;
+    color:var(--purple-primary);
 
     margin-bottom: 5px;
 }
@@ -67,7 +67,7 @@
     line-height: 29px;
     text-align: center;
 
-    color: #7d7d7d;
+    color: var(--gray-strong);
 }
 
 .resource-content main .resource-header .interaction{
@@ -92,12 +92,12 @@
     line-height: 29px;
     text-align: center;
 
-    color: #7d7d7d;
+    color: var(--gray-strong);
 }
 
 .resource-content main h6{
     text-align: center;
-    color: #7d7d7d;
+    color: var(--gray-strong);
 }
 
 .resource-content main .data{
@@ -114,11 +114,11 @@
 
 .resource-content main .data h3{
     font-size: 22px;
-    color: #277496;
+    color: var(--purple-primary);
     align-self: center;
     text-align: center;
     margin-bottom: 20px;
-    border-bottom: 3px solid #277496;
+    border-bottom: 3px solid var(--purple-primary);
     width: 300px;
 }
 
@@ -135,13 +135,13 @@
 }
 
 .resource-content main .data .data-content .youCan h6{
-    color: #277496;
+    color: var(--purple-primary);
     font-size: 15px;
     text-align: start;
 }
 
 .resource-content main .data .data-content .subtitle{
-    color: #7d7d7d;
+    color: var(--gray-strong);
     font-size: 19px;
 }
 
@@ -170,7 +170,7 @@
 }
 
 table th{
-    color: #7d7d7d;
+    color: var(--gray-strong);
 }
 
 table tr:last-child td {
@@ -196,11 +196,11 @@ table td:last-child{
 
 .resource-content main .rating-section h3{
     font-size: 22px;
-    color: #277496;
+    color: var(--purple-primary);
     align-self: center;
     text-align: center;
     margin-bottom: 20px;
-    border-bottom: 3px solid #277496;
+    border-bottom: 3px solid var(--purple-primary);
     width: 300px;
 }
 
@@ -214,11 +214,11 @@ table td:last-child{
 
 .resource-content main .rate-form h3{
     font-size: 22px;
-    color: #277496;
+    color: var(--purple-primary);
     align-self: center;
     text-align: center;
     margin-bottom: 20px;
-    border-bottom: 3px solid #277496;
+    border-bottom: 3px solid var(--purple-primary);
     width: 300px;
 }
 

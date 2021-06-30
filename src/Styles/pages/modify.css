@@ -52,11 +52,11 @@
     font-size: 20px;
     max-width: 250px;
     text-align: center;
-    color: #277496;
+    color: var(--purple-primary);
 }
 
 .modify-content main form label{
-    color: #7d7d7d;
+    color: var(--gray-strong);
     font-weight: 500;
     margin: 5px;
     background-color: #ffffff;
@@ -73,9 +73,9 @@
 .modify-content main form input,textarea,select{
     width: 300px;
     border-radius: 20px;
-    border: 0.5px solid #7d7d7d;
+    border: 0.5px solid var(--gray-strong);
     margin: 10px 0;
-    color: #7d7d7d;
+    color: var(--gray-strong);
     font-size: 13px;
     font-weight: 500;
     letter-spacing: 0.5px;
@@ -108,7 +108,7 @@
 
 .modify-content main form span{
     font-size: 13px;
-    color:#277496;
+    color:var(--purple-primary);
 }
 
 .modify-content main form button{
@@ -197,7 +197,7 @@
     
     .modify-content main .informationSource:hover h3 a{
         text-decoration: none;
-        color: #277496;
+        color: var(--purple-primary);
     
     }
 

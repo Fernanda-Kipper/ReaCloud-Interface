@@ -33,12 +33,12 @@ const useStyles = makeStyles({
         textAlign: 'center',
         fontFamily: 'sans-serif',
         marginBottom: 10,
-        color: "#7d7d7d"
+        color: "var(--gray-strong)"
     },
     subtitle: {
       fontSize: 14,
       fontFamily: 'Roboto, sans-serif',
-      color: "#7d7d7d",
+      color: "var(--gray-strong)",
       opacity: 0.8
     }
   });   

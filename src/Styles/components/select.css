@@ -1,0 +1,41 @@
+.select-wrapper{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  width: 340px;
+}
+
+.select-wrapper select{
+  width: 100%;
+  border: 0;
+  height: 40px;
+  padding: 16px;
+  border-bottom: 0.5px solid var(--gray-strong);
+  margin: 10px 0;
+  color: var(--gray-strong);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  outline: none;
+  padding: 12px;
+  align-self: center;
+  background-color: transparent;
+}
+
+.select-wrapper label{
+  color: var(--gray-medium);
+  font-weight: 600;
+  font-size: 0.8rem;
+
+  margin: 4px;
+  height: 24px;
+
+  transform: translateY(50%);
+}
+
+@media(min-width: 900px){
+  .select-wrapper{
+    width: 300px;
+  }
+}

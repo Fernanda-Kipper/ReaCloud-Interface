@@ -1,49 +1,46 @@
-import React, {useContext} from 'react';
-import {Link} from 'react-router-dom';
-import axios from '../Services/axiosConfig'
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { BsBoxArrowInRight } from 'react-icons/bs'
+import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
+import { BsBoxArrowInRight } from 'react-icons/bs';
+import { FaGraduationCap } from 'react-icons/fa';
 
-import '../Styles/components/header.css'
+import '../Styles/components/header.css';
 
-import {UserContext} from '../Context/UserContext'
+import { UserContext } from '../Context/UserContext';
+import { useLogout } from '../Services/hooks/useLogout';
 
 function Header() {
-    const {value, setValue, name, setName} = useContext(UserContext)
+    const {value, name } = useContext(UserContext);
+    const { handleLogout } = useLogout();
 
-    async function handleLogout(){
-        await axios.get('/logout').then(res=>{
-            console.log(res)
-            setValue(false)
-            setName("")
-            toast.success('Logout realizado com sucesso!')
-        }).catch(err => {
-            toast.error('Erro ao realizar Logout, atualize a página')
-        })
-    }
 
-    if(value === false){return(
+    if(!value){
+    return(
         <header>
-        <Link to="" className="logo"></Link>
-        <Link to="/entrar"className="login">Entrar/Cadastrar</Link>
+            <Link to="">
+                <p className="logo">
+                    <FaGraduationCap/>
+                </p>
+            </Link>
+            <Link to="/entrar"className="login">Entrar/Cadastrar</Link>
       </header>
     )}
-    else{
-        return(
-            <>
-                <header>
-                    <Link to="" className="logo"></Link>
-                    <div>
-                        <Link to="/perfil" className="login">Olá {name}</Link>
-                        <p className="logout" onClick={handleLogout}>
-                            <BsBoxArrowInRight/>
-                        </p>
-                    </div>
-                </header>
-          </>
-        )
-    }
+    return(
+        <>
+            <header>
+                <Link to="">
+                    <p className="logo">
+                        <FaGraduationCap/>
+                    </p>
+                </Link>
+                <div className="profile-wrap">
+                    <Link to="/perfil" className="profile">Olá {name}</Link>
+                    <p className="logout" onClick={handleLogout}>
+                        <BsBoxArrowInRight/>
+                    </p>
+                </div>
+            </header>
+        </>
+    )
 };
 
 export default Header;

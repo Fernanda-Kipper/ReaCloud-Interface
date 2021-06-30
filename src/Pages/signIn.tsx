@@ -49,7 +49,7 @@ function SignInPage() {
   return (
     <div className="signin-content">
       <LoadingBar 
-        color='#277496'
+        color='var(--purple-primary)'
         progress={progress}
         onLoaderFinished={() => setProgress(0)}></LoadingBar>
       <main className="signin-field">

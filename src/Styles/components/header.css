@@ -8,40 +8,52 @@ header{
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-
-    box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.1);
 }
 
+header .profile-wrap{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
 header .login{
-    margin: 10px;
-    font-weight: 400;
-    color:#277496;
+    margin: 8px;
+    font-weight: 600;
+    color:var(--purple-light);
     text-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.1);
     text-decoration: none;
     transition: 200ms;
-    font-size: 15px;
+    font-size: 1rem;
+    padding: 16px;
+}
+
+header .profile-wrap .profile{
+    font-weight: 600;
+    color:var(--purple-light);
+    text-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+    transition: 200ms;
+    font-size: 1rem;
+    text-align: end;
+    margin: 0 8px 8px 0;
 }
 
 header .logo{
-    margin: 0;
-    background: url('../../Images/logo_blue.png');
-    background-size: 100%;
-    width: 100px;
-    height: 60px;
+    font-size: 3rem;
+    margin: 8px;
+    color: var(--purple-light);
 }
 
 header > div{
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 5px;
+    padding: 4px;
 }
 
-
-header .logout{
-    font-size: 20px;
-    color: #7d7d7d;
+header .profile-wrap .logout{
+    font-size: 24px;
+    color: var(--purple-light);
     align-self: center;
 
     display: inline;
@@ -49,12 +61,16 @@ header .logout{
     cursor: pointer;
 }
 
-@media(min-width: 800px){
+@media(min-width: 900px){
     header .login{
-        font-size: 20px;
+        font-size: 1.3rem;
     }
 
-    header .login:hover{
-        color: #4497bb;
+    header .logo{
+        margin: 16px;
+    }
+
+    header .profile-wrap .profile{
+        font-size: 1.3rem;
     }
 }

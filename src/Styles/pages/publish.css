@@ -30,7 +30,7 @@
 
 .publish-content main .title{
     margin-bottom: 20px;
-    color:#277496;
+    color:var(--purple-primary);
     text-align: center;
     font-size: 18px;
     max-width: 400px;
@@ -84,7 +84,7 @@
 }
 
 .publish-content main .section label{
-    color: #7d7d7d;
+    color: var(--gray-strong);
     font-weight: 500;
     margin: 5px;
     background-color: #ffffff;
@@ -101,9 +101,9 @@
 .publish-content main .section input,textarea,select{
     width: 300px;
     border-radius: 20px;
-    border: 0.5px solid #7d7d7d;
+    border: 0.5px solid var(--gray-strong);
     margin: 10px 0;
-    color: #7d7d7d;
+    color: var(--gray-strong);
     font-size: 13px;
     font-weight: 500;
     letter-spacing: 0.5px;
@@ -141,7 +141,7 @@
 
 .publish-content main .section span{
     font-size: 13px;
-    color:#277496;
+    color:var(--purple-primary);
 }
 
 .publish-content main .section form{
@@ -251,7 +251,7 @@
     
     .publish-content main .section .informationSource:hover h3 a{
         text-decoration: none;
-        color: #277496;
+        color: var(--purple-primary);
     
     }
 

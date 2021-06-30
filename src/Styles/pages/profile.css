@@ -22,18 +22,23 @@
 }
 
 .profile-content main aside{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+
     width: 100%;
+    margin-bottom: 20px;
 }
 
 .profile-content main aside nav{
-    color: #7d7d7d;
-    border-bottom: 1.5px solid #c4c4c4;
-
-    display: inline-block;
+    color: var(--gray-strong);
     margin: 5px;
-    box-sizing: border-box;
-
     cursor: pointer;
+}
+
+.profile-content main aside nav svg{
+    font-size: 2rem;
 }
 
 .profile-content main aside nav:first-of-type{
@@ -47,7 +52,7 @@
 }
 
 .profile-content main .description{
-    color: #7d7d7d;
+    color: var(--gray-strong);
     font-size: 1rem;
     align-self: center;
     margin: 10px;
@@ -58,102 +63,60 @@
     display: flex;
     flex-direction: column;
     justify-items: center;
-}
-
-
-.profile-content main form section{
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-}
-
-.profile-content main form h6{
-    color: #3D0991;
-    font-size: 18px;
-}
-
-.profile-content main form input,select{
-    width: 300px;
-    border-radius: 20px;
-    border: 0.5px solid #7d7d7d;
-    margin: 10px 0;
-    color: #7d7d7d;
-    font-size: 13px;
-    font-weight: 500;
-    letter-spacing: 0.5px;
-    outline: none;
-    padding: 12px;
-    align-self: center;
-    background: #fff;
-}
-
-.profile-content main form input,select{
-    height: 40px;
-    padding: 15px;
-    width: 300px;
-}
-
-.profile-content main form label{
-    color: #7d7d7d;
-    font-weight: 500;
-    margin: 5px;
-    height: 30px;
-    display: flex;
-    flex-direction: row;
-    align-self: center;
-
-    transform: translateY(50%);
-}
-
-.profile-content main form .email{
-    width: 300px;
-    border-radius: 20px;
-    border: 0.5px solid #7d7d7d;
-    background: #fff;
-    margin: 10px 0;
-    color: #7d7d7d;
-    font-size: 13px;
-    font-weight: 500;
-    letter-spacing: 0.5px;
-    outline: none;
-    padding: 10px;
+    align-items: center;
+    
+    width: 100%;
 }
 
 .profile-content main form img{
-    grid-area: image;
     border-radius: 20px;
     width: 200px;
     height: 200px;
     align-self: center;
-    background-color: #e6e6e6;
+    background-color: var(--gray-light);
 }
 
 .profile-content main form button{
-    margin: 20px auto auto auto;
-    padding: 13px;
-    border-radius: 15px;
-    border: 1px solid #7d7d7d;
+    margin: 24px auto auto auto;
+    padding: 16px;
+    border: 0;
+    border-radius: 2px;
+    width: 240px;
+
+    color: white;
+    background: var(--purple-light);
 
     transition: 200ms;
     cursor: pointer;
 
     text-decoration: none;
     text-align: center;
+    text-transform: uppercase;
+    font-weight: 500;
 
-    color: #7d7d7d;
-    background: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
 }
 
 @media(min-width: 900px){
     
+    
+    .profile-content main aside{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        
+        position: absolute;
+        left: 8px;
+        top: 64px;
+    }
+    
     .profile-content main aside nav{
-        color: #7d7d7d;
+        color: var(--gray-strong);
         margin-bottom: 20px;
         font-size: 1.5rem;
-    }
-
-    .profile-content main aside nav:first-of-type{
-        margin-right: 1.5rem;
     }
 
     .profile-content main .Recursos {
@@ -161,12 +124,6 @@
         justify-content: center;
         align-items: flex-start;
         width: 80%;
-    }
-
-    .profile-content main form{
-        width: 60%;
-        flex-direction: row;
-        justify-content: space-between;
     }
 
     .profile-content main form section img{
@@ -179,31 +136,13 @@
     }
 
     .profile-content main form button:hover{
-        color: #277496;;
-        border-color: #277496;
+        color: var(--purple-primary);;
+        border-color: var(--purple-primary);
         box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.1);
     }
-    
-}
 
-@media(min-width: 1600px){
-    
-    .profile-content main aside nav{
-        color: #7d7d7d;
-        margin: 10px;
-    }
-
-    .profile-content main aside nav:first-of-type{
-        margin-right: 2rem;
-    }
-
-    .profile-content main form img{
+    .profile-content main form button, .profile-content main form input, .profile-content main form select{
         width: 300px;
-        height: 300px;
     }
-
-    .profile-content main form input,select{
-        padding: 15px;
-        width: 320px;
-    }
+    
 }

@@ -17,7 +17,7 @@
     }
 }
 
-.homeContent{
+.home-content{
     transform: rotate(0.03deg);
     width: 100%;
     height: 100vh;
@@ -27,7 +27,7 @@
     justify-content: center;
 }
 
-.homeContent main{
+.home-content main{
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -36,74 +36,96 @@
     text-align: center;
 }
 
-.homeContent #mainContent{
+.home-content #mainContent{
     animation-name: mainFadeIn;
     animation-duration: 2s;
 }
 
-.homeContent main article #title{
-    margin-bottom: 30px;
+.home-content main article .title{
+    margin-bottom: 32px;
     font-size: 2rem;
     font-weight: 600;
-    color: #7d7d7d;
+    color: var(--gray-strong);
 
     animation-name: titleSlideIn;
     animation-duration: 2s;
 }
 
-.homeContent main p{
+.home-content main p{
     max-width: 500px;
     text-align: center;
-    color: #7d7d7d;
+    color: var(--gray-strong);
+    font-size: 1.3rem;
 }
 
-.homeContent main img{
+.home-content main img{
     height: 220px;
     z-index: -1;
     opacity: 0.8;
 }
 
-.homeContent main .buttons{
+.home-content main .buttons{
     display: flex;
     flex-direction: row;
     justify-content: space-around;
 
-    margin-top: 50px;
+    margin-top: 32px;
 }
 
-.homeContent main .buttons .button{
+.home-content main .buttons .button{
     text-decoration: none;
-    color: #7d7d7d;
+    text-transform: capitalize;
+    font-weight: 500;
+    color: white;
+    font-size: 1.2rem;
 
-    margin: 10px;
-    padding: 15px;
-    border-radius: 15px;
+    margin: 8px;
+    padding: 16px;
+    border-radius: 2px;
+    width: 100%;
 
-    border: 1px solid #7d7d7d;
+    display: flex;
+    align-items: center;
 
     transition: 200ms;
+
+    position: relative;
+}
+
+.home-content main .buttons .button.save{
+    color: var(--purple-primary);
+    border: 1px solid var(--purple-primary);
+
+    justify-content: center;
+}
+
+.home-content main .buttons .button.search{
+    background-color: var(--purple-light);
+    justify-content: space-between;
+}
+
+.home-content main .buttons .button.search p{
+    color:white;
 }
 
 @media(min-width: 1000px){
-    .homeContent main article #title{
+    .home-content main article .title{
         font-size: 3rem;
     }
 
-    .homeContent main{
+    .home-content main{
         flex-direction: row;
     }
 
-    .homeContent main img{
+    .home-content main img{
         height: 350px;
     }
 
-    .homeContent main .buttons .button{
-        padding: 20px;
+    .home-content main .buttons .button{
+        padding: 24px;
     }
 
-    .homeContent main .buttons .button:hover{
-        color: #277496;
-        border-color: #277496;
-        box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.1);
+    .home-content main .buttons .button:hover{
+        box-shadow: 5px 5px 5px rgba(0,0,0,0.2);
     }
 }

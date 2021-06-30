@@ -52,7 +52,7 @@ function LoginPage() {
   return (
     <div className="login-content">
       <LoadingBar
-        color='#277496'
+        color='var(--purple-primary)'
         progress={progress}
         onLoaderFinished={() => setProgress(0)}></LoadingBar>
       <main className="login-field">
