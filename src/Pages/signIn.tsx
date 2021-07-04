@@ -6,13 +6,13 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import {UserContext} from '../Context/UserContext';
 import axios from '../Services/axiosConfig';
-import profileOptions from '../Interfaces/profileOptions';
+import profileOptions from '../Interfaces/profile-options';
 
 
 import '../Styles/pages/signin.css'
 
-import { DefaultInput } from '../Components/defaultInput';
-import { DefaultButton } from '../Components/defaultButton';
+import { DefaultInput } from '../Components/default-input';
+import { DefaultButton } from '../Components/default-button';
 import { Select } from '../Components/select';
 
 function SignInPage() {

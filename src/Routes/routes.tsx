@@ -3,17 +3,17 @@ import { BrowserRouter,Switch, Route } from 'react-router-dom';
 
 import HomePage from '../Pages/home'
 import LoginPage from '../Pages/login';
-import PublishResource from '../Pages/publishResource'
-import SignInPage from '../Pages/signIn'
-import ProfilePage from '../Pages/profile'
-import ResourcePage from '../Pages/resource'
-import ModifyResource from '../Pages/modifyResource'
-import HelpPage from '../Pages/help'
-import SearchPage from '../Pages/search'
+import PublishResource from '../Pages/publish-resource';
+import SignInPage from '../Pages/signIn';
+import ProfilePage from '../Pages/profile';
+import ResourcePage from '../Pages/resource';
+import ModifyResource from '../Pages/modify-resource';
+import HelpPage from '../Pages/help';
+import SearchPage from '../Pages/search';
 
-import { PrivateRoute } from './privateRoutes'
+import { PrivateRoute } from './privateRoutes';
 
-import { UserContextProvider } from '../Context/UserContext'
+import { UserContextProvider } from '../Context/UserContext';
 import { ExtensionParamProvider } from '../Context/ExtensionParamContext';
 
 function Routes(){

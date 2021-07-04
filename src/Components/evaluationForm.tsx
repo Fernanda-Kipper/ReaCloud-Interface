@@ -8,7 +8,7 @@ import { withStyles } from '@material-ui/core';
 import LoadingBar from 'react-top-loading-bar';
 import { toast } from 'react-toastify';
 
-import ParameterPassedToUrl from '../Interfaces/idParameter'
+import ParameterPassedToUrl from '../Interfaces/parameter-id'
 
 import '../Styles/components/evaluationForm.css'
 import 'react-toastify/dist/ReactToastify.css';

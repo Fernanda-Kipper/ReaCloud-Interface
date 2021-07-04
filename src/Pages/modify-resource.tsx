@@ -11,8 +11,9 @@ import { toast } from 'react-toastify';
 import Header from '../Components/header'
 import UndoButton from '../Components/undoButton';
 
-import ParameterPassedToUrl from '../Interfaces/idParameter'
-import {CCBY, CCBYSA, CCBYNC, CCBYNCND, CCBYNCSA, CCBYND} from '../Interfaces/licences'
+import ParameterPassedToUrl from '../Interfaces/parameter-id'
+import licenceTypes from '../Interfaces/licence-types'
+import { Select } from '../Components/select';
 
 function ModifyResource() {
   const params: ParameterPassedToUrl = useParams();
@@ -222,21 +223,13 @@ function ModifyResource() {
               </label>
               <input type="text" value={contributor} onChange={e => setContributor(e.target.value)}/>
 
-              <label htmlFor="licence">
-                *Licença
-                <div className="informationSource">
-                  <h3>Licença aberta padrão <a href="https://creativecommons.org/share-your-work/">Creative Commons</a></h3>
-                </div>
-              </label>
-              <select value={licence} onChange={e => setLicence(e.target.value)} required>
-                <option value="" disabled hidden>Selecione</option>
-                <option value={CCBY}>CC-BY</option>
-                <option value={CCBYSA}>CC-BY-SA</option>
-                <option value={CCBYNC}>CC-BY-NC</option>
-                <option value={CCBYND}>CC-BY-ND</option>
-                <option value={CCBYNCSA}>CC-BY-NC-SA</option>
-                <option value={CCBYNCND}>CC-BY-NC-ND</option>
-              </select>
+              <Select
+                label="Licença"
+                isRequired
+                value={licence}
+                handleChange={setLicence}
+                options={licenceTypes}
+                name="licence" />
 
               <label htmlFor="publisher">
                 *Publicador

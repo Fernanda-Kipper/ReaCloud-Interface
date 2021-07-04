@@ -11,13 +11,13 @@ import 'react-toastify/dist/ReactToastify.css';
 import ResourceItem from '../Components/resourceItem';
 import Header from '../Components/header';
 import SavedUrls from '../Components/savedUrls';
-import { DefaultInput } from '../Components/defaultInput';
+import { DefaultInput } from '../Components/default-input';
 import { Select } from '../Components/select';
-import { SaveButton } from '../Components/saveButton';
+import { SaveButton } from '../Components/save-button';
 
 import { UserContext } from '../Context/UserContext'
 import Resource from '../Interfaces/resource';
-import profileOptions from '../Interfaces/profileOptions';
+import profileOptions from '../Interfaces/profile-options';
 
 const dashboardOptions = {
     userData : "userData",

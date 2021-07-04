@@ -34,8 +34,13 @@
   transform: translateY(50%);
 }
 
+.input-wrapper label span{
+  color: red;
+  font-size: 1rem;
+}
+
 @media(min-width: 900px){
   .input-wrapper{
-    width: 300px;
+    width: 380px;
   }
 }

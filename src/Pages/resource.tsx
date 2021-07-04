@@ -13,7 +13,7 @@ import warningImg from '../Images/warning.svg'
 import Header from '../Components/header'
 import EvaluationForm from '../Components/evaluationForm'
 import Resource from '../Interfaces/resource'
-import ParameterPassedToUrl from '../Interfaces/idParameter'
+import ParameterPassedToUrl from '../Interfaces/parameter-id'
 import CommentsList from '../Components/comments'
 import StyledRate from '../Components/styledRating';
 

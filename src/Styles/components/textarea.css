@@ -1,4 +1,4 @@
-.select-wrapper{
+.textarea-wrapper{
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -6,12 +6,13 @@
   width: 340px;
 }
 
-.select-wrapper select{
+.textarea-wrapper textarea{
   width: 100%;
   border: 0;
-  height: 40px;
+  height: 45px;
   padding: 16px;
-  border: 0.5px solid var(--gray-strong);
+  border-bottom: 0.5px solid var(--gray-strong);
+  border-radius: 0;
   margin: 10px 0;
   color: var(--gray-strong);
   font-size: 0.8rem;
@@ -23,22 +24,24 @@
   background-color: transparent;
 }
 
-.select-wrapper label{
+.textarea-wrapper label{
   color: var(--gray-medium);
   font-weight: 600;
   font-size: 0.8rem;
 
   margin: 4px;
   height: 24px;
+
+  transform: translateY(50%);
 }
 
-.select-wrapper label span{
+.textarea-wrapper label span{
   color: red;
   font-size: 1rem;
 }
 
 @media(min-width: 900px){
-  .select-wrapper{
+  .textarea-wrapper{
     width: 380px;
   }
 }

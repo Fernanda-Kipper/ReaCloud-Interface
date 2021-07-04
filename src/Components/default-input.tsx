@@ -15,7 +15,10 @@ interface DefaultInputProps {
 export function DefaultInput({ name, placeholder = "", value, handleChange, type = "text", isRequired = true, label, isDisabled } : DefaultInputProps){
    return(
        <div className="input-wrapper">
-        <label htmlFor={name}>{label}</label>
+        <label htmlFor={name}>
+          {isRequired && <span>*</span>}
+          {label}
+        </label>
         <input
             type={type}
             placeholder={placeholder}

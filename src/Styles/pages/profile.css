@@ -109,9 +109,4 @@
         flex-wrap: wrap;
         padding: 40px;
     }
-
-    .profile-content main form button, .profile-content main form input, .profile-content main form select{
-        width: 300px;
-    }
-    
 }

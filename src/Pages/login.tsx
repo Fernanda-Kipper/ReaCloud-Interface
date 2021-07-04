@@ -9,8 +9,8 @@ import LoadingBar from 'react-top-loading-bar'
 
 import { UserContext } from '../Context/UserContext';
 import { toast } from 'react-toastify';
-import { DefaultInput } from '../Components/defaultInput';
-import { DefaultButton } from '../Components/defaultButton';
+import { DefaultInput } from '../Components/default-input';
+import { DefaultButton } from '../Components/default-button';
 
 
 function LoginPage() {
