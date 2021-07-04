@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom';
 
 import { toast } from 'react-toastify'
-import StyledRate from './styledRating';
+import StyledRate from './styled-rating';
 
 import axios from '../Services/axiosConfig'
 

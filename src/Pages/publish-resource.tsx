@@ -149,7 +149,7 @@ function PublishResource() {
 
                 <div className="section" id="content">
 
-                  <div className="section_title">
+                  <div className="section-title">
                     <h3>Contéudo</h3>
                     <span className={form1Done ? "check" : "arrow"} onClick={() => handleOpenForm(formStates.CONTENT)}></span>
                   </div>
@@ -195,13 +195,11 @@ function PublishResource() {
                       options={[]}
                       label="Contexto"
                       name="context"
-                      isRequired
                       value={context}
                       handleChange={setContext} />
 
                     <DefaultInput
                       label="Recurso Relacionado"
-                      isRequired
                       value={relation}
                       handleChange={setRelation}
                       name="relation" />
@@ -221,7 +219,7 @@ function PublishResource() {
 
                 <div className="section">
 
-                <div className="section_title">
+                <div className="section-title">
                   <h3>Propriedade Intelectual</h3>
                   <span className={form2Done ? "check" : "arrow"} onClick={() => handleOpenForm(formStates.INTELLECTUAL)}></span>
                 </div>
@@ -265,7 +263,7 @@ function PublishResource() {
 
                 <div className="section">
 
-                  <div className="section_title">
+                  <div className="section-title">
                     <h3>Especificações</h3>
                     <span className={form3Done ? "check" : "arrow"} onClick={() => handleOpenForm(formStates.INSTANTIATIONS)}></span>
                   </div>
@@ -342,7 +340,7 @@ function PublishResource() {
 
                 <div className="section" id="images">
 
-                  <div className="section_title">
+                  <div className="section-title">
                       <h3>Mídias</h3>
                       <span className={form4Done ? "check" : "arrow"} onClick={() => handleOpenForm(formStates.MEDIA)}></span>
                     </div>
@@ -351,9 +349,11 @@ function PublishResource() {
                   <form onSubmit={()=>{
                     setFormState('')
                     setForm4Done(true)}}>
-                      <label htmlFor="images">Escolha a imagem para a representação visual do REA</label>
-                      <input  accept="image/*" type="file" onChange={handleSelectedImages}/>
-
+                      <label htmlFor="file-upload" className="upload-label">
+                        * Escolha a imagem para ser a capa do Recurso
+                        <input  accept="image/*" type="file" onChange={handleSelectedImages}/>
+                      </label>
+                      
                       <DefaultInput
                         label="Caso o recurso possua um vídeo, informe o link seu Youtube"
                         value={video_link}

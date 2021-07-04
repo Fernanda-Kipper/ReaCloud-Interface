@@ -60,8 +60,20 @@ function LoginPage() {
       <main className="login-field">
             <h1>Realize o Login</h1>
             <form onSubmit={handleLogin} className="login-form">
-                <DefaultInput value={email} handleChange={setEmail} name="email" label="E-mail"/>
-                <DefaultInput value={password} handleChange={setPassword} name="password" label="Senha" type="password"/>
+                <DefaultInput
+                  value={email}
+                  handleChange={setEmail}
+                  name="email"
+                  label="E-mail"
+                  isRequired />
+
+                <DefaultInput
+                  value={password}
+                  handleChange={setPassword}
+                  name="password"
+                  label="Senha"
+                  type="password"
+                  isRequired />
                 <DefaultButton label="Entrar"/>
             </form>
             <div className="signin">

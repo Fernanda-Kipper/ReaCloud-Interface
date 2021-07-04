@@ -11,11 +11,11 @@ import 'react-toastify/dist/ReactToastify.css';
 import warningImg from '../Images/warning.svg'
 
 import Header from '../Components/header'
-import EvaluationForm from '../Components/evaluationForm'
+import EvaluationForm from '../Components/form-evaluation'
 import Resource from '../Interfaces/resource'
 import ParameterPassedToUrl from '../Interfaces/parameter-id'
 import CommentsList from '../Components/comments'
-import StyledRate from '../Components/styledRating';
+import StyledRate from '../Components/styled-rating';
 
 
 interface Licence{

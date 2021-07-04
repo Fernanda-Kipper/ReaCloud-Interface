@@ -8,9 +8,9 @@ import LoadingBar from 'react-top-loading-bar';
 import '../Styles/pages/profile.css';
 import 'react-toastify/dist/ReactToastify.css';
 
-import ResourceItem from '../Components/resourceItem';
+import ResourceItem from '../Components/resource-item';
 import Header from '../Components/header';
-import SavedUrls from '../Components/savedUrls';
+import SavedUrls from '../Components/saved-url';
 import { DefaultInput } from '../Components/default-input';
 import { Select } from '../Components/select';
 import { SaveButton } from '../Components/save-button';

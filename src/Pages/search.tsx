@@ -6,7 +6,7 @@ import { BsSearch, BsFilter, BsArrowLeft } from 'react-icons/bs'
 
 import axios from '../Services/axiosConfig'
 
-import ResourceCard from '../Components/resourceCard'
+import ResourceCard from '../Components/resource-card'
 import Resource from '../Interfaces/resource'
 
 import '../Styles/pages/search.css'
