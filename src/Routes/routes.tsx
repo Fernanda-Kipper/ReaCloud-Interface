@@ -30,8 +30,8 @@ function Routes(){
                     <ExtensionParamProvider>
                         <PrivateRoute path='/publicar' exact component={PublishResource}/>
                         <PrivateRoute path='/perfil' exact component={ProfilePage}/>
+                        <PrivateRoute path='/recurso/editar/:id' exact component={ModifyResource}/>
                     </ExtensionParamProvider>
-                    <PrivateRoute path='/recurso/editar/:id' exact component={ModifyResource}/>
                 </Switch>
             </UserContextProvider>
         </BrowserRouter>
