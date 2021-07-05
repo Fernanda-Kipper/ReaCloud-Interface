@@ -1,0 +1,41 @@
+.label{
+  color: var(--gray-medium);
+  font-weight: 600;
+  font-size: 0.8rem;
+
+  margin: 4px;
+  height: 24px;
+
+  transform: translateY(50%);
+}
+
+.label .tooltip-message{
+  visibility: hidden;
+
+  background-color: rgba(0,0,0,0.7);
+  color: white;
+
+  position: absolute;
+
+  padding: 8px 16px;
+  min-width: 200px;
+  border-radius: 16px;
+  z-index: 1;
+  font-size: 0.8rem;
+}
+
+.label .tooltip-icon{
+  color: var(--gray-medium);
+  font-size: 1rem;
+  margin-left: 8px;
+  cursor: pointer;
+}
+
+.label .tooltip-icon:hover + .tooltip-message{
+  visibility: visible;
+}
+
+.label span{
+  color: red;
+  font-size: 1rem;
+}

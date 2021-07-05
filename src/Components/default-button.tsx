@@ -1,6 +1,6 @@
 import React, { MouseEventHandler } from 'react';
 
-import '../Styles/components/defaultButton.css';
+import '../Styles/components/default-button.css';
 
 interface DefaultButtonProps {
   label: string,

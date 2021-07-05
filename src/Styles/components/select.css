@@ -23,20 +23,6 @@
   background-color: transparent;
 }
 
-.select-wrapper label{
-  color: var(--gray-medium);
-  font-weight: 600;
-  font-size: 0.8rem;
-
-  margin: 4px;
-  height: 24px;
-}
-
-.select-wrapper label span{
-  color: red;
-  font-size: 1rem;
-}
-
 @media(min-width: 900px){
   .select-wrapper{
     width: 380px;

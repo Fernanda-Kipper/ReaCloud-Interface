@@ -18,13 +18,21 @@ interface ResourceCardProps{
 const cardStyles = makeStyles({
     root: {
       width: 300,
-      height: 350,
+      height: 450,
       borderRadius: 10,
       backgroundColor: '#FFF',
-      margin: 10
+      margin: 10,
+      position: 'relative',
     },
     media: {
       height: 150,
+    },
+    action: {
+      height: 60,
+      display: 'flex',
+      alignItems: 'center',
+      position: 'absolute',
+      bottom: 0,
     },
     title: {
       fontSize: 25,
@@ -37,7 +45,8 @@ const cardStyles = makeStyles({
       fontWeight: 300,
       textAlign: 'center',
       fontFamily: 'sans-serif',
-      margin: 10
+      margin: 10,
+      maxHeight: 150,
     },
     link: {
       textAlign: 'center',
@@ -76,7 +85,7 @@ const ResourceCard: React.FunctionComponent< ResourceCardProps > = ({title, imag
             <Typography variant="body2" color="textSecondary" component="p" className={classes.text}>
               {description}
             </Typography>
-            <CardActions>
+            <CardActions className={classes.action}>
               <Link to={`/recurso/${id}`} className={classes.link}>Saber mais</Link>
             </CardActions>
           </CardContent>

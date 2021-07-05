@@ -24,22 +24,6 @@
   background-color: transparent;
 }
 
-.textarea-wrapper label{
-  color: var(--gray-medium);
-  font-weight: 600;
-  font-size: 0.8rem;
-
-  margin: 4px;
-  height: 24px;
-
-  transform: translateY(50%);
-}
-
-.textarea-wrapper label span{
-  color: red;
-  font-size: 1rem;
-}
-
 @media(min-width: 900px){
   .textarea-wrapper{
     width: 380px;

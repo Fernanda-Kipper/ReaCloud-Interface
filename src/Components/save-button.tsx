@@ -1,7 +1,7 @@
 import React, { FormEvent } from 'react';
 import { BiSave } from 'react-icons/bi';
 
-import '../Styles/components/saveButton.css';
+import '../Styles/components/save-button.css';
 
 interface SaveButtonProps {
   label: string,
