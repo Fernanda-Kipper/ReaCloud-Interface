@@ -1,14 +1,27 @@
 import React, { useEffect, useState } from 'react';
 import {  useParams, withRouter } from 'react-router-dom';
-import LinkIcon from '@material-ui/icons/Link';
 import { toast } from 'react-toastify';
+
+import LinkIcon from '@material-ui/icons/Link';
+import Paper from '@material-ui/core/Paper';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+import ThumbUpIcon from '@material-ui/icons/ThumbUp';
+import RateReviewIcon from '@material-ui/icons/RateReview';
+import StorageIcon from '@material-ui/icons/Storage';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import { GrStatusWarning } from 'react-icons/gr';
 
 import axios from '../Services/axiosConfig'
 
 import '../Styles/pages/resource.css'
 import 'react-toastify/dist/ReactToastify.css';
-
-import warningImg from '../Images/warning.svg'
 
 import Header from '../Components/header'
 import EvaluationForm from '../Components/form-evaluation'
@@ -17,20 +30,46 @@ import ParameterPassedToUrl from '../Interfaces/parameter-id'
 import CommentsList from '../Components/comments'
 import StyledRate from '../Components/styled-rating';
 
-
 interface Licence{
     title: string,
     image: string,
     message: string
 }
 
+const useStyles = makeStyles({
+    root: {
+      width: '100%',
+      color: '#cccccc',
+      background: 'white'
+    }
+});
+
+const StyledTableCell = withStyles((theme) => ({
+    head: {
+      backgroundColor: '#ccc',
+      color: theme.palette.common.white,
+      fontWeight: 'bold',
+      fontSize: 18,
+      overflowX: 'auto'
+    },
+    body: {
+      fontSize: 16,
+      overflowX: 'auto'
+    },
+}))(TableCell);
+  
 function ResourcePage() {
     const params: ParameterPassedToUrl = useParams();
     const [resource, setResource]= useState<Resource>()
     const [licence, setLicence] = useState<Licence>()
     const [avgStars, setAvg] = useState(0)
-    const [showDetails, setShowDetails] = useState(false)
     const [shouldCommentsUpdate, setShouldCommentsUpdate] = useState(false)
+    const classes = useStyles();
+    const [value, setValue] = useState(0);
+  
+    const handleChange = (event: React.ChangeEvent<{}>, newValue: any) => {
+      setValue(newValue);
+    };
 
     useEffect(()=>{
         axios.get(`/resource/${params.id}`)
@@ -42,6 +81,7 @@ function ResourcePage() {
         })
         axios.get(`/resource/evaluations/avarage/${params.id}`)
         .then(response =>{
+            console.log(response.data)
             setAvg(response.data.Avarage)
         })
         .catch((e)=>{
@@ -49,15 +89,6 @@ function ResourcePage() {
         })
 
     }, [params.id])
-
-    function handleDetails(){
-        if(showDetails){
-            setShowDetails(false)
-        }
-        else{
-            setShowDetails(true)
-        }
-    }
     
   return (
     <div className="resource-content">
@@ -66,76 +97,150 @@ function ResourcePage() {
             <section className="resource-header">
                 <div className="identity">
                     <h1 className="title">{resource?.title}</h1>
-                    <h5>Autor: {resource?.author}</h5>
-                    <h5>{resource?.date_of_publishment}</h5>
                 </div>
                 <div className="interaction">
-                    <div className="stars">
-                        <h5>Avaliações</h5>
-                        <StyledRate value={avgStars}/>
-                    </div>
                     <LinkIcon color="primary"/>
                     <a href={resource?.external_url}>Visualizar material</a>
                 </div>
-            </section> 
-            <div className="media">
-                <img src={resource?.image.url} alt={`Imagem do recurso ${resource?.title}`}/>
-                { resource?.video_link ? <iframe title="video" src={resource?.video_link.replace('watch?v=', 'embed/')} frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe> : null}
-            </div>
+            </section>
+            <Paper square className={classes.root}>
+                <Tabs
+                    value={value}
+                    onChange={handleChange}
+                    variant="fullWidth"
+                    indicatorColor="primary"
+                    textColor="primary"
+                >
+                    <Tab icon={< StorageIcon/>} label="DADOS"/>
+                    <Tab icon={<ThumbUpIcon />} label="AVALIAÇÕES" />
+                    <Tab icon={<RateReviewIcon />} label="AVALIE" />
+                </Tabs>
+            </Paper> 
+            {value === 0 &&
             <section className="data">
-                <h3>Detalhes do recurso:</h3>
-                <div className="data-content">
-                    <h4 className="subtitle">Descrição Sumária:</h4>
-                    <p className="text">
-                        {resource?.description}
-                    </p>
-                    <h4 className="subtitle">Público alvo:</h4>
-                    <p className="text">{resource?.audience}</p>
-                    <h4 className="subtitle">Área do conhecimento:</h4>
-                    <p className="text">{resource?.subject}</p>
-                    <h4 className="subtitle">Palavras-chave:</h4>
-                    <p className="text">{resource?.keywords}</p>
-                    <h4 className="subtitle">Licença:</h4>
-                    <p className="text">{licence?.title}</p>
-                    <div className="youCan">
-                        <img src={warningImg} alt="Aviso"/>
-                        <h6>Você pode:</h6>
-                    </div>
-                    <p className="text">{licence?.message}</p>
-                    <h4 className="subtitle">Compartilhado por:</h4>
-                    <p className="text">{resource?.userName}</p>
-                    <h4 className="subtitle"> Recurso correlato: </h4>
-                    {resource?.relation ? (<a href="x" className="text" >{resource?.relation}</a>) : <p className="text">Não listado</p>}
-                    <h4 className="subtitle">Ultima modificação:</h4>
-                    <p className="text">{resource?.last_modification}</p>
-                    <h4 className="subtitle">Mais detalhes</h4>
-                    <button className="text" onClick={handleDetails}>Ver tabela</button>
-                        {showDetails ? (
-                            <table>
-                                <thead>
-                                    <tr><th> Rótulo </th><th> Dado </th></tr>
-                                </thead>
-                                <tbody>
-                                    <tr><td> Tipo de Recurso </td><td> {resource?.type} </td></tr>
-                                    <tr><td> Formato </td><td> {resource?.format} </td></tr>
-                                    <tr><td> Linguagem </td><td> {resource?.language}</td></tr>
-                                    <tr><td> Contruibuidores - Manutenção </td><td> {resource?.contributor} </td></tr>
-                                    <tr><td> Onde foi publicado </td><td> {resource?.publisher} </td></tr>
-                                    <tr><td> Pré requisitos técnicos? </td><td> {(resource?.technical_requirements) ? 'Tem' : 'Não'} </td></tr>
-                                    <tr><td> Descriação pré requisitos técnicos</td><td> {resource?.description_of_technical_requirements} </td></tr>
-                                </tbody>
-                            </table>
-                        ) : null }
+
+                <div className="media">
+                    <img src={resource?.image.url} alt={`Imagem do recurso ${resource?.title}`}/>
+                    { resource?.video_link ? <iframe title="video" src={resource?.video_link.replace('watch?v=', 'embed/')} frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe> : null}
                 </div>
+
+                <div className="license">
+                    <GrStatusWarning/>
+                    <p>Esse recurso você pode: {licence?.message}</p>
+                </div>
+
+                <TableContainer component={Paper}>
+                    <Table aria-label="customized table">
+                        <TableHead>
+                            <TableRow>
+                                <StyledTableCell align="left">Propriedade</StyledTableCell>
+                                <StyledTableCell align="left">Valor</StyledTableCell>
+                                <StyledTableCell align="left">Nome do metadado Dublin Core</StyledTableCell>
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
+                            <TableRow>
+                                <StyledTableCell align="left">Autor</StyledTableCell>
+                                <StyledTableCell align="left">{resource?.author}</StyledTableCell>
+                                <StyledTableCell align="left">dc.author</StyledTableCell>
+                            </TableRow>
+                            <TableRow>
+                                <StyledTableCell align="left">Quando o recurso foi criado</StyledTableCell>
+                                <StyledTableCell align="left">{resource?.date_of_publishment}</StyledTableCell>
+                                <StyledTableCell align="left">dc.date</StyledTableCell>
+                            </TableRow>
+                            <TableRow>
+                                <StyledTableCell align="left">Descrição</StyledTableCell>
+                                <StyledTableCell align="left">{resource?.description}</StyledTableCell>
+                                <StyledTableCell align="left">dc.description</StyledTableCell>
+                            </TableRow>
+                            <TableRow>
+                                <StyledTableCell align="left">Público alvo</StyledTableCell>
+                                <StyledTableCell align="left">{resource?.audience}</StyledTableCell>
+                                <StyledTableCell align="left">dc.audience</StyledTableCell>
+                            </TableRow>
+                            <TableRow>
+                                <StyledTableCell align="left">Área do conhecimento</StyledTableCell>
+                                <StyledTableCell align="left">{resource?.subject}</StyledTableCell>
+                                <StyledTableCell align="left">dc.subject</StyledTableCell>
+                            </TableRow>
+                            <TableRow>
+                                <StyledTableCell align="left">Palavras chave</StyledTableCell>
+                                <StyledTableCell align="left">{resource?.keywords}</StyledTableCell>
+                                <StyledTableCell align="left">dc.keywords</StyledTableCell>
+                            </TableRow>
+                            <TableRow>
+                                <StyledTableCell align="left">Licença</StyledTableCell>
+                                <StyledTableCell align="left">{licence?.title}</StyledTableCell>
+                                <StyledTableCell align="left">dc.licence</StyledTableCell>
+                            </TableRow>
+                            <TableRow>
+                                <StyledTableCell align="left">Compartilhador por</StyledTableCell>
+                                <StyledTableCell align="left">{resource?.userName}</StyledTableCell>
+                                <StyledTableCell align="left">dc.created_by</StyledTableCell>
+                            </TableRow>
+                            <TableRow>
+                                <StyledTableCell align="left">Recurso correlato</StyledTableCell>
+                                <StyledTableCell align="left">{resource?.relation}</StyledTableCell>
+                                <StyledTableCell align="left">dc.relation</StyledTableCell>
+                            </TableRow>
+                            <TableRow>
+                                <StyledTableCell align="left">Ultima modificação</StyledTableCell>
+                                <StyledTableCell align="left">{resource?.last_modification}</StyledTableCell>
+                                <StyledTableCell align="left">dc.last_modification</StyledTableCell>
+                            </TableRow>
+                            <TableRow>
+                                <StyledTableCell align="left">Tipo de recurso</StyledTableCell>
+                                <StyledTableCell align="left">{resource?.type}</StyledTableCell>
+                                <StyledTableCell align="left">dc.type</StyledTableCell>
+                            </TableRow>
+                            <TableRow>
+                                <StyledTableCell align="left">Formato do recurso</StyledTableCell>
+                                <StyledTableCell align="left">{resource?.format}</StyledTableCell>
+                                <StyledTableCell align="left">dc.format</StyledTableCell>
+                            </TableRow>
+                            <TableRow>
+                                <StyledTableCell align="left">Linguagem</StyledTableCell>
+                                <StyledTableCell align="left">{resource?.language}</StyledTableCell>
+                                <StyledTableCell align="left">dc.language</StyledTableCell>
+                            </TableRow>
+                            <TableRow>
+                                <StyledTableCell align="left">Contribuidores do recurso</StyledTableCell>
+                                <StyledTableCell align="left">{resource?.contributor}</StyledTableCell>
+                                <StyledTableCell align="left">dc.contributor</StyledTableCell>
+                            </TableRow>
+                            <TableRow>
+                                <StyledTableCell align="left">Local que o recurso foi publicado</StyledTableCell>
+                                <StyledTableCell align="left">{resource?.publisher}</StyledTableCell>
+                                <StyledTableCell align="left">dc.publisher</StyledTableCell>
+                            </TableRow>
+                            <TableRow>
+                                <StyledTableCell align="left">Pré-requisitos técnicos</StyledTableCell>
+                                <StyledTableCell align="left">{resource?.technical_requirements}</StyledTableCell>
+                                <StyledTableCell align="left">dc.?</StyledTableCell>
+                            </TableRow>
+                            {resource?.description_of_technical_requirements && (
+                            <TableRow>
+                                <StyledTableCell align="left">Descrição dos pré-requisitos técnicos</StyledTableCell>
+                                <StyledTableCell align="left">{resource?.description_of_technical_requirements}</StyledTableCell>
+                                <StyledTableCell align="left">dc.?</StyledTableCell>
+                            </TableRow>                                
+                            )}
+                        </TableBody>
+                    </Table>
+                </TableContainer>
             </section>
-            <section className="rate-form">
-                <h3>Avaliar este recurso</h3>
-            <EvaluationForm setShouldUpdate={setShouldCommentsUpdate}/>
-            </section>
-            <section className="rating-section">
-                <h3>Avaliações</h3>
-                <CommentsList shouldUpdate={shouldCommentsUpdate}/>
-            </section>
+            }
+            {value === 1 &&             
+                <EvaluationForm setShouldUpdate={setShouldCommentsUpdate}/>
+            }
+            {value === 2 &&
+                <div className="stars">
+                    <h5>Média das avaliações</h5>
+                    <StyledRate value={avgStars}/>
+                    <CommentsList shouldUpdate={shouldCommentsUpdate}/>
+                </div>
+            }
         </main>
     </div>
   )}
