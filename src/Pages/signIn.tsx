@@ -44,10 +44,15 @@ function SignInPage() {
       }, 1000)
     })
     .catch((err)=>{
-      toast.warn('Email já cadastrado, realize login.')
-      setTimeout(()=>{
-        history.push('/entrar')
-      }, 1000)
+      if(err.response.status === 400){
+        toast.warn(err.response.data.error)
+        setTimeout(()=>{
+          history.push('/entrar')
+        }, 1000)
+      }
+      else{
+        toast.error('Erro ao realizar cadastro, tente novamente mais tarde.')
+      }
     })
   }
 
@@ -63,7 +68,7 @@ function SignInPage() {
                 <DefaultInput value={username} handleChange={setUsername} name="name" label="Seu nome completo"/>
                 <DefaultInput value={email} handleChange={setEmail} name="email" label="E-mail" type="email"/>
                 <DefaultInput value={password} handleChange={setPassword} name="password" label="Senha" type="password"/>
-                <DefaultInput value={url} handleChange={setUrl} name="url" label="URL para sua foto de perfil" type="url"/>
+                <DefaultInput value={url} handleChange={setUrl} name="url" label="Endereço na internet que aponta para sua foto de perfil" type="url"/>
                 <Select value={profile} handleChange={setProfile} isRequired label="Perfil acadêmico" name="academic-profile" options={profileOptions}/>
                 <DefaultButton label="Cadastrar-me"/>
             </form>
