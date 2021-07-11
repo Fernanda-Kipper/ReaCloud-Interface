@@ -100,10 +100,6 @@
         align-items: flex-start;
         width: 80%;
     }
-
-    .profile-content main form section img{
-        height: 200px;
-    }
     
     .profile-content main form, .Recursos{
         flex-wrap: wrap;
