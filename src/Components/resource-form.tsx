@@ -81,7 +81,7 @@ export function ResourceForm({ setIsLoading, setModal, isEdit = false } : Resour
     if(isEdit){
       axios.get(`/resource/${paramsUrl.id}`)
         .then(response =>{
-            setTitle(response.data.title)
+            setTitle(response.data.title) 
             setAuthor(response.data.author)
             setType(response.data.type)
             setFormat(response.data.format)
@@ -104,7 +104,7 @@ export function ResourceForm({ setIsLoading, setModal, isEdit = false } : Resour
             setVideoLink(response.data.video_link)
         })
         .catch((e)=>{
-            toast.warn('Não foi possivel carregar dados do recurso, tente mais tarde')
+            toast.warn('Não foi possível carregar dados do recurso, tente mais tarde')
         })
     }
   }, [paramsUrl.id, isEdit])
@@ -146,7 +146,6 @@ export function ResourceForm({ setIsLoading, setModal, isEdit = false } : Resour
       dataForm.append('file', image[0])
 
       if(form1Done===true && form2Done===true && form3Done===true){
-        try{
           axios.post('/resource', dataForm).then(res =>{
             setIsLoading(false)
             toast.success('Sucesso ao publicar recurso!')
@@ -159,12 +158,14 @@ export function ResourceForm({ setIsLoading, setModal, isEdit = false } : Resour
               history.push('/')
             }, 1000)
           }
-          ).catch(()=>{
-            toast.error('Erro ao publicar recurso. Tente novamente mais tarde')
+          ).catch((err)=>{
+            if(err.response.status === 400){
+              toast.warn(err.response.data.error)
+            }
+            else {
+              toast.error('Erro ao publicar recurso. Tente novamente mais tarde')
+            }
           })
-        }catch(err){
-          toast.error('Erro ao publicar recurso. Tente novamente mais tarde')
-        }
       }else{
         toast.warn('Preencha todos os campos obrigatórios!')
       }
@@ -237,12 +238,13 @@ export function ResourceForm({ setIsLoading, setModal, isEdit = false } : Resour
 
             <DefaultInput
               label="Endereço do Recurso (URL)"
-              tooltipText="Endereço da internet EXATO no qual o recursos está armazenado"
               isRequired
+              tooltipText="Endereço da internet EXATO no qual o recursos está armazenado."
               value={external_url}
               handleChange={setUrl}
               name="url"
-              type="url" />
+              type="url"/>
+              <span className="help-cloud-host"><a href="/ajuda">Nesse página</a> explicamos para você como hospedar seu recurso na nuvem</span>
 
             <DefaultButton label="Confirmar"/>
             </form>
