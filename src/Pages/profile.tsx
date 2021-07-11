@@ -4,6 +4,7 @@ import axios from '../Services/axiosConfig';
 import { CgProfile } from "react-icons/cg";
 import { BiExtension, BiArchive } from "react-icons/bi";
 import LoadingBar from 'react-top-loading-bar';
+import Avatar from 'react-avatar';
 
 import '../Styles/pages/profile.css';
 import 'react-toastify/dist/ReactToastify.css';
@@ -106,8 +107,11 @@ function ProfilePage() {
 
                 {dashboardView === dashboardOptions.userData &&
                     <form onSubmit={handleSubmit}>
-                        <img src={picture_url} alt="Sua foto de perfil"/>
-                        <DefaultInput value={picture_url} handleChange={setPicture} isRequired label="Link para sua foto" name="image"/>
+                        {picture_url 
+                            ? <img src={picture_url} alt="Sua foto de perfil"/>
+                            : <Avatar name={nameComplete} size="100%" style={{width: '300px', height: '150px'}}/>
+                        }
+                        <DefaultInput value={picture_url} handleChange={setPicture} label="Link para sua foto" name="image"/>
                         <DefaultInput value={email} isRequired label="Seu e-mail" name="email" isDisabled/>
                         <DefaultInput value={nameComplete} isRequired label="Nome completo" name="name" handleChange={setName}/>
                         <Select value={profile} handleChange={setProfile} isRequired label="Perfil acadêmico" name="academic-profile" options={profileOptions}/>
