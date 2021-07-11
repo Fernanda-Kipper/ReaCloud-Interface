@@ -10,8 +10,10 @@ import { toast } from 'react-toastify';
 
 import ParameterPassedToUrl from '../Interfaces/parameter-id'
 
-import '../Styles/components/evaluationForm.css'
+import '../Styles/components/evaluation-form.css'
 import 'react-toastify/dist/ReactToastify.css';
+import { DefaultButton } from './default-button';
+import { Textarea } from './textarea';
 
 interface Props{
     setShouldUpdate: (value: boolean) => void;
@@ -56,14 +58,9 @@ function CommentForm({ setShouldUpdate }: Props){
         <form id="rating-form" onSubmit={handleSubmit}>
             <label htmlFor="rate">Sua classifição</label>
             <RateStyled name="rate" value={stars} onChange={(event, value)=>{setStars(value)}} icon={<SchoolIcon fontSize="large"/>}/>
-            {stars !== 0 ? (
-                <>
-                <label htmlFor="message">Comentário (opcional)</label>
-                <textarea id="message" value={message} onChange={e=> setMessage(e.target.value)}/>
-                <p>Seu nome e sua foto de perfil serão mostrados</p>
-                <button type="submit">Publicar</button>
-                </>
-            ) : null}
+            <Textarea label="Seu comentário (opcional)" value={message} handleChange={setMessage} name="message"/>
+            <p>Seu nome e sua foto de perfil serão mostrados junto com sua avaliação</p>
+            <DefaultButton label="Publicar"/>
         </form>
         </>
     )
