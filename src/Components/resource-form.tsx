@@ -161,6 +161,9 @@ export function ResourceForm({ setIsLoading, setModal, isEdit = false } : Resour
           ).catch((err)=>{
             if(err.response.status === 400){
               toast.warn(err.response.data.error)
+              setTimeout(()=>{
+                history.push('/')
+              }, 2000)
             }
             else {
               toast.error('Erro ao publicar recurso. Tente novamente mais tarde')
