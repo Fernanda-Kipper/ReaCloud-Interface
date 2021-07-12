@@ -97,6 +97,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    position: relative;
 }
 
 .search-content main .filter{
@@ -118,31 +119,23 @@
     color: var(--purple-primary);
 }
 
-.search-content main .filter .filteringForm{
+.search-content main .filter .enabled{
     display: flex;
     align-items: center;
     justify-content: flex-end;
     flex-direction: column;
 }
 
-.search-content main .filter .filterDisable{
+.search-content main .filter .disabled{
     display: none;
 }
 
-.search-content main .filter .filteringForm button{
-    border-radius: 20px;
-    border: 0;
-    width: 100%;
-    align-self: center;
-    color:#1976d2;
-    border: 1px solid #1976d2;
-    background-color: #fff;
+.search-content main .filter .enabled button{
+    width: 92%;
     height: 40px;
-    margin-top: 20px;
-    transition: 200ms;
-    cursor: pointer;
-    outline: none;
-    opacity: 0.5;
+    color: white;
+    background-color: var(--purple-primary);
+    opacity: 0.8;
 }
 
 .search-content main .results h2{
@@ -189,7 +182,21 @@
         grid-template-columns: repeat(3, 1fr);
     }
 
-    .search-content main .filter .filteringForm button:hover, button:focus{
+    .search-content main .filter{
+        z-index: 999;
+        position: absolute;
+        top: 8px;
+        right: 8px;
+    }
+
+    .search-content main .filter .enabled{
+        background-color: white;
+        width: 420px;
+        border-radius: 16px;
+    }
+
+    .search-content main .filter .enabled button:hover{
         opacity: 1;
+        transition: 500ms;
     }
 }
