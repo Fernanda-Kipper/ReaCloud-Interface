@@ -97,11 +97,11 @@ function ProfilePage() {
                     <nav onClick={()=> handleChangeView(dashboardOptions.userData)}>
                         <CgProfile/>
                     </nav>
-                    <nav onClick={()=> handleChangeView(dashboardOptions.publishedResources)}>
-                        <BiArchive/>
-                    </nav>
                     <nav onClick={()=> handleChangeView(dashboardOptions.extension)}>
                         <BiExtension/>
+                    </nav>
+                    <nav onClick={()=> handleChangeView(dashboardOptions.publishedResources)}>
+                        <BiArchive/>
                     </nav>
                 </aside>
 
