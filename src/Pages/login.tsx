@@ -39,7 +39,7 @@ function LoginPage() {
           setProgress(100)
 
           setTimeout(()=>{
-            history.push('/')
+            history.push('/perfil')
           }, 800)
         })
         .catch((err)=>{
