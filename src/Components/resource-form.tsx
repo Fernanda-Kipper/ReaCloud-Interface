@@ -247,7 +247,7 @@ export function ResourceForm({ setIsLoading, setModal, isEdit = false } : Resour
               handleChange={setUrl}
               name="url"
               type="url"/>
-              <span className="help-cloud-host"><a href="/ajuda">Nesse página</a> explicamos para você como hospedar seu recurso na nuvem</span>
+              <span className="help-cloud-host"><a href="/ajuda">Nessa página</a> explicamos para você como hospedar seu recurso na nuvem</span>
 
             <DefaultButton label="Confirmar"/>
             </form>

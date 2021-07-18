@@ -61,6 +61,11 @@
   max-width: 380px;
 }
 
+.form-wrapper .section .help-cloud-host a{
+  color: var(--purple-primary);
+  font-family: 'Montserrat', sans-serif;
+}
+
 .form-wrapper .section .section-title .arrow{
   background: url('../../Images/arrow.svg') no-repeat;
   background-size: 100%;
