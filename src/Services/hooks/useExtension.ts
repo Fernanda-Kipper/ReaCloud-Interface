@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { extensionID } from '../../config'
+import { EXTENSION_ID } from '../../config'
 
 export interface Material {
   link: string,
@@ -12,7 +12,7 @@ export function useExtension(){
 
   function handleDelete(link: string){
     try{
-      chrome.runtime.sendMessage(extensionID, {delete: link}, function(response){
+      chrome.runtime.sendMessage(EXTENSION_ID, {delete: link}, function(response){
         if(response.deleted){
             setData(response.setTargetData)
         }else{
@@ -26,7 +26,7 @@ export function useExtension(){
 
   useEffect(()=>{
     try{
-      chrome.runtime.sendMessage(extensionID, {getTargetData: true}, function(response){
+      chrome.runtime.sendMessage(EXTENSION_ID, {getTargetData: true}, function(response){
         if(response.setTargetData){
             setData(response.setTargetData)
         }
