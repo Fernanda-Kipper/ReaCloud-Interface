@@ -32,8 +32,8 @@ Seguindo o padrão de metadados Dublin Core o indexador armazena as principais i
 
 <h2 id="layout">Layout da Ferramenta</h2>
 <p align="center">
-   <img src="./public/home-page.png" style="border-radius: 20px">
-   <img src="./public/search-page.png">
+  <img src="https://user-images.githubusercontent.com/61896274/130973490-62cb769f-b59f-41da-9cd5-128f318fa33f.png" width="800"/>
+  <img src="https://user-images.githubusercontent.com/61896274/130973759-feddf43b-53d4-4166-b8bf-716ad0ef906e.png" width="800"/>
 </p>
 
 <h2 id="contribute">Contribuindo</h2>
