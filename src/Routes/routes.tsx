@@ -12,6 +12,7 @@ import HelpPage from '../Pages/help';
 import SearchPage from '../Pages/search';
 
 import { PrivateRoute } from './privateRoutes';
+import { SetupGtm } from '../Services/setup-gtm';
 
 import { UserContextProvider } from '../Context/UserContext';
 import { ExtensionParamProvider } from '../Context/ExtensionParamContext';
@@ -34,6 +35,7 @@ function Routes(){
                     </ExtensionParamProvider>
                 </Switch>
             </UserContextProvider>
+            <SetupGtm/>
         </BrowserRouter>
     );
 }

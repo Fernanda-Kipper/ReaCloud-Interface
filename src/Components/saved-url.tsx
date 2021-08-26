@@ -11,7 +11,7 @@ import { toast } from 'react-toastify';
 import '../Styles/components/savedUrls.css'
 import { useExtension, Material } from '../Services/hooks/useExtension';
 import { ExtensionParamContext } from '../Context/ExtensionParamContext';
-import { extensionURL } from '../config';
+import { EXTENSION_URL } from '../config';
 
 const useStyles = makeStyles({
     root: {
@@ -52,7 +52,7 @@ export default function SavedUrls(){
     const history = useHistory()
 
     function redirectToDownload(){
-        window.location.href = extensionURL
+        window.location.href = EXTENSION_URL
     }
 
     function handlePublish(element: Material){
