@@ -10,6 +10,7 @@
  <a href="#project">Projeto</a> •
  <a href="#paper">Papers Publicados</a> •
  <a href="#layout">Layout</a> • 
+ <a href="#related">Projetos Relacionados</a> • 
  <a href="#contribute">Contribuindo</a>
 </p>
 
@@ -34,6 +35,16 @@ Seguindo o padrão de metadados Dublin Core o indexador armazena as principais i
   <img src="https://user-images.githubusercontent.com/61896274/130973490-62cb769f-b59f-41da-9cd5-128f318fa33f.png" width="400"/>
   <img src="https://user-images.githubusercontent.com/61896274/130973759-feddf43b-53d4-4166-b8bf-716ad0ef906e.png" width="400"/>
 </p>
+
+
+<h2 id="related">Projetos Relacionados</h2>
+
+<h3> Extensão para navegadores Chrome ReaCloud </h3>
+
+Plugin para navegadores desenvolvido para extender as funcionalidade da ferramenta ReaCloud. Facilita o processo de publicação de materiais.
+
+[Link repositório](https://github.com/Fernanda-Kipper/ReaCloud-Extension)
+
 
 <h2 id="contribute">Contribuindo 🚀</h2>
 
