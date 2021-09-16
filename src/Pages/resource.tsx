@@ -152,7 +152,7 @@ function ResourcePage() {
                             <TableRow>
                                 <StyledTableCell align="left">Descrição dos pré-requisitos técnicos</StyledTableCell>
                                 <StyledTableCell align="left">{resource?.description_of_technical_requirements}</StyledTableCell>
-                                <StyledTableCell align="left">dc.?</StyledTableCell>
+                                <StyledTableCell align="left">não possui</StyledTableCell>
                             </TableRow>                                
                             )}
                         </TableBody>
