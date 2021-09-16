@@ -3,7 +3,6 @@ export default interface Recurso{
     audience: string,
     author: string,
     contributor: string,
-    covarage: string
     date_of_publishment: string,
     description: string,
     description_of_technical_requirements: string,

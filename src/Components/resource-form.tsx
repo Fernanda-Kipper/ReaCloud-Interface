@@ -58,7 +58,6 @@ export function ResourceForm({ setIsLoading, setModal, isEdit = false } : Resour
   const [keywords, setKeywords] = useState('')
   const [audience, setAudience] = useState('')
   const [external_url, setUrl] = useState(params.link ? params.link : '')
-  const [context, setContext] = useState('')
   const [relation, setRelation] = useState('')
   const [contributor, setContributor] = useState('')
   const [publisher, setPublisher] = useState('')
@@ -91,7 +90,6 @@ export function ResourceForm({ setIsLoading, setModal, isEdit = false } : Resour
             setUrl(response.data.external_url)
             setAudience(response.data.audience)
             setSubject(response.data.subject)
-            setContext(response.data.context)
             setDescription(response.data.description)
             setDescriptionRequirements(response.data.description_of_technical_requirements)
             setKeywords(response.data.keywords)
@@ -134,7 +132,6 @@ export function ResourceForm({ setIsLoading, setModal, isEdit = false } : Resour
       dataForm.append('keywords', keywords)
       dataForm.append('audience', audience)
       dataForm.append('external_url', external_url)
-      dataForm.append('context', context)
       dataForm.append('relation', relation)
       dataForm.append('contributor', contributor)
       dataForm.append('publisher', publisher)
@@ -225,13 +222,6 @@ export function ResourceForm({ setIsLoading, setModal, isEdit = false } : Resour
               handleChange={setDescription}
               name="description"
             />
-
-            <Select
-              options={[]}
-              label="Contexto"
-              name="context"
-              value={context}
-              handleChange={setContext} />
 
             <DefaultInput
               label="Recurso Relacionado"
