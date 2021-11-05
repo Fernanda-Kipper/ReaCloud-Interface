@@ -24,13 +24,13 @@ function Routes(){
             <UserContextProvider>
                 <Switch>
                     <Route path="/" exact component={NewsletterPage}/>
+                    <Route path='/entrar' exact component={LoginPage}/>
                     <Route path='/ajuda' exact component={HelpPage}/>
                     <ExtensionParamProvider>
                         <PrivateRoute path='/publicar' exact component={PublishResource}/>
                         <PrivateRoute path='/perfil' exact component={ProfilePage}/>
                         <PrivateRoute path='/recurso/editar/:id' exact component={ModifyResource}/>
                         <PrivateRoute path='/inicial' exact component={HomePage}/>
-                        <PrivateRoute path='/entrar' exact component={LoginPage}/>
                         <PrivateRoute path='/cadastrar' exact component={SignInPage}/>
                         <PrivateRoute path='/buscar' exact component={SearchPage}/>
                         <PrivateRoute path='/recurso/:id' exact component={ResourcePage}/>
