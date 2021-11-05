@@ -29,7 +29,7 @@ function Routes(){
                         <PrivateRoute path='/publicar' exact component={PublishResource}/>
                         <PrivateRoute path='/perfil' exact component={ProfilePage}/>
                         <PrivateRoute path='/recurso/editar/:id' exact component={ModifyResource}/>
-                        <PrivateRoute path='/' exact component={HomePage}/>
+                        <PrivateRoute path='/inicial' exact component={HomePage}/>
                         <PrivateRoute path='/entrar' exact component={LoginPage}/>
                         <PrivateRoute path='/cadastrar' exact component={SignInPage}/>
                         <PrivateRoute path='/buscar' exact component={SearchPage}/>
