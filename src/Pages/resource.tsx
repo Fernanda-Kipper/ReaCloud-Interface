@@ -23,18 +23,15 @@ import axios from '../Services/axiosConfig'
 import '../Styles/pages/resource.css'
 import 'react-toastify/dist/ReactToastify.css';
 
-import Header from '../Components/header'
-import EvaluationForm from '../Components/form-evaluation'
-import Resource from '../Interfaces/resource'
-import ParameterPassedToUrl from '../Interfaces/parameter-id'
-import CommentsList from '../Components/comments'
+import Header from '../Components/header';
+import EvaluationForm from '../Components/form-evaluation';
+import Resource from '../Interfaces/resource';
+import License from '../Interfaces/license';
+import ParameterPassedToUrl from '../Interfaces/parameter-id';
+import CommentsList from '../Components/comments';
 import StyledRate from '../Components/styled-rating';
+import { RESOURCE_FIELDS } from '../Contants/resource-fields';
 
-interface Licence{
-    title: string,
-    image: string,
-    message: string
-}
 
 const useStyles = makeStyles({
     root: {
@@ -61,7 +58,7 @@ const StyledTableCell = withStyles((theme) => ({
 function ResourcePage() {
     const params: ParameterPassedToUrl = useParams();
     const [resource, setResource]= useState<Resource>()
-    const [licence, setLicence] = useState<Licence>()
+    const [licence, setLicence] = useState<License>()
     const [avgStars, setAvg] = useState(0)
     const [shouldCommentsUpdate, setShouldCommentsUpdate] = useState(false)
     const classes = useStyles();
@@ -116,7 +113,7 @@ function ResourcePage() {
                     <Tab icon={<RateReviewIcon />} label="AVALIE" />
                 </Tabs>
             </Paper> 
-            {value === 0 &&
+            {value === 0 && resource &&
             <section className="data">
 
                 <div className="media">
@@ -140,90 +137,22 @@ function ResourcePage() {
                         </TableHead>
                         <TableBody>
                             <TableRow>
-                                <StyledTableCell align="left">Autor</StyledTableCell>
-                                <StyledTableCell align="left">{resource?.author}</StyledTableCell>
-                                <StyledTableCell align="left">dc.author</StyledTableCell>
-                            </TableRow>
-                            <TableRow>
-                                <StyledTableCell align="left">Quando o recurso foi criado</StyledTableCell>
-                                <StyledTableCell align="left">{resource?.date_of_publishment}</StyledTableCell>
-                                <StyledTableCell align="left">dc.date</StyledTableCell>
-                            </TableRow>
-                            <TableRow>
-                                <StyledTableCell align="left">Descrição</StyledTableCell>
-                                <StyledTableCell align="left">{resource?.description}</StyledTableCell>
-                                <StyledTableCell align="left">dc.description</StyledTableCell>
-                            </TableRow>
-                            <TableRow>
-                                <StyledTableCell align="left">Público alvo</StyledTableCell>
-                                <StyledTableCell align="left">{resource?.audience}</StyledTableCell>
-                                <StyledTableCell align="left">dc.audience</StyledTableCell>
-                            </TableRow>
-                            <TableRow>
-                                <StyledTableCell align="left">Área do conhecimento</StyledTableCell>
-                                <StyledTableCell align="left">{resource?.subject}</StyledTableCell>
-                                <StyledTableCell align="left">dc.subject</StyledTableCell>
-                            </TableRow>
-                            <TableRow>
-                                <StyledTableCell align="left">Palavras chave</StyledTableCell>
-                                <StyledTableCell align="left">{resource?.keywords}</StyledTableCell>
-                                <StyledTableCell align="left">dc.keywords</StyledTableCell>
-                            </TableRow>
-                            <TableRow>
                                 <StyledTableCell align="left">Licença</StyledTableCell>
                                 <StyledTableCell align="left">{licence?.title}</StyledTableCell>
                                 <StyledTableCell align="left">dc.licence</StyledTableCell>
                             </TableRow>
-                            <TableRow>
-                                <StyledTableCell align="left">Compartilhador por</StyledTableCell>
-                                <StyledTableCell align="left">{resource?.userName}</StyledTableCell>
-                                <StyledTableCell align="left">dc.created_by</StyledTableCell>
-                            </TableRow>
-                            <TableRow>
-                                <StyledTableCell align="left">Recurso correlato</StyledTableCell>
-                                <StyledTableCell align="left">{resource?.relation}</StyledTableCell>
-                                <StyledTableCell align="left">dc.relation</StyledTableCell>
-                            </TableRow>
-                            <TableRow>
-                                <StyledTableCell align="left">Ultima modificação</StyledTableCell>
-                                <StyledTableCell align="left">{resource?.last_modification}</StyledTableCell>
-                                <StyledTableCell align="left">dc.last_modification</StyledTableCell>
-                            </TableRow>
-                            <TableRow>
-                                <StyledTableCell align="left">Tipo de recurso</StyledTableCell>
-                                <StyledTableCell align="left">{resource?.type}</StyledTableCell>
-                                <StyledTableCell align="left">dc.type</StyledTableCell>
-                            </TableRow>
-                            <TableRow>
-                                <StyledTableCell align="left">Formato do recurso</StyledTableCell>
-                                <StyledTableCell align="left">{resource?.format}</StyledTableCell>
-                                <StyledTableCell align="left">dc.format</StyledTableCell>
-                            </TableRow>
-                            <TableRow>
-                                <StyledTableCell align="left">Linguagem</StyledTableCell>
-                                <StyledTableCell align="left">{resource?.language}</StyledTableCell>
-                                <StyledTableCell align="left">dc.language</StyledTableCell>
-                            </TableRow>
-                            <TableRow>
-                                <StyledTableCell align="left">Contribuidores do recurso</StyledTableCell>
-                                <StyledTableCell align="left">{resource?.contributor}</StyledTableCell>
-                                <StyledTableCell align="left">dc.contributor</StyledTableCell>
-                            </TableRow>
-                            <TableRow>
-                                <StyledTableCell align="left">Local que o recurso foi publicado</StyledTableCell>
-                                <StyledTableCell align="left">{resource?.publisher}</StyledTableCell>
-                                <StyledTableCell align="left">dc.publisher</StyledTableCell>
-                            </TableRow>
-                            <TableRow>
-                                <StyledTableCell align="left">Pré-requisitos técnicos</StyledTableCell>
-                                <StyledTableCell align="left">{resource?.technical_requirements}</StyledTableCell>
-                                <StyledTableCell align="left">dc.?</StyledTableCell>
-                            </TableRow>
+                            {RESOURCE_FIELDS.map(field => (
+                                <TableRow>
+                                    <StyledTableCell align="left">{field.name}</StyledTableCell>
+                                    <StyledTableCell align="left">{field.field(resource)}</StyledTableCell>
+                                    <StyledTableCell align="left">{field.property}</StyledTableCell>
+                                </TableRow>
+                            ))}
                             {resource?.description_of_technical_requirements && (
                             <TableRow>
                                 <StyledTableCell align="left">Descrição dos pré-requisitos técnicos</StyledTableCell>
                                 <StyledTableCell align="left">{resource?.description_of_technical_requirements}</StyledTableCell>
-                                <StyledTableCell align="left">dc.?</StyledTableCell>
+                                <StyledTableCell align="left">não possui</StyledTableCell>
                             </TableRow>                                
                             )}
                         </TableBody>

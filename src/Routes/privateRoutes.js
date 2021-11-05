@@ -3,17 +3,18 @@ import {Redirect, Route} from 'react-router-dom'
 import { UserContext } from '../Context/UserContext'
 
 export const PrivateRoute = ({component: Component, ...rest})=>{
-    const { value } = useContext(UserContext);
+    const { value, name } = useContext(UserContext);
+    const isAdmin = name === 'admin'
 
     return (
         <Route
         {...rest}
         render={props=> 
-            value ? (
+            value && isAdmin ? (
                 <Component {...props} />
             ) : (
                 <Redirect to={{
-                    pathname: '/entrar',
+                    pathname: '/',
                     state: {from: props.location}
                 }} />
             )
