@@ -10,6 +10,7 @@ import ResourcePage from '../Pages/resource';
 import ModifyResource from '../Pages/modify-resource';
 import HelpPage from '../Pages/help';
 import SearchPage from '../Pages/search';
+import NewsletterPage from '../Pages/newsletter';
 
 import { PrivateRoute } from './privateRoutes';
 import { SetupGtm } from '../Services/setup-gtm';
@@ -22,11 +23,12 @@ function Routes(){
         <BrowserRouter>
             <UserContextProvider>
                 <Switch>
-                    <Route path='/' exact component={HomePage}/>
-                    <Route path='/entrar' exact component={LoginPage}/>
+                    <Route path="/" exact component={NewsletterPage}/>
+                    {/* <Route path='/' exact component={HomePage}/> */}
+                    {/* <Route path='/entrar' exact component={LoginPage}/>
                     <Route path='/cadastrar' exact component={SignInPage}/>
                     <Route path='/buscar' exact component={SearchPage}/>
-                    <Route path='/recurso/:id' exact component={ResourcePage}/>
+                    <Route path='/recurso/:id' exact component={ResourcePage}/> */}
                     <Route path='/ajuda' exact component={HelpPage}/>
                     <ExtensionParamProvider>
                         <PrivateRoute path='/publicar' exact component={PublishResource}/>
