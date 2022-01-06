@@ -4,8 +4,9 @@ import { useUserData } from '../Services/hooks/useUserData'
 interface UserContextData{
     name: string,
     value: boolean,
-    setName: (name:string)=>void,
-    setValue: (value: boolean)=>void,
+    setName(name:string): void,
+    setValue(value: boolean): void,
+    reset(): void
 }
 
 interface UserContextProps{
@@ -19,6 +20,11 @@ export function UserContextProvider({ children } : UserContextProps){
     const [name, setName] = useState("")
     const { data, error  } = useUserData()
 
+    const reset = () => {
+        setValue(false)
+        setName("")
+    }
+
     useEffect(() =>{
         if(data && !error){
             setName(data.name)
@@ -31,7 +37,8 @@ export function UserContextProvider({ children } : UserContextProps){
             name,
             value,
             setValue,
-            setName
+            setName,
+            reset
         }}>
             {children}
         </UserContext.Provider>

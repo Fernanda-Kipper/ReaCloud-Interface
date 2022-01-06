@@ -7,15 +7,14 @@ import axios from '../axiosConfig';
 import { Error } from '../../Interfaces/error';
 
 export function useLogout(){
-  const { setValue, setName } = useContext(UserContext);
+  const { reset } = useContext(UserContext);
 
   async function handleLogout(){
     await axios.get('/logout').then((res: AxiosResponse<any>) =>{
-        setValue(false)
-        setName("")
-        toast.success('Logout realizado com sucesso!')
+      reset()
+      toast.success('Logout realizado com sucesso!')
     }).catch((err: Error) => {
-        toast.error('Erro ao realizar Logout, atualize a página')
+      toast.error('Erro ao realizar Logout, atualize a página')
     })
   }
 
