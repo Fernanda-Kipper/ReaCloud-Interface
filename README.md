@@ -28,8 +28,9 @@ Seguindo o padrão de metadados Dublin Core o indexador armazena as principais i
 <h2 id="paper">Papers Publicados 📃</h2>
 
  - [SIIEPE 2020](https://cti.ufpel.edu.br/siepe/arquivos/2020/CE_02270.pdf) (Semana Integrada de Inovação, Ensino, Pesquisa e Extensão) 
- - [SIEPE 2021](https://wp.ufpel.edu.br/siiepe/) (Semana Integrada de Inovação, Ensino, Pesquisa e Extensão) - está ocorrendo 
-
+ - [SIIEPE 2021](https://cti.ufpel.edu.br/siepe/arquivos/2021/CE_02339.pdf) (Semana Integrada de Inovação, Ensino, Pesquisa e Extensão) 
+ - [LACLO 2021](https://www.laclolala.com/#/laclo) (XVI Latin American Conference on Learning Technologies)
+ 
 <h2 id="layout">Layout da Ferramenta</h2>
 <p align="center">
   <img src="https://user-images.githubusercontent.com/61896274/130973490-62cb769f-b59f-41da-9cd5-128f318fa33f.png" width="400"/>
