@@ -4,13 +4,12 @@ import { UserContext } from '../Context/UserContext'
 
 export const PrivateRoute = ({component: Component, ...rest})=>{
     const { value, name } = useContext(UserContext);
-    const isAdmin = name === 'admin'
 
     return (
         <Route
         {...rest}
         render={props=> 
-            value && isAdmin ? (
+            name && value  ? (
                 <Component {...props} />
             ) : (
                 <Redirect to={{
@@ -21,4 +20,4 @@ export const PrivateRoute = ({component: Component, ...rest})=>{
         }
         />
     )
-    };
+};
