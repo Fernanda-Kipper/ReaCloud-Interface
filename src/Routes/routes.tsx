@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter,Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import HomePage from '../Pages/home'
 import LoginPage from '../Pages/login';
@@ -14,27 +14,36 @@ import SearchPage from '../Pages/search';
 import { PrivateRoute } from './privateRoutes';
 import { SetupGtm } from '../Services/setup-gtm';
 
-import { UserContextProvider } from '../Context/UserContext';
 import { ExtensionParamProvider } from '../Context/ExtensionParamContext';
 
 function Routes(){
     return(
         <BrowserRouter>
-            <UserContextProvider>
-                <Switch>
-                    <Route path='/' exact component={HomePage}/>
-                    <Route path='/entrar' exact component={LoginPage}/>
-                    <Route path='/ajuda' exact component={HelpPage}/>
-                    <Route path='/cadastrar' exact component={SignInPage}/>
-                    <Route path='/buscar' exact component={SearchPage}/>
-                    <Route path='/recurso/:id' exact component={ResourcePage}/>
-                    <ExtensionParamProvider>
-                        <PrivateRoute path='/publicar' exact component={PublishResource}/>
-                        <PrivateRoute path='/perfil' exact component={ProfilePage}/>
-                        <PrivateRoute path='/recurso/editar/:id' exact component={ModifyResource}/>
-                    </ExtensionParamProvider>
-                </Switch>
-            </UserContextProvider>
+            <Switch>
+                <Route path='/entrar'>
+                    <LoginPage/>
+                </Route>
+                <Route path='/ajuda'>
+                    <HelpPage/>
+                </Route>
+                <Route path='/cadastrar'>
+                    <SignInPage/>
+                </Route>
+                <Route path='/buscar'>
+                    <SearchPage />
+                </Route>
+                <Route path='/recurso/:id'>
+                    <ResourcePage/>
+                </Route>
+                <ExtensionParamProvider>
+                    <PrivateRoute path='/publicar' component={PublishResource}/>
+                    <PrivateRoute path='/perfil' component={ProfilePage}/>
+                    <PrivateRoute path='/recurso/editar/:id' component={ModifyResource}/>
+                </ExtensionParamProvider>
+                <Route path='*'>
+                    <HomePage/>
+                </Route>
+            </Switch>
             <SetupGtm/>
         </BrowserRouter>
     );

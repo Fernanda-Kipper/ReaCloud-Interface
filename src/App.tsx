@@ -6,6 +6,7 @@ import {
 } from 'react-query'
 
 import Routes from './Routes/routes'
+import { UserContextProvider } from './Context/UserContext';
 import './Styles/global.css'
 
 const queryClient = new QueryClient()
@@ -13,17 +14,19 @@ const queryClient = new QueryClient()
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <Routes/>
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        pauseOnHover
-      />
+      <UserContextProvider>
+        <Routes/>
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          pauseOnHover
+        />
+      </UserContextProvider>
     </QueryClientProvider>
   );
 }

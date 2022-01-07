@@ -9,7 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import { toast } from 'react-toastify';
 
 import '../Styles/components/savedUrls.css'
-import { useExtension, Material } from '../Services/hooks/useExtension';
+import { useExtension, Material } from '../hooks/useExtension';
 import { ExtensionParamContext } from '../Context/ExtensionParamContext';
 import { EXTENSION_URL } from '../config';
 

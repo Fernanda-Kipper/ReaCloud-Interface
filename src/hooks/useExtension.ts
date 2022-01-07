@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { EXTENSION_ID } from '../../config'
+import { EXTENSION_ID } from '../config'
 
 export interface Material {
   link: string,
