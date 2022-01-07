@@ -22,3 +22,28 @@
 
   justify-content: center;
 }
+
+.default-button-disabled{
+  text-decoration: none;
+  text-transform: capitalize;
+  font-weight: 500;
+  font-size: 1.2rem;
+
+  margin: 16px 0px;
+  padding: 16px;
+  border-radius: 2px;
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+
+  transition: 200ms;
+  cursor: not-allowed;
+  position: relative;
+
+  background-color: var(--gray-medium);
+  color: white;
+  border: 1px solid var(--gray-medium);
+
+  justify-content: center;
+}
