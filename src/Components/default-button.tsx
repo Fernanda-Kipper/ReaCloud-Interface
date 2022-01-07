@@ -5,12 +5,22 @@ import '../Styles/components/default-button.css';
 interface DefaultButtonProps {
   label: string,
   onClick?: MouseEventHandler<HTMLButtonElement>,
+  isDisabled?: boolean
 }
 
-export function DefaultButton({ label, onClick = ()=>{} } : DefaultButtonProps){
-    return(
-      <button className='default-button' type='submit' onClick={onClick}>
-        {label}
-      </button>
-   )
+export function DefaultButton(
+  { label, 
+    onClick = ()=>{}, 
+    isDisabled = false 
+  } : DefaultButtonProps
+  ){
+  return(
+    <button
+      className={`default-button${isDisabled ? '-disabled' : ''}`}
+      type='submit'
+      onClick={onClick}
+      disabled={isDisabled}>
+      {label}
+    </button>
+  )
 };
