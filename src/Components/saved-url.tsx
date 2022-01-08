@@ -63,12 +63,13 @@ export default function SavedUrls(){
 
     useEffect(()=>{
         if(error.state){
-            error.redirectOnClick ? toast.warn(error.message, {onClick: redirectToDownload})
-            : toast.error(error.message)
+            error.redirectOnClick
+                ? toast.warn(error.message, {onClick: redirectToDownload})
+                : toast.error(error.message)
         }
     },[error])
 
-    if(!data.length){
+    if(!data?.length){
         return(
             <div className="container">
                 <p className="description">
@@ -81,19 +82,19 @@ export default function SavedUrls(){
     return(
        <div className="container">
            <p className="description">Aqui estão os materiais que você salvou através da extensão do ReaCloud</p>
-           {data.map((element) => 
-            <Card className={classes.root}>
-            <CardContent>
-                <Typography className={classes.title}>
-                    {element.title? element.title : element.link.replace('https://', '')}
-                </Typography>
-            </CardContent>
-            <CardActions className={classes.actions}>
-                <Button size="small" color="default" onClick={() => {handlePublish(element)}}>Publicar</Button>
-                <Button size="small" color="secondary" onClick={() => {handleDelete(element.link)}}>Excluir</Button>
-            </CardActions>
-        </Card>
-           )}
+           {data?.map((element) => 
+                <Card className={classes.root}>
+                    <CardContent>
+                        <Typography className={classes.title}>
+                            {element.title? element.title : element.link.replace('https://', '')}
+                        </Typography>
+                    </CardContent>
+                    <CardActions className={classes.actions}>
+                        <Button size="small" color="default" onClick={() => {handlePublish(element)}}>Publicar</Button>
+                        <Button size="small" color="secondary" onClick={() => {handleDelete(element.link)}}>Excluir</Button>
+                    </CardActions>
+                </Card>
+            )}
        </div>
     )
 }

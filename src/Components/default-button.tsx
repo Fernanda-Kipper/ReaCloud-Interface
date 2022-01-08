@@ -12,8 +12,7 @@ export function DefaultButton(
   { label, 
     onClick = ()=>{}, 
     isDisabled = false 
-  } : DefaultButtonProps
-  ){
+  } : DefaultButtonProps ){
   return(
     <button
       className={`default-button${isDisabled ? '-disabled' : ''}`}

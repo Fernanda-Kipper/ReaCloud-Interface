@@ -2,7 +2,7 @@ import { useQuery } from 'react-query';
 import axios from '../Services/axiosConfig';
 
 interface UserData {
-  name: string,
+  name?: string,
 };
 
 async function  fetcher(): Promise<UserData> {
