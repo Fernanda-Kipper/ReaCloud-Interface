@@ -1,5 +1,6 @@
-import React, {useState, createContext, ReactNode, useEffect } from 'react'
-import { useUserData } from '../hooks/useUserData'
+import React, {useState, createContext, ReactNode, useEffect } from 'react';
+
+import { useUserData } from '../hooks/useUserData';
 
 interface UserContextData{
     name: string,
