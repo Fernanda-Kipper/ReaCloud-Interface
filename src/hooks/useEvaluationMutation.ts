@@ -13,13 +13,14 @@ async function mutator(id: string, formData: EvaluationFormPayload) {
   return data;
 };
 
-export function useEvaluationMutation(){
+export function useEvaluationMutation(successCallBack: () => void){
   const queryClient = useQueryClient()
   const { mutate, ...mutation } = useMutation(
     ({id, formData}: EvaluationMutate) => mutator(id, formData),
     {
       onSettled: () => {
-        queryClient.invalidateQueries(['evaluation'])
+        successCallBack()
+        queryClient.invalidateQueries(['evaluations'])
       }
     }
   )

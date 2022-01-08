@@ -1,10 +1,11 @@
 import Axios from 'axios';
 
 const axios = Axios.create({
-    baseURL: process.env.NODE_ENV === 'development' ? 'https://reacloud.herokuapp.com/' : process.env.REACT_APP_API_URL,
+    baseURL: 'http://localhost:3200',
     withCredentials: true,
     headers: {
         'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
     }
 })
 

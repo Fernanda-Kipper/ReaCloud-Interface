@@ -4,6 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import License from "../Interfaces/license";
 import Resource from "../Interfaces/resource";
 import { RESOURCE_FIELDS } from '../Constants/resource-fields';
+import '../Styles/components/resource-data.css';
 
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
@@ -71,8 +72,8 @@ export function ResourceData({ isLoading, resource, license }: Props){
   if(!isLoading && !resource) return <></>
 
   return(
-    <section className="data">
-      <div className="license">
+    <section className="resource-data">
+      <div className="resource-license">
           <GrStatusWarning/>
           <p>Esse recurso você pode: {license?.message}</p>
       </div>

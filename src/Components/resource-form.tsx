@@ -47,7 +47,7 @@ export function ResourceForm({ setIsLoading, setModal, isEdit = false } : Resour
   const { handleDelete } = useExtension()
   const params = useContext(ExtensionParamContext)
 
-  const [title, setTitle] = useState(params.title ? params.title : '')
+  const [title, setTitle] = useState(params.title ?? '')
   const [author, setAuthor] = useState('')
   const [type, setType] = useState('')
   const [license, setLicense] = useState('')
@@ -57,7 +57,7 @@ export function ResourceForm({ setIsLoading, setModal, isEdit = false } : Resour
   const [subject, setSubject] = useState('')
   const [keywords, setKeywords] = useState('')
   const [audience, setAudience] = useState('')
-  const [external_url, setUrl] = useState(params.link ? params.link : '')
+  const [external_url, setUrl] = useState(params.link ?? '')
   const [relation, setRelation] = useState('')
   const [contributor, setContributor] = useState('')
   const [publisher, setPublisher] = useState('')
@@ -147,7 +147,7 @@ export function ResourceForm({ setIsLoading, setModal, isEdit = false } : Resour
             setIsLoading(false)
             toast.success('Sucesso ao publicar recurso!')
             
-            if(params){
+            if(params.link){
               handleDelete(params.link)
             }
 

@@ -10,9 +10,8 @@ import { UserContext } from '../Context/UserContext';
 import { useLogout } from '../hooks/useLogout';
 
 function Header() {
-    const {value, name } = useContext(UserContext);
+    const { value, name } = useContext(UserContext);
     const { handleLogout } = useLogout();
-
 
     if(!value){
     return(

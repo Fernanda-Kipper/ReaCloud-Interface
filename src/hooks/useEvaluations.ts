@@ -10,7 +10,7 @@ async function  fetcher(id: string): Promise<EvaluationsPayload> {
 
 export function useEvaluations(resourceId: string){
   const { data, isLoading, isError } = useQuery(
-    ['average', resourceId],
+    ['evaluations', resourceId],
     () => fetcher(resourceId),
     {
       enabled: !!resourceId
@@ -18,9 +18,12 @@ export function useEvaluations(resourceId: string){
   )
 
   return {
-    data,
     isLoading,
-    isError
+    isError,
+    data: {
+      evaluations: data?.evaluations ?? [],
+      average: data?.average ?? 5
+    }
   }
 }
 

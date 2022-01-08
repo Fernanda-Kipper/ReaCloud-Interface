@@ -1,0 +1,29 @@
+.resource-data{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+  width: max(80%, 320px);
+  margin: 0 auto;
+}
+
+.resource-data .resource-license svg{
+  display: none;
+}
+
+.resource-data .resource-license{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gray-medium);
+  font-size: 1.2rem;
+  margin: 24px;
+}
+
+@media(min-width: 1000px){
+  .resource-data .resource-license svg{
+    font-size: 2rem;
+    display: block;
+  }
+}
