@@ -4,33 +4,21 @@ import { toast } from 'react-toastify';
 
 import LinkIcon from '@material-ui/icons/Link';
 import Paper from '@material-ui/core/Paper';
-import { makeStyles, withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
-import RateReviewIcon from '@material-ui/icons/RateReview';
 import StorageIcon from '@material-ui/icons/Storage';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import { GrStatusWarning } from 'react-icons/gr';
-
-import axios from '../Services/axiosConfig'
 
 import '../Styles/pages/resource.css'
 import 'react-toastify/dist/ReactToastify.css';
 
 import Header from '../Components/header';
 import EvaluationForm from '../Components/evaluation-form';
-import Resource from '../Interfaces/resource';
 import License from '../Interfaces/license';
 import ParameterPassedToUrl from '../Interfaces/parameter-id';
 import { EvaluationList } from '../Components/evaluation-list';
 import StyledRate from '../Components/styled-rating';
-import { RESOURCE_FIELDS } from '../Constants/resource-fields';
 import { ResourceData } from '../Components/resource-data';
 import When from '../Components/when';
 
@@ -50,19 +38,6 @@ const useStyles = makeStyles({
     }
 });
 
-const StyledTableCell = withStyles((theme) => ({
-    head: {
-      backgroundColor: '#ccc',
-      color: theme.palette.common.white,
-      fontWeight: 'bold',
-      fontSize: 18,
-      overflowX: 'auto'
-    },
-    body: {
-      fontSize: 16,
-      overflowX: 'auto'
-    },
-}))(TableCell);
   
 function ResourcePage() {
     const params: ParameterPassedToUrl = useParams();
@@ -90,7 +65,7 @@ function ResourcePage() {
 
     useEffect(() => {
         if(!isError) return
-        toast.warn('Não foi possivel carregar dados do recurso')
+        toast.warn('Não foi possível carregar dados do recurso')
     }, [isError])
     
   return (
