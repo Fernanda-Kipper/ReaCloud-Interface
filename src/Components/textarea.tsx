@@ -14,8 +14,16 @@ interface TextareaProps {
   tooltipText?: string,
 }
 
-export function Textarea({ name, placeholder = "", value, handleChange, isRequired = false, label, isDisabled , tooltipText }: TextareaProps){
-   return(
+export function Textarea({ 
+  name, 
+  placeholder = "", 
+  value, 
+  handleChange, 
+  isRequired = false, 
+  label, 
+  isDisabled , 
+  tooltipText }: TextareaProps){
+  return(
     <div className="textarea-wrapper">
       <Label name={name} label={label}  isRequired={isRequired} tooltipText={tooltipText}/>
       <textarea
@@ -26,5 +34,5 @@ export function Textarea({ name, placeholder = "", value, handleChange, isRequir
           disabled={isDisabled}
           />
     </div>
-   )
+  )
 }

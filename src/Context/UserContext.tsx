@@ -1,5 +1,6 @@
-import React, {useState, createContext, ReactNode, useEffect} from 'react'
-import { useUserData } from '../Services/hooks/useUserData'
+import React, {useState, createContext, ReactNode, useEffect } from 'react';
+
+import { useUserData } from '../hooks/useUserData';
 
 interface UserContextData{
     name: string,
@@ -18,7 +19,7 @@ export const UserContext = createContext({} as UserContextData)
 export function UserContextProvider({ children } : UserContextProps){
     const [value, setValue] = useState(false)
     const [name, setName] = useState("")
-    const { data, error  } = useUserData()
+    const { data, isError } = useUserData()
 
     const reset = () => {
         setValue(false)
@@ -26,11 +27,11 @@ export function UserContextProvider({ children } : UserContextProps){
     }
 
     useEffect(() =>{
-        if(data && !error){
+        if(data?.name && !isError){
             setName(data.name)
             setValue(true)
         }
-    }, [data, error])
+    }, [data, isError])
 
     return(
         <UserContext.Provider value={{

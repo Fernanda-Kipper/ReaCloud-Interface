@@ -1,0 +1,80 @@
+.rates{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #000;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.rates .rates-header {
+    width: 90%;
+    min-width: 350px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.rates .rates-header h2 {
+    font-size: 18px;
+}
+
+.rates h4{
+    font-size: 18px;
+    align-self: center;
+    margin: 20px 0;
+    font-weight: 400;
+}
+
+.rates .rate{
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    padding: 5px;
+    max-width: min(90%, 350px);
+}
+
+.rates .rate .header{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.rates .rate .header .profile {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    margin-right: 20px;
+}
+
+.rates .rate .header .profile h5 {
+    font-weight: bold;
+    margin: 5px;
+    margin-bottom: 0;
+    color: #000;
+}
+
+.rates .rate .header .profile h6{
+    font-weight: 400;
+    margin: 5px;
+    font-size: 12px;
+}
+
+.rates .rate p{
+    margin-top: 14px;
+    font-size: 18px;
+    text-indent: 3em;
+}
+
+.rates .rate .stars{
+    font-size: 18px;
+    text-indent: 4em;
+    margin: 5px;
+}
+
+.rates .rate .stars img{
+    width: 30px;
+    height: 30px;
+}

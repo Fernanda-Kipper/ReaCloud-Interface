@@ -12,11 +12,17 @@ const StyledRating = withStyles({
 
 interface RateProps{
     value: number
+    size?: 'large' | 'medium' | 'small'
 }
 
 function StyledRate(props: RateProps){
     return(
-        <StyledRating name="rate" value={props.value} icon={<SchoolIcon fontSize="large"/>} readOnly/>
+        <StyledRating 
+            name="rate" 
+            value={props.value} 
+            icon={<SchoolIcon fontSize={props.size ?? 'large'}/>} 
+            readOnly
+        />
     )
 }
 

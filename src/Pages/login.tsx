@@ -57,7 +57,7 @@ function LoginPage() {
         color='var(--purple-primary)'
         progress={progress}
         onLoaderFinished={() => setProgress(0)}></LoadingBar>
-      <main className="login-field">
+        <main className="login-field">
             <h1>Realize o Login</h1>
             <form onSubmit={handleLogin} className="login-form">
                 <DefaultInput

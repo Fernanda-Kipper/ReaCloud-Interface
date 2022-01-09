@@ -1,4 +1,4 @@
-export default interface Recurso{
+type Resource = {
     id: string,
     audience: string,
     author: string,
@@ -11,7 +11,7 @@ export default interface Recurso{
     keywords: string,
     language: string
     last_modification: string,
-    licence: string,
+    license: string,
     publisher: string,
     relation: string,
     subject: string,
@@ -24,3 +24,5 @@ export default interface Recurso{
     },
     video_link: string
 }
+
+export default Resource

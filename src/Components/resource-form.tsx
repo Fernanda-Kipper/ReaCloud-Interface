@@ -11,11 +11,11 @@ import { Textarea } from '../Components/textarea';
 import { SaveButton } from '../Components/save-button';
 
 import { ExtensionParamContext } from '../Context/ExtensionParamContext';
-import { useExtension } from '../Services/hooks/useExtension';
+import { useExtension } from '../hooks/useExtension';
 
 import subjects from '../Interfaces/subjects';
 import resourceTypes from '../Interfaces/resource-types';
-import licenceTypes from '../Interfaces/licence-types';
+import licenseTypes from '../Interfaces/license-types';
 import publicTypes from '../Interfaces/public-types';
 import formatTypes from '../Interfaces/format-types';
 import languages from '../Interfaces/languages';
@@ -47,17 +47,17 @@ export function ResourceForm({ setIsLoading, setModal, isEdit = false } : Resour
   const { handleDelete } = useExtension()
   const params = useContext(ExtensionParamContext)
 
-  const [title, setTitle] = useState(params.title ? params.title : '')
+  const [title, setTitle] = useState(params.title ?? '')
   const [author, setAuthor] = useState('')
   const [type, setType] = useState('')
-  const [licence, setLicence] = useState('')
+  const [license, setLicense] = useState('')
   const [language, setLanguage] = useState('')
   const [description, setDescription] = useState('')
   const [date_of_publishment, setDate] = useState('')
   const [subject, setSubject] = useState('')
   const [keywords, setKeywords] = useState('')
   const [audience, setAudience] = useState('')
-  const [external_url, setUrl] = useState(params.link ? params.link : '')
+  const [external_url, setUrl] = useState(params.link ?? '')
   const [relation, setRelation] = useState('')
   const [contributor, setContributor] = useState('')
   const [publisher, setPublisher] = useState('')
@@ -93,11 +93,11 @@ export function ResourceForm({ setIsLoading, setModal, isEdit = false } : Resour
             setDescription(response.data.description)
             setDescriptionRequirements(response.data.description_of_technical_requirements)
             setKeywords(response.data.keywords)
-            setLicence(response.data.licence)
+            setLicense(response.data.license)
             setLanguage(response.data.language)
             setDate(response.data.date_of_publishment)
-            setLicence(response.data.licence)
-            setLicence(response.data.licence)
+            setLicense(response.data.license)
+            setLicense(response.data.license)
             setTechnicalRequirements(response.data.technical_requirements)
             setVideoLink(response.data.video_link)
         })
@@ -125,7 +125,7 @@ export function ResourceForm({ setIsLoading, setModal, isEdit = false } : Resour
       dataForm.append('author', author)
       dataForm.append('type', type)
       dataForm.append('language', language)
-      dataForm.append('licence', licence)
+      dataForm.append('license', license)
       dataForm.append('description', description)
       dataForm.append('date_of_publishment', date_of_publishment)
       dataForm.append('subject', subject)
@@ -147,7 +147,7 @@ export function ResourceForm({ setIsLoading, setModal, isEdit = false } : Resour
             setIsLoading(false)
             toast.success('Sucesso ao publicar recurso!')
             
-            if(params){
+            if(params.link){
               handleDelete(params.link)
             }
 
@@ -273,10 +273,10 @@ export function ResourceForm({ setIsLoading, setModal, isEdit = false } : Resour
             <Select
               label="Licença"
               isRequired
-              value={licence}
-              handleChange={setLicence}
-              options={licenceTypes}
-              name="licence" />
+              value={license}
+              handleChange={setLicense}
+              options={licenseTypes}
+              name="license" />
 
             <DefaultInput
               label="Onde foi publicado o recurso?"

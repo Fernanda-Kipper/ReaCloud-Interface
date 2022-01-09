@@ -1,18 +1,18 @@
 import { useQuery } from 'react-query';
-import axios from '../axiosConfig';
+import axios from '../Services/axiosConfig';
 
 interface UserData {
-  name: string,
+  name?: string,
 };
 
-async function  getData(): Promise<UserData> {
+async function  fetcher(): Promise<UserData> {
   const { data } = await axios.get('/authentication')
 
   return data;
 };
 
 export function useUserData(){
-  return useQuery('user', () => getData(), {
+  return useQuery('user', fetcher, {
     staleTime: 1000 * 60
-})
+  })
 };

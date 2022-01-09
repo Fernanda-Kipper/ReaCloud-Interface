@@ -2,9 +2,9 @@ import { useContext } from 'react';
 import { toast } from 'react-toastify';
 import { AxiosResponse } from 'axios';
 
-import { UserContext } from '../../Context/UserContext';
-import axios from '../axiosConfig';
-import { Error } from '../../Interfaces/error';
+import { UserContext } from '../Context/UserContext';
+import axios from '../Services/axiosConfig';
+import { Error } from '../Interfaces/error';
 
 export function useLogout(){
   const { reset } = useContext(UserContext);

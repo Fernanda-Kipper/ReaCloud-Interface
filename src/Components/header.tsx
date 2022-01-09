@@ -7,12 +7,11 @@ import 'react-toastify/dist/ReactToastify.css';
 import '../Styles/components/header.css';
 
 import { UserContext } from '../Context/UserContext';
-import { useLogout } from '../Services/hooks/useLogout';
+import { useLogout } from '../hooks/useLogout';
 
 function Header() {
-    const {value, name } = useContext(UserContext);
+    const { value, name } = useContext(UserContext);
     const { handleLogout } = useLogout();
-
 
     if(!value){
     return(

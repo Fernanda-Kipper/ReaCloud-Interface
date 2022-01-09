@@ -1,4 +1,4 @@
-const licence = [
+const license = [
     {
         value: JSON.stringify({
             title: "Atribuição Não-Comercial Sem Derivações",
@@ -43,7 +43,7 @@ const licence = [
     }
 ]
 
-export default licence;
+export default license;
 
 
 
