@@ -1,9 +1,8 @@
 import React, { useState, FormEvent } from 'react';
 import { toast } from 'react-toastify';
-import ContentLoader from 'styled-content-loader';
 import { Link } from 'react-router-dom';
 import { BsSearch, BsFilter, BsArrowLeft } from 'react-icons/bs';
-import 'react-toastify/dist/ReactToastify.css';
+import { CircularProgress } from '@material-ui/core';
 
 import axios from '../Services/axiosConfig';
 
@@ -13,8 +12,10 @@ import resourceTypes from '../Interfaces/resource-types';
 import subjects from '../Interfaces/subjects';
 import Resource from '../Interfaces/resource';
 import publicTypes from '../Interfaces/public-types';
+import When from '../Components/when';
 
 import '../Styles/pages/search.css';
+import 'react-toastify/dist/ReactToastify.css';
 
 function SearchPage() {
     const [keyword,setKeyword] = useState('');
@@ -98,9 +99,7 @@ function SearchPage() {
                     </form>
                 </aside>
                 <section className="results">
-                    <ContentLoader
-                      isLoading={loading}
-                    >
+                    <When expr={results && !loading}>
                         {results.length > 0 ? (
                             <div className="result-container">
                                 {results.map((element) => (
@@ -112,9 +111,12 @@ function SearchPage() {
                                         image={element.image.url}>
                                     </ResourceCard>
                                 ))}
-                            </div>
-                        ): (<h2>Nenhum recurso bate com a sua busca</h2>)}
-                    </ContentLoader>
+                            </div>) 
+                        : (<h2>Nenhum recurso bate com a sua busca</h2>)}
+                    </When>
+                    <When expr={loading}>
+                        <CircularProgress color="primary" size={40} />
+                    </When>
                 </section>
             </main>
         </div>

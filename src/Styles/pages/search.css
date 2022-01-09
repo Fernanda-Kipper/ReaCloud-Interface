@@ -98,6 +98,7 @@
     align-items: center;
     justify-content: center;
     position: relative;
+    flex-grow: 1;
 }
 
 .search-content main .filter{

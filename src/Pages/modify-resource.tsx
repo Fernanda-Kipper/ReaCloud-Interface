@@ -3,9 +3,10 @@ import React, { useState } from 'react';
 import '../Styles/pages/modify.css'
 import 'react-toastify/dist/ReactToastify.css';
 
-import ContentLoader from 'styled-content-loader'
 import Header from '../Components/header'
 import { ResourceForm } from '../Components/resource-form';
+import When from '../Components/when';
+import { LoadingSpinnerWithTitle } from '../Components/loading-spinner-w-title';
 
 function ModifyResource() {
   const [isLoading, setIsLoading] = useState(false)
@@ -15,14 +16,12 @@ function ModifyResource() {
     <div className="modify-content">
       <Header></Header>
       <main>
-        {isModal ? (
+        <When expr={!isLoading}>
           <ResourceForm setIsLoading={setIsLoading} setModal={setModal} isEdit/>
-        )  : (
-          <ContentLoader isLoading={isLoading}>
-            <h2 style={{color: "var(--gray-strong)", fontSize: 18, fontWeight: 'normal'}}>Alterado com sucesso</h2>
-          </ContentLoader>
-        )
-        }
+        </When>
+        <When expr={isLoading}>
+          <LoadingSpinnerWithTitle title="Publicando seu recurso"/>
+        </When>
       </main>
     </div>
   );

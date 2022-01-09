@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import ContentLoader from 'styled-content-loader';
 
 import '../Styles/pages/publish.css';
 
 import Header from '../Components/header';
 import { ResourceForm } from '../Components/resource-form';
+import When from '../Components/when';
+import { LoadingSpinnerWithTitle } from '../Components/loading-spinner-w-title';
 
 function PublishResource() {
   const [isLoading, setIsLoading] = useState(false)
@@ -14,13 +15,12 @@ function PublishResource() {
     <div className="publish-content">
       <Header></Header>
         <main>
-          {!modalOn ? (
+          <When expr={!isLoading}>
             <ResourceForm setIsLoading={setIsLoading} setModal={setModal}/>
-          ): (
-            <ContentLoader isLoading={isLoading}>
-              <h2 style={{color: "var(--gray-strong)", fontSize: 18, fontWeight: 'normal'}}>Publicado com sucesso</h2>
-            </ContentLoader>
-          )}
+          </When>
+          <When expr={isLoading}>
+            <LoadingSpinnerWithTitle title="Publicando seu recurso"/>
+          </When>
         </main>
     </div>
   );

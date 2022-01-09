@@ -32,7 +32,6 @@
     "react-toastify": "^7.0.3",
     "react-top-loading-bar": "^2.1.0",
     "styled-components": "^5.2.1",
-    "styled-content-loader": "^1.2.2",
     "swr": "^0.5.5",
     "typescript": "^3.7.5",
     "universal-cookie": "^4.0.4"
