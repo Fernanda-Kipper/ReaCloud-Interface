@@ -27,6 +27,10 @@
   background-color: transparent;
 }
 
+.input-wrapper input.error{
+  border-bottom: 0.5px solid red;
+}
+
 @media(min-width: 900px){
   .input-wrapper{
     width: 380px;

@@ -1,4 +1,6 @@
-type Resource = {
+import { Licenses } from "../Constants/licenses"
+
+export type Resource = {
     id: string,
     audience: string,
     author: string,
@@ -9,13 +11,13 @@ type Resource = {
     external_url: string,
     format: string,
     keywords: string,
-    language: string
+    language:  string,
     last_modification: string,
-    license: string,
+    license: keyof typeof Licenses,
     publisher: string,
     relation: string,
     subject: string,
-    technical_requirements: number,
+    technical_requirements: boolean,
     title: string,
     type: string,
     userName: string,
@@ -25,4 +27,25 @@ type Resource = {
     video_link: string
 }
 
-export default Resource
+export type ResourceFormPayload = {
+    title: string,
+    author: string,
+    type: string,
+    language: string,
+    license:  keyof typeof Licenses,
+    description: string,
+    date_of_publishment: string,
+    subject: string,
+    keywords: string,
+    audience: string,
+    external_url: string,
+    relation: string,
+    contributor: string,
+    publisher: string,
+    format: string,
+    technical_requirements: boolean,
+    description_of_technical_requirements: string,
+    last_modification: string,
+    video: string,
+    file: File
+}

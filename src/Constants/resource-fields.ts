@@ -1,4 +1,4 @@
-import Resource from '../Interfaces/resource'
+import { Resource } from '../Interfaces/resource'
 
 export const RESOURCE_FIELDS = [
   {name:'Autor' , field: (data: Resource) => data?.author ?? '', property: 'dc.author'},

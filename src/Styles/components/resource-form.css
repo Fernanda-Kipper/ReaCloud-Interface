@@ -54,18 +54,6 @@
   justify-self: start;
 }
 
-.form-wrapper .section .help-cloud-host{
-  color: var(--gray-medium);
-  font-size: 1rem;
-  font-weight: 600;
-  max-width: 380px;
-}
-
-.form-wrapper .section .help-cloud-host a{
-  color: var(--purple-primary);
-  font-family: 'Montserrat', sans-serif;
-}
-
 .form-wrapper .section .section-title .arrow{
   background: url('../../Images/arrow.svg') no-repeat;
   background-size: 100%;
@@ -84,32 +72,6 @@
   align-self: end;
   justify-self: end;
   cursor: pointer;
-}
-
-
-.form-wrapper .section .upload-label{
-  border: 1px solid #ccc;
-  display: inline-block;
-  padding: 16px 8px;
-  min-height: 64px;
-  cursor: pointer;
-  width: 320px;
-  margin-top: 8px;
-  color: var(--gray-medium);
-  font-size: 0.8rem;
-  font-weight: 600;
-}
-
-.form-wrapper .section input[type="file" i]{
-  cursor: pointer;
-  font-size: 0.8rem;
-}
-
-.form-wrapper .section form{
-  align-items: center;
-  justify-content: center;
-  display: flex;
-  flex-direction: column;
 }
 
 @media(min-width: 900px){

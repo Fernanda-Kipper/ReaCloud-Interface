@@ -1,4 +1,4 @@
-const resourceTypes = [
+const resourceTypeOptions = [
   {value:"Video", label: "Video"},
   {value:"Livro", label: "Livro"},
   {value:"Podcast", label: "Podcast"},
@@ -13,4 +13,4 @@ const resourceTypes = [
   {value:"Website", label: "Website"},
 ]
 
-export default resourceTypes;
+export default resourceTypeOptions;

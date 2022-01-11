@@ -2,7 +2,7 @@ import React from "react";
 import { withStyles } from '@material-ui/core/styles';
 
 import License from "../Interfaces/license";
-import Resource from "../Interfaces/resource";
+import { Resource } from "../Interfaces/resource";
 import { RESOURCE_FIELDS } from '../Constants/resource-fields';
 import '../Styles/components/resource-data.css';
 

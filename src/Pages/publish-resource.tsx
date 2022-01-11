@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 
 import '../Styles/pages/publish.css';
 
@@ -6,17 +7,17 @@ import Header from '../Components/header';
 import { ResourceForm } from '../Components/resource-form';
 import When from '../Components/when';
 import { LoadingSpinnerWithTitle } from '../Components/loading-spinner-w-title';
+import { useResourceMutation } from '../hooks/useResourceMutation';
 
 function PublishResource() {
-  const [isLoading, setIsLoading] = useState(false)
-  const [modalOn, setModal] = useState(false)
+  const { postResource, isLoading, isError } = useResourceMutation()
 
   return (
     <div className="publish-content">
       <Header></Header>
         <main>
           <When expr={!isLoading}>
-            <ResourceForm setIsLoading={setIsLoading} setModal={setModal}/>
+            <ResourceForm submit={postResource}/>
           </When>
           <When expr={isLoading}>
             <LoadingSpinnerWithTitle title="Publicando seu recurso"/>

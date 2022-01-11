@@ -1,4 +1,4 @@
-const publicTypes = [
+const audienceOptions = [
   {label: "Ensino Infantil", value: "Ensino Infantil"},
   {label: "Ensino Fundamental", value: "Ensino Fundamental"},
   {label: "Ensino Médio", value: "Ensino Médio"},
@@ -7,4 +7,4 @@ const publicTypes = [
   {label: "Outro", value: "Outro"},
 ]
 
-export default publicTypes;
+export default audienceOptions;

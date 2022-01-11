@@ -7,11 +7,11 @@ import { CircularProgress } from '@material-ui/core';
 import axios from '../Services/axiosConfig';
 
 import ResourceCard from '../Components/resource-card';
-import { Select } from '../Components/select';
-import resourceTypes from '../Interfaces/resource-types';
-import subjects from '../Interfaces/subjects';
-import Resource from '../Interfaces/resource';
-import publicTypes from '../Interfaces/public-types';
+import { Select } from '../Components/form/select';
+import resourceTypeOptions from '../Constants/resource-type-options';
+import subjectsOptions from '../Constants/subjects';
+import { Resource } from '../Interfaces/resource';
+import audienceOptions from '../Constants/audience-options';
 import When from '../Components/when';
 
 import '../Styles/pages/search.css';
@@ -79,18 +79,18 @@ function SearchPage() {
                         value={audience}
                         handleChange={setAudience}
                         label="Público alvo"
-                        options={publicTypes}
+                        options={audienceOptions}
                         name="audience" />
 
                         <Select
-                        options={subjects}
+                        options={subjectsOptions}
                         label="Área do conhecimento"
                         name="subject"
                         value={subject}
                         handleChange={setSubject} />
 
                         <Select
-                        options={resourceTypes}
+                        options={resourceTypeOptions}
                         label="Tipo de material"
                         name="type"
                         value={type}

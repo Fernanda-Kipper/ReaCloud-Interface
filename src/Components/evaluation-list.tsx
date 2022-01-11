@@ -48,7 +48,7 @@ export function EvaluationList({ id, onClick }: Props){
             <When expr={isLoading}>
                 <LoadingEvaluation/>
             </When>
-            <When expr={data?.evaluations}>
+            <When expr={data?.evaluations.length}>
             {data?.evaluations?.map((item: Evaluation) => (
                 <div key={item.Id} className="rate">
                     <div className="header">
@@ -62,6 +62,9 @@ export function EvaluationList({ id, onClick }: Props){
                     <p>{item.Message}</p>
                 </div>
             ))}
+            </When>
+            <When expr={!data.evaluations.length && !isLoading}>
+                <h4>Que pena! Esse recurso ainda não possui avaliações, que tal avaliar?</h4>
             </When>
         </div>
     )

@@ -9,10 +9,10 @@ interface SaveButtonProps {
 }
 
 export function SaveButton({ label, onClick } : SaveButtonProps){
-    return(
-      <button type='submit' className='save-button' onClick={onClick}>
-        {label}
-        <BiSave/>
-      </button>
-   )
+  return(
+    <button type='submit' className='save-button' onClick={onClick}>
+      {label}
+      <BiSave/>
+    </button>
+  )
 }

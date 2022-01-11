@@ -12,13 +12,13 @@ import 'react-toastify/dist/ReactToastify.css';
 import ResourceItem from '../Components/resource-item';
 import Header from '../Components/header';
 import SavedUrls from '../Components/saved-url';
-import { DefaultInput } from '../Components/default-input';
-import { Select } from '../Components/select';
+import { TextInput } from '../Components/form/text-input';
+import { Select } from '../Components/form/select';
 import { SaveButton } from '../Components/save-button';
 
 import { UserContext } from '../Context/UserContext'
-import Resource from '../Interfaces/resource';
-import profileOptions from '../Interfaces/profile-options';
+import { Resource } from '../Interfaces/resource';
+import profileOptions from '../Constants/profile-options';
 
 const dashboardOptions = {
     userData : "userData",
@@ -111,9 +111,9 @@ function ProfilePage() {
                             ? <img src={picture_url} alt="Sua foto de perfil"/>
                             : <Avatar name={nameComplete} size="100%" style={{width: '300px', height: '150px'}}/>
                         }
-                        <DefaultInput value={picture_url} handleChange={setPicture} label="Link para sua foto" name="image"/>
-                        <DefaultInput value={email} isRequired label="Seu e-mail" name="email" isDisabled/>
-                        <DefaultInput value={nameComplete} isRequired label="Nome completo" name="name" handleChange={setName}/>
+                        <TextInput value={picture_url} handleChange={setPicture} label="Link para sua foto" name="image"/>
+                        <TextInput value={email} isRequired label="Seu e-mail" name="email" isDisabled/>
+                        <TextInput value={nameComplete} isRequired label="Nome completo" name="name" handleChange={setName}/>
                         <Select value={profile} handleChange={setProfile} isRequired label="Perfil acadêmico" name="academic-profile" options={profileOptions}/>
                         <SaveButton label="Salvar"/>
                     </form>

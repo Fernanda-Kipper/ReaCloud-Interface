@@ -9,6 +9,7 @@ import When from '../Components/when';
 import { LoadingSpinnerWithTitle } from '../Components/loading-spinner-w-title';
 
 function ModifyResource() {
+  const updateResource = () => {}
   const [isLoading, setIsLoading] = useState(false)
   const [isModal, setModal] = useState(true)
 
@@ -17,7 +18,7 @@ function ModifyResource() {
       <Header></Header>
       <main>
         <When expr={!isLoading}>
-          <ResourceForm setIsLoading={setIsLoading} setModal={setModal} isEdit/>
+          {/* <ResourceForm defaultValues={} submit={updateResource}/> */}
         </When>
         <When expr={isLoading}>
           <LoadingSpinnerWithTitle title="Publicando seu recurso"/>

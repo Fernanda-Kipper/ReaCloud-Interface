@@ -23,6 +23,10 @@
   background-color: transparent;
 }
 
+.select-wrapper select.error{
+  border-bottom: 0.5px solid red;
+}
+
 @media(min-width: 900px){
   .select-wrapper{
     width: 380px;

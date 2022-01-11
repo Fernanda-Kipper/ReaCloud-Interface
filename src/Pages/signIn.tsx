@@ -6,14 +6,14 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import {UserContext} from '../Context/UserContext';
 import axios from '../Services/axiosConfig';
-import profileOptions from '../Interfaces/profile-options';
+import profileOptions from '../Constants/profile-options';
 
 
 import '../Styles/pages/signin.css'
 
-import { DefaultInput } from '../Components/default-input';
+import { TextInput } from '../Components/form/text-input';
 import { DefaultButton } from '../Components/default-button';
-import { Select } from '../Components/select';
+import { Select } from '../Components/form/select';
 
 function SignInPage() {
 
@@ -65,10 +65,10 @@ function SignInPage() {
       <main className="signin-field">
             <h1>Realize seu cadastro</h1>
             <form onSubmit={handleLogin} className="signin-form">
-                <DefaultInput value={username} handleChange={setUsername} name="name" label="Seu nome completo"/>
-                <DefaultInput value={email} handleChange={setEmail} name="email" label="E-mail" type="email"/>
-                <DefaultInput value={password} handleChange={setPassword} name="password" label="Senha" type="password"/>
-                <DefaultInput value={url} handleChange={setUrl} name="url" label="Endereço na internet que aponta para sua foto de perfil" type="url"/>
+                <TextInput value={username} handleChange={setUsername} name="name" label="Seu nome completo"/>
+                <TextInput value={email} handleChange={setEmail} name="email" label="E-mail" type="email"/>
+                <TextInput value={password} handleChange={setPassword} name="password" label="Senha" type="password"/>
+                <TextInput value={url} handleChange={setUrl} name="url" label="Endereço na internet que aponta para sua foto de perfil" type="url"/>
                 <Select value={profile} handleChange={setProfile} isRequired label="Perfil acadêmico" name="academic-profile" options={profileOptions}/>
                 <DefaultButton label="Cadastrar-me"/>
             </form>

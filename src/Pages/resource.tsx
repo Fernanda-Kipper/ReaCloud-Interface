@@ -24,6 +24,7 @@ import When from '../Components/when';
 
 import { useResource } from '../hooks/useResource';
 import { useEvaluations } from '../hooks/useEvaluations';
+import { Licenses } from '../Constants/licenses';
 
 enum TabsType {
     'data',
@@ -59,7 +60,7 @@ function ResourcePage() {
 
     useEffect(() => {
         if(!resource) return
-        setLicense(JSON.parse(resource?.license))
+        setLicense(Licenses[resource.license] ?? '')
     }, [resource])
 
 

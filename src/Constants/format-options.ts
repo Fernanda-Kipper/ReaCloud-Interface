@@ -1,4 +1,4 @@
-const formatTypes = [
+const formatOptions = [
   { value: "CSV", label: ".CSV - Dados tabulares"},
   { value: "DOC", label: ".DOC - Microsoft word"},
   { value: "DOCX", label: ".DOCX - Microsoft word aberto xml"},
@@ -17,4 +17,4 @@ const formatTypes = [
   { value: "Outro", label: "Outro"},
 ]
 
-export default formatTypes;
+export default formatOptions;

@@ -24,6 +24,10 @@
   background-color: transparent;
 }
 
+.textarea-wrapper textarea.error{
+  border-bottom: 0.5px solid red;
+}
+
 @media(min-width: 900px){
   .textarea-wrapper{
     width: 380px;
