@@ -16,9 +16,9 @@
   cursor: pointer;
   position: relative;
 
-  background-color: var(--purple-primary);
+  background-color: var(--purple-medium);
   color: white;
-  border: 1px solid var(--purple-primary);
+  border: 1px solid var(--purple-medium);
 
   justify-content: center;
 }

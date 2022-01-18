@@ -12,12 +12,21 @@ import { MediaForm } from './resource-form/media-form';
 
 import "../Styles/components/resource-form.css";
 import { mountFormDefaultValues } from '../Utils/mount-resource-form-default-values';
+import { CollapsedSection } from './resource-form/collapsed-section';
+import When from './when';
 
 const formStates = {
   CONTENT: 'content',
   INTELLECTUAL: 'intelectual_property',
   INSTANTIATIONS: 'instantiations',
   MEDIA: 'media_files'
+}
+
+export interface FormCompleteList {
+  content: boolean,
+  intellectual: boolean,
+  instantiations: boolean,
+  media: boolean
 }
 
 interface Props {
@@ -27,7 +36,16 @@ interface Props {
 
 export function ResourceForm({ submit, defaultValues } : Props){
   const defaultFormValues = mountFormDefaultValues(defaultValues)
-
+  const [formState, setFormState] = useState({
+    current: '',
+    complete: {
+      content: false,
+      intellectual: false,
+      instantiations: false,
+      media: false
+    }
+  });
+  
   const form = useForm<ResourceFormPayload>({
     mode: 'all'
   })
@@ -35,15 +53,12 @@ export function ResourceForm({ submit, defaultValues } : Props){
   var date = new Date()
   var last_modification = date.getFullYear() +'-'+(date.getMonth()+1)+'-'+ date.getDate();
 
-  const [form1Done, setForm1Done] = useState(false)
-  const [form2Done, setForm2Done] = useState(false)
-  const [form3Done, setForm3Done] = useState(false)
-  const [form4Done, setForm4Done] = useState(false)
-
-  const [formState, setFormState] = useState('');
 
   const onSubmit = form.handleSubmit((values) => {
     const dataForm = new FormData();
+
+    // transform techcinal requirements on boolean
+    // check if has files
 
     console.log(values)
 
@@ -71,77 +86,116 @@ export function ResourceForm({ submit, defaultValues } : Props){
     // submit(dataForm)
   })
   
-  function handleOpenForm(state: string){
-    setFormState(state)
+  const handleOpenForm = (state: string) => {
+    setFormState(prevState => ({
+      current: state,
+      complete: {
+        ...prevState.complete
+      }
+    }))
+  }
+
+  const handleSubmitForms = (state: typeof formState.complete) => {
+    setFormState(prevState => ({
+      ...prevState,
+      complete: {
+        ...state
+      }
+    }))
   }
 
   return(
     <div className="form-wrapper">
+  
       <h1 className="title">Preencha as informações corretamente e contribua com a democratização do conhecimento.</h1>
-      <form className="form" onSubmit={onSubmit}>
+      
+      <div className="form">
         <div className="section">
-          <div className="section-title">
-            <h3>Contéudo</h3>
-            <span className={form1Done ? "check" : "arrow"} onClick={() => handleOpenForm(formStates.CONTENT)}></span>
-          </div>
+          <CollapsedSection 
+            title="Contéudo" 
+            isComplete={formState.complete.content} 
+            handleClick={handleOpenForm} 
+            section={formStates.CONTENT}
+          />
 
-          {formState === formStates.CONTENT &&
+          <When 
+            expr={formState.current === formStates.CONTENT 
+            && !formState.complete.content}
+          >
             <ContentForm 
               defaultValues={defaultFormValues.content} 
-              submitCallback={() => {}}
+              submitCallback={handleSubmitForms}
               form={form}
+              completeList={formState.complete}
             />
-          }  
+          </When>
         </div>
 
         <div className="section">
-          <div className="section-title">
-            <h3>Propriedade Intelectual</h3>
-            <span className={form2Done ? "check" : "arrow"} onClick={() => handleOpenForm(formStates.INTELLECTUAL)}></span>
-          </div>
-
-        {formState === formStates.INTELLECTUAL &&
-          <IntellectualPropertyForm
-            defaultValues={defaultFormValues.intelectual_property} 
-            submitCallback={() => {}}
-            form={form}
+          <CollapsedSection 
+            title="Propriedade Intelectual" 
+            isComplete={formState.complete.intellectual} 
+            handleClick={handleOpenForm} 
+            section={formStates.INTELLECTUAL}
           />
-        }
+
+          <When 
+            expr={formState.current === formStates.INTELLECTUAL 
+            && !formState.complete.intellectual}
+          >
+            <IntellectualPropertyForm
+              defaultValues={defaultFormValues.intelectual_property} 
+              submitCallback={handleSubmitForms}
+              form={form}
+              completeList={formState.complete}
+            />
+          </When>
         </div>
 
         <div className="section">
-
-          <div className="section-title">
-            <h3>Especificações</h3>
-            <span className={form3Done ? "check" : "arrow"} onClick={() => handleOpenForm(formStates.INSTANTIATIONS)}></span>
-          </div>
-
-          {formState === formStates.INSTANTIATIONS &&
-            <InstantiationsForm 
-              defaultValues={defaultFormValues.instantiations} 
-              submitCallback={() => {}}
-              form={form}
+          <CollapsedSection 
+              title="Especificações" 
+              isComplete={formState.complete.instantiations} 
+              handleClick={handleOpenForm} 
+              section={formStates.INSTANTIATIONS}
             />
-          }
+
+            <When
+              expr={formState.current === formStates.INSTANTIATIONS 
+                && !formState.complete.instantiations}
+            >
+              <InstantiationsForm 
+                defaultValues={defaultFormValues.instantiations} 
+                submitCallback={handleSubmitForms}
+                form={form}
+                completeList={formState.complete}
+              />
+            </When>
         </div>
 
         <div className="section" id="images">
-
-          <div className="section-title">
-              <h3>Mídias</h3>
-              <span className={form4Done ? "check" : "arrow"} onClick={() => handleOpenForm(formStates.MEDIA)}></span>
-            </div>
-
-        {formState === formStates.MEDIA &&
-          <MediaForm 
-            defaultValues={defaultFormValues.media} 
-            submitCallback={() => {}}
-            form={form}
+          <CollapsedSection 
+            title="Mídias" 
+            isComplete={formState.complete.media} 
+            handleClick={handleOpenForm} 
+            section={formStates.MEDIA}
           />
-        }
+
+          <When
+            expr={formState.current === formStates.MEDIA 
+            && !formState.complete.media}
+          >
+            <MediaForm 
+              defaultValues={defaultFormValues.media} 
+              submitCallback={handleSubmitForms}
+              form={form}
+              completeList={formState.complete}
+            />
+          </When>
         </div>
-      <SaveButton label="Publicar" />
-    </form>
+
+        <SaveButton label="Publicar" onClick={onSubmit}/>
+      </div>
     </div>
    )
 }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FormEvent } from 'react';
 import { UseFormReturn } from 'react-hook-form';
 
 import '../../Styles/components/default-form.css'
@@ -11,6 +11,7 @@ import { ResourceFormPayload } from '../../Interfaces/resource';
 import audienceOptions from '../../Constants/audience-options';
 import languages from '../../Constants/languages-options';
 import formatOptions from '../../Constants/format-options';
+import { FormCompleteList } from '../resource-form';
 
 const booleanOptions = [
   { value: 'true', label: "Sim"},
@@ -27,17 +28,27 @@ interface Props {
     technical_requirements?: boolean,
     description_of_technical_requirements?: string,
   },
-  submitCallback(values: Partial<ResourceFormPayload>): void
+  submitCallback(value: FormCompleteList): void
   form: UseFormReturn<ResourceFormPayload, object>
+  completeList: FormCompleteList
 }
 
-export function InstantiationsForm({ defaultValues, submitCallback, form }: Props){
-  const { control, handleSubmit, formState } = form
+export function InstantiationsForm(props: Props){
+  const { defaultValues, submitCallback, form, completeList } = props
+  const { control, formState } = form
 
-  const onSubmit = handleSubmit((values) => {
-    // transform technical_requirements into boolean
-    submitCallback(values)
-  })
+  const onSubmit = (event: FormEvent) => {
+    event.preventDefault()
+    submitCallback({ ...completeList, instantiations: true })
+  }
+
+  const isFormDisabled = !!formState.errors.date_of_publishment 
+  || !!formState.errors.audience 
+  || !!formState.errors.type
+  || !!formState.errors.language
+  || !!formState.errors.keywords
+  || !!formState.errors.format
+  || !!formState.errors.technical_requirements
 
   return(
     <form className='form-container' onSubmit={onSubmit}>
@@ -110,7 +121,7 @@ export function InstantiationsForm({ defaultValues, submitCallback, form }: Prop
         defaultValue={defaultValues?.description_of_technical_requirements}
       />
     
-      <DefaultButton label='Confirmar' isDisabled={!!formState.isDirty}/>
+      <DefaultButton label='Confirmar' isDisabled={isFormDisabled}/>
     </form>
   )
 }

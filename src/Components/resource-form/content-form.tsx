@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FormEvent } from 'react';
 import { UseFormReturn } from 'react-hook-form';
 
 import '../../Styles/components/default-form.css'
@@ -10,6 +10,7 @@ import { DefaultButton } from '../default-button';
 import subjectsOptions from '../../Constants/subjects';
 import resourceTypeOptions from '../../Constants/resource-type-options';
 import { ResourceFormPayload } from '../../Interfaces/resource';
+import { FormCompleteList } from '../resource-form';
 
 interface Props {
   defaultValues: {
@@ -20,16 +21,25 @@ interface Props {
     external_url?: string,
     relation?: string
   },
-  submitCallback(values: Partial<ResourceFormPayload>): void
+  submitCallback(value: FormCompleteList): void
   form: UseFormReturn<ResourceFormPayload, object>
+  completeList: FormCompleteList
 }
 
-export function ContentForm({ defaultValues, submitCallback, form }: Props){
-  const { control, handleSubmit, formState } = form
+export function ContentForm(props: Props){
+  const { defaultValues, submitCallback, form, completeList } = props
+  const { control, formState } = form
 
-  const onSubmit = handleSubmit((values) => {
-    submitCallback(values)
-  })
+  const onSubmit = (event: FormEvent) => {
+    event.preventDefault()
+    submitCallback({ ...completeList, content: true })
+  }
+
+  const isFormDisabled = !!formState.errors.title 
+    || !!formState.errors.subject 
+    || !!formState.errors.type
+    || !!formState.errors.description
+    || !!formState.errors.external_url
 
   return(
     <form className='form-container' onSubmit={onSubmit}>
@@ -90,7 +100,7 @@ export function ContentForm({ defaultValues, submitCallback, form }: Props){
       />
       <span className='help'><a href='/ajuda'>Nessa página</a> explicamos para você como hospedar seu recurso na nuvem</span>
     
-      <DefaultButton label='Confirmar' isDisabled={!!formState.isDirty}/>
+      <DefaultButton label='Confirmar' isDisabled={isFormDisabled}/>
     </form>
   )
 }

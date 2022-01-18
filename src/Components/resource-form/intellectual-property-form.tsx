@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FormEvent } from 'react';
 import { UseFormReturn } from 'react-hook-form';
 
 import '../../Styles/components/default-form.css'
@@ -9,6 +9,7 @@ import { DefaultButton } from '../default-button';
 import { ResourceFormPayload } from '../../Interfaces/resource';
 import { licenseOptions } from '../../Constants/licenses-options';
 import { Licenses } from '../../Constants/licenses';
+import { FormCompleteList } from '../resource-form';
 
 interface Props {
   defaultValues: {
@@ -17,16 +18,22 @@ interface Props {
     contributor?: string
     publisher?: string
   },
-  submitCallback(values: Partial<ResourceFormPayload>): void
+  submitCallback(value: FormCompleteList): void
   form: UseFormReturn<ResourceFormPayload, object>
+  completeList: FormCompleteList
 }
 
-export function IntellectualPropertyForm({ defaultValues, submitCallback, form }: Props){
-  const { control, handleSubmit, formState } = form
+export function IntellectualPropertyForm(props: Props){
+  const { defaultValues, submitCallback, form, completeList } = props
+  const { control, formState } = form
 
-  const onSubmit = handleSubmit((values) => {
-    submitCallback(values)
-  })
+  const onSubmit = (event: FormEvent) => {
+    event.preventDefault()
+    submitCallback({ ...completeList, intellectual: true })
+  }
+
+  const isFormDisabled = !!formState.errors.author 
+  || !!formState.errors.license 
 
   return(
     <form className='form-container' onSubmit={onSubmit}>
@@ -54,7 +61,7 @@ export function IntellectualPropertyForm({ defaultValues, submitCallback, form }
         label="Licença"
         name="license"
         isRequired
-        isError={!!formState.errors.author}
+        isError={!!formState.errors.license}
       />
 
       <ControlledInputText
@@ -66,7 +73,7 @@ export function IntellectualPropertyForm({ defaultValues, submitCallback, form }
         isRequired
       />
     
-      <DefaultButton label='Confirmar' isDisabled={!!formState.isDirty}/>
+      <DefaultButton label='Confirmar' isDisabled={isFormDisabled}/>
     </form>
   )
 }
