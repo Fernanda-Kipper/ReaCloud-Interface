@@ -43,7 +43,7 @@ export type ResourceFormPayload = {
     contributor: string,
     publisher: string,
     format: string,
-    technical_requirements: boolean,
+    technical_requirements: string,
     description_of_technical_requirements: string,
     last_modification: string,
     video: string,
