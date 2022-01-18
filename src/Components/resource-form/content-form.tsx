@@ -81,6 +81,7 @@ export function ContentForm(props: Props){
         isError={!!formState.errors.description}
       />
     
+      // TODO: transformar em um select, com dados da api, através do que o usuário digita
       <ControlledInputText
         label='Recurso Relacionado'
         name='relation'

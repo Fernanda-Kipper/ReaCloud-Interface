@@ -103,6 +103,7 @@ export function InstantiationsForm(props: Props){
         isError={!!formState.errors.format}
       />
       
+      // TODO: transformar em checkbox
       <ControlledSelect
         control={control}
         tooltipText="Este recurso precisa de uma estrutura específica para ser utilizado? Exemplo: precisa de computador com placa de video = SIM"
@@ -113,6 +114,7 @@ export function InstantiationsForm(props: Props){
         name="technical_requirements"
       />
 
+      // TODO: mostrar só se techinal requirements for true
       <ControlledTextarea
         label="Descrição dos pré-requisitos técnicos"
         tooltipText="Descreva com detalhes os pré-requisitos caso eles existam"

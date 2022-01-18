@@ -19,6 +19,7 @@ function PublishResource() {
     push('/erro')
   }, [isError])
 
+  // TODO: mostrar página de sucesso quando for publicado
   return (
     <div className="publish-content">
       <Header></Header>

@@ -13,11 +13,14 @@ function ModifyResource() {
   const [isLoading, setIsLoading] = useState(false)
   const [isModal, setModal] = useState(true)
 
+  // TODO: mandar para página de erro qnd falhar
+  // TODO: mostrar página de sucesso quando for publicado
   return (
     <div className="modify-content">
       <Header></Header>
       <main>
         <When expr={!isLoading}>
+          // TODO: ajustar formulário de edição
           {/* <ResourceForm defaultValues={} submit={updateResource}/> */}
         </When>
         <When expr={isLoading}>
