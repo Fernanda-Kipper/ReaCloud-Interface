@@ -97,7 +97,7 @@ export function ResourceForm({ submit, defaultValues } : Props){
 
   const handleSubmitForms = (state: typeof formState.complete) => {
     setFormState(prevState => ({
-      ...prevState,
+      current: '',
       complete: {
         ...state
       }
@@ -118,10 +118,7 @@ export function ResourceForm({ submit, defaultValues } : Props){
             section={formStates.CONTENT}
           />
 
-          <When 
-            expr={formState.current === formStates.CONTENT 
-            && !formState.complete.content}
-          >
+          <When expr={formState.current === formStates.CONTENT}>
             <ContentForm 
               defaultValues={defaultFormValues.content} 
               submitCallback={handleSubmitForms}
@@ -139,10 +136,7 @@ export function ResourceForm({ submit, defaultValues } : Props){
             section={formStates.INTELLECTUAL}
           />
 
-          <When 
-            expr={formState.current === formStates.INTELLECTUAL 
-            && !formState.complete.intellectual}
-          >
+          <When expr={formState.current === formStates.INTELLECTUAL}>
             <IntellectualPropertyForm
               defaultValues={defaultFormValues.intelectual_property} 
               submitCallback={handleSubmitForms}
@@ -160,10 +154,7 @@ export function ResourceForm({ submit, defaultValues } : Props){
               section={formStates.INSTANTIATIONS}
             />
 
-            <When
-              expr={formState.current === formStates.INSTANTIATIONS 
-                && !formState.complete.instantiations}
-            >
+            <When expr={formState.current === formStates.INSTANTIATIONS}>
               <InstantiationsForm 
                 defaultValues={defaultFormValues.instantiations} 
                 submitCallback={handleSubmitForms}
@@ -181,10 +172,7 @@ export function ResourceForm({ submit, defaultValues } : Props){
             section={formStates.MEDIA}
           />
 
-          <When
-            expr={formState.current === formStates.MEDIA 
-            && !formState.complete.media}
-          >
+          <When expr={formState.current === formStates.MEDIA}>
             <MediaForm 
               defaultValues={defaultFormValues.media} 
               submitCallback={handleSubmitForms}
