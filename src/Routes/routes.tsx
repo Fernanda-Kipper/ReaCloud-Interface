@@ -10,6 +10,7 @@ import ResourcePage from '../Pages/resource';
 import ModifyResource from '../Pages/modify-resource';
 import HelpPage from '../Pages/help';
 import SearchPage from '../Pages/search';
+import ErrorPage from '../Pages/error';
 
 import { PrivateRoute } from './privateRoutes';
 import { SetupGtm } from '../Services/setup-gtm';
@@ -36,6 +37,9 @@ function Routes(){
                     </Route>
                     <Route exact path='/recurso/:id'>
                         <ResourcePage/>
+                    </Route>
+                    <Route exact path='/erro'>
+                        <ErrorPage/>
                     </Route>
                     <Route exact path='/'>
                         <HomePage/>

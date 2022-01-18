@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import '../Styles/pages/publish.css';
 
@@ -11,6 +11,13 @@ import { useResourceMutation } from '../hooks/useResourceMutation';
 
 function PublishResource() {
   const { postResource, isLoading, isError } = useResourceMutation()
+  const { push } = useHistory()
+
+  useEffect(() => {
+    if(!isError) return 
+
+    push('/erro')
+  }, [isError])
 
   return (
     <div className="publish-content">

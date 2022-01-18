@@ -1,0 +1,41 @@
+.error-page-content {
+  width: 100%;
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.error-page-content .error-icon {
+  font-size: 40px;
+}
+
+.error-page-content h1, h2 {
+  color: var(--purple-medium);
+}
+
+.error-page-content h1 {
+  font-size: 2rem;
+  margin-bottom: 12px;
+}
+
+.error-page-content h2 {
+  font-size: 1.5rem;
+}
+
+.error-page-content button {
+  padding: 24px;
+  color: var(--purple-medium);
+  border: 2px solid var(--purple-medium);
+  background-color: transparent;
+  border-radius: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.error-page-content button:hover{
+  opacity: 1;
+}
