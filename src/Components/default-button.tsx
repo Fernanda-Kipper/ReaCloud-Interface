@@ -15,7 +15,7 @@ export function DefaultButton(
   } : DefaultButtonProps ){
   return(
     <button
-      className={`default-button${isDisabled ? '-disabled' : ''}`}
+      className="default-button"
       type='submit'
       onClick={onClick}
       disabled={isDisabled}>

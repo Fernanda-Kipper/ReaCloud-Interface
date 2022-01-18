@@ -23,7 +23,7 @@
   justify-content: center;
 }
 
-.default-button-disabled{
+.default-button[disabled]{
   text-decoration: none;
   text-transform: capitalize;
   font-weight: 500;

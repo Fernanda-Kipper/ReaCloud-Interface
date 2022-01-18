@@ -1,5 +1,5 @@
 import React, { ChangeEvent } from 'react';
-import { useForm } from 'react-hook-form';
+import { UseFormReturn } from 'react-hook-form';
 
 import '../../Styles/components/default-form.css'
 
@@ -13,10 +13,11 @@ interface Props {
     file?: File
   },
   submitCallback(values: Partial<ResourceFormPayload>): void
+  form: UseFormReturn<ResourceFormPayload, object>
 }
 
-export function MediaForm({ defaultValues, submitCallback }: Props){
-  const { control, handleSubmit, setValue } = useForm({defaultValues})
+export function MediaForm({ defaultValues, submitCallback, form }: Props){
+  const { control, handleSubmit, setValue, formState } = form
 
   const handleSelectedImages = (event: ChangeEvent<HTMLInputElement>) => {
     if(!event.target.files) return
@@ -45,8 +46,7 @@ export function MediaForm({ defaultValues, submitCallback }: Props){
         control={control}
         defaultValue={defaultValues?.video}
       />
-    
-      <DefaultButton label='Confirmar' />
+      <DefaultButton label='Confirmar' isDisabled={!!formState.isDirty}/>
     </form>
   )
 }

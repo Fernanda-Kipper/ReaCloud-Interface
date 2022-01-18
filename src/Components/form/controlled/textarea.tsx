@@ -7,7 +7,8 @@ import { Textarea } from '../textarea'
 export const ControlledTextarea = ({ 
   control, 
   defaultValue = "", 
-  name, label, 
+  name, 
+  label, 
   isRequired = false, 
   tooltipText= ""}: ResourceInputProps) => (
     <Controller
@@ -15,7 +16,7 @@ export const ControlledTextarea = ({
       name={name}
       defaultValue={defaultValue}
       rules={{
-        required: isRequired
+        required: isRequired ?? 'Campo obrigatório'
       }}
       render={({ field: { onChange, value } }) => (
         <Textarea

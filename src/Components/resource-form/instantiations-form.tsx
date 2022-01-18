@@ -1,5 +1,5 @@
 import React from 'react';
-import { useForm } from 'react-hook-form';
+import { UseFormReturn } from 'react-hook-form';
 
 import '../../Styles/components/default-form.css'
 
@@ -28,10 +28,11 @@ interface Props {
     description_of_technical_requirements?: string,
   },
   submitCallback(values: Partial<ResourceFormPayload>): void
+  form: UseFormReturn<ResourceFormPayload, object>
 }
 
-export function InstantiationsForm({ defaultValues, submitCallback }: Props){
-  const { control, handleSubmit, formState } = useForm({defaultValues})
+export function InstantiationsForm({ defaultValues, submitCallback, form }: Props){
+  const { control, handleSubmit, formState } = form
 
   const onSubmit = handleSubmit((values) => {
     // transform technical_requirements into boolean
@@ -109,7 +110,7 @@ export function InstantiationsForm({ defaultValues, submitCallback }: Props){
         defaultValue={defaultValues?.description_of_technical_requirements}
       />
     
-      <DefaultButton label='Confirmar' />
+      <DefaultButton label='Confirmar' isDisabled={!!formState.isDirty}/>
     </form>
   )
 }

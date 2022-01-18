@@ -21,7 +21,7 @@ export const ControlledInputText = ({
     name={name}
     defaultValue={defaultValue}
     rules={{
-      required: isRequired
+      required: isRequired ?? 'Campo obrigatório'
     }}
     render={({ field: { onChange, value } }) => (
       <TextInput

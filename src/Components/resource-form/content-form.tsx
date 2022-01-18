@@ -1,5 +1,5 @@
 import React from 'react';
-import { useForm } from 'react-hook-form';
+import { UseFormReturn } from 'react-hook-form';
 
 import '../../Styles/components/default-form.css'
 
@@ -21,10 +21,11 @@ interface Props {
     relation?: string
   },
   submitCallback(values: Partial<ResourceFormPayload>): void
+  form: UseFormReturn<ResourceFormPayload, object>
 }
 
-export function ContentForm({ defaultValues, submitCallback }: Props){
-  const { control, handleSubmit, formState } = useForm({defaultValues})
+export function ContentForm({ defaultValues, submitCallback, form }: Props){
+  const { control, handleSubmit, formState } = form
 
   const onSubmit = handleSubmit((values) => {
     submitCallback(values)
@@ -89,7 +90,7 @@ export function ContentForm({ defaultValues, submitCallback }: Props){
       />
       <span className='help'><a href='/ajuda'>Nessa página</a> explicamos para você como hospedar seu recurso na nuvem</span>
     
-      <DefaultButton label='Confirmar' />
+      <DefaultButton label='Confirmar' isDisabled={!!formState.isDirty}/>
     </form>
   )
 }

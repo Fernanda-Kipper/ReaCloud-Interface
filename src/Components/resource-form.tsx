@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { SaveButton } from '../Components/save-button';
-import { Resource } from '../Interfaces/resource';
+import { Resource, ResourceFormPayload } from '../Interfaces/resource';
 
 import { ContentForm } from './resource-form/content-form';
 import { IntellectualPropertyForm } from './resource-form/intellectual-property-form';
@@ -28,8 +28,8 @@ interface Props {
 export function ResourceForm({ submit, defaultValues } : Props){
   const defaultFormValues = mountFormDefaultValues(defaultValues)
 
-  const { control, handleSubmit, setValue } = useForm({
-    defaultValues,
+  const form = useForm<ResourceFormPayload>({
+    mode: 'all'
   })
 
   var date = new Date()
@@ -42,7 +42,7 @@ export function ResourceForm({ submit, defaultValues } : Props){
 
   const [formState, setFormState] = useState('');
 
-  const onSubmit = handleSubmit((values) => {
+  const onSubmit = form.handleSubmit((values) => {
     const dataForm = new FormData();
 
     console.log(values)
@@ -86,7 +86,11 @@ export function ResourceForm({ submit, defaultValues } : Props){
           </div>
 
           {formState === formStates.CONTENT &&
-            <ContentForm defaultValues={defaultFormValues.content} submitCallback={() => {}}/>
+            <ContentForm 
+              defaultValues={defaultFormValues.content} 
+              submitCallback={() => {}}
+              form={form}
+            />
           }  
         </div>
 
@@ -100,6 +104,7 @@ export function ResourceForm({ submit, defaultValues } : Props){
           <IntellectualPropertyForm
             defaultValues={defaultFormValues.intelectual_property} 
             submitCallback={() => {}}
+            form={form}
           />
         }
         </div>
@@ -115,6 +120,7 @@ export function ResourceForm({ submit, defaultValues } : Props){
             <InstantiationsForm 
               defaultValues={defaultFormValues.instantiations} 
               submitCallback={() => {}}
+              form={form}
             />
           }
         </div>
@@ -130,6 +136,7 @@ export function ResourceForm({ submit, defaultValues } : Props){
           <MediaForm 
             defaultValues={defaultFormValues.media} 
             submitCallback={() => {}}
+            form={form}
           />
         }
         </div>
