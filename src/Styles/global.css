@@ -3,8 +3,9 @@
     padding: 0;
     box-sizing: border-box;
 
-    --purple-light: #ACBFFA;
-    --purple-primary: #41539F;
+    --purple-light: #BDD6F9;
+    --purple-medium: #699CFF;
+    --purple-primary: #0E84E5;
 
     --gray-strong: #7d7d7d;
     --gray-medium: #afafaf;
