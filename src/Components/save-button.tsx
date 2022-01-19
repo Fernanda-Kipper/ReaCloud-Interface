@@ -1,7 +1,7 @@
 import React, { FormEvent } from 'react';
 import { BiSave } from 'react-icons/bi';
 
-import '../Styles/components/save-button.css';
+import '../Styles/components/secondary-button.css';
 
 interface SaveButtonProps {
   label: string,
@@ -10,7 +10,7 @@ interface SaveButtonProps {
 
 export function SaveButton({ label, onClick } : SaveButtonProps){
   return(
-    <button type='submit' className='save-button' onClick={onClick}>
+    <button type='submit' className='secondary-button' onClick={onClick}>
       {label}
       <BiSave/>
     </button>

@@ -75,7 +75,7 @@
 .home-content main .buttons .button{
     text-decoration: none;
     text-transform: capitalize;
-    font-weight: 500;
+    font-weight: bold;
     color: white;
     font-size: 1.2rem;
 
@@ -90,11 +90,15 @@
     transition: 200ms;
 
     position: relative;
+
+    border-radius: 12px;
+
+    opacity: 0.8;
 }
 
 .home-content main .buttons .button.save{
-    color: var(--purple-primary);
-    border: 1px solid var(--purple-primary);
+    color: var(--purple-medium);
+    border: 1.5px solid var(--purple-medium);
 
     justify-content: center;
 }
@@ -106,6 +110,10 @@
 
 .home-content main .buttons .button.search p{
     color:white;
+}
+
+.home-content main .buttons .button:hover{
+    opacity: 1;
 }
 
 @media(min-width: 1000px){
@@ -123,9 +131,5 @@
 
     .home-content main .buttons .button{
         padding: 24px;
-    }
-
-    .home-content main .buttons .button:hover{
-        box-shadow: 5px 5px 5px rgba(0,0,0,0.2);
     }
 }

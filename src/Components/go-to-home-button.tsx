@@ -2,7 +2,7 @@ import React from 'react';
 import { useHistory } from 'react-router';
 import { AiOutlineHome } from 'react-icons/ai';
 
-import '../Styles/components/go-to-home-button.css';
+import '../Styles/components/secondary-button.css';
 
 export function GoToHomeButton(){
   const { push } = useHistory()
@@ -14,7 +14,7 @@ export function GoToHomeButton(){
   return(
     <button 
       onClick={goToHome} 
-      className="go-to-home-button"
+      className="secondary-button"
     >
       ir para home
       <AiOutlineHome />

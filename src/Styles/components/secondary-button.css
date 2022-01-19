@@ -1,4 +1,4 @@
-.go-to-home-button {
+.secondary-button {
   padding: 24px;
   color: var(--purple-medium);
   border: 2px solid var(--purple-medium);
@@ -13,11 +13,11 @@
   justify-content: center;
 }
 
-.go-to-home-button:hover{
+.secondary-button:hover{
   opacity: 1;
 }
 
-.go-to-home-button svg {
+.secondary-button svg {
   color: var(--purple-medium);
   font-size: 1.2rem;
   margin-left: 8px;

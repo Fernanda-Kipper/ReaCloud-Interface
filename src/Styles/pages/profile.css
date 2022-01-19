@@ -64,9 +64,12 @@
     flex-direction: column;
     justify-items: center;
     align-items: center;
-    
-    width: 320px;
 }
+
+.profile-content main button{
+    width: 100%;
+}
+
 
 .profile-content main form img{
     border-radius: 20px;
