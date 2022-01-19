@@ -11,7 +11,7 @@
 
 .profile-content main{
     width: 100%;
-    position: absolute;
+    position: relative;
     top: 100px;
 
     display: flex;
