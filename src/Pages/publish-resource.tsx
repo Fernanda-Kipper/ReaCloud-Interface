@@ -10,16 +10,19 @@ import { LoadingSpinnerWithTitle } from '../Components/loading-spinner-w-title';
 import { useResourceMutation } from '../hooks/useResourceMutation';
 
 function PublishResource() {
-  const { postResource, isLoading, isError } = useResourceMutation()
+  const { postResource, isLoading, isError, isSuccess } = useResourceMutation()
   const { push } = useHistory()
 
   useEffect(() => {
     if(!isError) return 
-
     push('/erro')
   }, [isError])
 
-  // TODO: mostrar página de sucesso quando for publicado
+  useEffect(() => {
+    if(!isSuccess) return 
+    push('/sucesso')
+  }, [isSuccess])
+
   return (
     <div className="publish-content">
       <Header></Header>
