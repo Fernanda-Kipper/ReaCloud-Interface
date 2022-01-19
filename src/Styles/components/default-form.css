@@ -3,6 +3,7 @@
   justify-content: center;
   display: flex;
   flex-direction: column;
+  width: 300px;
 }
 
 .form-container input[type="file" i]{
