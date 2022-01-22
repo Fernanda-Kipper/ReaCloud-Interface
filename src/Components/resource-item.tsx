@@ -10,6 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import { toast } from 'react-toastify';
 
 import axios from '../Services/axiosConfig'
+import { FormatDate } from '../Utils/format-date';
 
 interface ResourceItemProps{
     title: string,
@@ -75,7 +76,7 @@ const ResourceItem: React.FunctionComponent< ResourceItemProps > = ({title,last_
             <Card className={classes.root}>
                 <CardContent onClick={handleClickResource}>
                     <Typography className={classes.title}>{ title }</Typography>
-                    <Typography className={classes.subtitle}>Última modificação: { last_modification }</Typography>
+                    <Typography className={classes.subtitle}>Última modificação: { FormatDate(last_modification) }</Typography>
                 </CardContent>
                 <CardActions>
                     <Button size="small" color="secondary" onClick={handleDelete}>Excluir</Button>

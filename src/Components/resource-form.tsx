@@ -50,12 +50,11 @@ export function ResourceForm({ submit, defaultValues } : Props){
     mode: 'all'
   })
 
-  var date = new Date()
-  var last_modification = date.getFullYear() +'-'+(date.getMonth()+1)+'-'+ date.getDate();
-
-
   const onSubmit = form.handleSubmit((values) => {
     const dataForm = new FormData();
+
+    const today = new Date()
+    const last_modification =  today.getFullYear()+'-'+(today.getMonth() + 1)+'-'+today.getDate();
 
     dataForm.append('title', values.title)
     dataForm.append('author', values.author)
