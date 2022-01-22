@@ -21,12 +21,12 @@ function ModifyResource() {
   useEffect(() => {
     if(!putError && !dataError) return 
     push('/erro')
-  }, [putError, dataError])
+  }, [putError, dataError, push])
 
   useEffect(() => {
     if(!isSuccess) return 
     push('/sucesso')
-  }, [isSuccess])
+  }, [isSuccess, push])
 
   const onSubmit = (data: FormData) => {
     putResource(data, paramsUrl.id)

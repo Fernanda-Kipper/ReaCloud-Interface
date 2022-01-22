@@ -16,12 +16,12 @@ function PublishResource() {
   useEffect(() => {
     if(!isError) return 
     push('/erro')
-  }, [isError])
+  }, [isError, push])
 
   useEffect(() => {
     if(!isSuccess) return 
     push('/sucesso')
-  }, [isSuccess])
+  }, [isSuccess, push])
 
   return (
     <div className="publish-content">

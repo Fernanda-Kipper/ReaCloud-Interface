@@ -25,7 +25,6 @@ import { useEvaluations } from '../hooks/useEvaluations';
 import { Licenses } from '../Constants/licenses';
 import License from '../Interfaces/license';
 import ParameterPassedToUrl from '../Interfaces/parameter-id';
-import { Resource } from '../Interfaces/resource';
 
 enum TabsType {
     'data',
