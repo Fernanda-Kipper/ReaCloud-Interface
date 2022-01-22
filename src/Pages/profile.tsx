@@ -1,30 +1,20 @@
 import React, { FormEvent, useState, useEffect, useContext } from 'react';
 import { toast } from 'react-toastify';
 import axios from '../Services/axiosConfig';
-import { CgProfile } from "react-icons/cg";
-import { BiExtension, BiArchive } from "react-icons/bi";
 import LoadingBar from 'react-top-loading-bar';
 import Avatar from 'react-avatar';
 
 import '../Styles/pages/profile.css';
 import 'react-toastify/dist/ReactToastify.css';
 
-import ResourceItem from '../Components/resource-item';
 import Header from '../Components/header';
-import SavedUrls from '../Components/saved-url';
 import { TextInput } from '../Components/form/text-input';
 import { Select } from '../Components/form/select';
 import { SaveButton } from '../Components/save-button';
 
 import { UserContext } from '../Context/UserContext'
-import { Resource } from '../Interfaces/resource';
 import profileOptions from '../Constants/profile-options';
 
-const dashboardOptions = {
-    userData : "userData",
-    publishedResources: "publishedResources",
-    extension: "extension"
-}
 
 function ProfilePage() {
     const [progress, setProgress] = useState(0)
@@ -33,17 +23,8 @@ function ProfilePage() {
     const [picture_url, setPicture] = useState("")
     const [profile, setProfile] = useState("")
     const [email, setEmail] = useState("")
-    const [userResources, setUserResources] = useState([])
 
     const {name,setName} = useContext(UserContext)
-
-    const [dashboardView, setDashboardView] = useState(dashboardOptions.userData)
-
-    const [resourcesChanged, setResourcesChanged] = useState(false)
-
-    function handleChangeView(view: string){
-        setDashboardView(view)
-    }
 
     function handleSubmit(event: FormEvent){
         event.preventDefault()
@@ -77,13 +58,10 @@ function ProfilePage() {
                 setProfile(response.data[0].profile)
                 setPicture(response.data[0].picture_url)
             })
-            axios.get('/profile/myResources').then(response =>{
-                setUserResources(response.data)
-            })
         }catch(err){
             toast.error("Erro ao validar o perfil, faça o login novamente")
         }
-    }, [name,resourcesChanged])
+    }, [name])
 
     return (
         <div className="profile-content">
@@ -93,49 +71,17 @@ function ProfilePage() {
                 onLoaderFinished={() => setProgress(0)}></LoadingBar>
             <Header></Header>
             <main>
-                <aside>
-                    <nav onClick={()=> handleChangeView(dashboardOptions.userData)}>
-                        <CgProfile/>
-                    </nav>
-                    <nav onClick={()=> handleChangeView(dashboardOptions.extension)}>
-                        <BiExtension/>
-                    </nav>
-                    <nav onClick={()=> handleChangeView(dashboardOptions.publishedResources)}>
-                        <BiArchive/>
-                    </nav>
-                </aside>
-
-                {dashboardView === dashboardOptions.userData &&
-                    <form onSubmit={handleSubmit}>
-                        {picture_url 
-                            ? <img src={picture_url} alt="Sua foto de perfil"/>
-                            : <Avatar name={nameComplete} size="100%" style={{width: '300px', height: '150px'}}/>
-                        }
-                        <TextInput value={picture_url} handleChange={setPicture} label="Link para sua foto" name="image"/>
-                        <TextInput value={email} isRequired label="Seu e-mail" name="email" isDisabled/>
-                        <TextInput value={nameComplete} isRequired label="Nome completo" name="name" handleChange={setName}/>
-                        <Select value={profile} handleChange={setProfile} isRequired label="Perfil acadêmico" name="academic-profile" options={profileOptions}/>
-                        <SaveButton label="Salvar"/>
-                    </form>
-                }
-                { dashboardView === dashboardOptions.publishedResources &&
-                <>
-                    <p className="description">Aqui estão os recursos que você publicou no repositório</p>
-                    <ul className="Recursos">
-                        {userResources.map((item: Resource)=>{
-                            return(
-                                <ResourceItem 
-                                title={item.title} 
-                                last_modification={item.last_modification} 
-                                id={item.id}
-                                changed={setResourcesChanged}
-                                key={item.id}>
-                                </ResourceItem>
-                            )
-                        })}
-                    </ul>
-                </>}
-                { dashboardView === dashboardOptions.extension && <SavedUrls/> }
+                <form onSubmit={handleSubmit}>
+                    {picture_url 
+                        ? <img src={picture_url} alt="Sua foto de perfil"/>
+                        : <Avatar name={nameComplete} size="100%" style={{width: '300px', height: '150px'}}/>
+                    }
+                    <TextInput value={picture_url} handleChange={setPicture} label="Link para sua foto" name="image"/>
+                    <TextInput value={email} isRequired label="Seu e-mail" name="email" isDisabled/>
+                    <TextInput value={nameComplete} isRequired label="Nome completo" name="name" handleChange={setName}/>
+                    <Select value={profile} handleChange={setProfile} isRequired label="Perfil acadêmico" name="academic-profile" options={profileOptions}/>
+                    <SaveButton label="Salvar"/>
+                </form>
             </main>
         </div>
     );
