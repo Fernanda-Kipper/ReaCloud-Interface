@@ -11,7 +11,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import { DefaultButton } from './default-button';
 import { Modal } from './modal'
-import { Textarea } from './textarea';
+import { Textarea } from './form/textarea';
 import { useEvaluationMutation } from '../hooks/useEvaluationMutation';
 
 interface Props{

@@ -1,5 +1,5 @@
 import { useQuery } from 'react-query'
-import Resource from '../Interfaces/resource';
+import { Resource } from '../Interfaces/resource';
 import axios from '../Services/axiosConfig';
 
 async function  fetcher(id: string): Promise<Resource> {

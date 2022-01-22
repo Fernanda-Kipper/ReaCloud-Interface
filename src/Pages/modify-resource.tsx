@@ -1,28 +1,50 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
+import { useParams, useHistory } from 'react-router';
 
-import '../Styles/pages/modify.css'
+import '../Styles/pages/modify.css';
 import 'react-toastify/dist/ReactToastify.css';
 
-import ContentLoader from 'styled-content-loader'
-import Header from '../Components/header'
+import Header from '../Components/header';
 import { ResourceForm } from '../Components/resource-form';
+import When from '../Components/when';
+import { LoadingSpinnerWithTitle } from '../Components/loading-spinner-w-title';
+import { useResource } from '../hooks/useResource';
+import { usePutResource } from '../hooks/usePutResource'
+import ParameterPassedToUrl from '../Interfaces/parameter-id';
 
 function ModifyResource() {
-  const [isLoading, setIsLoading] = useState(false)
-  const [isModal, setModal] = useState(true)
+  const paramsUrl: ParameterPassedToUrl = useParams();
+  const { data, isError: dataError, isLoading: dataLoading } = useResource(paramsUrl.id)
+  const { putResource, isError: putError, isLoading: putLoading, isSuccess } = usePutResource()
+  const { push } = useHistory()
+
+  useEffect(() => {
+    if(!putError && !dataError) return 
+    push('/erro')
+  }, [putError, dataError, push])
+
+  useEffect(() => {
+    if(!isSuccess) return 
+    push('/sucesso')
+  }, [isSuccess, push])
+
+  const onSubmit = (data: FormData) => {
+    putResource(data, paramsUrl.id)
+  }
 
   return (
     <div className="modify-content">
       <Header></Header>
       <main>
-        {isModal ? (
-          <ResourceForm setIsLoading={setIsLoading} setModal={setModal} isEdit/>
-        )  : (
-          <ContentLoader isLoading={isLoading}>
-            <h2 style={{color: "var(--gray-strong)", fontSize: 18, fontWeight: 'normal'}}>Alterado com sucesso</h2>
-          </ContentLoader>
-        )
-        }
+        <When expr={!dataLoading && !putLoading}>
+          <ResourceForm defaultValues={data} submit={onSubmit}/>
+        </When>
+        <When expr={dataLoading}>
+          <LoadingSpinnerWithTitle title="Carregando dados do recurso"/>
+        </When>
+        <When expr={putLoading}>
+          <LoadingSpinnerWithTitle title="Atualizando o recurso"/>
+        </When>
       </main>
     </div>
   );

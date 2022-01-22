@@ -3,7 +3,8 @@
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  width: 340px;
+  width: 100%;
+  min-width: 200px;
 }
 
 .select-wrapper select{
@@ -21,6 +22,10 @@
   padding: 12px;
   align-self: center;
   background-color: transparent;
+}
+
+.select-wrapper select.error{
+  border-bottom: 0.5px solid red;
 }
 
 @media(min-width: 900px){

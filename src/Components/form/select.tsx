@@ -1,9 +1,9 @@
 import React from 'react';
 
-import '../Styles/components/select.css';
-import { Label } from './label';
+import '../../Styles/components/select.css';
+import { Label } from '../label';
 
-interface Option {
+export interface Option {
   label: string,
   value: string | number,
 }
@@ -16,20 +16,33 @@ interface SelectProps {
   isRequired?: boolean,
   label: string,
   tooltipText?: string,
+  isError?: boolean
 }
 
-export function Select({name, value, handleChange, isRequired = false, label, options, tooltipText}: SelectProps){
-   return(
-       <div className="select-wrapper">
+export function Select({
+  name, 
+  value, 
+  handleChange, 
+  isRequired = false, 
+  label, 
+  options, 
+  tooltipText,
+  isError = false}: SelectProps){
+    return(
+      <div className="select-wrapper">
         <Label name={name} label={label}  isRequired={isRequired} tooltipText={tooltipText}/>
-        <select required={isRequired} value={value} onChange={e => handleChange(e.target.value)}>
+        <select 
+          required={isRequired} value={value} 
+          onChange={e => handleChange(e.target.value)} 
+          className={isError ? 'error' : ''}
+        >
             <option value="" disabled selected hidden>Selecione</option>
             {options.map(item => (
-              <React.Fragment key={item.value}>
+              <React.Fragment key={item.label}>
                 <option value={item.value}>{item.label}</option>
               </React.Fragment>
             ))}
         </select>
-       </div>
-   )
+      </div>
+    )
 }

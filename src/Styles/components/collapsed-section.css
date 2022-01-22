@@ -1,0 +1,32 @@
+.collapsed-section{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-width: 300px;
+}
+
+.collapsed-section .section-title{
+  color:  var(--gray-medium);
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 500;
+  justify-self: start;
+  line-height: 40px;
+}
+
+.collapsed-section .collapse-button {
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+  width: 40px;
+}
+
+@media(min-width: 900px){
+  .collapsed-section{
+    min-width: 420px;
+  }
+
+  .collapsed-section .section-title{
+    font-size: 1.4rem;
+  }
+}

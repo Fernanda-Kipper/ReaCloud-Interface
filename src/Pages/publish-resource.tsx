@@ -1,26 +1,38 @@
-import React, { useState } from 'react';
-import ContentLoader from 'styled-content-loader';
+import React, { useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import '../Styles/pages/publish.css';
 
 import Header from '../Components/header';
 import { ResourceForm } from '../Components/resource-form';
+import When from '../Components/when';
+import { LoadingSpinnerWithTitle } from '../Components/loading-spinner-w-title';
+import { useResourceMutation } from '../hooks/useResourceMutation';
 
 function PublishResource() {
-  const [isLoading, setIsLoading] = useState(false)
-  const [modalOn, setModal] = useState(false)
+  const { postResource, isLoading, isError, isSuccess } = useResourceMutation()
+  const { push } = useHistory()
+
+  useEffect(() => {
+    if(!isError) return 
+    push('/erro')
+  }, [isError, push])
+
+  useEffect(() => {
+    if(!isSuccess) return 
+    push('/sucesso')
+  }, [isSuccess, push])
 
   return (
     <div className="publish-content">
       <Header></Header>
         <main>
-          {!modalOn ? (
-            <ResourceForm setIsLoading={setIsLoading} setModal={setModal}/>
-          ): (
-            <ContentLoader isLoading={isLoading}>
-              <h2 style={{color: "var(--gray-strong)", fontSize: 18, fontWeight: 'normal'}}>Publicado com sucesso</h2>
-            </ContentLoader>
-          )}
+          <When expr={!isLoading}>
+            <ResourceForm submit={postResource}/>
+          </When>
+          <When expr={isLoading}>
+            <LoadingSpinnerWithTitle title="Publicando seu recurso"/>
+          </When>
         </main>
     </div>
   );

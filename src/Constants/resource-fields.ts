@@ -1,4 +1,4 @@
-import Resource from '../Interfaces/resource'
+import { Resource } from '../Interfaces/resource'
 
 export const RESOURCE_FIELDS = [
   {name:'Autor' , field: (data: Resource) => data?.author ?? '', property: 'dc.author'},
@@ -15,5 +15,5 @@ export const RESOURCE_FIELDS = [
   {name:'Linguagem' , field: (resource: Resource) => resource?.language ?? '', property: 'dc.language'},
   {name:'Contribuidores do recurso' , field: (resource: Resource) => resource?.contributor ?? '', property: 'dc.contributor'},
   {name:'Local que o recurso foi publicado' , field: (resource: Resource) => resource?.publisher ?? '', property: 'dc.publisher'},
-  {name:'Pré-requisitos técnicos' , field: (resource: Resource) => resource?.technical_requirements ?? '', property: 'dc.technical_requirements'},
+  {name:'Pré-requisitos técnicos' , field: (resource: Resource) => resource?.technical_requirements === true ? 'Sim' : 'Não', property: 'dc.technical_requirements'},
 ]

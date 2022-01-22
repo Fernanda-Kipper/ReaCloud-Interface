@@ -9,7 +9,7 @@ import LoadingBar from 'react-top-loading-bar'
 
 import { UserContext } from '../Context/UserContext';
 import { toast } from 'react-toastify';
-import { DefaultInput } from '../Components/default-input';
+import { TextInput } from '../Components/form/text-input';
 import { DefaultButton } from '../Components/default-button';
 
 
@@ -60,14 +60,14 @@ function LoginPage() {
         <main className="login-field">
             <h1>Realize o Login</h1>
             <form onSubmit={handleLogin} className="login-form">
-                <DefaultInput
+                <TextInput
                   value={email}
                   handleChange={setEmail}
                   name="email"
                   label="E-mail"
                   isRequired />
 
-                <DefaultInput
+                <TextInput
                   value={password}
                   handleChange={setPassword}
                   name="password"

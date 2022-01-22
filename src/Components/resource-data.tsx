@@ -2,7 +2,7 @@ import React from "react";
 import { withStyles } from '@material-ui/core/styles';
 
 import License from "../Interfaces/license";
-import Resource from "../Interfaces/resource";
+import { Resource } from "../Interfaces/resource";
 import { RESOURCE_FIELDS } from '../Constants/resource-fields';
 import '../Styles/components/resource-data.css';
 
@@ -62,7 +62,7 @@ const TableContent = ({ resource, license }: Content) => (
     <TableRow>
       <StyledTableCell>Descrição dos pré-requisitos técnicos</StyledTableCell>
       <StyledTableCell>{resource?.description_of_technical_requirements}</StyledTableCell>
-      <StyledTableCell>não possui</StyledTableCell>
+      <StyledTableCell>description_of_technical_requirements</StyledTableCell>
     </TableRow>                                
     )}
   </TableBody>

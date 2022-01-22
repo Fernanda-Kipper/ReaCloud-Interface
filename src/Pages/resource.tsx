@@ -15,8 +15,6 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import Header from '../Components/header';
 import EvaluationForm from '../Components/evaluation-form';
-import License from '../Interfaces/license';
-import ParameterPassedToUrl from '../Interfaces/parameter-id';
 import { EvaluationList } from '../Components/evaluation-list';
 import StyledRate from '../Components/styled-rating';
 import { ResourceData } from '../Components/resource-data';
@@ -24,6 +22,9 @@ import When from '../Components/when';
 
 import { useResource } from '../hooks/useResource';
 import { useEvaluations } from '../hooks/useEvaluations';
+import { Licenses } from '../Constants/licenses';
+import License from '../Interfaces/license';
+import ParameterPassedToUrl from '../Interfaces/parameter-id';
 
 enum TabsType {
     'data',
@@ -59,7 +60,7 @@ function ResourcePage() {
 
     useEffect(() => {
         if(!resource) return
-        setLicense(JSON.parse(resource?.license))
+        setLicense(Licenses[resource?.license] ?? '')
     }, [resource])
 
 
@@ -83,7 +84,7 @@ function ResourcePage() {
                 <StyledRate value={evaluations?.average} size='small'/>
             </section>
             <div className="media">
-                <img src={resource?.image.url} alt={`Imagem do recurso ${resource?.title}`}/>
+                <img src={resource?.image.url ?? ''} alt={`Imagem do recurso ${resource?.title}`}/>
                 { resource?.video_link ? <iframe title="video" src={resource?.video_link.replace('watch?v=', 'embed/')} frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe> : null}
             </div>
             <Paper square className={classes.root}>

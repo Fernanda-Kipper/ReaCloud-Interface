@@ -10,6 +10,8 @@ import ResourcePage from '../Pages/resource';
 import ModifyResource from '../Pages/modify-resource';
 import HelpPage from '../Pages/help';
 import SearchPage from '../Pages/search';
+import ErrorPage from '../Pages/error';
+import SuccessPage from '../Pages/success';
 
 import { PrivateRoute } from './privateRoutes';
 import { SetupGtm } from '../Services/setup-gtm';
@@ -22,20 +24,26 @@ function Routes(){
         <BrowserRouter>
             <UserContextProvider>
                 <Switch>
-                    <Route path='/entrar'>
+                    <Route exact path='/entrar'>
                         <LoginPage/>
                     </Route>
-                    <Route path='/ajuda'>
+                    <Route exact path='/ajuda'>
                         <HelpPage/>
                     </Route>
-                    <Route path='/cadastrar'>
+                    <Route exact path='/cadastrar'>
                         <SignInPage/>
                     </Route>
-                    <Route path='/buscar'>
+                    <Route exact path='/buscar'>
                         <SearchPage />
                     </Route>
-                    <Route path='/recurso/:id'>
+                    <Route exact path='/recurso/:id'>
                         <ResourcePage/>
+                    </Route>
+                    <Route exact path='/erro'>
+                        <ErrorPage/>
+                    </Route>
+                    <Route exact path='/sucesso'>
+                        <SuccessPage/>
                     </Route>
                     <Route exact path='/'>
                         <HomePage/>

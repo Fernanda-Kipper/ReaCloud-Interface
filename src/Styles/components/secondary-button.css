@@ -1,0 +1,24 @@
+.secondary-button {
+  padding: 24px;
+  color: var(--purple-medium);
+  border: 2px solid var(--purple-medium);
+  background-color: transparent;
+  border-radius: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  opacity: 0.8;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.secondary-button:hover{
+  opacity: 1;
+}
+
+.secondary-button svg {
+  color: var(--purple-medium);
+  font-size: 1.2rem;
+  margin-left: 8px;
+}

@@ -1,0 +1,37 @@
+.form-container {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+}
+
+.form-container input[type="file" i]{
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+
+.form-container .upload-label{
+  border: 1px solid #ccc;
+  display: inline-block;
+  padding: 16px 8px;
+  min-height: 64px;
+  cursor: pointer;
+  width: 320px;
+  margin-top: 8px;
+  color: var(--gray-medium);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.form-container .help{
+  color: var(--gray-medium);
+  font-size: 1rem;
+  font-weight: 600;
+  max-width: 380px;
+}
+
+.form-container .help a{
+  color: var(--purple-primary);
+  font-family: 'Montserrat', sans-serif;
+}
