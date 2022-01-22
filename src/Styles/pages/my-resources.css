@@ -1,0 +1,46 @@
+.my-resources-content{
+  height: 100vh;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.my-resources-content main{
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+
+  padding: 64px 0;
+}
+
+.my-resources-content main .resources{
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  max-width: 80%;
+}
+
+.my-resources-content main .description {
+  font-size: 1rem;
+  color: var(--gray-strong);
+  margin: 32px 0;
+  max-width: 90%;
+}
+
+@media(min-width: 900px){
+  .my-resources-content main .resources {
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    width: 80%;
+    flex-wrap: wrap;
+    padding: 40px;
+  }
+}
