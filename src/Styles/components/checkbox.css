@@ -1,0 +1,8 @@
+input[type='checkbox']{
+  align-self: flex-start;
+  width: 30px;
+  height: 30px;
+  margin-left: 8px;
+  border: 0.5px solid var(--gray-strong);
+  cursor: pointer;
+}

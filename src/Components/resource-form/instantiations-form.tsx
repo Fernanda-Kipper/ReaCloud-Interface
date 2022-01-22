@@ -12,11 +12,8 @@ import audienceOptions from '../../Constants/audience-options';
 import languages from '../../Constants/languages-options';
 import formatOptions from '../../Constants/format-options';
 import { FormCompleteList } from '../resource-form';
-
-const booleanOptions = [
-  { value: 'true', label: "Sim"},
-  { value: 'false', label: "Não"}
-]
+import { ControlledCheckbox } from '../form/controlled/checkbox';
+import When from '../when';
 
 interface Props {
   defaultValues: {
@@ -35,12 +32,14 @@ interface Props {
 
 export function InstantiationsForm(props: Props){
   const { defaultValues, submitCallback, form, completeList } = props
-  const { control, formState } = form
+  const { control, formState, watch } = form
 
   const onSubmit = (event: FormEvent) => {
     event.preventDefault()
     submitCallback({ ...completeList, instantiations: true })
   }
+
+  const technical_requirements = watch('technical_requirements')
 
   const isFormDisabled = !!formState.errors.date_of_publishment 
   || !!formState.errors.audience 
@@ -48,7 +47,6 @@ export function InstantiationsForm(props: Props){
   || !!formState.errors.language
   || !!formState.errors.keywords
   || !!formState.errors.format
-  || !!formState.errors.technical_requirements
 
   return(
     <form className='form-container' onSubmit={onSubmit}>
@@ -102,27 +100,26 @@ export function InstantiationsForm(props: Props){
         isRequired
         isError={!!formState.errors.format}
       />
-      
-      // TODO: transformar em checkbox
-      <ControlledSelect
+
+      <ControlledCheckbox
         control={control}
         tooltipText="Este recurso precisa de uma estrutura específica para ser utilizado? Exemplo: precisa de computador com placa de video = SIM"
         isRequired
-        isError={!!formState.errors.technical_requirements}
+        defaultValue={false}
         label="Pré Requisitos Técnicos"
-        options={booleanOptions}
         name="technical_requirements"
       />
 
-      // TODO: mostrar só se techinal requirements for true
-      <ControlledTextarea
-        label="Descrição dos pré-requisitos técnicos"
-        tooltipText="Descreva com detalhes os pré-requisitos caso eles existam"
-        name="description_of_technical_requirements"
-        control={control}
-        defaultValue={defaultValues?.description_of_technical_requirements}
-      />
-    
+      <When expr={!!technical_requirements}>
+        <ControlledTextarea
+          label="Descrição dos pré-requisitos técnicos"
+          tooltipText="Descreva com detalhes os pré-requisitos caso eles existam"
+          name="description_of_technical_requirements"
+          control={control}
+          defaultValue={defaultValues?.description_of_technical_requirements}
+        />
+      </When>
+      
       <DefaultButton label='Confirmar' isDisabled={isFormDisabled}/>
     </form>
   )

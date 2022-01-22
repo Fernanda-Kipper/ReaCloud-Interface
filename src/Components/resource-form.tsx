@@ -57,11 +57,6 @@ export function ResourceForm({ submit, defaultValues } : Props){
   const onSubmit = form.handleSubmit((values) => {
     const dataForm = new FormData();
 
-    // transform techcinal requirements on boolean
-    // check if has files
-
-    console.log(values)
-
     dataForm.append('title', values.title)
     dataForm.append('author', values.author)
     dataForm.append('type', values.type)
@@ -77,7 +72,7 @@ export function ResourceForm({ submit, defaultValues } : Props){
     dataForm.append('contributor', values.contributor)
     dataForm.append('publisher', values.publisher)
     dataForm.append('format', values.format)
-    dataForm.append('technical_requirements', values.technical_requirements)
+    dataForm.append('technical_requirements', values.technical_requirements.toString())
     dataForm.append('description_of_technical_requirements', values.description_of_technical_requirements)
     dataForm.append('last_modification', last_modification)
     dataForm.append('video', values.video)
