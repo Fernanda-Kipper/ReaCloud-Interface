@@ -62,7 +62,7 @@ const TableContent = ({ resource, license }: Content) => (
     <TableRow>
       <StyledTableCell>Descrição dos pré-requisitos técnicos</StyledTableCell>
       <StyledTableCell>{resource?.description_of_technical_requirements}</StyledTableCell>
-      <StyledTableCell>não possui</StyledTableCell>
+      <StyledTableCell>description_of_technical_requirements</StyledTableCell>
     </TableRow>                                
     )}
   </TableBody>
