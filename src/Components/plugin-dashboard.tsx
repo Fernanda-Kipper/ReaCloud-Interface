@@ -45,7 +45,7 @@ const useStyles = makeStyles({
     }
   });
 
-export default function SavedUrls(){
+export default function PluginDashboard(){
     const { data, error, handleDelete } = useExtension()
     const { setLink, setTitle } = useContext(ExtensionParamContext)
     const classes = useStyles()
