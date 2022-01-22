@@ -89,11 +89,26 @@ export function ResourceData({ isLoading, resource, license }: Props){
               </TableHead>
               <When expr={isLoading}>
                   <TableBody>
-                    <Skeleton animation="wave" />
-                    <Skeleton animation="wave" />
-                    <Skeleton animation="wave" />
-                    <Skeleton animation="wave" />
-                    <Skeleton animation="wave" />
+                   <TableRow>
+                      <StyledTableCell><Skeleton animation="wave" /></StyledTableCell>
+                      <StyledTableCell><Skeleton animation="wave" /></StyledTableCell>
+                      <StyledTableCell><Skeleton animation="wave" /></StyledTableCell>
+                    </TableRow>
+                    <TableRow>
+                      <StyledTableCell><Skeleton animation="wave" /></StyledTableCell>
+                      <StyledTableCell><Skeleton animation="wave" /></StyledTableCell>
+                      <StyledTableCell><Skeleton animation="wave" /></StyledTableCell>
+                    </TableRow>  
+                    <TableRow>
+                      <StyledTableCell><Skeleton animation="wave" /></StyledTableCell>
+                      <StyledTableCell><Skeleton animation="wave" /></StyledTableCell>
+                      <StyledTableCell><Skeleton animation="wave" /></StyledTableCell>
+                    </TableRow>
+                    <TableRow>
+                      <StyledTableCell><Skeleton animation="wave" /></StyledTableCell>
+                      <StyledTableCell><Skeleton animation="wave" /></StyledTableCell>
+                      <StyledTableCell><Skeleton animation="wave" /></StyledTableCell>
+                    </TableRow>  
                   </TableBody>
               </When>
               <When expr={!isLoading}>
