@@ -41,6 +41,8 @@ export function ContentForm(props: Props){
     || !!formState.errors.description
     || !!formState.errors.external_url
 
+  // TODO: transformar Recurso Relacionado em um select, com dados da api, através do que o usuário digita
+
   return(
     <form className='form-container' onSubmit={onSubmit}>
       <ControlledInputText
@@ -81,7 +83,6 @@ export function ContentForm(props: Props){
         isError={!!formState.errors.description}
       />
     
-      // TODO: transformar em um select, com dados da api, através do que o usuário digita
       <ControlledInputText
         label='Recurso Relacionado'
         name='relation'
