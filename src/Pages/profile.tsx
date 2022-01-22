@@ -1,7 +1,6 @@
-import React, { FormEvent, useState, useEffect, useContext } from 'react';
+import React, { useEffect } from 'react';
+import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
-import axios from '../Services/axiosConfig';
-import LoadingBar from 'react-top-loading-bar';
 import Avatar from 'react-avatar';
 
 import '../Styles/pages/profile.css';
@@ -9,79 +8,96 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import Header from '../Components/header';
 import { TextInput } from '../Components/form/text-input';
-import { Select } from '../Components/form/select';
 import { SaveButton } from '../Components/save-button';
+import { ControlledInputText } from '../Components/form/controlled/text-input';
+import { ControlledSelect } from '../Components/form/controlled/select';
 
-import { UserContext } from '../Context/UserContext'
 import profileOptions from '../Constants/profile-options';
-
+import { useUserProfile } from '../hooks/useUserProfile';
+import { useUserProfileMutation } from '../hooks/useUserProfileMutation';
+import { useHistory } from 'react-router';
+import { LoadingSpinnerWithTitle } from '../Components/loading-spinner-w-title';
+import When from '../Components/when';
 
 function ProfilePage() {
-    const [progress, setProgress] = useState(0)
+    const { data, isLoading, isError } = useUserProfile()
+    const { mutateProfile, isError: isMutateError, isSuccess } = useUserProfileMutation()
+    const { control, setValue, handleSubmit } = useForm()
+    const { push } = useHistory()
 
-    const [nameComplete, setUserName] = useState("Nome completo")
-    const [picture_url, setPicture] = useState("")
-    const [profile, setProfile] = useState("")
-    const [email, setEmail] = useState("")
+    const onSubmit = handleSubmit((values) => {
+        console.log(values)
+        mutateProfile(values)
+    })
 
-    const {name,setName} = useContext(UserContext)
-
-    function handleSubmit(event: FormEvent){
-        event.preventDefault()
-        const data = {"name": nameComplete, "profile": profile, "picture_url": picture_url}
-        setProgress(50)
-        try{
-            axios.put('/profile', data, {
-                onUploadProgress: (event) => {
-                  setProgress(event.loaded)
-              }})
-              .then(res=>{
-                    setProgress(100)
-                    setName(nameComplete)
-                    toast.success("Perfil editado com sucesso!")
-            }).catch(()=>{
-                toast.error('Erro ao atualizar dados. Tente novamente mais tarde')
-              })
-        }catch(err){
-            toast.error('Erro ao atualizar dados. Tente novamente mais tarde')
-        }
-    }
+    console.log({data})
 
     useEffect(()=>{
-        setProgress(previous => previous + 50)
-        try{
-            axios.get('/profile')
-              .then(response =>{
-                setProgress(100)
-                setUserName(response.data[0].name)
-                setEmail(response.data[0].email)
-                setProfile(response.data[0].profile)
-                setPicture(response.data[0].picture_url)
-            })
-        }catch(err){
-            toast.error("Erro ao validar o perfil, faça o login novamente")
-        }
-    }, [name])
+        if(!isError) return 
+        toast.error('Erro ao procurar pelo seu perfil')
+    }, [isError])
+
+    useEffect(() => {
+        if(!isMutateError) return
+        push('/erro')
+    }, [isMutateError, push])
+
+    useEffect(() => {
+        if(!isSuccess) return
+        push('/sucesso')
+    }, [isSuccess, push])
+
+    useEffect(() => {
+        if(!data) return 
+        setValue('name', data.name)
+        setValue('profile', data.profile)
+        setValue('picture_url', data.picture_url)
+        setValue('email', data.email)
+    }, [data, setValue])
 
     return (
         <div className="profile-content">
-            <LoadingBar
-                color='var(--purple-primary)'
-                progress={progress}
-                onLoaderFinished={() => setProgress(0)}></LoadingBar>
             <Header></Header>
             <main>
-                <form onSubmit={handleSubmit}>
-                    {picture_url 
-                        ? <img src={picture_url} alt="Sua foto de perfil"/>
-                        : <Avatar name={nameComplete} size="100%" style={{width: '300px', height: '150px'}}/>
-                    }
-                    <TextInput value={picture_url} handleChange={setPicture} label="Link para sua foto" name="image"/>
-                    <TextInput value={email} isRequired label="Seu e-mail" name="email" isDisabled/>
-                    <TextInput value={nameComplete} isRequired label="Nome completo" name="name" handleChange={setName}/>
-                    <Select value={profile} handleChange={setProfile} isRequired label="Perfil acadêmico" name="academic-profile" options={profileOptions}/>
-                    <SaveButton label="Salvar"/>
-                </form>
+                <When expr={isLoading}>
+                    <LoadingSpinnerWithTitle title="Carregando seu perfil"/>
+                </When>
+                <When expr={data}>
+                    <form onSubmit={onSubmit}>
+                        {data?.picture_url 
+                            ? <img src={data?.picture_url} alt="Sua foto de perfil"/>
+                            : <Avatar name={data?.name} size="100%" style={{width: '300px', height: '150px'}}/>
+                        }
+                        <ControlledInputText 
+                            control={control}
+                            name='picture_url'
+                            defaultValue={data?.picture_url}
+                            label="URL para sua foto"
+                        />
+                        <TextInput 
+                            name='email'
+                            value={data?.email ?? ''}
+                            label="Seu e-mail"
+                            isDisabled
+                        />
+                        <ControlledInputText 
+                            control={control}
+                            name='name'
+                            defaultValue={data?.name}
+                            isRequired
+                            label="Nome completo"
+                        />
+                        <ControlledSelect
+                            control={control}
+                            name='profile'
+                            defaultValue={data?.profile}
+                            isRequired
+                            label="Perfil acadêmico"
+                            options={profileOptions}
+                        />
+                        <SaveButton label="Salvar"/>
+                    </form>
+                </When>
             </main>
         </div>
     );
