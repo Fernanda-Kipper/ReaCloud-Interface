@@ -12,6 +12,8 @@ import HelpPage from '../Pages/help';
 import SearchPage from '../Pages/search';
 import ErrorPage from '../Pages/error';
 import SuccessPage from '../Pages/success';
+import MyResources from '../Pages/my-resources';
+import PluginManager from '../Pages/plugin-manager';
 
 import { PrivateRoute } from './privateRoutes';
 import { SetupGtm } from '../Services/setup-gtm';
@@ -52,6 +54,8 @@ function Routes(){
                         <PrivateRoute path='/publicar' component={PublishResource}/> */
                         <PrivateRoute path='/perfil' component={ProfilePage}/>
                         <PrivateRoute path='/recurso/editar/:id' component={ModifyResource}/>
+                        <PrivateRoute path='/meus-recursos' component={MyResources} />
+                        <PrivateRoute path='/plugin' component={PluginManager} />
                     </ExtensionParamProvider>
                 </Switch>
                 <SetupGtm/>
