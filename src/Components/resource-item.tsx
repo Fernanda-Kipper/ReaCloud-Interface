@@ -14,8 +14,7 @@ import axios from '../Services/axiosConfig'
 interface ResourceItemProps{
     title: string,
     last_modification: string,
-    id: string,
-    changed: (value: boolean)=>void
+    id: string
 }
 
 const useStyles = makeStyles({
@@ -43,7 +42,7 @@ const useStyles = makeStyles({
     }
   });   
 
-const ResourceItem: React.FunctionComponent< ResourceItemProps > = ({title,last_modification,id,changed}) => {
+const ResourceItem: React.FunctionComponent< ResourceItemProps > = ({title,last_modification,id}) => {
     const history = useHistory()
     const classes = useStyles()
 

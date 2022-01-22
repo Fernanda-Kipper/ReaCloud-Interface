@@ -1,10 +1,10 @@
 import React from "react";
 import { Controller } from 'react-hook-form' 
 
-import { ResourceInputProps } from '../../../Interfaces/input'
+import { DefaultInputProps } from '../../../Interfaces/input'
 import { Select, Option } from '../select'
 
-interface SelectInputProps extends ResourceInputProps {
+interface SelectInputProps extends DefaultInputProps {
   options: Option[]
 }
 
@@ -15,7 +15,7 @@ export const ControlledSelect = ({
   label, 
   isRequired = false, 
   options, 
-  tooltipText = ""} : SelectInputProps) => (
+  tooltipText = "" } : SelectInputProps) => (
   <Controller
     control={control}
     name={name}

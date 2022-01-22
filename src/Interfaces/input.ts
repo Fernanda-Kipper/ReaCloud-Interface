@@ -1,12 +1,12 @@
 import { Control } from 'react-hook-form'
-import { ResourceFormPayload } from "./resource";
 
-export interface ResourceInputProps {
-  control: Control<ResourceFormPayload>
+export interface DefaultInputProps {
+  control: Control<any>
   defaultValue?: string
-  name: keyof ResourceFormPayload
+  name: string
   label: string
   isRequired?: boolean
   tooltipText?: string
   isError?: boolean
+  isDisabled?: boolean
 }

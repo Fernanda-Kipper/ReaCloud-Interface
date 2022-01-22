@@ -10,9 +10,9 @@ interface Props {
 
 export function LoadingSpinnerWithTitle({ title }: Props){
   return(
-    <>
+    <div className='spinner-wrapper'>
       <h2 className='spinner-title'>{title}</h2>
       <CircularProgress color="primary" size={40} />
-    </>
+    </div>
   )
 }

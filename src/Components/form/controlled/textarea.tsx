@@ -1,7 +1,7 @@
 import React from 'react'
 import { Controller } from 'react-hook-form' 
 
-import { ResourceInputProps } from '../../../Interfaces/input'
+import { DefaultInputProps } from '../../../Interfaces/input'
 import { Textarea } from '../textarea'
 
 export const ControlledTextarea = ({ 
@@ -10,7 +10,7 @@ export const ControlledTextarea = ({
   name, 
   label, 
   isRequired = false, 
-  tooltipText= ""}: ResourceInputProps) => (
+  tooltipText= ""}: DefaultInputProps) => (
     <Controller
       control={control}
       name={name}

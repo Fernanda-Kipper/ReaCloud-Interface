@@ -10,12 +10,6 @@ header{
     align-items: center;
 }
 
-header .profile-wrap{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
 header .login{
     margin: 8px;
     font-weight: 600;
@@ -27,7 +21,11 @@ header .login{
     padding: 16px;
 }
 
-header .profile-wrap .profile{
+header .profile{
+    display: flex;
+    align-items: center;
+    justify-self: flex-start;
+
     font-weight: 600;
     color:var(--purple-light);
     text-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.1);
@@ -36,6 +34,44 @@ header .profile-wrap .profile{
     font-size: 1rem;
     text-align: end;
     margin: 0 8px 8px 0;
+
+    cursor: pointer;
+}
+
+header .profile svg{
+    margin-left: 8px;
+}
+
+header .options-wrapper {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+
+    position: absolute;
+    right: 8px;
+    top: 65px;
+
+    background-color: white;
+    border-radius: 8px;
+    padding: 0;
+
+    box-shadow: 0 8px 24px rgba(140,149,159, 0.2);
+
+    z-index: 100;
+}
+
+header .options-wrapper a , header .options-wrapper p{
+    color: var(--gray-strong);
+    font-weight: 500;
+    font-size: 0.9rem;
+    text-decoration: none;
+    padding: 8px 14px;
+    width: 100%;
+}
+
+header .options-wrapper a:hover, header .options-wrapper p:hover{
+    background-color: var(--purple-light);
 }
 
 header .logo{
@@ -51,16 +87,6 @@ header > div{
     padding: 4px;
 }
 
-header .profile-wrap .logout{
-    font-size: 24px;
-    color: var(--purple-light);
-    align-self: center;
-
-    display: inline;
-
-    cursor: pointer;
-}
-
 @media(min-width: 900px){
     header .login{
         font-size: 1.3rem;
@@ -70,7 +96,7 @@ header .profile-wrap .logout{
         margin: 16px;
     }
 
-    header .profile-wrap .profile{
+    header .profile{
         font-size: 1.3rem;
     }
 }

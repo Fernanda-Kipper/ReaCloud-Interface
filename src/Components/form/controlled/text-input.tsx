@@ -1,10 +1,10 @@
 import React from 'react'
 import { Controller } from 'react-hook-form' 
 
-import { ResourceInputProps } from '../../../Interfaces/input'
+import { DefaultInputProps } from '../../../Interfaces/input'
 import { TextInput } from '../text-input'
 
-interface TextInputProps extends ResourceInputProps {
+interface TextInputProps extends DefaultInputProps {
   type?: "text" | "url" | "date"
 }
 
@@ -15,7 +15,8 @@ export const ControlledInputText = ({
   label, 
   isRequired = false, 
   type = "text", 
-  tooltipText = "" }: TextInputProps ) => (
+  tooltipText = "",
+  isDisabled = false }: TextInputProps ) => (
   <Controller
     control={control}
     name={name}
@@ -32,6 +33,7 @@ export const ControlledInputText = ({
         name={name}
         type={type}
         tooltipText={tooltipText}
+        isDisabled={isDisabled}
       />
     )}
   />
