@@ -57,6 +57,8 @@ header .options-wrapper {
     padding: 0;
 
     box-shadow: 0 8px 24px rgba(140,149,159, 0.2);
+
+    z-index: 100;
 }
 
 header .options-wrapper a , header .options-wrapper p{
