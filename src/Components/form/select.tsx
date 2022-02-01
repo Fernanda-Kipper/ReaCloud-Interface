@@ -32,11 +32,12 @@ export function Select({
       <div className="select-wrapper">
         <Label name={name} label={label}  isRequired={isRequired} tooltipText={tooltipText}/>
         <select 
-          required={isRequired} value={value} 
+          required={isRequired} 
+          value={value} 
           onChange={e => handleChange(e.target.value)} 
           className={isError ? 'error' : ''}
         >
-            <option value="" disabled selected hidden>Selecione</option>
+          <option value="" disabled hidden>Selecione</option>
             {options.map(item => (
               <React.Fragment key={item.label}>
                 <option value={item.value}>{item.label}</option>

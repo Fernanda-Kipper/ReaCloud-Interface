@@ -8,6 +8,8 @@ header{
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+
+    z-index: 999;
 }
 
 header .login{

@@ -26,11 +26,8 @@ function ProfilePage() {
     const { push } = useHistory()
 
     const onSubmit = handleSubmit((values) => {
-        console.log(values)
         mutateProfile(values)
     })
-
-    console.log({data})
 
     useEffect(()=>{
         if(!isError) return 

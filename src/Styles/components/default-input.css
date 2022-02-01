@@ -25,6 +25,11 @@
   padding: 12px;
   align-self: center;
   background-color: transparent;
+  cursor: pointer;
+}
+
+.input-wrapper input[disabled]{
+  cursor: default;
 }
 
 .input-wrapper input.error{

@@ -23,6 +23,7 @@
   padding: 12px;
   align-self: center;
   background-color: transparent;
+  cursor: pointer;
 }
 
 .textarea-wrapper textarea.error{

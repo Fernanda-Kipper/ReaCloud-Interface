@@ -23,7 +23,7 @@ export function TextInput
   type = "text", 
   isRequired = false, 
   label, 
-  isDisabled, 
+  isDisabled = false, 
   tooltipText,
   isError = false} : DefaultInputProps){
     return(
