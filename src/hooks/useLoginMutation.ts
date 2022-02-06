@@ -2,6 +2,7 @@ import { useContext } from 'react';
 import { useMutation } from 'react-query'
 import { UserContext } from '../Context/UserContext';
 import axios from '../Services/axios-config';
+import { saveToken } from '../Utils/local-storage';
 
 interface LoginMutation {
   access_code: string
@@ -9,7 +10,7 @@ interface LoginMutation {
 }
 
 async function mutator(access_code: string, redirect_uri: string) {
-  const { data } = await axios.post(`/user`, { access_code, redirect_uri})
+  const { data } = await axios.post('/user', { access_code, redirect_uri})
 
   return data;
 };
@@ -20,9 +21,9 @@ export function useLoginMutation(){
     (({access_code, redirect_uri}: LoginMutation) => mutator(access_code, redirect_uri)),
     {
       onSettled: (data) => {
+        saveToken(data.access_token)
         setName(data.name)
         setIsLogged(true)
-        // save tokens on localstorage
       }
     }
   )

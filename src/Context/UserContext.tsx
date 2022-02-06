@@ -1,6 +1,6 @@
-import React, {useState, createContext, ReactNode, useEffect } from 'react';
+import React, { useState, createContext, ReactNode, useEffect } from 'react';
 
-import { useUserAuth } from '../hooks/useUserAuth';
+import { useUser } from '../hooks/useUser';
 
 interface UserContextData{
     name: string,
@@ -19,13 +19,18 @@ export const UserContext = createContext({} as UserContextData)
 export function UserContextProvider({ children } : UserContextProps){
     const [isLogged, setIsLogged] = useState(false)
     const [name, setName] = useState("")
+    const { data } = useUser()
 
     const reset = () => {
         setIsLogged(false)
         setName("")
     }
 
-    // se tiver access token, faz um get no user pra salvar dados. e ver se está autenticado
+    useEffect(() => {
+        if(!data) return
+        setName(data.name)
+        setIsLogged(true)
+    }, [data])
 
     return(
         <UserContext.Provider value={{

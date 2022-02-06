@@ -21,7 +21,7 @@ export default function OauthCallbackPage() {
 
   useEffect(() => {
     if (accessCode) login(accessCode, process.env.REACT_APP_REDIRECT_AUTH ?? "http://localhost:3000/auth")
-  }, [accessCode, login])
+  }, [accessCode])
 
   useEffect(() => {
     if(!isLogged) return

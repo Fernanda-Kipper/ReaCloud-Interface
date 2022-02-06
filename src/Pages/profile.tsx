@@ -13,17 +13,17 @@ import { ControlledInputText } from '../Components/form/controlled/text-input';
 import { ControlledSelect } from '../Components/form/controlled/select';
 
 import profileOptions from '../Constants/profile-options';
-import { useUserProfile } from '../hooks/useUserProfile';
-import { useUserProfileMutation } from '../hooks/useUserProfileMutation';
+import { useUser } from '../hooks/useUser';
+import { useUserMutation } from '../hooks/useUserMutation';
 import { useHistory } from 'react-router';
 import { LoadingSpinnerWithTitle } from '../Components/loading-spinner-w-title';
 import When from '../Components/when';
 
 function ProfilePage() {
-    const { data, isLoading, isError } = useUserProfile()
-    const { mutateProfile, isError: isMutateError, isSuccess } = useUserProfileMutation()
-    const { control, setValue, handleSubmit } = useForm()
-    const { push } = useHistory()
+    const { data, isLoading, isError } = useUser();
+    const { mutateProfile, isError: isMutateError, isSuccess } = useUserMutation();
+    const { control, setValue, handleSubmit } = useForm();
+    const { push } = useHistory();
 
     const onSubmit = handleSubmit((values) => {
         mutateProfile(values)
