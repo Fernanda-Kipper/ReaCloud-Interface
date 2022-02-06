@@ -7,13 +7,10 @@ import {
 
 import Routes from './Routes/routes'
 import './Styles/global.css'
-import { useSetupGtm } from './hooks/useSetupGtm';
 
 const queryClient = new QueryClient()
 
 function App() {
-  useSetupGtm()
-
   return (
     <QueryClientProvider client={queryClient}>
         <Routes/>

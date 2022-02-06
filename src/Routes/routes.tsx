@@ -19,10 +19,12 @@ import { PrivateRoute } from './privateRoutes';
 
 import { ExtensionParamProvider } from '../Context/ExtensionParamContext';
 import { UserContextProvider } from '../Context/UserContext';
+import { SetupGtm } from '../setupGtm';
 
 function Routes(){
     return(
         <BrowserRouter>
+            <SetupGtm />
             <UserContextProvider>
                 <Switch>
                     <Route exact path='/entrar'>
