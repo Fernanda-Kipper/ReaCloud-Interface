@@ -4,7 +4,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import HomePage from '../Pages/home'
 import LoginPage from '../Pages/login';
 import PublishResource from '../Pages/publish-resource';
-import SignInPage from '../Pages/signIn';
+import OauthCallbackPage from '../Pages/auth';
 import ProfilePage from '../Pages/profile';
 import ResourcePage from '../Pages/resource';
 import ModifyResource from '../Pages/modify-resource';
@@ -33,9 +33,6 @@ function Routes(){
                     <Route exact path='/ajuda'>
                         <HelpPage/>
                     </Route>
-                    <Route exact path='/cadastrar'>
-                        <SignInPage/>
-                    </Route>
                     <Route exact path='/buscar'>
                         <SearchPage />
                     </Route>
@@ -50,6 +47,9 @@ function Routes(){
                     </Route>
                     <Route exact path='/'>
                         <HomePage/>
+                    </Route>
+                    <Route path='/auth'>
+                        <OauthCallbackPage />
                     </Route>
                     <ExtensionParamProvider>
                         <PrivateRoute path='/publicar' component={PublishResource}/> */

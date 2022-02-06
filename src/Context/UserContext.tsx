@@ -4,9 +4,9 @@ import { useUserAuth } from '../hooks/useUserAuth';
 
 interface UserContextData{
     name: string,
-    value: boolean,
+    isLogged: boolean,
     setName(name:string): void,
-    setValue(value: boolean): void,
+    setIsLogged(value: boolean): void,
     reset(): void
 }
 
@@ -17,27 +17,21 @@ interface UserContextProps{
 export const UserContext = createContext({} as UserContextData)
 
 export function UserContextProvider({ children } : UserContextProps){
-    const [value, setValue] = useState(false)
+    const [isLogged, setIsLogged] = useState(false)
     const [name, setName] = useState("")
-    const { data, isError } = useUserAuth()
 
     const reset = () => {
-        setValue(false)
+        setIsLogged(false)
         setName("")
     }
 
-    useEffect(() =>{
-        if(data?.name && !isError){
-            setName(data.name)
-            setValue(true)
-        }
-    }, [data, isError])
+    // se tiver access token, faz um get no user pra salvar dados. e ver se está autenticado
 
     return(
         <UserContext.Provider value={{
             name,
-            value,
-            setValue,
+            isLogged,
+            setIsLogged,
             setName,
             reset
         }}>
