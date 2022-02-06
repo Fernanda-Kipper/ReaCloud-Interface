@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from 'react-query'
 import { EvaluationFormPayload } from '../Interfaces/evaluation';
-import axios from '../Services/axiosConfig';
+import axios from '../Services/axios-config';
 
 interface EvaluationMutate {
   id: string, 

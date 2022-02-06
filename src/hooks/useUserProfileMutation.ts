@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from 'react-query'
 import { UserInfo } from '../Interfaces/user';
-import axios from '../Services/axiosConfig';
+import axios from '../Services/axios-config';
 
 async function mutator(formData: Partial<UserInfo>) {
   const { data } = await axios.put(`/profile`, formData)

@@ -1,5 +1,5 @@
 import { useQuery } from 'react-query';
-import axios from '../Services/axiosConfig';
+import axios from '../Services/axios-config';
 
 const TEN_SECONDS = 1000
 

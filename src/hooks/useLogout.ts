@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 import { AxiosResponse } from 'axios';
 
 import { UserContext } from '../Context/UserContext';
-import axios from '../Services/axiosConfig';
+import axios from '../Services/axios-config';
 import { Error } from '../Interfaces/error';
 
 export function useLogout(){

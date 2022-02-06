@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { BsSearch, BsFilter, BsArrowLeft } from 'react-icons/bs';
 import { CircularProgress } from '@material-ui/core';
 
-import axios from '../Services/axiosConfig';
+import axios from '../Services/axios-config';
 
 import ResourceCard from '../Components/resource-card';
 import { Select } from '../Components/form/select';

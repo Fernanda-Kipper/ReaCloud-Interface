@@ -1,7 +1,7 @@
 import React from 'react';
 import {useHistory, useParams } from 'react-router-dom'
 
-import axios from '../Services/axiosConfig'
+import axios from '../Services/axios-config'
 import ParameterPassedToUrl from '../Interfaces/parameter-id';
 
 import { makeStyles } from '@material-ui/core/styles';

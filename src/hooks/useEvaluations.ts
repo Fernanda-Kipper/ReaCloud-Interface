@@ -1,6 +1,6 @@
 import { useQuery } from 'react-query'
 import { EvaluationsPayload } from '../Interfaces/evaluation';
-import axios from '../Services/axiosConfig';
+import axios from '../Services/axios-config';
 
 async function  fetcher(id: string): Promise<EvaluationsPayload> {
   const { data } = await axios.get(`/resource/evaluations/${id}`)

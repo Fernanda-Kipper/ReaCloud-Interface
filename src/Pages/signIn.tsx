@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import {UserContext} from '../Context/UserContext';
-import axios from '../Services/axiosConfig';
+import axios from '../Services/axios-config';
 import profileOptions from '../Constants/profile-options';
 
 

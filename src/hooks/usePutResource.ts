@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from 'react-query'
-import axios from '../Services/axiosConfig';
+import axios from '../Services/axios-config';
 
 interface MutateParams {
   data: FormData
