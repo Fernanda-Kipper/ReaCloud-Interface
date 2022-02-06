@@ -4,7 +4,7 @@ import { useLocation } from 'react-router';
 import TagManager from 'react-gtm-module';
 import { GTM_ID } from '../config';
 
-export function SetupGtm(){
+export function useSetupGtm(){
   const { pathname } = useLocation();
 
   useEffect(() => {
@@ -26,6 +26,4 @@ export function SetupGtm(){
       }
     })
   },[pathname])
-
-  return null;
 }

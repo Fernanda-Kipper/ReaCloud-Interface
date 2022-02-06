@@ -16,7 +16,6 @@ import MyResources from '../Pages/my-resources';
 import PluginManager from '../Pages/plugin-manager';
 
 import { PrivateRoute } from './privateRoutes';
-import { SetupGtm } from '../Services/setup-gtm';
 
 import { ExtensionParamProvider } from '../Context/ExtensionParamContext';
 import { UserContextProvider } from '../Context/UserContext';
@@ -58,7 +57,6 @@ function Routes(){
                         <PrivateRoute path='/plugin' component={PluginManager} />
                     </ExtensionParamProvider>
                 </Switch>
-                <SetupGtm/>
             </UserContextProvider>
         </BrowserRouter>
     );
