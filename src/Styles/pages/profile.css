@@ -36,10 +36,27 @@
     align-items: center;
 }
 
+.profile-content main form button {
+    margin-top: 16px;
+}
+
+.profile-content main h2{
+    font-weight: bold;
+    font-size: 1.1rem;
+    max-width: 70%;
+    margin-bottom: 16px;
+    color: var(--purple-medium);
+}
+
+.profile-content main form p{
+    font-weight: 500;
+    font-size: 0.8rem;
+    color: var(--gray-strong);
+}
+
 .profile-content main button{
     width: 100%;
 }
-
 
 .profile-content main form img{
     border-radius: 20px;

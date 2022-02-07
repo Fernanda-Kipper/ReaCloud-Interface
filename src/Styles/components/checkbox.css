@@ -1,3 +1,14 @@
+.checkbox-wrapper{
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: flex-start;
+  justify-content: center;
+  width: 340px;
+  position: relative;
+  top: 0;
+  min-height: 30px;
+}
+
 input[type='checkbox']{
   align-self: flex-start;
   width: 30px;

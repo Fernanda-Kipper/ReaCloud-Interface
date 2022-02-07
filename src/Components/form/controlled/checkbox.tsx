@@ -1,15 +1,14 @@
 import React from 'react'
 import { Control, Controller } from 'react-hook-form' 
-import { ResourceFormPayload } from '../../../Interfaces/resource'
 
 import { Checkbox } from '../checkbox'
 
 interface Props {
-  name: keyof ResourceFormPayload,
+  name: string,
   isRequired?: boolean,
   label: string,
   tooltipText?: string,
-  control: Control<ResourceFormPayload, object>, 
+  control: Control<any>, 
   defaultValue: boolean, 
 }
 

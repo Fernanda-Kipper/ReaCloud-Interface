@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import Avatar from 'react-avatar';
@@ -7,9 +7,7 @@ import '../Styles/pages/profile.css';
 import 'react-toastify/dist/ReactToastify.css';
 
 import Header from '../Components/header';
-import { TextInput } from '../Components/form/text-input';
 import { SaveButton } from '../Components/save-button';
-import { ControlledInputText } from '../Components/form/controlled/text-input';
 import { ControlledSelect } from '../Components/form/controlled/select';
 
 import profileOptions from '../Constants/profile-options';
@@ -18,15 +16,18 @@ import { useUserMutation } from '../hooks/useUserMutation';
 import { useHistory } from 'react-router';
 import { LoadingSpinnerWithTitle } from '../Components/loading-spinner-w-title';
 import When from '../Components/when';
+import { ControlledCheckboxGroup } from '../Components/form/controlled/checkbox-group';
+import subjects from '../Constants/subjects';
 
 function ProfilePage() {
     const { data, isLoading, isError } = useUser();
+    const [preferences, setPreferences] = useState<string[]>([])
     const { mutateProfile, isError: isMutateError, isSuccess } = useUserMutation();
     const { control, setValue, handleSubmit } = useForm();
     const { push } = useHistory();
 
     const onSubmit = handleSubmit((values) => {
-        mutateProfile(values)
+        mutateProfile({ ...values, preferences })
     })
 
     useEffect(()=>{
@@ -46,10 +47,8 @@ function ProfilePage() {
 
     useEffect(() => {
         if(!data) return 
-        setValue('name', data.name)
         setValue('profile', data.profile)
-        setValue('picture_url', data.picture_url)
-        setValue('email', data.email)
+        setPreferences(data.preferences ?? [])
     }, [data, setValue])
 
     return (
@@ -60,30 +59,15 @@ function ProfilePage() {
                     <LoadingSpinnerWithTitle title="Carregando seu perfil"/>
                 </When>
                 <When expr={data}>
+                    <When expr={!data?.preferences || !data?.profile}>
+                        <h2>Complete as informações do seu perfil para aproveitar ao máximo a ferramenta!</h2>
+                    </When>
                     <form onSubmit={onSubmit}>
                         {data?.picture_url 
                             ? <img src={data?.picture_url} alt="Sua foto de perfil"/>
                             : <Avatar name={data?.name} size="100%" style={{width: '300px', height: '150px'}}/>
                         }
-                        <ControlledInputText 
-                            control={control}
-                            name='picture_url'
-                            defaultValue={data?.picture_url}
-                            label="URL para sua foto"
-                        />
-                        <TextInput 
-                            name='email'
-                            value={data?.email ?? ''}
-                            label="Seu e-mail"
-                            isDisabled
-                        />
-                        <ControlledInputText 
-                            control={control}
-                            name='name'
-                            defaultValue={data?.name}
-                            isRequired
-                            label="Nome completo"
-                        />
+                        <p>{data?.name}</p>
                         <ControlledSelect
                             control={control}
                             name='profile'
@@ -91,6 +75,12 @@ function ProfilePage() {
                             isRequired
                             label="Perfil acadêmico"
                             options={profileOptions}
+                        />
+                        <ControlledCheckboxGroup
+                            setValues={setPreferences}
+                            defaultValues={preferences}
+                            label="Matérias de preferência"
+                            options={subjects}
                         />
                         <SaveButton label="Salvar"/>
                     </form>
