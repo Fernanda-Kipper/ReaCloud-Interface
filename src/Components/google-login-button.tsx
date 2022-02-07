@@ -28,7 +28,7 @@ function getGoogleAuthURL() {
 export function GoogleLoginButton(props: Props){
   const onClick = () => {
     const authUrl = getGoogleAuthURL()
-    window.open(authUrl)
+    window.location.assign(authUrl)
   }
 
   return(
