@@ -24,7 +24,7 @@ export function ControlledCheckboxGroup(props: Props){
   useEffect(() => {
     if(!props.defaultValues) return
     defaultValues.map(value => setValue(value, true))
-  }, [defaultValues])
+  }, [defaultValues, props.defaultValues, setValue])
 
   useEffect(() => {
     const formValues = getValues()
@@ -34,7 +34,7 @@ export function ControlledCheckboxGroup(props: Props){
     }).filter(value => value.length)
 
     setValues(preferences)
-  }, [formState.dirtyFields])
+  }, [formState.dirtyFields, getValues, setValues])
 
   return(
     <div className="checkbox-group">
