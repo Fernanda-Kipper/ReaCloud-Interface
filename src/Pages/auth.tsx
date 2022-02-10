@@ -21,8 +21,9 @@ export default function OauthCallbackPage() {
   const accessCode = extractAccessCodeFromURL(location)
 
   useEffect(() => {
-    if (accessCode) login(accessCode, process.env.REACT_APP_REDIRECT_AUTH ?? "http://localhost:3000/auth")
-  }, [accessCode, login])
+    if (accessCode) login(accessCode, process.env.REACT_APP_REDIRECT_AUTH || '')
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [accessCode])
 
   useEffect(() => {
     if(!isLogged) return
