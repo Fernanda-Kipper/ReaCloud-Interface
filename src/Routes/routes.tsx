@@ -14,6 +14,7 @@ import ErrorPage from '../Pages/error';
 import SuccessPage from '../Pages/success';
 import MyResources from '../Pages/my-resources';
 import PluginManager from '../Pages/plugin-manager';
+import TermsOfUsePage from '../Pages/terms';
 
 import { PrivateRoute } from './privateRoutes';
 
@@ -32,6 +33,9 @@ function Routes(){
                     </Route>
                     <Route exact path='/ajuda'>
                         <HelpPage/>
+                    </Route>
+                    <Route exact path='/termos'>
+                        <TermsOfUsePage />
                     </Route>
                     <Route exact path='/buscar'>
                         <SearchPage />
