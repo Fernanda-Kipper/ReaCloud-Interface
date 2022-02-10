@@ -6,6 +6,7 @@ import "../Styles/components/google-login-button.css";
 
 interface Props {
   text: string
+  isEnabled: boolean
 }
 
 function getGoogleAuthURL() {
@@ -27,12 +28,15 @@ function getGoogleAuthURL() {
 
 export function GoogleLoginButton(props: Props){
   const onClick = () => {
-    const authUrl = getGoogleAuthURL()
-    window.location.assign(authUrl)
+    if(!props.isEnabled) return;
+    window.location.assign(getGoogleAuthURL());
   }
 
   return(
-    <button onClick={onClick} className="google-button">
+    <button 
+      onClick={onClick} 
+      className={`google-button ${!props.isEnabled ? 'disabled' : ''}`}
+    >
       <FcGoogle/>
       {props.text}
     </button>

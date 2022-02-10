@@ -9,30 +9,51 @@
 .login-field{
     align-self: center;
     background-color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
 
 .login-field h1{
     color: var(--gray-strong);
     text-align: center;
-    font-size: 32px;
-    margin: 20px;
+    font-size: 1.5rem;
+    margin: 8px 0 32px 0;
 }
 
-.login-field form{
+.login-field .login-terms-agree {
     display: flex;
-    flex-direction: column;
     align-items: center;
-    margin: 20px;
+    justify-content: flex-start;
+    width: 100%;
+    margin: 16px 0;
+
+    max-width: 300px;
 }
 
-.login-content .signin{
-    text-align: center;
+.login-field .login-terms-agree label{
     color: var(--gray-strong);
-    margin: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-align: justify;
+}
+
+.login-field .login-terms-agree label a{
+    color: blue;
+}
+
+.login-terms-agree input[type='checkbox']{
+    align-self: flex-start;
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+    border: 0.5px solid var(--gray-strong);
+    cursor: pointer;
 }
 
 @media(min-width: 1000px){
-
     .login-field{
         border-radius: 20px;
         display: flex;
@@ -42,7 +63,6 @@
     }
     
     .login-field h1{
-        font-size: 2em;
-        margin: 0;
+        font-size: 1.8rem;
     }
 }
