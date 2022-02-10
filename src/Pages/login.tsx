@@ -21,7 +21,7 @@ function LoginPage() {
               onChange={e => setIsTermsAgreed(e.target.checked)}
               checked={isTermsAgreed}
             />
-            <label>Eu li e concordo com os <Link to="/termos">termos de uso</Link> da plataforma ReaCloud.</label>
+            <label>Eu li e concordo com os <Link to="/termo">termos de uso</Link> da plataforma ReaCloud.</label>
           </div>
       </main>
     </div>

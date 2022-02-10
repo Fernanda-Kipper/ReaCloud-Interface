@@ -34,7 +34,7 @@ function Routes(){
                     <Route exact path='/ajuda'>
                         <HelpPage/>
                     </Route>
-                    <Route exact path='/termos'>
+                    <Route exact path='/termo'>
                         <TermsOfUsePage />
                     </Route>
                     <Route exact path='/buscar'>
