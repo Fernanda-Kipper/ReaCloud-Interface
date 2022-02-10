@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 import { Location } from 'history'
 
 import React, { useContext, useEffect } from 'react'
