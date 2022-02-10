@@ -4,7 +4,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import HomePage from '../Pages/home'
 import LoginPage from '../Pages/login';
 import PublishResource from '../Pages/publish-resource';
-import SignInPage from '../Pages/signIn';
+import OauthCallbackPage from '../Pages/auth';
 import ProfilePage from '../Pages/profile';
 import ResourcePage from '../Pages/resource';
 import ModifyResource from '../Pages/modify-resource';
@@ -14,16 +14,18 @@ import ErrorPage from '../Pages/error';
 import SuccessPage from '../Pages/success';
 import MyResources from '../Pages/my-resources';
 import PluginManager from '../Pages/plugin-manager';
+import TermsOfUsePage from '../Pages/terms';
 
 import { PrivateRoute } from './privateRoutes';
-import { SetupGtm } from '../Services/setup-gtm';
 
 import { ExtensionParamProvider } from '../Context/ExtensionParamContext';
 import { UserContextProvider } from '../Context/UserContext';
+import { SetupGtm } from '../setupGtm';
 
 function Routes(){
     return(
         <BrowserRouter>
+            <SetupGtm />
             <UserContextProvider>
                 <Switch>
                     <Route exact path='/entrar'>
@@ -32,8 +34,8 @@ function Routes(){
                     <Route exact path='/ajuda'>
                         <HelpPage/>
                     </Route>
-                    <Route exact path='/cadastrar'>
-                        <SignInPage/>
+                    <Route exact path='/termo'>
+                        <TermsOfUsePage />
                     </Route>
                     <Route exact path='/buscar'>
                         <SearchPage />
@@ -50,6 +52,9 @@ function Routes(){
                     <Route exact path='/'>
                         <HomePage/>
                     </Route>
+                    <Route path='/auth'>
+                        <OauthCallbackPage />
+                    </Route>
                     <ExtensionParamProvider>
                         <PrivateRoute path='/publicar' component={PublishResource}/> */
                         <PrivateRoute path='/perfil' component={ProfilePage}/>
@@ -58,7 +63,6 @@ function Routes(){
                         <PrivateRoute path='/plugin' component={PluginManager} />
                     </ExtensionParamProvider>
                 </Switch>
-                <SetupGtm/>
             </UserContextProvider>
         </BrowserRouter>
     );

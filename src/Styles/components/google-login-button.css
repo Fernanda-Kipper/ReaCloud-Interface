@@ -1,0 +1,32 @@
+.google-button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 4px;
+  border: none;
+  padding: 16px 12px;
+  cursor: pointer;
+
+  box-shadow: 0px 0px 2.41919px rgba(0, 0, 0, 0.084), 0px 2.41919px 2.41919px rgba(0, 0, 0, 0.168);
+
+  color: rgba(0, 0, 0, 0.5);
+  background-color: white;
+
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+
+  width: 300px;
+}
+
+.disabled {
+  opacity: 0.8;
+  cursor: not-allowed;
+}
+
+.google-button svg {
+  height: 28px;
+  width: 28px;
+  margin-right: 16px;
+}

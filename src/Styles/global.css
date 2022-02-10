@@ -7,6 +7,8 @@
     --purple-medium: #699CFF;
     --purple-primary: #0E84E5;
 
+    --app-background: #F8FCFF;
+
     --gray-strong: #7d7d7d;
     --gray-medium: #afafaf;
     --gray-light: #e6e6e6;
@@ -17,8 +19,7 @@
 body{
     color: #FFF;
     transform: rotate(0.03deg);
-    background: #F8FCFF;
-
+    background: var(--app-background);
 }
 
 body, input, button, textarea{

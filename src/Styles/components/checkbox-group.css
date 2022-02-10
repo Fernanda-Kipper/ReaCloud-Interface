@@ -1,0 +1,16 @@
+.checkbox-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  width: 100%;
+}
+
+.checkbox-group .label {
+  transform: translateY(0%);
+}
+
+.checkbox-group .checkbox-wrapper {
+  width: auto; 
+  margin-top: 8px;
+}

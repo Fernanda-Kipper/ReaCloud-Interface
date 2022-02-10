@@ -20,7 +20,7 @@ export function Checkbox ({
   tooltipText,
   isRequired = false } : Props){
     return(
-      <div className="input-wrapper">
+      <div className="checkbox-wrapper">
         <Label name={name} label={label} isRequired={isRequired} tooltipText={tooltipText}/>
         <input
           className='checkbox'

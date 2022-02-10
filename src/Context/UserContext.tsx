@@ -1,12 +1,12 @@
-import React, {useState, createContext, ReactNode, useEffect } from 'react';
+import React, { useState, createContext, ReactNode, useEffect } from 'react';
 
-import { useUserAuth } from '../hooks/useUserAuth';
+import { useUser } from '../hooks/useUser';
 
 interface UserContextData{
     name: string,
-    value: boolean,
+    isLogged: boolean,
     setName(name:string): void,
-    setValue(value: boolean): void,
+    setIsLogged(value: boolean): void,
     reset(): void
 }
 
@@ -17,27 +17,26 @@ interface UserContextProps{
 export const UserContext = createContext({} as UserContextData)
 
 export function UserContextProvider({ children } : UserContextProps){
-    const [value, setValue] = useState(false)
+    const [isLogged, setIsLogged] = useState(false)
     const [name, setName] = useState("")
-    const { data, isError } = useUserAuth()
+    const { data } = useUser()
 
     const reset = () => {
-        setValue(false)
+        setIsLogged(false)
         setName("")
     }
 
-    useEffect(() =>{
-        if(data?.name && !isError){
-            setName(data.name)
-            setValue(true)
-        }
-    }, [data, isError])
+    useEffect(() => {
+        if(!data) return
+        setName(data.name)
+        setIsLogged(true)
+    }, [data])
 
     return(
         <UserContext.Provider value={{
             name,
-            value,
-            setValue,
+            isLogged,
+            setIsLogged,
             setName,
             reset
         }}>

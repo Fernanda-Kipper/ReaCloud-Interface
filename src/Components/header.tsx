@@ -11,7 +11,7 @@ import { useLogout } from '../hooks/useLogout';
 import When from './when';
 
 function Header() {
-    const { value, name } = useContext(UserContext);
+    const { isLogged, name } = useContext(UserContext);
     const { handleLogout } = useLogout();
     const [isOptionsOpen, setIsOptionsOpen] = useState(false);
 
@@ -19,7 +19,7 @@ function Header() {
         setIsOptionsOpen(!isOptionsOpen)
     }
 
-    if(!value){
+    if(!isLogged){
     return(
         <header>
             <Link to="">

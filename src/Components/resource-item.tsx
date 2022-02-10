@@ -9,7 +9,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { toast } from 'react-toastify';
 
-import axios from '../Services/axiosConfig'
+import axios from '../Services/axios-config'
 import { FormatDate } from '../Utils/format-date';
 
 interface ResourceItemProps{
