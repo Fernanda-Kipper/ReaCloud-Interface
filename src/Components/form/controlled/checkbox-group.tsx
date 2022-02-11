@@ -40,7 +40,8 @@ export function ControlledCheckboxGroup(props: Props){
     <div className="checkbox-group">
       <Label name="preferences" label={props.label} isRequired/>
       {options.map(option => 
-        <ControlledCheckbox 
+        <ControlledCheckbox
+          key={option.value}
           control={control}
           label={option.label} 
           name={option.label} 
