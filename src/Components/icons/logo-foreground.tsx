@@ -5,7 +5,7 @@ export function LogoForeground(){
     <svg 
       stroke="var(--purple-medium)" 
       fill="var(--purple-medium)" 
-      stroke-width="0" 
+      strokeWidth="0" 
       viewBox="0 0 640 512" 
       height="48px" 
       width="48px"

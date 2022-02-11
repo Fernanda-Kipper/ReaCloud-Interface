@@ -9,7 +9,8 @@ import { LoadingPage } from './loading-page'
 
 const extractAccessCodeFromURL = (location: Location<unknown>) => {
   // @ts-ignore
-  return /code=([\w\%_-]+)/.exec(location.search)[1]
+  return /code=([^;]*)&scope/.exec(location.search)[1].replace('code=', '')
+    .replace('&scope', '')
 }
 
 export default function OauthCallbackPage() {
