@@ -21,7 +21,7 @@ para visualizar os recursos indexados ou compartilhar novos recursos com os dema
 
 Seguindo o padrão de metadados Dublin Core o indexador armazena as principais informações a respeito de um Recurso Educacional Aberto, incluindo seu link externo onde o usuário poderá baixar ou apenas visualizar o material - os materiais podem ser de qualquer natureza como livros, softwares, videos, podcasts, banners etc. Esse projeto refere-se á interface do Indexador Digital, sendo o projeto separado entre interface que recebe interação do usuário e API que lida e manipula os dados.
 
-<a align="center" href="https://reacloud.vercel.app" />
+<a align="center" href="https://reacloud.com.br" />
   Acesse clicando aqui
 </a>
 
