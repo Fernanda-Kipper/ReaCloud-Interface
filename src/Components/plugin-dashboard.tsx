@@ -81,7 +81,6 @@ export default function PluginDashboard(){
 
     return(
        <div className="container">
-           <p className="description">Aqui estão os materiais que você salvou através da extensão do ReaCloud</p>
            {data?.map((element) => 
                 <Card className={classes.root}>
                     <CardContent>
