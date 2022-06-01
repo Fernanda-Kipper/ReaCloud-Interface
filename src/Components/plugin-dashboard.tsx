@@ -72,8 +72,9 @@ export default function PluginDashboard(){
     if(!data?.length){
         return(
             <div className="container">
-                <p className="description">
-                    Você não possui nenhum material salvo na extensão do Rea Cloud :/
+                <p className="sub-description">
+                    <br/>
+                    Você ainda não possui nenhum material salvo no seu plugin :/
                 </p>
             </div>
         )

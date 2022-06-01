@@ -21,8 +21,17 @@
 }
 
 .plugin-content main .description {
+  font-size: 1.2rem;
+  color: var(--gray-strong);
+  margin: 32px 0;
+  max-width: 100%;
+  font-weight: 500;
+}
+
+.plugin-content main .sub-description {
   font-size: 1rem;
   color: var(--gray-strong);
   margin: 32px 0;
   max-width: 90%;
+  font-weight: 400;
 }
