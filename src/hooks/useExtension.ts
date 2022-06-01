@@ -32,7 +32,7 @@ export function useExtension(){
         }
       })
       }catch(err){
-        setError(previous => {return {...previous, state: true, message: "Você não tem links salvos. Realize o download da extensão do ReaCloud", redirectOnClick: true}})
+        setError(previous => {return {...previous, state: true, message: "Você nãa ainda não possui o plugin. Realize o download da extensão do ReaCloud", redirectOnClick: true}})
       }
     },[])
 
