@@ -26,7 +26,7 @@ export const mountFormDefaultValues =(resource?: Resource) => {
       description_of_technical_requirements: resource?.description_of_technical_requirements,
     },
     media: {
-      video: resource?.video_link
+      video: resource?.video_link ?? ''
     }
   }
 }
