@@ -11,6 +11,7 @@ import { toast } from 'react-toastify';
 
 import axios from '../Services/axios-config'
 import { FormatDate } from '../Utils/format-date';
+import { getToken } from '../Utils/local-storage';
 
 interface ResourceItemProps{
     title: string,
@@ -46,7 +47,7 @@ const useStyles = makeStyles({
 const ResourceItem: React.FunctionComponent< ResourceItemProps > = ({title,last_modification,id}) => {
     const history = useHistory()
     const classes = useStyles()
-
+    const token = getToken();
 
     function handleClickResource(){
         history.push(`/recurso/${id}`)
@@ -60,7 +61,9 @@ const ResourceItem: React.FunctionComponent< ResourceItemProps > = ({title,last_
         var value = window.confirm("Se quer deletar esse recurso aperte em confirmar");
         if (value)
         {
-            await axios.delete(`/resource/${id}`)
+            await axios.delete(`/resource/${id}`, {
+                headers: { 'Authorization': `Bearer ${token}` }
+            })
             .then(res =>{
                 toast.success('Recurso deletado com sucesso!')
                 history.push('/')
