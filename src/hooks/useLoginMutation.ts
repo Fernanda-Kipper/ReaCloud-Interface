@@ -10,7 +10,7 @@ interface LoginMutation {
 }
 
 async function mutator(access_code: string, redirect_uri: string) {
-  const { data } = await axios.post('/user', { access_code, redirect_uri})
+  const { data } = await axios.post('/user', { access_code, redirect_uri })
 
   return data;
 };
