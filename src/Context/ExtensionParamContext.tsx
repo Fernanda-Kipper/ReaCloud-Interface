@@ -1,10 +1,9 @@
 import React, { useState, createContext, ReactNode } from 'react'
+import { PluginData } from '../Interfaces/plugin-data';
 
 interface ExtensionParamData {
-  title: string;
-  link: string;
-  setTitle: (title: string) => void;
-  setLink: (link: string) => void;
+  pluginData?: PluginData,
+  setPluginData: (data: PluginData) => void
 }
 
 interface ExtensionParamContextProps {
@@ -14,15 +13,12 @@ interface ExtensionParamContextProps {
 export const ExtensionParamContext = createContext({} as ExtensionParamData)
 
 export function ExtensionParamProvider({ children } : ExtensionParamContextProps){
-  const [title, setTitle] = useState('')
-  const [link, setLink] = useState('')
+  const [pluginData, setPluginData] = useState({} as PluginData)
 
   return(
     <ExtensionParamContext.Provider value={{
-      title,
-      link,
-      setLink,
-      setTitle,
+      pluginData,
+      setPluginData
     }}>
       {children}
     </ExtensionParamContext.Provider>
