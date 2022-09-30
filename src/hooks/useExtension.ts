@@ -1,18 +1,14 @@
 import { useEffect, useState } from 'react'
 import { EXTENSION_ID } from '../config'
-
-export interface Material {
-  link: string,
-  title: string | null | undefined,
-}
+import { PluginData } from '../Interfaces/plugin-data'
 
 export function useExtension(){
   const [error, setError] = useState({ message: "", type: "warn", redirectOnClick: false, state: false})
-  const [data, setData] = useState<Material[]>([])
+  const [data, setData] = useState<PluginData[]>([])
 
   function handleDelete(link: string){
     try{
-      chrome.runtime.sendMessage(EXTENSION_ID, {delete: link}, function(response){
+      chrome.runtime.sendMessage(EXTENSION_ID, { delete: link }, function(response){
         if(response.deleted){
             setData(response.setTargetData)
         }else{

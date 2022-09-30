@@ -13,8 +13,17 @@ import { generateResource } from '../Utils/generate-resource';
 
 function PublishResource() {
   const { postResource, isLoading, isError, isSuccess } = useResourceMutation()
-  const { link, title } = useContext(ExtensionParamContext)
+  const { pluginData } = useContext(ExtensionParamContext)
   const { push } = useHistory()
+
+  const defaultValues = {
+    external_url: pluginData?.link ?? '', 
+    title: pluginData?.title ?? '',
+    description: pluginData?.description ?? '',
+    author: pluginData?.channel ?? '',
+    type: pluginData?.videoTitle ? 'video' : '',
+    video: pluginData?.videoTitle ? pluginData?.link : ''
+  }
 
   useEffect(() => {
     if(!isError) return 
@@ -31,7 +40,7 @@ function PublishResource() {
       <Header></Header>
         <main>
           <When expr={!isLoading}>
-            <ResourceForm submit={postResource} defaultValues={generateResource({external_url: link, title})}/>
+            <ResourceForm submit={postResource} defaultValues={generateResource(defaultValues)}/>
           </When>
           <When expr={isLoading}>
             <LoadingSpinnerWithTitle title="Publicando seu recurso"/>

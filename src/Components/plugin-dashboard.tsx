@@ -9,9 +9,10 @@ import Typography from '@material-ui/core/Typography';
 import { toast } from 'react-toastify';
 
 import '../Styles/components/savedUrls.css'
-import { useExtension, Material } from '../hooks/useExtension';
+import { useExtension } from '../hooks/useExtension';
 import { ExtensionParamContext } from '../Context/ExtensionParamContext';
 import { EXTENSION_URL } from '../config';
+import { PluginData } from '../Interfaces/plugin-data';
 
 const useStyles = makeStyles({
     root: {
@@ -47,7 +48,7 @@ const useStyles = makeStyles({
 
 export default function PluginDashboard(){
     const { data, error, handleDelete } = useExtension()
-    const { setLink, setTitle } = useContext(ExtensionParamContext)
+    const { setPluginData } = useContext(ExtensionParamContext)
     const classes = useStyles()
     const history = useHistory()
 
@@ -55,9 +56,8 @@ export default function PluginDashboard(){
         window.location.href = EXTENSION_URL
     }
 
-    function handlePublish(element: Material){
-        setLink(element.link)
-        if(element.title) setTitle(element.title)
+    function handlePublish(element: PluginData){
+        setPluginData(element)
         history.push('/publicar')
     }
 
@@ -83,7 +83,7 @@ export default function PluginDashboard(){
     return(
        <div className="container">
            {data?.map((element) => 
-                <Card className={classes.root}>
+                <Card className={classes.root} key={element.link}>
                     <CardContent>
                         <Typography className={classes.title}>
                             {element.title? element.title : element.link.replace('https://', '')}
