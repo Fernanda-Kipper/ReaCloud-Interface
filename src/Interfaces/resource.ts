@@ -1,4 +1,5 @@
 import { Licenses } from "../Constants/licenses"
+import { OptionType } from './option';
 
 export type Resource = {
     id: string,
@@ -21,6 +22,7 @@ export type Resource = {
     title: string,
     type: string,
     userName: string,
+    bncc: string,
     image: {
         url: string
     },
@@ -47,5 +49,6 @@ export type ResourceFormPayload = {
     description_of_technical_requirements: string,
     last_modification: string,
     video: string,
-    file: File
+    file: File,
+    bncc: OptionType
 }
