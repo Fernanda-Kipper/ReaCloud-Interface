@@ -12,3 +12,9 @@ form .custom-select-wrapper {
     align-items: flex-start;
     width: 100%;
 }
+
+@media (min-width: 900px){
+    form .custom-select-wrapper {
+        width: 380px;
+    }
+}
