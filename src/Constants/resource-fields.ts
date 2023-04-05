@@ -12,6 +12,7 @@ export const RESOURCE_FIELDS = [
   {name:'Recurso correlato' , field: (resource: Resource) => resource?.relation ?? '', property: 'dc.relation'},
   {name:'Ultima modificação na plataforma' , field: (resource: Resource) => resource?.last_modification ? FormatDate(resource?.last_modification) : '', property: 'dc.last_modification'},
   {name:'Tipo de recurso' , field: (resource: Resource) => resource?.type ?? '', property: 'dc.type'},
+  {name:'Competência BNCC' , field: (resource: Resource) => resource?.bncc ?? '', property: 'bncc'},
   {name:'Formato do recurso' , field: (resource: Resource) => resource?.format ?? '', property: 'dc.format'},
   {name:'Linguagem' , field: (resource: Resource) => resource?.language ?? '', property: 'dc.language'},
   {name:'Contribuidores do recurso' , field: (resource: Resource) => resource?.contributor ?? '', property: 'dc.contributor'},
