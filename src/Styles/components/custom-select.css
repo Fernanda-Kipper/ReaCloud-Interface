@@ -1,0 +1,14 @@
+form .custom-select-wrapper .custom-select {
+    width: 100%;
+    color: var(--gray-medium);
+    margin: 12px 0;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+form .custom-select-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+}

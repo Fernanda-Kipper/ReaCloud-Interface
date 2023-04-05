@@ -24,6 +24,7 @@ export const generateResource = (partialResource: Partial<Resource>): Resource =
         type: partialResource.type ?? '',
         userName: partialResource.userName ?? '',
         video_link: partialResource.video_link ?? '',
+        bncc: partialResource.bncc ?? '',
         image: {
             url: partialResource.image?.url ?? ''
         }

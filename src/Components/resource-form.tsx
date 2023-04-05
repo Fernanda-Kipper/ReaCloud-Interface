@@ -76,6 +76,7 @@ export function ResourceForm({ submit, defaultValues } : Props){
     dataForm.append('last_modification', last_modification)
     dataForm.append('video', values.video)
     dataForm.append('file', values.file)
+    dataForm.append('bncc', values.bncc.value)
 
     submit(dataForm)
   })

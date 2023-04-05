@@ -1,5 +1,5 @@
 import React, { FormEvent } from 'react';
-import { UseFormReturn } from 'react-hook-form';
+import { Controller, UseFormReturn } from 'react-hook-form';
 
 import '../../Styles/components/default-form.css'
 
@@ -11,6 +11,7 @@ import subjectsOptions from '../../Constants/subjects';
 import resourceTypeOptions from '../../Constants/resource-type-options';
 import { ResourceFormPayload } from '../../Interfaces/resource';
 import { FormCompleteList } from '../resource-form';
+import { BnccSelect } from './bncc-select';
 
 interface Props {
   defaultValues: {
@@ -72,6 +73,17 @@ export function ContentForm(props: Props){
         name='type'
         isRequired
         isError={!!formState.errors.type}
+      />
+
+      <Controller
+        control={control}
+        name="bncc"
+        rules={{
+          required: 'Campo obrigatório'
+        }}
+        render={({ field: { onChange, value } }) => (
+          <BnccSelect setSelectedOption={onChange} selectedOption={value}/>
+        )}
       />
     
       <ControlledTextarea
