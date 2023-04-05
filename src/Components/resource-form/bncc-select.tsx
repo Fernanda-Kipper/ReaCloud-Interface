@@ -52,10 +52,11 @@ export function BnccSelect({ selectedOption, setSelectedOption }: Props) {
         complete: (results) => {
           const data = results.data as string[][];
           const flatData = data.flat() ?? [];
+          const groupLabel = path.replace('.csv', '')
           setData(previous => [...previous,             
             {
-              label: path.replace('.csv', ''),
-              options: flatData.map(item => ({ label: item, value: item}))
+              label: groupLabel,
+              options: flatData.map(item => ({ label: item + " - " + groupLabel, value: item}))
             }
           ]);
         }
