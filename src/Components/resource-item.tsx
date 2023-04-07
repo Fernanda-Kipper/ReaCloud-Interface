@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useHistory} from 'react-router-dom';
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -9,9 +9,8 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { toast } from 'react-toastify';
 
-import axios from '../Services/axios-config'
 import { FormatDate } from '../Utils/format-date';
-import { getToken } from '../Utils/local-storage';
+import { useResourceDelete } from '../hooks/useResourceDelete';
 
 interface ResourceItemProps{
     title: string,
@@ -47,7 +46,7 @@ const useStyles = makeStyles({
 const ResourceItem: React.FunctionComponent< ResourceItemProps > = ({title,last_modification,id}) => {
     const history = useHistory()
     const classes = useStyles()
-    const token = getToken();
+    const { deleteResource, isSuccess, isError } = useResourceDelete();
 
     function handleClickResource(){
         history.push(`/recurso/${id}`)
@@ -59,20 +58,19 @@ const ResourceItem: React.FunctionComponent< ResourceItemProps > = ({title,last_
 
     async function handleDelete(){
         var value = window.confirm("Se quer deletar esse recurso aperte em confirmar");
-        if (value)
-        {
-            await axios.delete(`/resource/${id}`, {
-                headers: { 'Authorization': `Bearer ${token}` }
-            })
-            .then(res =>{
-                toast.success('Recurso deletado com sucesso!')
-                history.push('/')
-            })
-            .catch((err)=>{
-                toast.error("Erro ao deletar recurso. Tente realizar login novamente")
-            })
-        }
+        if (value) deleteResource(id)
     }
+
+    useEffect(() => {
+        if(!isError) return
+        toast.error("Erro ao deletar recurso. Tente realizar login novamente")
+    }, [isError])
+
+    useEffect(() => {
+        if(!isSuccess) return
+        toast.success('Recurso deletado com sucesso!')
+        history.push('/')
+    }, [isSuccess])
 
     return(
         <>
