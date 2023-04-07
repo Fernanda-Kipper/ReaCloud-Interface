@@ -85,7 +85,13 @@ function ResourcePage() {
             </section>
             <div className="media">
                 <img src={resource?.image.url ?? ''} alt={`Imagem do recurso ${resource?.title}`}/>
-                { resource?.video_link ? <iframe title="video" src={resource?.video_link.replace('watch?v=', 'embed/')} frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe> : null}
+                <When expr={!!resource?.video_link}>
+                    <iframe 
+                        title="video" 
+                        src={resource?.video_link.replace('watch?v=', 'embed/')} 
+                        frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
+                        </iframe>
+                </When>
             </div>
             <Paper square className={classes.root}>
                 <Tabs
