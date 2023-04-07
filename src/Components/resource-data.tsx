@@ -58,13 +58,13 @@ const TableContent = ({ resource, license }: Content) => (
           <StyledTableCell>{field.property}</StyledTableCell>
       </TableRow>
     ))}
-    {resource?.description_of_technical_requirements && (
-    <TableRow>
-      <StyledTableCell>Descrição dos pré-requisitos técnicos</StyledTableCell>
-      <StyledTableCell>{resource?.description_of_technical_requirements}</StyledTableCell>
-      <StyledTableCell>description_of_technical_requirements</StyledTableCell>
-    </TableRow>                                
-    )}
+    <When expr={!!resource?.description_of_technical_requirements}>
+      <TableRow>
+        <StyledTableCell>Descrição dos pré-requisitos técnicos</StyledTableCell>
+        <StyledTableCell>{resource?.description_of_technical_requirements}</StyledTableCell>
+        <StyledTableCell>description_of_technical_requirements</StyledTableCell>
+      </TableRow>  
+    </When>
   </TableBody>
 )
 
@@ -88,6 +88,7 @@ export function ResourceData({ isLoading, resource, license }: Props){
                   </TableRow>
               </TableHead>
               <When expr={isLoading}>
+                {/* TODO: abstrair */}
                   <TableBody>
                    <TableRow>
                       <StyledTableCell><Skeleton animation="wave" /></StyledTableCell>
