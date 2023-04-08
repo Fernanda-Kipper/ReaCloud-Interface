@@ -1,36 +1,22 @@
 import React from "react";
-import { withStyles } from '@material-ui/core/styles';
+import { GrStatusWarning } from 'react-icons/gr';
 
 import License from "../Interfaces/license";
 import { Resource } from "../Interfaces/resource";
 import { RESOURCE_FIELDS } from '../Constants/resource-fields';
-import '../Styles/components/resource-data.css';
 
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import Skeleton from '@material-ui/lab/Skeleton';
-import { GrStatusWarning } from 'react-icons/gr';
 
+import { StyledTableCell } from "./styled-table-cell";
 import When from "./when";
 
-const StyledTableCell = withStyles((theme) => ({
-  head: {
-    backgroundColor: '#ccc',
-    color: theme.palette.common.white,
-    fontWeight: 'bold',
-    fontSize: 18,
-    overflowX: 'auto'
-  },
-  body: {
-    fontSize: 16,
-    overflowX: 'auto'
-  },
-}))(TableCell);
+import '../Styles/components/resource-data.css';
+import { ResourceDataLoading } from "./resource-data-loading";
 
 
 interface Content {
@@ -58,13 +44,13 @@ const TableContent = ({ resource, license }: Content) => (
           <StyledTableCell>{field.property}</StyledTableCell>
       </TableRow>
     ))}
-    {resource?.description_of_technical_requirements && (
-    <TableRow>
-      <StyledTableCell>Descrição dos pré-requisitos técnicos</StyledTableCell>
-      <StyledTableCell>{resource?.description_of_technical_requirements}</StyledTableCell>
-      <StyledTableCell>description_of_technical_requirements</StyledTableCell>
-    </TableRow>                                
-    )}
+    <When expr={!!resource?.description_of_technical_requirements}>
+      <TableRow>
+        <StyledTableCell>Descrição dos pré-requisitos técnicos</StyledTableCell>
+        <StyledTableCell>{resource?.description_of_technical_requirements}</StyledTableCell>
+        <StyledTableCell>description_of_technical_requirements</StyledTableCell>
+      </TableRow>  
+    </When>
   </TableBody>
 )
 
@@ -88,28 +74,7 @@ export function ResourceData({ isLoading, resource, license }: Props){
                   </TableRow>
               </TableHead>
               <When expr={isLoading}>
-                  <TableBody>
-                   <TableRow>
-                      <StyledTableCell><Skeleton animation="wave" /></StyledTableCell>
-                      <StyledTableCell><Skeleton animation="wave" /></StyledTableCell>
-                      <StyledTableCell><Skeleton animation="wave" /></StyledTableCell>
-                    </TableRow>
-                    <TableRow>
-                      <StyledTableCell><Skeleton animation="wave" /></StyledTableCell>
-                      <StyledTableCell><Skeleton animation="wave" /></StyledTableCell>
-                      <StyledTableCell><Skeleton animation="wave" /></StyledTableCell>
-                    </TableRow>  
-                    <TableRow>
-                      <StyledTableCell><Skeleton animation="wave" /></StyledTableCell>
-                      <StyledTableCell><Skeleton animation="wave" /></StyledTableCell>
-                      <StyledTableCell><Skeleton animation="wave" /></StyledTableCell>
-                    </TableRow>
-                    <TableRow>
-                      <StyledTableCell><Skeleton animation="wave" /></StyledTableCell>
-                      <StyledTableCell><Skeleton animation="wave" /></StyledTableCell>
-                      <StyledTableCell><Skeleton animation="wave" /></StyledTableCell>
-                    </TableRow>  
-                  </TableBody>
+                  <ResourceDataLoading/>
               </When>
               <When expr={!isLoading}>
                 {resource && <TableContent resource={resource} license={license}/>}
