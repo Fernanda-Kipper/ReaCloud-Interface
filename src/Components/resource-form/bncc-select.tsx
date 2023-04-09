@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Select, { GroupBase } from "react-select";
+import Select, { GroupBase, MultiValue } from "react-select";
 import Papa from "papaparse";
 import _ from "lodash";
 import { OptionType } from "../../Interfaces/option";
@@ -28,7 +28,7 @@ const filesPath = [
   'fundamental_matematica.csv',
 ]
 
-export type ValueType<OptionType> = OptionType | null | undefined;
+export type ValueType<OptionType> = OptionType[] | null | undefined;
 
 type Data = {
   options: OptionType[];
@@ -36,8 +36,8 @@ type Data = {
 }[];
 
 interface Props {
-  selectedOption: OptionType | null | undefined,
-  setSelectedOption: (value: OptionType | null | undefined) => void
+  selectedOption: OptionType[] | null | undefined,
+  setSelectedOption: (value: MultiValue<OptionType> | null | undefined) => void
 }
   
 export function BnccSelect({ selectedOption, setSelectedOption }: Props) {
@@ -64,7 +64,7 @@ export function BnccSelect({ selectedOption, setSelectedOption }: Props) {
     }
   }, []);
   
-  function handleSelectChange(selectedOption: ValueType<OptionType>){
+  function handleSelectChange(selectedOption: MultiValue<OptionType>){
     setSelectedOption(selectedOption);
   }
 
@@ -78,6 +78,7 @@ export function BnccSelect({ selectedOption, setSelectedOption }: Props) {
       placeholder="Digite o código BNNC"
       isClearable
       isSearchable
+      isMulti
       className="custom-select"
     />
     </div>
