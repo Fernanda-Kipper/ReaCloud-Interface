@@ -68,8 +68,6 @@ function SearchPage() {
                         <BsSearch/>
                     </button>
                 </form>
-            </header>
-            <main>
                 <aside className="filter">
                     <button onClick={handleFilterClick}>
                         <BsFilter size="lg"/>
@@ -98,6 +96,8 @@ function SearchPage() {
                         <button type="submit">Filtrar</button>
                     </form>
                 </aside>
+            </header>
+            <main>
                 <section className="results">
                     <When expr={results && !loading}>
                         {results.length > 0 ? (
