@@ -50,5 +50,5 @@ export type ResourceFormPayload = {
     last_modification: string,
     video: string,
     file: File,
-    bncc: OptionType
+    bncc: OptionType[]
 }

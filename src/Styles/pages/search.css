@@ -101,38 +101,48 @@
     flex-grow: 1;
 }
 
-.search-content main .filter{
+.search-content header .filter{
     width: 100%;
     height: auto;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
     justify-content: center;
-    padding: 10px;
 }
 
-.search-content main .filter button{
+.search-content header .filter button{
     width: 30px;
     height: 30px;
     cursor: pointer;
     background: transparent;
     border: 0;
+    border-radius: 8px;
     color: var(--purple-primary);
 }
 
-.search-content main .filter .enabled{
+.search-content header .filter form {
+    position: absolute;
+    top: 140px;
+    right: 80px;
+    background-color: white;
+    border-radius: 8px;
+    padding: 12px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.search-content header .filter .enabled{
     display: flex;
     align-items: center;
     justify-content: flex-end;
     flex-direction: column;
 }
 
-.search-content main .filter .disabled{
+.search-content header .filter .disabled{
     display: none;
 }
 
-.search-content main .filter .enabled button{
-    width: 92%;
+.search-content header .filter .enabled button{
+    width: 100%;
     height: 40px;
     color: white;
     background-color: var(--purple-primary);
@@ -183,21 +193,15 @@
         grid-template-columns: repeat(3, 1fr);
     }
 
-    .search-content main .filter{
-        z-index: 999;
-        position: absolute;
-        top: 8px;
-        right: 8px;
-    }
-
-    .search-content main .filter .enabled{
-        background-color: white;
-        width: 420px;
-        border-radius: 16px;
-    }
-
-    .search-content main .filter .enabled button:hover{
+    .search-content header .filter .enabled button:hover{
         opacity: 1;
         transition: 500ms;
+    }
+
+    .search-content header .filter form.enabled {
+        position: absolute;
+        border-radius: 12px 0 12px 12px;
+        top: 120px;
+        right: 32px;
     }
 }

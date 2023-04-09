@@ -53,7 +53,6 @@ export function ResourceForm({ submit, defaultValues } : Props){
 
   const onSubmit = form.handleSubmit((values) => {
     const dataForm = resourceDataFormFactory(values);
-
     submit(dataForm)
   })
   

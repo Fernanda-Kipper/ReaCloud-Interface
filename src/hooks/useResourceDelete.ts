@@ -1,5 +1,4 @@
 import { useMutation, useQueryClient } from 'react-query'
-import { EvaluationFormPayload } from '../Interfaces/evaluation';
 import axios from '../Services/axios-config';
 import { getToken } from '../Utils/local-storage';
 

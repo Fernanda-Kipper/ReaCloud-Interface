@@ -58,11 +58,12 @@ const cardStyles = makeStyles({
 
 const ResourceCard: React.FunctionComponent< ResourceCardProps > = ({title, image, description, id})=>{
     const classes = cardStyles();
-    function resumeTitle(title: string){
-      if(title.length > 28){
+
+    const resumeText = (title: string, len: number) => {
+      if(title.length > len){
         let newTitle = title
-        .slice(0,27)
-        return newTitle += ' ...'
+        .slice(0,len - 1)
+        return newTitle += '...'
       }else{
         return title
       }
@@ -80,10 +81,10 @@ const ResourceCard: React.FunctionComponent< ResourceCardProps > = ({title, imag
             ) : <Avatar name={title} size="100%" style={{width: '300px', height: '150px'}}/>}
           <CardContent>
             <Typography gutterBottom variant="h5" component="h2" className={classes.title}>
-              {resumeTitle(title)}
+              {resumeText(title, 28)}
             </Typography>
             <Typography variant="body2" color="textSecondary" component="p" className={classes.text}>
-              {description}
+              {resumeText(description, 150)}
             </Typography>
             <CardActions className={classes.action}>
               <Link to={`/recurso/${id}`} className={classes.link}>Saber mais</Link>

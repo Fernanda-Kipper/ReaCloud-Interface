@@ -5,6 +5,7 @@ export function resourceDataFormFactory(values: ResourceFormPayload){
 
     const today = new Date()
     const last_modification =  today.getFullYear()+'-'+(today.getMonth() + 1)+'-'+today.getDate();
+    const bncc = values.bncc.reduce((acc, item) => acc += item.value + ',', '').slice(0, -1);
 
     dataForm.append('title', values.title)
     dataForm.append('author', values.author)
@@ -26,7 +27,7 @@ export function resourceDataFormFactory(values: ResourceFormPayload){
     dataForm.append('last_modification', last_modification)
     dataForm.append('video', values.video)
     dataForm.append('file', values.file)
-    dataForm.append('bncc', values.bncc.value)
+    dataForm.append('bncc', bncc)
 
     return dataForm;
 }
